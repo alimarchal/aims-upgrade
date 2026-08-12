@@ -287,15 +287,18 @@ class ReportsController extends Controller
             return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears'));
         }
 
+        $invoiceIncomeColumn = $fiscalYearStart === 2026 ? 'govt_amount' : 'total_amount';
+        $chitIncomeColumn = $fiscalYearStart === 2026 ? 'govt_amount' : 'amount';
+
         $invoiceTotals = Invoice::query()
-            ->selectRaw("DATE_TRUNC('month', created_at) as report_month, SUM(total_amount) as total_income")
+            ->selectRaw("DATE_TRUNC('month', created_at) as report_month, SUM({$invoiceIncomeColumn}) as total_income")
             ->whereBetween('created_at', [$fiscalStartDate, $fiscalEndDate])
             ->groupBy('report_month')
             ->get()
             ->keyBy(fn ($item) => Carbon::parse($item->report_month)->format('Y-m'));
 
         $chitTotals = Chit::query()
-            ->selectRaw("DATE_TRUNC('month', issued_date) as report_month, SUM(amount) as total_income")
+            ->selectRaw("DATE_TRUNC('month', issued_date) as report_month, SUM({$chitIncomeColumn}) as total_income")
             ->whereBetween('issued_date', [$fiscalStartDate, $fiscalEndDate])
             ->groupBy('report_month')
             ->get()
