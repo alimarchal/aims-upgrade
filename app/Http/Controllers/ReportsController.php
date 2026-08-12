@@ -237,6 +237,7 @@ class ReportsController extends Controller
     {
         $allowedFiscalYears = [2025];
         $supportedFiscalYears = [2025, 2026];
+        $shouldShowReport = $request->filled('year');
         $currentDate = now();
         $defaultFiscalYearStart = $currentDate->month >= 7 ? $currentDate->year : $currentDate->year - 1;
 
@@ -248,6 +249,14 @@ class ReportsController extends Controller
 
         if (! in_array($fiscalYearStart, $supportedFiscalYears, true)) {
             $fiscalYearStart = $defaultFiscalYearStart;
+        }
+
+        if (! $shouldShowReport) {
+            $monthlyIncomeData = [];
+            $totalIncome = 0;
+            $yearLabel = '';
+
+            return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears', 'shouldShowReport'));
         }
 
         $fiscalStartDate = Carbon::create($fiscalYearStart, 7, 1)->startOfDay();
@@ -284,7 +293,7 @@ class ReportsController extends Controller
             $totalIncome = collect($monthlyIncomeData)->sum('income');
             $yearLabel = $fiscalYearStart.'-'.substr((string) ($fiscalYearStart + 1), -2);
 
-            return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears'));
+            return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears', 'shouldShowReport'));
         }
 
         $invoiceIncomeColumn = $fiscalYearStart === 2026 ? 'govt_amount' : 'total_amount';
@@ -321,7 +330,7 @@ class ReportsController extends Controller
         $totalIncome = collect($monthlyIncomeData)->sum('income');
         $yearLabel = $fiscalYearStart.'-'.substr((string) ($fiscalYearStart + 1), -2);
 
-        return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears'));
+        return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears', 'shouldShowReport'));
     }
 
     public function reportMisc(Request $request)

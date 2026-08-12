@@ -70,37 +70,42 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-4">
                 <div class="overflow-x-auto">
-                    <h3 class="text-center text-3xl font-bold mb-2">Abbas Institute of Medical Sciences Muzaffarabad
-                    </h3>
-                    <p class="text-center text-4xl font-extrabold mb-8">Income Statement for Year {{ $yearLabel }}</p>
+                    @if ($shouldShowReport)
+                        <h3 class="text-center text-3xl font-bold mb-2">Abbas Institute of Medical Sciences Muzaffarabad
+                        </h3>
+                        <p class="text-center text-4xl font-extrabold mb-8">Income Statement for Year {{ $yearLabel }}</p>
 
-                    <table class="table-auto w-full border-collapse border border-black" style="font-size: 20px;">
-                        <thead>
-                            <tr class="border-black bg-gray-100">
-                                <th class="border-black border px-4 py-3 text-center">S.N</th>
-                                <th class="border-black border px-4 py-3 text-center">Month</th>
-                                <th class="border-black border px-4 py-3 text-right">Income</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($monthlyIncomeData as $item)
-                                <tr class="border-black">
-                                    <td class="border-black border px-4 py-3 text-center">{{ $item['sn'] }}</td>
-                                    <td class="border-black border px-4 py-3 text-center">{{ $item['month'] }}</td>
+                        <table class="table-auto w-full border-collapse border border-black" style="font-size: 20px;">
+                            <thead>
+                                <tr class="border-black bg-gray-100">
+                                    <th class="border-black border px-4 py-3 text-center">S.N</th>
+                                    <th class="border-black border px-4 py-3 text-center">Month</th>
+                                    <th class="border-black border px-4 py-3 text-right">Income</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($monthlyIncomeData as $item)
+                                    <tr class="border-black">
+                                        <td class="border-black border px-4 py-3 text-center">{{ $item['sn'] }}</td>
+                                        <td class="border-black border px-4 py-3 text-center">{{ $item['month'] }}</td>
+                                        <td class="border-black border px-4 py-3 text-right">
+                                            {{ number_format($item['income']) }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr class="border-black font-extrabold">
+                                    <td class="border-black border px-4 py-3 text-center"></td>
+                                    <td class="border-black border px-4 py-3 text-center">Total</td>
                                     <td class="border-black border px-4 py-3 text-right">
-                                        {{ number_format($item['income']) }}
+                                        {{ number_format($totalIncome) }}
                                     </td>
                                 </tr>
-                            @endforeach
-                            <tr class="border-black font-extrabold">
-                                <td class="border-black border px-4 py-3 text-center"></td>
-                                <td class="border-black border px-4 py-3 text-center">Total</td>
-                                <td class="border-black border px-4 py-3 text-right">
-                                    {{ number_format($totalIncome) }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    @else
+                        <p class="text-center text-lg font-semibold text-gray-600 py-12">Select year and click Search to
+                            view report.</p>
+                    @endif
                 </div>
             </div>
         </div>
