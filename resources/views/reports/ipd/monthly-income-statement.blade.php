@@ -46,9 +46,10 @@
                         <label for="year" class="block text-gray-700 font-bold mb-2">Fiscal Year Start</label>
                         <select name="year" id="year"
                             class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
-                            @foreach (range(now()->year - 5, now()->year + 1) as $year)
+                            @foreach ($allowedFiscalYears as $year)
                                 <option value="{{ $year }}" @selected($fiscalYearStart === $year)>
-                                    {{ $year }}-{{ substr((string) ($year + 1), -2) }}</option>
+                                    {{ $year }}-{{ substr((string) ($year + 1), -2) }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -78,7 +79,7 @@
                             <tr class="border-black bg-gray-100">
                                 <th class="border-black border px-4 py-3 text-center">S.N</th>
                                 <th class="border-black border px-4 py-3 text-center">Month</th>
-                                <th class="border-black border px-4 py-3 text-center">Income</th>
+                                <th class="border-black border px-4 py-3 text-right">Income</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,15 +87,17 @@
                                 <tr class="border-black">
                                     <td class="border-black border px-4 py-3 text-center">{{ $item['sn'] }}</td>
                                     <td class="border-black border px-4 py-3 text-center">{{ $item['month'] }}</td>
-                                    <td class="border-black border px-4 py-3 text-center">
-                                        {{ number_format($item['income'], 0, '.', '') }}</td>
+                                    <td class="border-black border px-4 py-3 text-right">
+                                        {{ number_format($item['income']) }}
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr class="border-black font-extrabold">
                                 <td class="border-black border px-4 py-3 text-center"></td>
                                 <td class="border-black border px-4 py-3 text-center">Total</td>
-                                <td class="border-black border px-4 py-3 text-center">
-                                    {{ number_format($totalIncome, 0, '.', '') }}</td>
+                                <td class="border-black border px-4 py-3 text-right">
+                                    {{ number_format($totalIncome) }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>

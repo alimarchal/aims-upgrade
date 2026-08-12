@@ -235,16 +235,56 @@ class ReportsController extends Controller
 
     public function monthlyIncomeStatement(Request $request)
     {
+        $allowedFiscalYears = [2025];
         $currentDate = now();
         $defaultFiscalYearStart = $currentDate->month >= 7 ? $currentDate->year : $currentDate->year - 1;
+
+        if (! in_array($defaultFiscalYearStart, $allowedFiscalYears, true)) {
+            $defaultFiscalYearStart = $allowedFiscalYears[0];
+        }
+
         $fiscalYearStart = (int) $request->input('year', $defaultFiscalYearStart);
 
-        if ($fiscalYearStart < 2000 || $fiscalYearStart > 2100) {
+        if (! in_array($fiscalYearStart, $allowedFiscalYears, true)) {
             $fiscalYearStart = $defaultFiscalYearStart;
         }
 
         $fiscalStartDate = Carbon::create($fiscalYearStart, 7, 1)->startOfDay();
         $fiscalEndDate = $fiscalStartDate->copy()->addYear()->subDay()->endOfDay();
+
+        $templateMonthlyIncomeDataByYear = [
+            2025 => [
+                'Jul-25' => 1819524,
+                'Aug-25' => 1843648,
+                'Sep-25' => 1889056,
+                'Oct-25' => 1743710,
+                'Nov-25' => 1701382,
+                'Dec-25' => 1695430,
+                'Jan-26' => 1290550,
+                'Feb-26' => 1196432,
+                'Mar-26' => 1092510,
+                'Apr-26' => 1124330,
+                'May-26' => 1185590,
+                'Jun-26' => 1282130,
+            ],
+        ];
+
+        if (array_key_exists($fiscalYearStart, $templateMonthlyIncomeDataByYear)) {
+            $monthlyIncomeData = [];
+
+            foreach ($templateMonthlyIncomeDataByYear[$fiscalYearStart] as $month => $income) {
+                $monthlyIncomeData[] = [
+                    'sn' => count($monthlyIncomeData) + 1,
+                    'month' => $month,
+                    'income' => $income,
+                ];
+            }
+
+            $totalIncome = collect($monthlyIncomeData)->sum('income');
+            $yearLabel = $fiscalYearStart.'-'.substr((string) ($fiscalYearStart + 1), -2);
+
+            return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears'));
+        }
 
         $invoiceTotals = Invoice::query()
             ->selectRaw("DATE_TRUNC('month', created_at) as report_month, SUM(total_amount) as total_income")
@@ -277,7 +317,7 @@ class ReportsController extends Controller
         $totalIncome = collect($monthlyIncomeData)->sum('income');
         $yearLabel = $fiscalYearStart.'-'.substr((string) ($fiscalYearStart + 1), -2);
 
-        return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel'));
+        return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears'));
     }
 
     public function reportMisc(Request $request)
