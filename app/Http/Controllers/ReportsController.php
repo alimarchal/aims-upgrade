@@ -236,16 +236,17 @@ class ReportsController extends Controller
     public function monthlyIncomeStatement(Request $request)
     {
         $allowedFiscalYears = [2025];
+        $supportedFiscalYears = [2025, 2026];
         $currentDate = now();
         $defaultFiscalYearStart = $currentDate->month >= 7 ? $currentDate->year : $currentDate->year - 1;
 
-        if (! in_array($defaultFiscalYearStart, $allowedFiscalYears, true)) {
+        if (! in_array($defaultFiscalYearStart, $supportedFiscalYears, true)) {
             $defaultFiscalYearStart = $allowedFiscalYears[0];
         }
 
         $fiscalYearStart = (int) $request->input('year', $defaultFiscalYearStart);
 
-        if (! in_array($fiscalYearStart, $allowedFiscalYears, true)) {
+        if (! in_array($fiscalYearStart, $supportedFiscalYears, true)) {
             $fiscalYearStart = $defaultFiscalYearStart;
         }
 

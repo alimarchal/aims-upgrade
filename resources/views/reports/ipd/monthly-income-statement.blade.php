@@ -67,7 +67,7 @@
     </div>
 
     <div class="py-10">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-4">
                 <div class="overflow-x-auto">
                     <h3 class="text-center text-3xl font-bold mb-2">Abbas Institute of Medical Sciences Muzaffarabad
