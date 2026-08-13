@@ -9,11 +9,13 @@ use App\Models\Department;
 use App\Models\FeeCategory;
 use App\Models\FeeType;
 use App\Models\Invoice;
+use App\Models\PatientEmergencyTreatment;
 use App\Models\PatientTest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -30,7 +32,7 @@ class ReportsController extends Controller
         $date_start_at = $start_date.' 00:00:00';
         $date_end_at = $end_date.' 23:59:59';
 
-        $data = null;
+        $data = [];
         foreach (Department::where('name', '!=', 'Emergency')->get() as $dpt) {
             $data[$dpt->name] = ['Non_Entitiled' => 0, 'Entitiled' => 0, 'Revenue' => 0, 'Revenue_HIF' => 0, 'department_id' => $dpt->id];
         }
@@ -40,6 +42,7 @@ class ReportsController extends Controller
             ->select('departments.name', DB::raw('COUNT(chits.government_non_gov) AS "Non_Entitiled"'), DB::raw('SUM(chits.amount) as "Revenue", SUM(chits.amount_hif) as "Revenue_HIF"'))
             ->whereBetween('chits.issued_date', [$date_start_at, $date_end_at])
             ->where('chits.government_non_gov', 0)
+            ->where('departments.name', '!=', 'Emergency')
             ->whereIn('ipd_opd', [1, 0])
             ->groupBy('chits.department_id', 'departments.name')
             ->get();
@@ -49,18 +52,25 @@ class ReportsController extends Controller
             ->select('departments.name', DB::raw('COUNT(chits.government_non_gov) AS "Entitiled"'), DB::raw('SUM(chits.amount) as "Revenue", SUM(chits.amount_hif) as "Revenue_HIF"'))
             ->whereBetween('chits.issued_date', [$date_start_at, $date_end_at])
             ->where('chits.government_non_gov', 1)
+            ->where('departments.name', '!=', 'Emergency')
             ->whereIn('ipd_opd', [1, 0])
             ->groupBy('chits.department_id', 'departments.name')
             ->get();
 
         // Update the $data array with figures from $non_entitled and $entitled queries
         foreach ($non_entitled as $row) {
+            if (! isset($data[$row->name])) {
+                $data[$row->name] = ['Non_Entitiled' => 0, 'Entitiled' => 0, 'Revenue' => 0, 'Revenue_HIF' => 0, 'department_id' => null];
+            }
             $data[$row->name]['Non_Entitiled'] = $row->Non_Entitiled;
             $data[$row->name]['Revenue'] = $row->Revenue;
             $data[$row->name]['Revenue_HIF'] = $row->Revenue_HIF;
         }
 
         foreach ($entitled as $row) {
+            if (! isset($data[$row->name])) {
+                $data[$row->name] = ['Non_Entitiled' => 0, 'Entitiled' => 0, 'Revenue' => 0, 'Revenue_HIF' => 0, 'department_id' => null];
+            }
             $data[$row->name]['Entitiled'] = $row->Entitiled;
         }
 
@@ -84,7 +94,7 @@ class ReportsController extends Controller
         $date_start_at = $start_date.' 00:00:00';
         $date_end_at = $end_date.' 23:59:59';
 
-        $data = null;
+        $data = [];
         $user_id = null;
         $users = null;
         $roleName = 'Front Desk/Receptionist';
@@ -92,27 +102,58 @@ class ReportsController extends Controller
         if ($request->input('user_id')) {
             $user_id = $request->user_id;
             $roleName = 'Front Desk/Receptionist';
-            $users = \App\Models\User::role($roleName)->where('id', $user_id)->get();
+            $users = User::query()->role($roleName)->where('id', $user_id)->get();
         } else {
-            $users = \App\Models\User::all();
+            $users = User::query()->select(['id', 'name'])->get();
         }
 
         foreach ($users as $user) {
             $data[$user->id] = ['Name' => $user->name, 'Invoices' => 0, 'Invoices HIF' => 0, 'Chits' => 0, 'Chits HIF' => 0, 'Invoices Entitled' => 0, 'Invoices Non Entitled' => 0, 'Chit Entitled' => 0, 'Chit Non Entitled' => 0];
         }
 
-        foreach ($users as $user) {
-            $data[$user->id] = [
-                'Name' => $user->name,
-                'Invoices Entitled' => Invoice::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->where('government_non_government', 1)->count(),
-                'Invoices Non Entitled' => Invoice::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->where('government_non_government', 0)->count(),
-                'Invoices' => Invoice::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->sum('total_amount'),
-                'Invoices HIF' => Invoice::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->sum('hif_amount'),
-                'Chits' => Chit::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->sum('amount'),
-                'Chits HIF' => Chit::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->sum('amount_hif'),
-                'Chit Entitled' => Chit::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->where('government_non_gov', 1)->count(),
-                'Chit Non Entitled' => Chit::whereBetween('created_at', [$date_start_at, $date_end_at])->where('user_id', $user->id)->where('government_non_gov', 0)->count(),
-            ];
+        $userIds = $users->pluck('id');
+
+        if ($userIds->isNotEmpty()) {
+            $invoiceStatsByUser = Invoice::query()
+                ->whereIn('user_id', $userIds)
+                ->whereBetween('created_at', [$date_start_at, $date_end_at])
+                ->groupBy('user_id')
+                ->select('user_id')
+                ->selectRaw('SUM(CASE WHEN government_non_government IS TRUE THEN 1 ELSE 0 END) AS invoices_entitled')
+                ->selectRaw('SUM(CASE WHEN government_non_government IS FALSE THEN 1 ELSE 0 END) AS invoices_non_entitled')
+                ->selectRaw('COALESCE(SUM(total_amount), 0) AS invoices_total')
+                ->selectRaw('COALESCE(SUM(hif_amount), 0) AS invoices_hif_total')
+                ->get()
+                ->keyBy('user_id');
+
+            $chitStatsByUser = Chit::query()
+                ->whereIn('user_id', $userIds)
+                ->whereBetween('created_at', [$date_start_at, $date_end_at])
+                ->groupBy('user_id')
+                ->select('user_id')
+                ->selectRaw('SUM(CASE WHEN government_non_gov IS TRUE THEN 1 ELSE 0 END) AS chits_entitled')
+                ->selectRaw('SUM(CASE WHEN government_non_gov IS FALSE THEN 1 ELSE 0 END) AS chits_non_entitled')
+                ->selectRaw('COALESCE(SUM(amount), 0) AS chits_total')
+                ->selectRaw('COALESCE(SUM(amount_hif), 0) AS chits_hif_total')
+                ->get()
+                ->keyBy('user_id');
+
+            foreach ($users as $user) {
+                $invoiceStats = $invoiceStatsByUser->get($user->id);
+                $chitStats = $chitStatsByUser->get($user->id);
+
+                $data[$user->id] = [
+                    'Name' => $user->name,
+                    'Invoices Entitled' => (int) ($invoiceStats->invoices_entitled ?? 0),
+                    'Invoices Non Entitled' => (int) ($invoiceStats->invoices_non_entitled ?? 0),
+                    'Invoices' => (float) ($invoiceStats->invoices_total ?? 0),
+                    'Invoices HIF' => (float) ($invoiceStats->invoices_hif_total ?? 0),
+                    'Chits' => (float) ($chitStats->chits_total ?? 0),
+                    'Chits HIF' => (float) ($chitStats->chits_hif_total ?? 0),
+                    'Chit Entitled' => (int) ($chitStats->chits_entitled ?? 0),
+                    'Chit Non Entitled' => (int) ($chitStats->chits_non_entitled ?? 0),
+                ];
+            }
         }
 
         if (\Auth::user()->hasRole('Auditor')) {
@@ -140,7 +181,8 @@ class ReportsController extends Controller
         $date_start_at = $start_date.' 00:00:00';
         $date_end_at = $end_date.' 23:59:59';
 
-        $query = Chit::with(['user', 'patient', 'department'])
+        $query = Chit::query()
+            ->with(['user', 'patient', 'department'])
             ->whereBetween('issued_date', [$date_start_at, $date_end_at]);
 
         if ($request->department_id) {
@@ -151,22 +193,21 @@ class ReportsController extends Controller
             $query->where('user_id', $request->user_id);
         }
 
-        $chits = $query->get()->filter(function ($chit) use ($request) {
-            if ($request->specialists_only == 'on') {
-                return str_contains(strtolower($chit->department->name), 'specialist');
-            }
+        if ($request->specialists_only == 'on') {
+            $query->whereHas('department', function ($departmentQuery) {
+                $departmentQuery->where('name', 'like', '%specialist%');
+            });
+        }
 
-            return true;
-        })->sortBy(function ($chit) {
-            $isSpecialist = str_contains(strtolower($chit->department->name), 'specialist') ? 1 : 0;
+        $query
+            ->leftJoin('departments as report_departments', 'chits.department_id', '=', 'report_departments.id')
+            ->select('chits.*')
+            ->orderBy('chits.user_id')
+            ->orderByRaw("CASE WHEN LOWER(report_departments.name) LIKE '%specialist%' THEN 1 ELSE 0 END")
+            ->orderBy('report_departments.name')
+            ->orderBy('chits.issued_date');
 
-            return [
-                $chit->user_id,
-                $isSpecialist,
-                $chit->department->name,
-                $chit->issued_date,
-            ];
-        });
+        $chits = $query->get();
 
         $departments = Department::all();
         $users = User::all();
@@ -182,11 +223,6 @@ class ReportsController extends Controller
         $date_start_at = $start_date.' 00:00:00';
         $date_end_at = $end_date.' 23:59:59';
 
-        // Get all chits for the date range with relationships
-        $query = Chit::with(['user', 'patient', 'department'])
-            ->whereBetween('issued_date', [$date_start_at, $date_end_at]);
-
-        // Get all specialist departments
         $specialistDepartments = Department::where('name', 'like', '%specialist%');
 
         if ($request->department_id) {
@@ -195,23 +231,29 @@ class ReportsController extends Controller
 
         $specialistDepartments = $specialistDepartments->orderBy('name')->get();
 
-        $chits = $query->get();
+        $specialistDepartmentIds = $specialistDepartments->pluck('id');
 
-        // Group by department and calculate statistics
-        $departmentStats = $specialistDepartments->map(function ($department) use ($chits) {
-            $departmentChits = $chits->where('department_id', $department->id);
+        $statsByDepartment = Chit::query()
+            ->whereBetween('issued_date', [$date_start_at, $date_end_at])
+            ->whereIn('department_id', $specialistDepartmentIds)
+            ->select('department_id')
+            ->selectRaw('COUNT(*) AS total_patients')
+            ->selectRaw('SUM(CASE WHEN government_non_gov IS TRUE THEN 1 ELSE 0 END) AS entitled_patients')
+            ->selectRaw('SUM(CASE WHEN government_non_gov IS FALSE THEN 1 ELSE 0 END) AS non_entitled_patients')
+            ->selectRaw('COALESCE(SUM(govt_amount), 0) AS total_fees')
+            ->groupBy('department_id')
+            ->get()
+            ->keyBy('department_id');
 
-            $totalPatients = $departmentChits->count();
-            $entitledPatients = $departmentChits->where('government_non_gov', 1)->count();
-            $nonEntitledPatients = $departmentChits->where('government_non_gov', 0)->count();
-            $totalFees = $departmentChits->sum('govt_amount');
+        $departmentStats = $specialistDepartments->map(function ($department) use ($statsByDepartment) {
+            $departmentStatsRow = $statsByDepartment->get($department->id);
 
             return [
                 'department' => $department,
-                'total_patients' => $totalPatients,
-                'entitled_patients' => $entitledPatients,
-                'non_entitled_patients' => $nonEntitledPatients,
-                'total_fees' => $totalFees,
+                'total_patients' => (int) ($departmentStatsRow->total_patients ?? 0),
+                'entitled_patients' => (int) ($departmentStatsRow->entitled_patients ?? 0),
+                'non_entitled_patients' => (int) ($departmentStatsRow->non_entitled_patients ?? 0),
+                'total_fees' => (float) ($departmentStatsRow->total_fees ?? 0),
             ];
         });
 
@@ -646,7 +688,7 @@ class ReportsController extends Controller
         $date_start_at = $start_date.' 00:00:00';
         $date_end_at = $end_date.' 23:59:59';
 
-        $treatments = QueryBuilder::for(\App\Models\PatientEmergencyTreatment::class)
+        $treatments = QueryBuilder::for(PatientEmergencyTreatment::class)
             ->with('patient', 'disease', 'user')
             ->allowedFilters([
                 'patient.first_name',
@@ -672,7 +714,7 @@ class ReportsController extends Controller
      * Shows OPD chits and IPD invoices/tests/admissions for SSP patients
      * with actual fee amounts stored for insurance claim submissions.
      */
-    public function sspClaims(Request $request): \Illuminate\View\View
+    public function sspClaims(Request $request): View
     {
         $sspDepartmentId = 95;
 
