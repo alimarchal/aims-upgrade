@@ -6,13 +6,14 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
     public function run(): void
     {
         // Reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $guard = User::getDefaultGuardName();
         $guards = [$guard];
@@ -54,6 +55,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'view daily reports',
             'view monthly income reports',
             'view department reports',
+            'view department wise audit reports',
             'view admission reports',
             'view emergency reports',
             'view ssp reports',
@@ -156,6 +158,7 @@ class RolesAndPermissionsSeeder extends Seeder
                         'view daily reports',
                         'view monthly income reports',
                         'view department reports',
+                        'view department wise audit reports',
                         'view admission reports',
                         'view emergency reports',
                         'view ssp reports',

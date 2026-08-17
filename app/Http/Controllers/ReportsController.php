@@ -648,6 +648,79 @@ class ReportsController extends Controller
         return view('reports.category-wise.department-wise-two', compact('categories', 'fee_types'));
     }
 
+    public function department_wise_audit(Request $request)
+    {
+
+        ini_set('max_execution_time', 300);
+
+        $start_date = Carbon::parse($request->start_date)->format('Y-m-d');
+        $end_date = Carbon::parse($request->end_date)->format('Y-m-d');
+
+        $date_start_at = $start_date.' 00:00:00';
+        $date_end_at = $end_date.' 23:59:59';
+
+        $fee_types = null;
+        $status = ['Normal'];
+        $fee_category_ids = $request->input('filter.fee_category_id');
+
+        if ($fee_category_ids !== null) {
+            // Split the string into an array of individual IDs
+            $fee_category_ids = explode(',', $fee_category_ids);
+
+            $fee_types = QueryBuilder::for(FeeType::class)
+                ->orderBy('fee_category_id')
+                ->whereIn('fee_category_id', $fee_category_ids)
+                ->whereIn('status', $status)
+                ->get();
+        } else {
+            $fee_types = QueryBuilder::for(FeeType::class)
+                ->orderBy('fee_category_id')
+                ->whereIn('status', $status)
+                ->get();
+        }
+
+        $categories = [];
+
+        foreach ($fee_types as $ft) {
+            // Fee category 13 = Chit-based fees (includes specialists), also IDs 1, 19 are special chit fees
+            if ($ft->fee_category_id == 13 || $ft->id == 1 || $ft->id == 19) {
+                // Govt total matches the daily reports definition: total amount minus HIF, across all patients
+                $categories[$ft->fee_category_id][$ft->id] = [
+                    'Non Entitled' => Chit::whereBetween('issued_date', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 0)->count(),
+                    'Entitled' => Chit::whereBetween('issued_date', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 1)->count(),
+                    'Return Non Entitled' => 0,
+                    'Return Entitled' => 0,
+                    'GOVT' => Chit::whereBetween('issued_date', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->sum('amount')
+                        - Chit::whereBetween('issued_date', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->sum('amount_hif'),
+                    'fee_category_id' => $ft->fee_category_id,
+                    'fee_type_id' => $ft->id,
+                    'Status' => $ft->status,
+                ];
+            } else {
+
+                $return_fee_id = 0;
+                $return_fee = FeeType::where('type', 'Return '.FeeType::find($ft->id)->type)->first();
+                if (! empty($return_fee)) {
+                    $return_fee_id = $return_fee->id;
+                }
+
+                $categories[$ft->fee_category_id][$ft->id] = [
+                    'Non Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 0)->where('status', 'Normal')->count(),
+                    'Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 1)->where('status', 'Normal')->count(),
+                    'Return Non Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 0)->where('status', 'Return')->count(),
+                    'Return Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 1)->where('status', 'Return')->count(),
+                    'GOVT' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->whereIn('fee_type_id', [$ft->id, $return_fee_id])->sum('total_amount')
+                        - PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->whereIn('fee_type_id', [$ft->id, $return_fee_id])->sum('hif_amount'),
+                    'fee_category_id' => $ft->fee_category_id,
+                    'fee_type_id' => $ft->id,
+                    'Status' => $ft->status,
+                ];
+            }
+        }
+
+        return view('reports.category-wise.department-wise-audit', compact('categories', 'fee_types'));
+    }
+
     public function admission(Request $request)
     {
         $start_date = Carbon::parse($request->start_date)->format('Y-m-d');
