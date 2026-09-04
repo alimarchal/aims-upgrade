@@ -123,7 +123,7 @@
                                 <th class="border-black border px-4 py-2">ID</th>
                                 <th class="border-black border px-4 py-2">Category</th>
                                 <th class="border-black border px-4 py-2">Name</th>
-                                <th class="border-black border px-4 py-2">Total</th>
+                                <th class="border-black border px-4 py-2">Count</th>
                                 <th class="border-black border px-4 py-2">Total Amount</th>
                             </tr>
                         </thead>

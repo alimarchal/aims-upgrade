@@ -11,11 +11,13 @@ use App\Models\FeeCategory;
 use App\Models\FeeType;
 use App\Models\Invoice;
 use App\Models\Patient;
+use App\Models\PatientEmergencyTreatment;
 use App\Models\PatientTest;
 use App\Models\PatientTestCart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -35,7 +37,6 @@ class PatientController extends Controller
                 'cnic',
                 'mobile',
                 AllowedFilter::exact('government_non_gov'),
-                AllowedFilter::exact('government_card_no'),
                 AllowedFilter::callback('id', function ($query, $value): void {
                     if (is_numeric($value)) {
                         $query->where('id', $value);
@@ -101,7 +102,7 @@ class PatientController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            \Illuminate\Support\Facades\Log::error('Patient Creation Error: '.$e->getMessage());
+            Log::error('Patient Creation Error: '.$e->getMessage());
         }
 
         if (! empty($patient)) {
@@ -322,7 +323,7 @@ class PatientController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             // something went wrong
-            \Illuminate\Support\Facades\Log::error($e->getMessage());
+            Log::error($e->getMessage());
         }
 
         if (! empty($chit) && ! empty($patient)) {
@@ -484,7 +485,7 @@ class PatientController extends Controller
         return view('patient.proceed', compact('patient'));
     }
 
-    public function add_to_cart(\Illuminate\Http\Request $request, Patient $patient)
+    public function add_to_cart(Request $request, Patient $patient)
     {
 
         $status = $request->status;
@@ -510,7 +511,7 @@ class PatientController extends Controller
         return to_route('patient.proceed', $patient->id);
     }
 
-    public function proceed_cart_destroy(\Illuminate\Http\Request $request, PatientTestCart $patientTestCart)
+    public function proceed_cart_destroy(Request $request, PatientTestCart $patientTestCart)
     {
         $patient_id = $patientTestCart->patient_id;
         $patientTestCart->delete();
@@ -518,7 +519,7 @@ class PatientController extends Controller
         return to_route('patient.proceed', $patient_id)->with('message', 'Lab test deleted successfully!');
     }
 
-    public function proceed_to_invoice(\Illuminate\Http\Request $request, Patient $patient)
+    public function proceed_to_invoice(Request $request, Patient $patient)
     {
         // Validate that the user has agreed to the terms.
         $request->validate([
@@ -789,7 +790,7 @@ class PatientController extends Controller
         return view('patient.history', compact('patient_tests'));
     }
 
-    public function patient_test_invoice_generate(\Illuminate\Http\Request $request)
+    public function patient_test_invoice_generate(Request $request)
     {
         // login user id capture
         $request->merge(['user_id' => auth()->user()->id]);
@@ -888,7 +889,7 @@ class PatientController extends Controller
         try {
             DB::beginTransaction();
 
-            \App\Models\PatientEmergencyTreatment::create([
+            PatientEmergencyTreatment::create([
                 'user_id' => auth()->id(),
                 'patient_id' => $patient->id,
                 'disease_id' => $request->disease_id ?: null,

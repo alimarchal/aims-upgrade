@@ -625,6 +625,24 @@ class ReportsController extends Controller
         $fee_types = null;
         $status = ['Normal'];
         $fee_category_ids = $request->input('filter.fee_category_id');
+        $excluded_fee_types = [
+            'Driving Licence',
+            'Weapon Licence',
+            'Wapon Licence',
+            'Birth Certificate',
+            'Gynae & Obs',
+            'Gynae & Obs Ultrasound',
+            'Room Charges',
+            'CTG FEE',
+            'Delivery',
+            'Clonocopy',
+            'Endoscopy',
+            'ERCP',
+            'Na',
+            'Chit Fee (Screening OPD Male)',
+            'Chit Fee (Screening OPD Female)',
+        ];
+        $excluded_fee_types = array_map('strtolower', $excluded_fee_types);
 
         if ($fee_category_ids !== null) {
             // Split the string into an array of individual IDs
@@ -641,6 +659,12 @@ class ReportsController extends Controller
                 ->whereIn('status', $status)
                 ->get();
         }
+
+        $fee_types = $fee_types->reject(function (FeeType $fee_type) use ($excluded_fee_types): bool {
+            $fee_type_name = strtolower(preg_replace('/^Return\s+/i', '', trim($fee_type->type)));
+
+            return in_array($fee_type_name, $excluded_fee_types, true);
+        });
 
         $categories = [];
 
