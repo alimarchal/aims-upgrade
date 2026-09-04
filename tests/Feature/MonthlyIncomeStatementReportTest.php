@@ -34,7 +34,7 @@ test('authorized user can view monthly income statement report with monthly tota
         'user_id' => $user->id,
         'patient_id' => $patient->id,
         'total_amount' => 900,
-        'hif_amount' => 0,
+        'hif_amount' => 90,
         'govt_amount' => 0,
         'actual_total_amount' => 900,
         'government_non_government' => 0,
@@ -49,14 +49,17 @@ test('authorized user can view monthly income statement report with monthly tota
         'department_id' => Department::factory()->create()->id,
         'issued_date' => Carbon::create(2025, 7, 20, 9, 0, 0),
         'amount' => 100,
-        'amount_hif' => 0,
-    ]);
+        'amount_hif' => 10,
+    ])->forceFill([
+        'created_at' => Carbon::create(2025, 7, 20, 9, 0, 0),
+        'updated_at' => Carbon::create(2025, 7, 20, 9, 0, 0),
+    ])->save();
 
     Invoice::query()->create([
         'user_id' => $user->id,
         'patient_id' => $patient->id,
         'total_amount' => 500,
-        'hif_amount' => 0,
+        'hif_amount' => 50,
         'govt_amount' => 0,
         'actual_total_amount' => 500,
         'government_non_government' => 0,
@@ -71,7 +74,7 @@ test('authorized user can view monthly income statement report with monthly tota
         ->assertSee('Income Statement for Year 2025-26')
         ->assertSee('Jul-25')
         ->assertSee('Aug-25')
-        ->assertSee('1000')
+        ->assertSee('1,000')
         ->assertSee('500')
-        ->assertSee('1500');
+        ->assertSee('1,500');
 });

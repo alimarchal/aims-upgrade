@@ -277,8 +277,8 @@ class ReportsController extends Controller
 
     public function monthlyIncomeStatement(Request $request)
     {
-        $allowedFiscalYears = [2025];
-        $supportedFiscalYears = [2025, 2026];
+        $allowedFiscalYears = [2025, 2026, 2027];
+        $supportedFiscalYears = $allowedFiscalYears;
         $shouldShowReport = $request->filled('year');
         $currentDate = now();
         $defaultFiscalYearStart = $currentDate->month >= 7 ? $currentDate->year : $currentDate->year - 1;
@@ -304,53 +304,16 @@ class ReportsController extends Controller
         $fiscalStartDate = Carbon::create($fiscalYearStart, 7, 1)->startOfDay();
         $fiscalEndDate = $fiscalStartDate->copy()->addYear()->subDay()->endOfDay();
 
-        $templateMonthlyIncomeDataByYear = [
-            2025 => [
-                'Jul-25' => 1819524,
-                'Aug-25' => 1843648,
-                'Sep-25' => 1889056,
-                'Oct-25' => 1743710,
-                'Nov-25' => 1701382,
-                'Dec-25' => 1695430,
-                'Jan-26' => 1290550,
-                'Feb-26' => 1196432,
-                'Mar-26' => 1092510,
-                'Apr-26' => 1124330,
-                'May-26' => 1185590,
-                'Jun-26' => 1282130,
-            ],
-        ];
-
-        if (array_key_exists($fiscalYearStart, $templateMonthlyIncomeDataByYear)) {
-            $monthlyIncomeData = [];
-
-            foreach ($templateMonthlyIncomeDataByYear[$fiscalYearStart] as $month => $income) {
-                $monthlyIncomeData[] = [
-                    'sn' => count($monthlyIncomeData) + 1,
-                    'month' => $month,
-                    'income' => $income,
-                ];
-            }
-
-            $totalIncome = collect($monthlyIncomeData)->sum('income');
-            $yearLabel = $fiscalYearStart.'-'.substr((string) ($fiscalYearStart + 1), -2);
-
-            return view('reports.ipd.monthly-income-statement', compact('monthlyIncomeData', 'totalIncome', 'fiscalYearStart', 'yearLabel', 'allowedFiscalYears', 'shouldShowReport'));
-        }
-
-        $invoiceIncomeColumn = $fiscalYearStart === 2026 ? 'govt_amount' : 'total_amount';
-        $chitIncomeColumn = $fiscalYearStart === 2026 ? 'govt_amount' : 'amount';
-
         $invoiceTotals = Invoice::query()
-            ->selectRaw("DATE_TRUNC('month', created_at) as report_month, SUM({$invoiceIncomeColumn}) as total_income")
+            ->selectRaw('DATE_TRUNC(\'month\', created_at) as report_month, SUM(total_amount - hif_amount) as total_income')
             ->whereBetween('created_at', [$fiscalStartDate, $fiscalEndDate])
             ->groupBy('report_month')
             ->get()
             ->keyBy(fn ($item) => Carbon::parse($item->report_month)->format('Y-m'));
 
         $chitTotals = Chit::query()
-            ->selectRaw("DATE_TRUNC('month', issued_date) as report_month, SUM({$chitIncomeColumn}) as total_income")
-            ->whereBetween('issued_date', [$fiscalStartDate, $fiscalEndDate])
+            ->selectRaw('DATE_TRUNC(\'month\', created_at) as report_month, SUM(amount - amount_hif) as total_income')
+            ->whereBetween('created_at', [$fiscalStartDate, $fiscalEndDate])
             ->groupBy('report_month')
             ->get()
             ->keyBy(fn ($item) => Carbon::parse($item->report_month)->format('Y-m'));
