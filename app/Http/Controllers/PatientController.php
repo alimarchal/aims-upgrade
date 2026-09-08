@@ -215,7 +215,7 @@ class PatientController extends Controller
                 ->where('type', 'Emergency Chit')
                 ->first();
 
-            if ($request->input('government_department_id')) {
+            if ($request->input('government_department_id') && $request->boolean('government_non_gov')) {
                 $amount = 0.00;
                 $amount_hif = 0.00;
                 $govt_amount = 0.00;
@@ -230,7 +230,7 @@ class PatientController extends Controller
                     $fee_type_id = 1;
                 } elseif ($request->department_id == 16) {
                     // For Cardiology
-                    $fee_type_id = 1;
+                    $fee_type_id = 19;
                 } else {
                     // Dynamic lookup for specialist departments by name
                     $feeType = FeeType::where('type', $department->name)->first();
@@ -275,7 +275,7 @@ class PatientController extends Controller
                     $amount = FeeType::find(19)->amount;
                     $amount_hif = FeeType::find(19)->hif;
                     $govt_amount = $amount - $amount_hif;
-                    $fee_type_id = 1;
+                    $fee_type_id = 19;
                 } else {
                     // Dynamic lookup for specialist departments by name
                     $feeType = FeeType::where('type', $department->name)->first();
@@ -393,7 +393,7 @@ class PatientController extends Controller
 
             $amount = null;
             $actual_amount = 0;
-            if ($request->input('government_department_id')) {
+            if ($request->input('government_department_id') && $request->boolean('government_non_gov')) {
                 $amount = 0.00;
                 if ($request->department_id == 7) {
                     $fee_type_id = 108;
@@ -402,7 +402,7 @@ class PatientController extends Controller
                 } elseif ($request->department_id == 1) {
                     $fee_type_id = 1;
                 } elseif ($request->department_id == 16) {
-                    $fee_type_id = 1;
+                    $fee_type_id = 19;
                 } else {
                     $fee_type_id = 107;
                 }

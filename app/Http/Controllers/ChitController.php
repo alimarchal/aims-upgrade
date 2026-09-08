@@ -11,6 +11,7 @@ use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -102,27 +103,27 @@ class ChitController extends Controller
                 ->where('type', 'Emergency Chit')
                 ->first();
 
-            if ($request->input('government_department_id')) {
+            if ($request->input('government_department_id') && $request->boolean('government_non_gov')) {
                 $amount = 0.00;
                 $amount_hif = 0.00;
                 $govt_amount = 0.00;
                 if ($department && $department->name === 'OPD Emergency' && $emergencyOpdFeeType) {
                     $fee_type_id = $emergencyOpdFeeType->id;
                 } elseif ($request->department_id == 7) {
-                    $fee_type_id = 107;
+                    $fee_type_id = 108;
                 } elseif ($request->department_id == 23) {
-                    $fee_type_id = 107;
+                    $fee_type_id = 270;
                 } elseif ($request->department_id == 1) {
                     $fee_type_id = 1;
                 } elseif ($request->department_id == 16) {
-                    $fee_type_id = 1;
+                    $fee_type_id = 19;
                 } else {
                     // Dynamic lookup for specialist departments by name
                     $feeType = FeeType::where('type', $department->name)->first();
                     if ($feeType) {
                         $fee_type_id = $feeType->id;
                     } else {
-                        $fee_type_id = 275;
+                        $fee_type_id = 107;
                     }
                 }
 
@@ -140,14 +141,14 @@ class ChitController extends Controller
                     $fee_type_id = $emergencyOpdFeeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 7) {
-                    $amount = FeeType::find(107)->amount;
-                    $amount_hif = FeeType::find(107)->hif;
-                    $fee_type_id = 107;
+                    $amount = FeeType::find(108)->amount;
+                    $amount_hif = FeeType::find(108)->hif;
+                    $fee_type_id = 108;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 23) {
-                    $amount = FeeType::find(107)->amount;
-                    $amount_hif = FeeType::find(107)->hif;
-                    $fee_type_id = 107;
+                    $amount = FeeType::find(270)->amount;
+                    $amount_hif = FeeType::find(270)->hif;
+                    $fee_type_id = 270;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 1) {
                     // For emergency
@@ -159,7 +160,7 @@ class ChitController extends Controller
                     // For Cardiology
                     $amount = FeeType::find(19)->amount;
                     $amount_hif = FeeType::find(19)->hif;
-                    $fee_type_id = 1;
+                    $fee_type_id = 19;
                     $govt_amount = $amount - $amount_hif;
                 } else {
                     // Dynamic lookup for specialist departments by name
@@ -170,9 +171,9 @@ class ChitController extends Controller
                         $amount_hif = $feeType->hif;
                         $govt_amount = $amount - $amount_hif;
                     } else {
-                        $fee_type_id = 275;
-                        $amount = FeeType::find(275)->amount;
-                        $amount_hif = FeeType::find(275)->hif;
+                        $fee_type_id = 107;
+                        $amount = FeeType::find(107)->amount;
+                        $amount_hif = FeeType::find(107)->hif;
                         $govt_amount = $amount - $amount_hif;
                     }
                 }
@@ -216,7 +217,7 @@ class ChitController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            \Illuminate\Support\Facades\Log::error('Issue Chit Error: '.$e->getMessage());
+            Log::error('Issue Chit Error: '.$e->getMessage());
         }
 
         return to_route('chit.print', [$patient->id, $chit->id]);
