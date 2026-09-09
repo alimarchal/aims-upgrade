@@ -1,9 +1,9 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
-window.Alpine = Alpine;
 
-Alpine.plugin(focus);
-
-Alpine.start();
+// Livewire bundles and starts its own Alpine instance; registering plugins
+// here avoids a second "Detected multiple instances of Alpine running" instance.
+document.addEventListener('alpine:init', () => {
+    Alpine.plugin(focus);
+});
