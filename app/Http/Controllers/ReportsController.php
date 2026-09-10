@@ -691,13 +691,23 @@ class ReportsController extends Controller
                     $return_fee_id = $return_fee->id;
                 }
 
+                // Exclude patient tests tied to invoices that never had their totals synced (total & hif both 0)
+                $validInvoiceQuery = fn () => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])
+                    ->whereIn('fee_type_id', [$ft->id, $return_fee_id])
+                    ->whereHas('invoice', function ($invoiceQuery) {
+                        $invoiceQuery->where('total_amount', '!=', 0)->orWhere('hif_amount', '!=', 0);
+                    });
+
+                // Some fee types (e.g. Cardiology ECG) are also paid via Chits despite not being a chit-based category
+                $chitAmount = Chit::whereBetween('issued_date', [$date_start_at, $date_end_at])->whereIn('fee_type_id', [$ft->id, $return_fee_id])->sum('amount')
+                    - Chit::whereBetween('issued_date', [$date_start_at, $date_end_at])->whereIn('fee_type_id', [$ft->id, $return_fee_id])->sum('amount_hif');
+
                 $categories[$ft->fee_category_id][$ft->id] = [
                     'Non Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 0)->where('status', 'Normal')->count(),
                     'Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 1)->where('status', 'Normal')->count(),
                     'Return Non Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 0)->where('status', 'Return')->count(),
                     'Return Entitled' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->where('fee_type_id', $ft->id)->where('government_non_gov', 1)->where('status', 'Return')->count(),
-                    'GOVT' => PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->whereIn('fee_type_id', [$ft->id, $return_fee_id])->sum('total_amount')
-                        - PatientTest::whereBetween('created_at', [$date_start_at, $date_end_at])->whereIn('fee_type_id', [$ft->id, $return_fee_id])->sum('hif_amount'),
+                    'GOVT' => ($validInvoiceQuery()->sum('total_amount') - $validInvoiceQuery()->sum('hif_amount')) + $chitAmount,
                     'fee_category_id' => $ft->fee_category_id,
                     'fee_type_id' => $ft->id,
                     'Status' => $ft->status,
