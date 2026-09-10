@@ -128,15 +128,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $count = 1;
+                            @php
+                                $count = 1;
                                 $total_sum = 0;
-                            $govt_sum = 0; @endphp
+                                $govt_sum = 0;
+                                // Fee type id 1 ("Emergency") is hidden from the table but still counted in totals below
+                                $hiddenFeeTypeIds = [1];
+                            @endphp
+                            @foreach($categories as $fee_category_id => $fee_types)
+                                @foreach($fee_types as $data)
+                                    @php
+                                        $total_sum += $data['Entitled'] + $data['Non Entitled'];
+                                        $govt_sum += $data['GOVT'];
+                                    @endphp
+                                @endforeach
+                            @endforeach
                             @foreach($categories as $fee_category_id => $fee_types)
                                 @php
                                     $fee_category = \App\Models\FeeCategory::find($fee_category_id);
                                     $fee_category_name = $fee_category ? $fee_category->name : '';
+                                    $visibleFeeTypes = collect($fee_types)->except($hiddenFeeTypeIds);
                                 @endphp
-                                @foreach($fee_types as $fee_type_id => $data)
+                                @foreach($visibleFeeTypes as $fee_type_id => $data)
                                     @php
                                         $fee_type = \App\Models\FeeType::find($fee_type_id);
                                         $total = $data['Entitled'] + $data['Non Entitled'];
@@ -144,7 +157,7 @@
                                     <tr class="border-black">
                                         <td class="border-black border px-4 py-2 text-center">{{ $count }}</td>
                                         @if ($loop->first)
-                                            <td class="border-black border px-4 py-2 text-center" rowspan="{{ count($fee_types) }}">
+                                            <td class="border-black border px-4 py-2 text-center" rowspan="{{ count($visibleFeeTypes) }}">
                                                 {{ $fee_category_name }}</td>
                                         @endif
                                         <td class="border-black border px-4 py-2">{{ $fee_type->type }}</td>
@@ -152,8 +165,6 @@
                                         <td class="border-black border px-4 py-2 text-right">
                                             {{ number_format($data['GOVT'], 2) }}</td>
                                         @php
-                                            $total_sum += $total;
-                                            $govt_sum += $data['GOVT'];
                                             $count++;
                                         @endphp
                                     </tr>
