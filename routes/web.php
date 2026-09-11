@@ -81,7 +81,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::resource('feeType', FeeTypeController::class)->middleware('permission:view fee types');
     Route::get('patient/{patient}/chit/{chit}', [ChitController::class, 'print'])->name('chit.print');
 
-    // Chits & Invoices
+    // Chits & Invoices --
     Route::middleware('permission:view chits')->group(function () {
         Route::get('chits/issued-today', [ChitController::class, 'today'])->name('chits.issued-today');
         Route::get('chits/issued', [ChitController::class, 'issued'])->name('chits.issued');
