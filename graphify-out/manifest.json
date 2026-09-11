@@ -1,0 +1,2402 @@
+{
+  ".mcp.json": {
+    "mtime": 1789107379.9272954,
+    "seen": 1789109797.377635,
+    "ast_hash": "22270ca6ee7bec5f0d76fa5de12079a0",
+    "semantic_hash": "22270ca6ee7bec5f0d76fa5de12079a0"
+  },
+  "app/Actions/Fortify/CreateNewUser.php": {
+    "mtime": 1789107379.9282105,
+    "seen": 1789109797.37764,
+    "ast_hash": "f6c9981386fa7700ecef14f58a11cb85",
+    "semantic_hash": "f6c9981386fa7700ecef14f58a11cb85"
+  },
+  "app/Actions/Fortify/PasswordValidationRules.php": {
+    "mtime": 1789107379.9286718,
+    "seen": 1789109797.377641,
+    "ast_hash": "04f424718296582ebe5a6525dde4c187",
+    "semantic_hash": "04f424718296582ebe5a6525dde4c187"
+  },
+  "app/Actions/Fortify/ResetUserPassword.php": {
+    "mtime": 1789107379.928918,
+    "seen": 1789109797.377642,
+    "ast_hash": "82bdbec4ed14ea7d5b32e14835a7b272",
+    "semantic_hash": "82bdbec4ed14ea7d5b32e14835a7b272"
+  },
+  "app/Actions/Fortify/UpdateUserPassword.php": {
+    "mtime": 1789107379.9291415,
+    "seen": 1789109797.377643,
+    "ast_hash": "4e4bdd1965495c3966e99ba02cf013f5",
+    "semantic_hash": "4e4bdd1965495c3966e99ba02cf013f5"
+  },
+  "app/Actions/Fortify/UpdateUserProfileInformation.php": {
+    "mtime": 1789107379.9292538,
+    "seen": 1789109797.377644,
+    "ast_hash": "49ea5087ab4b0a015516ddaf3d023e66",
+    "semantic_hash": "49ea5087ab4b0a015516ddaf3d023e66"
+  },
+  "app/Actions/Jetstream/AddTeamMember.php": {
+    "mtime": 1789107379.9295802,
+    "seen": 1789109797.377644,
+    "ast_hash": "055dd2a5543d53d8181f91d6650e5f52",
+    "semantic_hash": "055dd2a5543d53d8181f91d6650e5f52"
+  },
+  "app/Actions/Jetstream/CreateTeam.php": {
+    "mtime": 1789107379.9296916,
+    "seen": 1789109797.377645,
+    "ast_hash": "be8d5b7de1d88ce33b2a7a4d60036a24",
+    "semantic_hash": "be8d5b7de1d88ce33b2a7a4d60036a24"
+  },
+  "app/Actions/Jetstream/DeleteTeam.php": {
+    "mtime": 1789107379.929991,
+    "seen": 1789109797.377646,
+    "ast_hash": "62ff9c5cdc8056e5e4749e2a3b20352f",
+    "semantic_hash": "62ff9c5cdc8056e5e4749e2a3b20352f"
+  },
+  "app/Actions/Jetstream/DeleteUser.php": {
+    "mtime": 1789107379.9301028,
+    "seen": 1789109797.377646,
+    "ast_hash": "d0b8d93ccdab7bad0e2e99e460ef550b",
+    "semantic_hash": "d0b8d93ccdab7bad0e2e99e460ef550b"
+  },
+  "app/Actions/Jetstream/InviteTeamMember.php": {
+    "mtime": 1789107379.9302092,
+    "seen": 1789109797.3776472,
+    "ast_hash": "a891fe1bc4f01616db5dd92a0eb53361",
+    "semantic_hash": "a891fe1bc4f01616db5dd92a0eb53361"
+  },
+  "app/Actions/Jetstream/RemoveTeamMember.php": {
+    "mtime": 1789107379.9306207,
+    "seen": 1789109797.377648,
+    "ast_hash": "6f476237a66132a93fa462eff295d923",
+    "semantic_hash": "6f476237a66132a93fa462eff295d923"
+  },
+  "app/Actions/Jetstream/UpdateTeamName.php": {
+    "mtime": 1789107379.9307542,
+    "seen": 1789109797.377648,
+    "ast_hash": "a0a6c0a0af7794b84b82511da6cb5aaf",
+    "semantic_hash": "a0a6c0a0af7794b84b82511da6cb5aaf"
+  },
+  "app/Http/Controllers/AdmissionController.php": {
+    "mtime": 1789107379.9310627,
+    "seen": 1789109797.3776488,
+    "ast_hash": "6595160c62ab4652000217ccf13380ac",
+    "semantic_hash": "6595160c62ab4652000217ccf13380ac"
+  },
+  "app/Http/Controllers/AdmissionWardController.php": {
+    "mtime": 1789107379.9311633,
+    "seen": 1789109797.3776488,
+    "ast_hash": "f841602d87167546704c7d68e9aa461c",
+    "semantic_hash": "f841602d87167546704c7d68e9aa461c"
+  },
+  "app/Http/Controllers/ChitController.php": {
+    "mtime": 1789107523.3358762,
+    "seen": 1789109797.37765,
+    "ast_hash": "2a43986e236fe492247fca67ff6a2158",
+    "semantic_hash": "2a43986e236fe492247fca67ff6a2158"
+  },
+  "app/Http/Controllers/Controller.php": {
+    "mtime": 1789107379.9314685,
+    "seen": 1789109797.377651,
+    "ast_hash": "42517d7dc7e3d0d3045b06ed842b565e",
+    "semantic_hash": "42517d7dc7e3d0d3045b06ed842b565e"
+  },
+  "app/Http/Controllers/DashboardController.php": {
+    "mtime": 1789107523.336301,
+    "seen": 1789109797.377651,
+    "ast_hash": "d0d5298c8d3776cd7cdeed0519841019",
+    "semantic_hash": "d0d5298c8d3776cd7cdeed0519841019"
+  },
+  "app/Http/Controllers/DepartmentController.php": {
+    "mtime": 1789107379.9317179,
+    "seen": 1789109797.377652,
+    "ast_hash": "50f71c555ab4d7fcea2934c196f3a2c7",
+    "semantic_hash": "50f71c555ab4d7fcea2934c196f3a2c7"
+  },
+  "app/Http/Controllers/DistrictController.php": {
+    "mtime": 1789107379.9319541,
+    "seen": 1789109797.377652,
+    "ast_hash": "aa5f47da4878894b8bd63b45359bc72b",
+    "semantic_hash": "aa5f47da4878894b8bd63b45359bc72b"
+  },
+  "app/Http/Controllers/FeeCategoryController.php": {
+    "mtime": 1789107379.9321887,
+    "seen": 1789109797.377653,
+    "ast_hash": "2a046b5b278183b83d77f9367ad6a7fa",
+    "semantic_hash": "2a046b5b278183b83d77f9367ad6a7fa"
+  },
+  "app/Http/Controllers/FeeTypeController.php": {
+    "mtime": 1789107379.9324288,
+    "seen": 1789109797.377654,
+    "ast_hash": "e8de6f9c6cd54ebe18577896bd6bd4f5",
+    "semantic_hash": "e8de6f9c6cd54ebe18577896bd6bd4f5"
+  },
+  "app/Http/Controllers/GovernmentDepartmentController.php": {
+    "mtime": 1789107379.9325306,
+    "seen": 1789109797.377654,
+    "ast_hash": "65fdce47cf624def9b4eba1fd8837674",
+    "semantic_hash": "65fdce47cf624def9b4eba1fd8837674"
+  },
+  "app/Http/Controllers/InvoiceController.php": {
+    "mtime": 1789107379.9326944,
+    "seen": 1789109797.377655,
+    "ast_hash": "1780bc108131461e7d77c64f59e340e7",
+    "semantic_hash": "1780bc108131461e7d77c64f59e340e7"
+  },
+  "app/Http/Controllers/LabTestController.php": {
+    "mtime": 1789107379.932947,
+    "seen": 1789109797.377656,
+    "ast_hash": "381d130cd0d567df4589fca363f42536",
+    "semantic_hash": "381d130cd0d567df4589fca363f42536"
+  },
+  "app/Http/Controllers/PatientAttendantRelationController.php": {
+    "mtime": 1789107379.9330604,
+    "seen": 1789109797.377656,
+    "ast_hash": "6a6d47d21404615e414ea2a3b06d7e14",
+    "semantic_hash": "6a6d47d21404615e414ea2a3b06d7e14"
+  },
+  "app/Http/Controllers/PatientController.php": {
+    "mtime": 1789107523.3364954,
+    "seen": 1789109797.3776572,
+    "ast_hash": "9209bc7d3e163077fee451d2b8f4a430",
+    "semantic_hash": "9209bc7d3e163077fee451d2b8f4a430"
+  },
+  "app/Http/Controllers/PatientEmergencyTreatmentController.php": {
+    "mtime": 1789107379.9335766,
+    "seen": 1789109797.3776572,
+    "ast_hash": "683401959b958280c5a12889688bc7e8",
+    "semantic_hash": "683401959b958280c5a12889688bc7e8"
+  },
+  "app/Http/Controllers/PatientTestCartController.php": {
+    "mtime": 1789107379.9338183,
+    "seen": 1789109797.3776581,
+    "ast_hash": "098d75171f151cb17a90ad6723821e2e",
+    "semantic_hash": "098d75171f151cb17a90ad6723821e2e"
+  },
+  "app/Http/Controllers/PatientTestController.php": {
+    "mtime": 1789107379.9340546,
+    "seen": 1789109797.3776588,
+    "ast_hash": "1b84525b1e2907bfe5a3cd850bf9710d",
+    "semantic_hash": "1b84525b1e2907bfe5a3cd850bf9710d"
+  },
+  "app/Http/Controllers/PermissionController.php": {
+    "mtime": 1789107379.9343176,
+    "seen": 1789109797.3776588,
+    "ast_hash": "523bc21bce6af6fcff9d474a84585b8f",
+    "semantic_hash": "523bc21bce6af6fcff9d474a84585b8f"
+  },
+  "app/Http/Controllers/ProcessInvoicesController.php": {
+    "mtime": 1789107379.9344409,
+    "seen": 1789109797.3776598,
+    "ast_hash": "53d41319e092383c4d068280cbe488f0",
+    "semantic_hash": "53d41319e092383c4d068280cbe488f0"
+  },
+  "app/Http/Controllers/ReportsController.php": {
+    "mtime": 1789107523.3368185,
+    "seen": 1789109797.377661,
+    "ast_hash": "20a4bd5f31e096fde513dc74b35c3394",
+    "semantic_hash": "20a4bd5f31e096fde513dc74b35c3394"
+  },
+  "app/Http/Controllers/RoleController.php": {
+    "mtime": 1789107379.9348016,
+    "seen": 1789109797.377661,
+    "ast_hash": "6a26dcb10c694dce26745cc493f4484f",
+    "semantic_hash": "6a26dcb10c694dce26745cc493f4484f"
+  },
+  "app/Http/Controllers/TehsilController.php": {
+    "mtime": 1789107379.9350467,
+    "seen": 1789109797.377662,
+    "ast_hash": "f95e20291bf02ceca057caae84d3f3ee",
+    "semantic_hash": "f95e20291bf02ceca057caae84d3f3ee"
+  },
+  "app/Http/Controllers/TotalFeeController.php": {
+    "mtime": 1789107379.9353166,
+    "seen": 1789109797.377662,
+    "ast_hash": "6ecd493936c00203eee757bf2b77f735",
+    "semantic_hash": "6ecd493936c00203eee757bf2b77f735"
+  },
+  "app/Http/Controllers/UserController.php": {
+    "mtime": 1789107379.9354467,
+    "seen": 1789109797.377663,
+    "ast_hash": "94b7dd98e302370d778ce7a5d925baf1",
+    "semantic_hash": "94b7dd98e302370d778ce7a5d925baf1"
+  },
+  "app/Http/Requests/StoreAdmissionRequest.php": {
+    "mtime": 1789107379.935628,
+    "seen": 1789109797.377664,
+    "ast_hash": "d5faf464a52ccbfab487e37c60e5bee2",
+    "semantic_hash": "d5faf464a52ccbfab487e37c60e5bee2"
+  },
+  "app/Http/Requests/StoreAdmissionWardRequest.php": {
+    "mtime": 1789107379.9357336,
+    "seen": 1789109797.377664,
+    "ast_hash": "147a2f97570583478af5d335f93e0462",
+    "semantic_hash": "147a2f97570583478af5d335f93e0462"
+  },
+  "app/Http/Requests/StoreChitRequest.php": {
+    "mtime": 1789107379.9360764,
+    "seen": 1789109797.377665,
+    "ast_hash": "3eb2cbd186f0ade64d8210624132bc2c",
+    "semantic_hash": "3eb2cbd186f0ade64d8210624132bc2c"
+  },
+  "app/Http/Requests/StoreDepartmentRequest.php": {
+    "mtime": 1789107379.9363048,
+    "seen": 1789109797.377665,
+    "ast_hash": "dc30cfc3176003e0ff9651d40b692500",
+    "semantic_hash": "dc30cfc3176003e0ff9651d40b692500"
+  },
+  "app/Http/Requests/StoreDistrictRequest.php": {
+    "mtime": 1789107379.9364052,
+    "seen": 1789109797.377666,
+    "ast_hash": "aa7dd00d0c1222e22f44a47907fad3f2",
+    "semantic_hash": "aa7dd00d0c1222e22f44a47907fad3f2"
+  },
+  "app/Http/Requests/StoreFeeCategoryRequest.php": {
+    "mtime": 1789107379.9365025,
+    "seen": 1789109797.3776672,
+    "ast_hash": "fa9c974ed9e89140e2ad3405dba02526",
+    "semantic_hash": "fa9c974ed9e89140e2ad3405dba02526"
+  },
+  "app/Http/Requests/StoreFeeTypeRequest.php": {
+    "mtime": 1789107379.9366024,
+    "seen": 1789109797.3776672,
+    "ast_hash": "b65d895f75cdc145c24b247ece25b973",
+    "semantic_hash": "b65d895f75cdc145c24b247ece25b973"
+  },
+  "app/Http/Requests/StoreGovernmentDepartmentRequest.php": {
+    "mtime": 1789107379.9366996,
+    "seen": 1789109797.3776681,
+    "ast_hash": "625e5f22cb7e74740759a3a2ce81c4d8",
+    "semantic_hash": "625e5f22cb7e74740759a3a2ce81c4d8"
+  },
+  "app/Http/Requests/StoreGovernmentFeeRequest.php": {
+    "mtime": 1789107379.936815,
+    "seen": 1789109797.377669,
+    "ast_hash": "1b6b0468ee2d3bb53d73a3a35c2a9a16",
+    "semantic_hash": "1b6b0468ee2d3bb53d73a3a35c2a9a16"
+  },
+  "app/Http/Requests/StoreHifRequest.php": {
+    "mtime": 1789107379.9370441,
+    "seen": 1789109797.377669,
+    "ast_hash": "d563670eaf06f408374266d3f3401733",
+    "semantic_hash": "d563670eaf06f408374266d3f3401733"
+  },
+  "app/Http/Requests/StoreInvoiceRequest.php": {
+    "mtime": 1789107379.937156,
+    "seen": 1789109797.3776698,
+    "ast_hash": "dc07beb7e25563c7e1abdda5842792bc",
+    "semantic_hash": "dc07beb7e25563c7e1abdda5842792bc"
+  },
+  "app/Http/Requests/StoreLabTestRequest.php": {
+    "mtime": 1789107379.937375,
+    "seen": 1789109797.3776698,
+    "ast_hash": "ca8924ff8ee84e2d3d8acfa2e4175942",
+    "semantic_hash": "ca8924ff8ee84e2d3d8acfa2e4175942"
+  },
+  "app/Http/Requests/StorePatientAttendantRelationRequest.php": {
+    "mtime": 1789107379.9374888,
+    "seen": 1789109797.377671,
+    "ast_hash": "919118b4fddc9ea211a283b822756314",
+    "semantic_hash": "919118b4fddc9ea211a283b822756314"
+  },
+  "app/Http/Requests/StorePatientEmergencyTreatmentRequest.php": {
+    "mtime": 1789107379.9377587,
+    "seen": 1789109797.377672,
+    "ast_hash": "a9aebaa76a769a80e23994e3460124df",
+    "semantic_hash": "a9aebaa76a769a80e23994e3460124df"
+  },
+  "app/Http/Requests/StorePatientRequest.php": {
+    "mtime": 1789107379.9378986,
+    "seen": 1789109797.377672,
+    "ast_hash": "294dfdeaa796a849b5b88585e81f8749",
+    "semantic_hash": "294dfdeaa796a849b5b88585e81f8749"
+  },
+  "app/Http/Requests/StorePatientTestCartRequest.php": {
+    "mtime": 1789107379.9379988,
+    "seen": 1789109797.377673,
+    "ast_hash": "2b35084dbe06530d3993f59d484093e1",
+    "semantic_hash": "2b35084dbe06530d3993f59d484093e1"
+  },
+  "app/Http/Requests/StorePatientTestRequest.php": {
+    "mtime": 1789107379.9380958,
+    "seen": 1789109797.377673,
+    "ast_hash": "5900a227e1461332d133d425c26fedf8",
+    "semantic_hash": "5900a227e1461332d133d425c26fedf8"
+  },
+  "app/Http/Requests/StoreTehsilRequest.php": {
+    "mtime": 1789107379.938184,
+    "seen": 1789109797.377674,
+    "ast_hash": "ee9121ae7347a244cec766e96493e7c0",
+    "semantic_hash": "ee9121ae7347a244cec766e96493e7c0"
+  },
+  "app/Http/Requests/StoreTotalFeeRequest.php": {
+    "mtime": 1789107379.9384675,
+    "seen": 1789109797.377675,
+    "ast_hash": "164d7b78c04a773ec868afbaf58cd19c",
+    "semantic_hash": "164d7b78c04a773ec868afbaf58cd19c"
+  },
+  "app/Http/Requests/UpdateAdmissionRequest.php": {
+    "mtime": 1789107379.9387283,
+    "seen": 1789109797.377675,
+    "ast_hash": "fd85bf2ee4fdb451c4846f2535291f4e",
+    "semantic_hash": "fd85bf2ee4fdb451c4846f2535291f4e"
+  },
+  "app/Http/Requests/UpdateAdmissionWardRequest.php": {
+    "mtime": 1789107379.938827,
+    "seen": 1789109797.377676,
+    "ast_hash": "97ce0efec1aa276509eb201ed98ffb0e",
+    "semantic_hash": "97ce0efec1aa276509eb201ed98ffb0e"
+  },
+  "app/Http/Requests/UpdateChitRequest.php": {
+    "mtime": 1789107379.939485,
+    "seen": 1789109797.377676,
+    "ast_hash": "c37c327d1af710a69049464f458a202e",
+    "semantic_hash": "c37c327d1af710a69049464f458a202e"
+  },
+  "app/Http/Requests/UpdateDepartmentRequest.php": {
+    "mtime": 1789107379.9396245,
+    "seen": 1789109797.377677,
+    "ast_hash": "3c48341fffe25626391b3fe41fecb08a",
+    "semantic_hash": "3c48341fffe25626391b3fe41fecb08a"
+  },
+  "app/Http/Requests/UpdateDistrictRequest.php": {
+    "mtime": 1789107379.9397442,
+    "seen": 1789109797.377677,
+    "ast_hash": "6c0b41321828230c22f36a4c542b7820",
+    "semantic_hash": "6c0b41321828230c22f36a4c542b7820"
+  },
+  "app/Http/Requests/UpdateFeeCategoryRequest.php": {
+    "mtime": 1789107379.9399824,
+    "seen": 1789109797.3776782,
+    "ast_hash": "0ae3277957008935dcce866d26877ed3",
+    "semantic_hash": "0ae3277957008935dcce866d26877ed3"
+  },
+  "app/Http/Requests/UpdateFeeTypeRequest.php": {
+    "mtime": 1789107379.9400795,
+    "seen": 1789109797.377679,
+    "ast_hash": "871686d9ed77819f3a7e55fbf77362c6",
+    "semantic_hash": "871686d9ed77819f3a7e55fbf77362c6"
+  },
+  "app/Http/Requests/UpdateGovernmentDepartmentRequest.php": {
+    "mtime": 1789107379.9403365,
+    "seen": 1789109797.377679,
+    "ast_hash": "c82143235abf482a61bd41efafdb86ad",
+    "semantic_hash": "c82143235abf482a61bd41efafdb86ad"
+  },
+  "app/Http/Requests/UpdateGovernmentFeeRequest.php": {
+    "mtime": 1789107379.9404323,
+    "seen": 1789109797.3776798,
+    "ast_hash": "6bdac5d0298ecb35bf4362f1f84a11e3",
+    "semantic_hash": "6bdac5d0298ecb35bf4362f1f84a11e3"
+  },
+  "app/Http/Requests/UpdateHifRequest.php": {
+    "mtime": 1789107379.9410427,
+    "seen": 1789109797.3776798,
+    "ast_hash": "ecaf0f375c95c4fd84ad4bc3f46ae46b",
+    "semantic_hash": "ecaf0f375c95c4fd84ad4bc3f46ae46b"
+  },
+  "app/Http/Requests/UpdateInvoiceRequest.php": {
+    "mtime": 1789107379.9411502,
+    "seen": 1789109797.3776808,
+    "ast_hash": "fd35c5210e51e84a7bd171518426410d",
+    "semantic_hash": "fd35c5210e51e84a7bd171518426410d"
+  },
+  "app/Http/Requests/UpdateLabTestRequest.php": {
+    "mtime": 1789107379.9413753,
+    "seen": 1789109797.3776808,
+    "ast_hash": "a364d514c022ec9cf3342fc57b384bfe",
+    "semantic_hash": "a364d514c022ec9cf3342fc57b384bfe"
+  },
+  "app/Http/Requests/UpdatePatientAttendantRelationRequest.php": {
+    "mtime": 1789107379.9414847,
+    "seen": 1789109797.377682,
+    "ast_hash": "73ca448944d6574a25b19bc72a305c1c",
+    "semantic_hash": "73ca448944d6574a25b19bc72a305c1c"
+  },
+  "app/Http/Requests/UpdatePatientEmergencyTreatmentRequest.php": {
+    "mtime": 1789107379.941592,
+    "seen": 1789109797.377683,
+    "ast_hash": "67b8ee9ea03a8266912afd8d61772593",
+    "semantic_hash": "67b8ee9ea03a8266912afd8d61772593"
+  },
+  "app/Http/Requests/UpdatePatientRequest.php": {
+    "mtime": 1789107379.9416964,
+    "seen": 1789109797.377683,
+    "ast_hash": "59cae4d26b2cc3e2a15ba9dd8075f1e5",
+    "semantic_hash": "59cae4d26b2cc3e2a15ba9dd8075f1e5"
+  },
+  "app/Http/Requests/UpdatePatientTestCartRequest.php": {
+    "mtime": 1789107379.9417899,
+    "seen": 1789109797.3776839,
+    "ast_hash": "8d05db19f23f0153a052298961f89701",
+    "semantic_hash": "8d05db19f23f0153a052298961f89701"
+  },
+  "app/Http/Requests/UpdatePatientTestRequest.php": {
+    "mtime": 1789107379.9418912,
+    "seen": 1789109797.3776839,
+    "ast_hash": "d4e39488393e8b2544d81d3505b5333f",
+    "semantic_hash": "d4e39488393e8b2544d81d3505b5333f"
+  },
+  "app/Http/Requests/UpdateTehsilRequest.php": {
+    "mtime": 1789107379.9420002,
+    "seen": 1789109797.377685,
+    "ast_hash": "1b3a8a24d9dc079cce27844efbe7352c",
+    "semantic_hash": "1b3a8a24d9dc079cce27844efbe7352c"
+  },
+  "app/Http/Requests/UpdateTotalFeeRequest.php": {
+    "mtime": 1789107379.942107,
+    "seen": 1789109797.377686,
+    "ast_hash": "c29aff2e545ffb4f802601b2bb9581b9",
+    "semantic_hash": "c29aff2e545ffb4f802601b2bb9581b9"
+  },
+  "app/Livewire/GovernmentDetails.php": {
+    "mtime": 1789107379.9422748,
+    "seen": 1789109797.377686,
+    "ast_hash": "7fa937e55986d55593316c9b3f44ca75",
+    "semantic_hash": "7fa937e55986d55593316c9b3f44ca75"
+  },
+  "app/Livewire/IpdOpd.php": {
+    "mtime": 1789107379.9423862,
+    "seen": 1789109797.377687,
+    "ast_hash": "d364b2b5426867d832b4451585e048f0",
+    "semantic_hash": "d364b2b5426867d832b4451585e048f0"
+  },
+  "app/Models/Admission.php": {
+    "mtime": 1789107379.942751,
+    "seen": 1789109797.377687,
+    "ast_hash": "95150c290ef6f1b8df49efe437c9ec25",
+    "semantic_hash": "95150c290ef6f1b8df49efe437c9ec25"
+  },
+  "app/Models/AdmissionWard.php": {
+    "mtime": 1789107379.9428635,
+    "seen": 1789109797.3776882,
+    "ast_hash": "4413d410a12cb493317f322bd5bd3a47",
+    "semantic_hash": "4413d410a12cb493317f322bd5bd3a47"
+  },
+  "app/Models/Chit.php": {
+    "mtime": 1789107379.9434593,
+    "seen": 1789109797.3776891,
+    "ast_hash": "faa14a07f449c300ac191afd3b102a8d",
+    "semantic_hash": "faa14a07f449c300ac191afd3b102a8d"
+  },
+  "app/Models/Department.php": {
+    "mtime": 1789107379.9435728,
+    "seen": 1789109797.3776891,
+    "ast_hash": "0c880f4da3c47ca8819d9809846bcb01",
+    "semantic_hash": "0c880f4da3c47ca8819d9809846bcb01"
+  },
+  "app/Models/Disease.php": {
+    "mtime": 1789107379.9436827,
+    "seen": 1789109797.37769,
+    "ast_hash": "1e8aa5db789ec74379c43afa0528b956",
+    "semantic_hash": "1e8aa5db789ec74379c43afa0528b956"
+  },
+  "app/Models/District.php": {
+    "mtime": 1789107379.943949,
+    "seen": 1789109797.3776908,
+    "ast_hash": "a9a432184211560b0a197426a823b257",
+    "semantic_hash": "a9a432184211560b0a197426a823b257"
+  },
+  "app/Models/FeeCategory.php": {
+    "mtime": 1789107379.9446685,
+    "seen": 1789109797.3776908,
+    "ast_hash": "389b0eb40f3664e49975f4befd53f81a",
+    "semantic_hash": "389b0eb40f3664e49975f4befd53f81a"
+  },
+  "app/Models/FeeType.php": {
+    "mtime": 1789107379.9447937,
+    "seen": 1789109797.377692,
+    "ast_hash": "e6706dfc84734d95f17784b09bb7143e",
+    "semantic_hash": "e6706dfc84734d95f17784b09bb7143e"
+  },
+  "app/Models/GovernmentDepartment.php": {
+    "mtime": 1789107379.945097,
+    "seen": 1789109797.377692,
+    "ast_hash": "36ab939b759a71e67332daa9a4c02361",
+    "semantic_hash": "36ab939b759a71e67332daa9a4c02361"
+  },
+  "app/Models/Invoice.php": {
+    "mtime": 1789107379.9453435,
+    "seen": 1789109797.377693,
+    "ast_hash": "579cd5264ca8852f9de19d8b9c4d5147",
+    "semantic_hash": "579cd5264ca8852f9de19d8b9c4d5147"
+  },
+  "app/Models/LabTest.php": {
+    "mtime": 1789107379.9454424,
+    "seen": 1789109797.377694,
+    "ast_hash": "8a9df0f4e0e134ea1801c1e653bdb6ae",
+    "semantic_hash": "8a9df0f4e0e134ea1801c1e653bdb6ae"
+  },
+  "app/Models/Membership.php": {
+    "mtime": 1789107379.9458897,
+    "seen": 1789109797.377695,
+    "ast_hash": "5500579a5801c63f7dca24d6dfafbbb0",
+    "semantic_hash": "5500579a5801c63f7dca24d6dfafbbb0"
+  },
+  "app/Models/Patient.php": {
+    "mtime": 1789107379.9459767,
+    "seen": 1789109797.377695,
+    "ast_hash": "5e2a843be8e0401611f50c12b1ca4150",
+    "semantic_hash": "5e2a843be8e0401611f50c12b1ca4150"
+  },
+  "app/Models/PatientAttendantRelation.php": {
+    "mtime": 1789107379.946195,
+    "seen": 1789109797.377696,
+    "ast_hash": "81cae7e2a5337b3da18109eff5faf8a1",
+    "semantic_hash": "81cae7e2a5337b3da18109eff5faf8a1"
+  },
+  "app/Models/PatientEmergencyTreatment.php": {
+    "mtime": 1789107379.9464335,
+    "seen": 1789109797.377696,
+    "ast_hash": "c1c238c79edc70b6e3ed68a63373c602",
+    "semantic_hash": "c1c238c79edc70b6e3ed68a63373c602"
+  },
+  "app/Models/PatientTest.php": {
+    "mtime": 1789107379.9465647,
+    "seen": 1789109797.377697,
+    "ast_hash": "9e6cef12b0fc17f176fec43a5bcba604",
+    "semantic_hash": "9e6cef12b0fc17f176fec43a5bcba604"
+  },
+  "app/Models/PatientTestCart.php": {
+    "mtime": 1789107379.9466946,
+    "seen": 1789109797.377698,
+    "ast_hash": "9e2c5b9bd3008ed0ac335542c4b85b02",
+    "semantic_hash": "9e2c5b9bd3008ed0ac335542c4b85b02"
+  },
+  "app/Models/Team.php": {
+    "mtime": 1789107379.9467924,
+    "seen": 1789109797.377698,
+    "ast_hash": "6b4a4bc138ad6537975a8a181f986b4d",
+    "semantic_hash": "6b4a4bc138ad6537975a8a181f986b4d"
+  },
+  "app/Models/TeamInvitation.php": {
+    "mtime": 1789107379.9468951,
+    "seen": 1789109797.3776991,
+    "ast_hash": "a8c3eb099edafaf170fbe3864d972ece",
+    "semantic_hash": "a8c3eb099edafaf170fbe3864d972ece"
+  },
+  "app/Models/Tehsil.php": {
+    "mtime": 1789107379.946983,
+    "seen": 1789109797.3776991,
+    "ast_hash": "a20342d30224aeaa177efd357a624b24",
+    "semantic_hash": "a20342d30224aeaa177efd357a624b24"
+  },
+  "app/Models/TotalFee.php": {
+    "mtime": 1789107379.947079,
+    "seen": 1789109797.3777,
+    "ast_hash": "66806b94092a46104fcc2b782ba06e87",
+    "semantic_hash": "66806b94092a46104fcc2b782ba06e87"
+  },
+  "app/Models/User.php": {
+    "mtime": 1789107379.9471729,
+    "seen": 1789109797.377701,
+    "ast_hash": "7649f784a7830677edcbf37c7ceaeabb",
+    "semantic_hash": "7649f784a7830677edcbf37c7ceaeabb"
+  },
+  "app/Policies/AdmissionPolicy.php": {
+    "mtime": 1789107379.9473512,
+    "seen": 1789109797.377701,
+    "ast_hash": "6677a33ef60b844115a3f9effcf77803",
+    "semantic_hash": "6677a33ef60b844115a3f9effcf77803"
+  },
+  "app/Policies/AdmissionWardPolicy.php": {
+    "mtime": 1789107379.947451,
+    "seen": 1789109797.377702,
+    "ast_hash": "17ddcbd78a97daaf9b5c38f324c5bab8",
+    "semantic_hash": "17ddcbd78a97daaf9b5c38f324c5bab8"
+  },
+  "app/Policies/ChitPolicy.php": {
+    "mtime": 1789107379.9475386,
+    "seen": 1789109797.377702,
+    "ast_hash": "5d48275fe522c0b7aacf8f4ad1715157",
+    "semantic_hash": "5d48275fe522c0b7aacf8f4ad1715157"
+  },
+  "app/Policies/DepartmentPolicy.php": {
+    "mtime": 1789107379.947628,
+    "seen": 1789109797.377703,
+    "ast_hash": "6ebae246a27ef9744a808315fc146dd8",
+    "semantic_hash": "6ebae246a27ef9744a808315fc146dd8"
+  },
+  "app/Policies/DistrictPolicy.php": {
+    "mtime": 1789107379.9477222,
+    "seen": 1789109797.377704,
+    "ast_hash": "d4bbdcd71e83c52bff458303b3837c73",
+    "semantic_hash": "d4bbdcd71e83c52bff458303b3837c73"
+  },
+  "app/Policies/FeeCategoryPolicy.php": {
+    "mtime": 1789107379.947811,
+    "seen": 1789109797.377704,
+    "ast_hash": "244d9181a1caacd071b98d74df019f75",
+    "semantic_hash": "244d9181a1caacd071b98d74df019f75"
+  },
+  "app/Policies/FeeTypePolicy.php": {
+    "mtime": 1789107379.9478989,
+    "seen": 1789109797.3777049,
+    "ast_hash": "085446522888c78a31dce54a3f097bc3",
+    "semantic_hash": "085446522888c78a31dce54a3f097bc3"
+  },
+  "app/Policies/GovernmentDepartmentPolicy.php": {
+    "mtime": 1789107379.947993,
+    "seen": 1789109797.3777049,
+    "ast_hash": "b6db32dfffe8d1fbbf8d5d52a82bf5f6",
+    "semantic_hash": "b6db32dfffe8d1fbbf8d5d52a82bf5f6"
+  },
+  "app/Policies/InvoicePolicy.php": {
+    "mtime": 1789107379.9480784,
+    "seen": 1789109797.377706,
+    "ast_hash": "893a91d02f1ee4fada48f2d75b8b37b3",
+    "semantic_hash": "893a91d02f1ee4fada48f2d75b8b37b3"
+  },
+  "app/Policies/LabTestPolicy.php": {
+    "mtime": 1789107379.948165,
+    "seen": 1789109797.377707,
+    "ast_hash": "c7486016998f6d943f67b9a4bd10a6be",
+    "semantic_hash": "c7486016998f6d943f67b9a4bd10a6be"
+  },
+  "app/Policies/PatientAttendantRelationPolicy.php": {
+    "mtime": 1789107379.9482625,
+    "seen": 1789109797.377707,
+    "ast_hash": "a5d9fc0408c0453a78edefdc2c8d3cb9",
+    "semantic_hash": "a5d9fc0408c0453a78edefdc2c8d3cb9"
+  },
+  "app/Policies/PatientEmergencyTreatmentPolicy.php": {
+    "mtime": 1789107379.9483662,
+    "seen": 1789109797.377708,
+    "ast_hash": "bc829d721db609fee0c795a5bc6cd204",
+    "semantic_hash": "bc829d721db609fee0c795a5bc6cd204"
+  },
+  "app/Policies/PatientPolicy.php": {
+    "mtime": 1789107379.9485965,
+    "seen": 1789109797.377708,
+    "ast_hash": "cb350b71f20a1d4dfeaadeee3a19793b",
+    "semantic_hash": "cb350b71f20a1d4dfeaadeee3a19793b"
+  },
+  "app/Policies/PatientTestCartPolicy.php": {
+    "mtime": 1789107379.9487092,
+    "seen": 1789109797.3777092,
+    "ast_hash": "76b759cdff588ab3d7d9142ca0a7cec0",
+    "semantic_hash": "76b759cdff588ab3d7d9142ca0a7cec0"
+  },
+  "app/Policies/PatientTestPolicy.php": {
+    "mtime": 1789107379.9488158,
+    "seen": 1789109797.37771,
+    "ast_hash": "7c9dddcfcd91ce3e91fd2cbb2e967b54",
+    "semantic_hash": "7c9dddcfcd91ce3e91fd2cbb2e967b54"
+  },
+  "app/Policies/TeamPolicy.php": {
+    "mtime": 1789107379.9489455,
+    "seen": 1789109797.37771,
+    "ast_hash": "1edd3c84d5b9973fcc3db518b71ad260",
+    "semantic_hash": "1edd3c84d5b9973fcc3db518b71ad260"
+  },
+  "app/Policies/TehsilPolicy.php": {
+    "mtime": 1789107379.9491,
+    "seen": 1789109797.377711,
+    "ast_hash": "5945a2c097b771893dfdc6e2d7191eae",
+    "semantic_hash": "5945a2c097b771893dfdc6e2d7191eae"
+  },
+  "app/Policies/TotalFeePolicy.php": {
+    "mtime": 1789107379.9492028,
+    "seen": 1789109797.377711,
+    "ast_hash": "842a84abbbf3c74b4ea9861f40450942",
+    "semantic_hash": "842a84abbbf3c74b4ea9861f40450942"
+  },
+  "app/Providers/AppServiceProvider.php": {
+    "mtime": 1789107379.9493918,
+    "seen": 1789109797.377712,
+    "ast_hash": "686aaf6881413f3d06135ac2a7e01ab3",
+    "semantic_hash": "686aaf6881413f3d06135ac2a7e01ab3"
+  },
+  "app/Providers/FortifyServiceProvider.php": {
+    "mtime": 1789107379.949499,
+    "seen": 1789109797.377713,
+    "ast_hash": "f079ef160d73e0aa462086bbd41db491",
+    "semantic_hash": "f079ef160d73e0aa462086bbd41db491"
+  },
+  "app/Providers/JetstreamServiceProvider.php": {
+    "mtime": 1789107379.9496157,
+    "seen": 1789109797.377713,
+    "ast_hash": "acda739b6c980e3180b035b0ea97269e",
+    "semantic_hash": "acda739b6c980e3180b035b0ea97269e"
+  },
+  "app/View/Components/AppLayout.php": {
+    "mtime": 1789107379.9498367,
+    "seen": 1789109797.377714,
+    "ast_hash": "b9778de9551cc2b9f166fe7e6629b9a5",
+    "semantic_hash": "b9778de9551cc2b9f166fe7e6629b9a5"
+  },
+  "app/View/Components/GuestLayout.php": {
+    "mtime": 1789107379.9499276,
+    "seen": 1789109797.3777149,
+    "ast_hash": "aefcd0a8c6a6a8b4d88313ff2998fbb5",
+    "semantic_hash": "aefcd0a8c6a6a8b4d88313ff2998fbb5"
+  },
+  "artisan": {
+    "mtime": 1789107379.9500256,
+    "seen": 1789109797.3777149,
+    "ast_hash": "9d88489831f90855deb8783a16c93408",
+    "semantic_hash": "9d88489831f90855deb8783a16c93408"
+  },
+  "boost.json": {
+    "mtime": 1789107379.9501147,
+    "seen": 1789109797.377716,
+    "ast_hash": "cec1f4626f0f629f7da44d14b57e0f11",
+    "semantic_hash": "cec1f4626f0f629f7da44d14b57e0f11"
+  },
+  "bootstrap/app.php": {
+    "mtime": 1789107379.950298,
+    "seen": 1789109797.377716,
+    "ast_hash": "bee7f808adf16a10de0280d81745dbca",
+    "semantic_hash": "bee7f808adf16a10de0280d81745dbca"
+  },
+  "bootstrap/providers.php": {
+    "mtime": 1789107379.9505768,
+    "seen": 1789109797.377717,
+    "ast_hash": "2f2c32fcfc207f536cf136e1b03ed6f9",
+    "semantic_hash": "2f2c32fcfc207f536cf136e1b03ed6f9"
+  },
+  "composer.json": {
+    "mtime": 1789109786.1609106,
+    "seen": 1789109797.377717,
+    "ast_hash": "2d1b844d047e169099d94be340f5358f",
+    "semantic_hash": "2d1b844d047e169099d94be340f5358f"
+  },
+  "config/app.php": {
+    "mtime": 1789107379.952183,
+    "seen": 1789109797.377718,
+    "ast_hash": "9ad59cbfe9b347fa7e7ee3cc94785196",
+    "semantic_hash": "9ad59cbfe9b347fa7e7ee3cc94785196"
+  },
+  "config/auth.php": {
+    "mtime": 1789107379.9522831,
+    "seen": 1789109797.377719,
+    "ast_hash": "00777931ac1cdee35ad18d8256395a99",
+    "semantic_hash": "00777931ac1cdee35ad18d8256395a99"
+  },
+  "config/backup.php": {
+    "mtime": 1789107379.9524016,
+    "seen": 1789109797.377719,
+    "ast_hash": "9e8a02831b125699b74ebec9f9c81593",
+    "semantic_hash": "9e8a02831b125699b74ebec9f9c81593"
+  },
+  "config/cache.php": {
+    "mtime": 1789107379.952498,
+    "seen": 1789109797.37772,
+    "ast_hash": "667d28ee9e7b182b2b8ec23343a98c85",
+    "semantic_hash": "667d28ee9e7b182b2b8ec23343a98c85"
+  },
+  "config/database.php": {
+    "mtime": 1789107379.9526014,
+    "seen": 1789109797.37772,
+    "ast_hash": "56cf3e53958d70a970ec04548408d279",
+    "semantic_hash": "56cf3e53958d70a970ec04548408d279"
+  },
+  "config/filesystems.php": {
+    "mtime": 1789107379.9526942,
+    "seen": 1789109797.377721,
+    "ast_hash": "8809cb5fe264a0df2b2e40f55b50b0cd",
+    "semantic_hash": "8809cb5fe264a0df2b2e40f55b50b0cd"
+  },
+  "config/fortify.php": {
+    "mtime": 1789107379.9527965,
+    "seen": 1789109797.377722,
+    "ast_hash": "ee9c6f5757e650ec59a62e5cc276fc06",
+    "semantic_hash": "ee9c6f5757e650ec59a62e5cc276fc06"
+  },
+  "config/jetstream.php": {
+    "mtime": 1789107379.9528956,
+    "seen": 1789109797.377722,
+    "ast_hash": "05053361ccea937eda387bab3d64f723",
+    "semantic_hash": "05053361ccea937eda387bab3d64f723"
+  },
+  "config/logging.php": {
+    "mtime": 1789107379.9529862,
+    "seen": 1789109797.377723,
+    "ast_hash": "adf21b14db23bf78f9397e67a702430a",
+    "semantic_hash": "adf21b14db23bf78f9397e67a702430a"
+  },
+  "config/mail.php": {
+    "mtime": 1789107379.9530737,
+    "seen": 1789109797.377723,
+    "ast_hash": "1b0cc8f9f97ca85b21fa83aad433c1be",
+    "semantic_hash": "1b0cc8f9f97ca85b21fa83aad433c1be"
+  },
+  "config/permission.php": {
+    "mtime": 1789107379.9531715,
+    "seen": 1789109797.377724,
+    "ast_hash": "40d59b34401e7278766d96ed27c980bf",
+    "semantic_hash": "40d59b34401e7278766d96ed27c980bf"
+  },
+  "config/query-builder.php": {
+    "mtime": 1789107379.9532638,
+    "seen": 1789109797.377725,
+    "ast_hash": "2e79845ddb8d258219ea516dea85567c",
+    "semantic_hash": "2e79845ddb8d258219ea516dea85567c"
+  },
+  "config/queue.php": {
+    "mtime": 1789107379.9533508,
+    "seen": 1789109797.377725,
+    "ast_hash": "e5f7535f46f1db6a22a4332e532fbb51",
+    "semantic_hash": "e5f7535f46f1db6a22a4332e532fbb51"
+  },
+  "config/sanctum.php": {
+    "mtime": 1789107379.9534385,
+    "seen": 1789109797.3777258,
+    "ast_hash": "cbb6b4208f604062f892f7cbd1981d70",
+    "semantic_hash": "cbb6b4208f604062f892f7cbd1981d70"
+  },
+  "config/services.php": {
+    "mtime": 1789107379.9535203,
+    "seen": 1789109797.3777258,
+    "ast_hash": "1146126dd89fa5a45a7b8fe980859d20",
+    "semantic_hash": "1146126dd89fa5a45a7b8fe980859d20"
+  },
+  "config/session.php": {
+    "mtime": 1789107379.9536223,
+    "seen": 1789109797.377727,
+    "ast_hash": "4a0b5fbab1a2c26789328818c8d68a48",
+    "semantic_hash": "4a0b5fbab1a2c26789328818c8d68a48"
+  },
+  "database/factories/ChitFactory.php": {
+    "mtime": 1789107379.9538212,
+    "seen": 1789109797.377728,
+    "ast_hash": "2c016757c6a616938e5965868ea168c0",
+    "semantic_hash": "2c016757c6a616938e5965868ea168c0"
+  },
+  "database/factories/DepartmentFactory.php": {
+    "mtime": 1789107379.9539106,
+    "seen": 1789109797.377728,
+    "ast_hash": "354305839e0634057a98ffbabdae2d46",
+    "semantic_hash": "354305839e0634057a98ffbabdae2d46"
+  },
+  "database/factories/FeeCategoryFactory.php": {
+    "mtime": 1789107379.9539888,
+    "seen": 1789109797.377729,
+    "ast_hash": "884a55f0268cc4349adee443f44062ca",
+    "semantic_hash": "884a55f0268cc4349adee443f44062ca"
+  },
+  "database/factories/FeeTypeFactory.php": {
+    "mtime": 1789107379.9540868,
+    "seen": 1789109797.3777301,
+    "ast_hash": "bea7117d56bac3a40ed61e8ef83aa15c",
+    "semantic_hash": "bea7117d56bac3a40ed61e8ef83aa15c"
+  },
+  "database/factories/GovernmentDepartmentFactory.php": {
+    "mtime": 1789107379.954175,
+    "seen": 1789109797.3777301,
+    "ast_hash": "ad0cca7f6362fdc817fd276868d34a81",
+    "semantic_hash": "ad0cca7f6362fdc817fd276868d34a81"
+  },
+  "database/factories/PatientFactory.php": {
+    "mtime": 1789107379.9542568,
+    "seen": 1789109797.377731,
+    "ast_hash": "036d1ccdbc37fb36675d45483ce0c3e6",
+    "semantic_hash": "036d1ccdbc37fb36675d45483ce0c3e6"
+  },
+  "database/factories/TeamFactory.php": {
+    "mtime": 1789107379.9543333,
+    "seen": 1789109797.377731,
+    "ast_hash": "b78e889570e1f9b168df0f11098efbeb",
+    "semantic_hash": "b78e889570e1f9b168df0f11098efbeb"
+  },
+  "database/factories/UserFactory.php": {
+    "mtime": 1789107379.9544253,
+    "seen": 1789109797.377732,
+    "ast_hash": "0210757db79e7883518feb2096efbf24",
+    "semantic_hash": "0210757db79e7883518feb2096efbf24"
+  },
+  "database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php": {
+    "mtime": 1789107379.954727,
+    "seen": 1789109797.3777332,
+    "ast_hash": "eb77af89d184f92ec893eff344c34999",
+    "semantic_hash": "eb77af89d184f92ec893eff344c34999"
+  },
+  "database/migrations/2025_11_23_192501_create_failed_jobs_table.php": {
+    "mtime": 1789107379.9548266,
+    "seen": 1789109797.3777332,
+    "ast_hash": "ce12637c65249fab599c38c1989a35b5",
+    "semantic_hash": "ce12637c65249fab599c38c1989a35b5"
+  },
+  "database/migrations/2025_11_23_192501_create_password_reset_tokens_table.php": {
+    "mtime": 1789107379.954911,
+    "seen": 1789109797.377734,
+    "ast_hash": "0c27303bfe069941e0d9faf10bc7e2e1",
+    "semantic_hash": "0c27303bfe069941e0d9faf10bc7e2e1"
+  },
+  "database/migrations/2025_11_23_192501_create_users_table.php": {
+    "mtime": 1789107379.9550025,
+    "seen": 1789109797.377734,
+    "ast_hash": "c7f97512b88cc9e8176536aa32d443c4",
+    "semantic_hash": "c7f97512b88cc9e8176536aa32d443c4"
+  },
+  "database/migrations/2025_11_23_192508_create_cache_locks_table.php": {
+    "mtime": 1789107379.955107,
+    "seen": 1789109797.377735,
+    "ast_hash": "cdd70e2ff4710160c25e7ff3fd4f9dba",
+    "semantic_hash": "cdd70e2ff4710160c25e7ff3fd4f9dba"
+  },
+  "database/migrations/2025_11_23_192508_create_cache_table.php": {
+    "mtime": 1789107379.9553318,
+    "seen": 1789109797.3777359,
+    "ast_hash": "7fcc65bf02eecb79f9d6180f811eb8dd",
+    "semantic_hash": "7fcc65bf02eecb79f9d6180f811eb8dd"
+  },
+  "database/migrations/2025_11_23_192508_create_sessions_table.php": {
+    "mtime": 1789107379.9554343,
+    "seen": 1789109797.3777359,
+    "ast_hash": "71bcefdd363c2b64792b7cf90e0981b8",
+    "semantic_hash": "71bcefdd363c2b64792b7cf90e0981b8"
+  },
+  "database/migrations/2025_11_23_192508_create_team_invitations_table.php": {
+    "mtime": 1789107379.9555247,
+    "seen": 1789109797.377737,
+    "ast_hash": "77198cca73a23d7672fdcd516e20f9ea",
+    "semantic_hash": "77198cca73a23d7672fdcd516e20f9ea"
+  },
+  "database/migrations/2025_11_23_192508_create_team_user_table.php": {
+    "mtime": 1789107379.9556115,
+    "seen": 1789109797.377737,
+    "ast_hash": "1fd926be09cf71d8521d20eb6dac9dd4",
+    "semantic_hash": "1fd926be09cf71d8521d20eb6dac9dd4"
+  },
+  "database/migrations/2025_11_23_192508_create_teams_table.php": {
+    "mtime": 1789107379.95569,
+    "seen": 1789109797.377738,
+    "ast_hash": "984762c4a76066df91ba902e41aadc5d",
+    "semantic_hash": "984762c4a76066df91ba902e41aadc5d"
+  },
+  "database/migrations/2025_11_23_192511_add_foreign_keys_to_team_invitations_table.php": {
+    "mtime": 1789107379.9557717,
+    "seen": 1789109797.377739,
+    "ast_hash": "f904a2fe70ed11a7e0e35c30855bddac",
+    "semantic_hash": "f904a2fe70ed11a7e0e35c30855bddac"
+  },
+  "database/migrations/2025_11_23_192515_create_model_has_permissions_table.php": {
+    "mtime": 1789107379.955864,
+    "seen": 1789109797.377739,
+    "ast_hash": "9c4610969c0c4a9ccbe45dc49e14e3d3",
+    "semantic_hash": "9c4610969c0c4a9ccbe45dc49e14e3d3"
+  },
+  "database/migrations/2025_11_23_192515_create_model_has_roles_table.php": {
+    "mtime": 1789107379.9559376,
+    "seen": 1789109797.3777401,
+    "ast_hash": "6651644cf6b6b02cb1ceead54baf68c3",
+    "semantic_hash": "6651644cf6b6b02cb1ceead54baf68c3"
+  },
+  "database/migrations/2025_11_23_192515_create_permissions_table.php": {
+    "mtime": 1789107379.9560163,
+    "seen": 1789109797.3777401,
+    "ast_hash": "6348b7008d8e7accbb5c527ad14862f5",
+    "semantic_hash": "6348b7008d8e7accbb5c527ad14862f5"
+  },
+  "database/migrations/2025_11_23_192515_create_role_has_permissions_table.php": {
+    "mtime": 1789107379.9561014,
+    "seen": 1789109797.377741,
+    "ast_hash": "0d59d57652ceef576caa184dc0e15dc0",
+    "semantic_hash": "0d59d57652ceef576caa184dc0e15dc0"
+  },
+  "database/migrations/2025_11_23_192515_create_roles_table.php": {
+    "mtime": 1789107379.9561722,
+    "seen": 1789109797.377741,
+    "ast_hash": "13c194c02be9a92b3fc747d12a23ef9f",
+    "semantic_hash": "13c194c02be9a92b3fc747d12a23ef9f"
+  },
+  "database/migrations/2025_11_23_192518_add_foreign_keys_to_model_has_permissions_table.php": {
+    "mtime": 1789107379.9562597,
+    "seen": 1789109797.377742,
+    "ast_hash": "09b99747315f9b8b82d15897ca5f2374",
+    "semantic_hash": "09b99747315f9b8b82d15897ca5f2374"
+  },
+  "database/migrations/2025_11_23_192518_add_foreign_keys_to_model_has_roles_table.php": {
+    "mtime": 1789107379.956344,
+    "seen": 1789109797.377743,
+    "ast_hash": "50ed9ca0e0b46ee582beddaf519a36b0",
+    "semantic_hash": "50ed9ca0e0b46ee582beddaf519a36b0"
+  },
+  "database/migrations/2025_11_23_192518_add_foreign_keys_to_role_has_permissions_table.php": {
+    "mtime": 1789107379.9564252,
+    "seen": 1789109797.377743,
+    "ast_hash": "6bbc4f39333314a682709649d10c3938",
+    "semantic_hash": "6bbc4f39333314a682709649d10c3938"
+  },
+  "database/migrations/2025_11_23_192522_create_admission_wards_table.php": {
+    "mtime": 1789107379.9565008,
+    "seen": 1789109797.377744,
+    "ast_hash": "7acfb4ee145a048bd744556eea517e26",
+    "semantic_hash": "7acfb4ee145a048bd744556eea517e26"
+  },
+  "database/migrations/2025_11_23_192522_create_departments_table.php": {
+    "mtime": 1789107379.9565895,
+    "seen": 1789109797.377745,
+    "ast_hash": "4add02811424a9b3ad68b2caafdc8601",
+    "semantic_hash": "4add02811424a9b3ad68b2caafdc8601"
+  },
+  "database/migrations/2025_11_23_192522_create_diseases_table.php": {
+    "mtime": 1789107379.9566712,
+    "seen": 1789109797.3777459,
+    "ast_hash": "54352a46c195208f0b26450d063a51a2",
+    "semantic_hash": "54352a46c195208f0b26450d063a51a2"
+  },
+  "database/migrations/2025_11_23_192522_create_districts_table.php": {
+    "mtime": 1789107379.9567506,
+    "seen": 1789109797.3777459,
+    "ast_hash": "c32a1eedb4b964079a5c5fcc8c2bf4ff",
+    "semantic_hash": "c32a1eedb4b964079a5c5fcc8c2bf4ff"
+  },
+  "database/migrations/2025_11_23_192522_create_fee_categories_table.php": {
+    "mtime": 1789107379.9568286,
+    "seen": 1789109797.377747,
+    "ast_hash": "a3d880ce4d4c046cc3bacdaea0c0862b",
+    "semantic_hash": "a3d880ce4d4c046cc3bacdaea0c0862b"
+  },
+  "database/migrations/2025_11_23_192522_create_government_departments_table.php": {
+    "mtime": 1789107379.9569046,
+    "seen": 1789109797.377748,
+    "ast_hash": "cb3f3fcac6c3ef941de50d9bc8538b70",
+    "semantic_hash": "cb3f3fcac6c3ef941de50d9bc8538b70"
+  },
+  "database/migrations/2025_11_23_192522_create_lab_tests_table.php": {
+    "mtime": 1789107379.956975,
+    "seen": 1789109797.377748,
+    "ast_hash": "a42d52e6644ae6ae54434ce10e72e328",
+    "semantic_hash": "a42d52e6644ae6ae54434ce10e72e328"
+  },
+  "database/migrations/2025_11_23_192522_create_patient_attendant_relations_table.php": {
+    "mtime": 1789107379.9570515,
+    "seen": 1789109797.377749,
+    "ast_hash": "ae2893de78a10668bfe95125c6dfc939",
+    "semantic_hash": "ae2893de78a10668bfe95125c6dfc939"
+  },
+  "database/migrations/2025_11_23_192530_create_fee_types_table.php": {
+    "mtime": 1789107379.957131,
+    "seen": 1789109797.377749,
+    "ast_hash": "798f045a5659a40a8ac0ed81171e1ece",
+    "semantic_hash": "798f045a5659a40a8ac0ed81171e1ece"
+  },
+  "database/migrations/2025_11_23_192530_create_tehsils_table.php": {
+    "mtime": 1789107379.9572115,
+    "seen": 1789109797.37775,
+    "ast_hash": "eb93dc722995fe32814a4614e09c9582",
+    "semantic_hash": "eb93dc722995fe32814a4614e09c9582"
+  },
+  "database/migrations/2025_11_23_192533_add_foreign_keys_to_fee_types_table.php": {
+    "mtime": 1789107379.9574106,
+    "seen": 1789109797.377751,
+    "ast_hash": "8eeaaacd864aead534785a5a0d96f81a",
+    "semantic_hash": "8eeaaacd864aead534785a5a0d96f81a"
+  },
+  "database/migrations/2025_11_23_192533_add_foreign_keys_to_tehsils_table.php": {
+    "mtime": 1789107379.9575393,
+    "seen": 1789109797.377751,
+    "ast_hash": "e4568f0c45d1e380120c019b5d2a40a5",
+    "semantic_hash": "e4568f0c45d1e380120c019b5d2a40a5"
+  },
+  "database/migrations/2025_11_23_192536_create_patients_table.php": {
+    "mtime": 1789107379.9576335,
+    "seen": 1789109797.377752,
+    "ast_hash": "77ed8b6cad9191d214ac317e0021c413",
+    "semantic_hash": "77ed8b6cad9191d214ac317e0021c413"
+  },
+  "database/migrations/2025_11_23_192539_add_foreign_keys_to_patients_table.php": {
+    "mtime": 1789107379.9577365,
+    "seen": 1789109797.377752,
+    "ast_hash": "13b57a0eda0a7f1a087b8b080a6b5644",
+    "semantic_hash": "13b57a0eda0a7f1a087b8b080a6b5644"
+  },
+  "database/migrations/2025_11_23_192542_create_invoices_table.php": {
+    "mtime": 1789107379.957839,
+    "seen": 1789109797.377753,
+    "ast_hash": "a96d0f97dcfbe1e99d7f3bd1f12381ac",
+    "semantic_hash": "a96d0f97dcfbe1e99d7f3bd1f12381ac"
+  },
+  "database/migrations/2025_11_23_192542_create_patient_emergency_treatments_table.php": {
+    "mtime": 1789107379.9579494,
+    "seen": 1789109797.3777542,
+    "ast_hash": "55d7326539f5c52550e0436792e5d7f8",
+    "semantic_hash": "55d7326539f5c52550e0436792e5d7f8"
+  },
+  "database/migrations/2025_11_23_192542_create_patient_test_carts_table.php": {
+    "mtime": 1789107379.958042,
+    "seen": 1789109797.3777542,
+    "ast_hash": "f4648696efbc88c111037ef55c088363",
+    "semantic_hash": "f4648696efbc88c111037ef55c088363"
+  },
+  "database/migrations/2025_11_23_192542_create_total_fees_table.php": {
+    "mtime": 1789107379.9581432,
+    "seen": 1789109797.377755,
+    "ast_hash": "5f204aa1a84d4d8f92d0abea77b3031d",
+    "semantic_hash": "5f204aa1a84d4d8f92d0abea77b3031d"
+  },
+  "database/migrations/2025_11_23_192545_add_foreign_keys_to_invoices_table.php": {
+    "mtime": 1789107379.9583995,
+    "seen": 1789109797.377755,
+    "ast_hash": "c9d1a252160cc0eec70e1b444d3bb7ab",
+    "semantic_hash": "c9d1a252160cc0eec70e1b444d3bb7ab"
+  },
+  "database/migrations/2025_11_23_192545_add_foreign_keys_to_patient_emergency_treatments_table.php": {
+    "mtime": 1789107379.9586613,
+    "seen": 1789109797.3777559,
+    "ast_hash": "7e2baaa25510fa0b80eb883470e67cd1",
+    "semantic_hash": "7e2baaa25510fa0b80eb883470e67cd1"
+  },
+  "database/migrations/2025_11_23_192545_add_foreign_keys_to_patient_test_carts_table.php": {
+    "mtime": 1789107379.9587412,
+    "seen": 1789109797.3777568,
+    "ast_hash": "b6039760808d1a17abf79a7b7d821107",
+    "semantic_hash": "b6039760808d1a17abf79a7b7d821107"
+  },
+  "database/migrations/2025_11_23_192545_add_foreign_keys_to_total_fees_table.php": {
+    "mtime": 1789107379.9588177,
+    "seen": 1789109797.3777568,
+    "ast_hash": "5fc901739539ab06f8422263d6e6e75d",
+    "semantic_hash": "5fc901739539ab06f8422263d6e6e75d"
+  },
+  "database/migrations/2025_11_23_192549_create_admissions_table.php": {
+    "mtime": 1789107379.9588919,
+    "seen": 1789109797.377758,
+    "ast_hash": "7e4a4aac34f810c315968389a99ee5ac",
+    "semantic_hash": "7e4a4aac34f810c315968389a99ee5ac"
+  },
+  "database/migrations/2025_11_23_192549_create_chits_table.php": {
+    "mtime": 1789107379.9589658,
+    "seen": 1789109797.377758,
+    "ast_hash": "00ab012877e041082644b0e3abfe2bc3",
+    "semantic_hash": "00ab012877e041082644b0e3abfe2bc3"
+  },
+  "database/migrations/2025_11_23_192549_create_patient_tests_table.php": {
+    "mtime": 1789107379.9590347,
+    "seen": 1789109797.377759,
+    "ast_hash": "8352bc04f378e83faafd8ef3140d7e90",
+    "semantic_hash": "8352bc04f378e83faafd8ef3140d7e90"
+  },
+  "database/migrations/2025_11_23_192552_add_foreign_keys_to_admissions_table.php": {
+    "mtime": 1789107379.9591136,
+    "seen": 1789109797.37776,
+    "ast_hash": "49b2c38a4f2de2d860051f7143e0864d",
+    "semantic_hash": "49b2c38a4f2de2d860051f7143e0864d"
+  },
+  "database/migrations/2025_11_23_192552_add_foreign_keys_to_chits_table.php": {
+    "mtime": 1789107379.959189,
+    "seen": 1789109797.37776,
+    "ast_hash": "0c51750b1e920426f359bed007997c7b",
+    "semantic_hash": "0c51750b1e920426f359bed007997c7b"
+  },
+  "database/migrations/2025_11_23_192552_add_foreign_keys_to_patient_tests_table.php": {
+    "mtime": 1789107379.9592795,
+    "seen": 1789109797.3777611,
+    "ast_hash": "140b20b85382ab3a297e63f6fa5bd507",
+    "semantic_hash": "140b20b85382ab3a297e63f6fa5bd507"
+  },
+  "database/migrations/2026_02_28_192209_add_performance_indexes.php": {
+    "mtime": 1789107379.9593828,
+    "seen": 1789109797.3777611,
+    "ast_hash": "f4864168316c2829340ce40da5900a10",
+    "semantic_hash": "f4864168316c2829340ce40da5900a10"
+  },
+  "database/migrations/2026_03_11_221803_add_opd_emergency_department_and_fee_type.php": {
+    "mtime": 1789107379.9594612,
+    "seen": 1789109797.377762,
+    "ast_hash": "5a8e20a8b39fc47ad97820c8017b568c",
+    "semantic_hash": "5a8e20a8b39fc47ad97820c8017b568c"
+  },
+  "database/migrations/2026_03_11_222057_add_return_invoice_permission.php": {
+    "mtime": 1789107379.9595578,
+    "seen": 1789109797.377763,
+    "ast_hash": "6564d54252c450c0a1cd4f4c79799fcf",
+    "semantic_hash": "6564d54252c450c0a1cd4f4c79799fcf"
+  },
+  "database/migrations/2026_03_16_224335_seed_emergency_fee_types.php": {
+    "mtime": 1789107379.9596581,
+    "seen": 1789109797.377763,
+    "ast_hash": "19f3c4be2a768690d6c9c4ab92d855e1",
+    "semantic_hash": "19f3c4be2a768690d6c9c4ab92d855e1"
+  },
+  "database/migrations/2026_08_12_163300_add_view_monthly_income_reports_permission.php": {
+    "mtime": 1789107379.9597433,
+    "seen": 1789109797.377764,
+    "ast_hash": "ba13ccc22071b34e7573b3c6ae95bee9",
+    "semantic_hash": "ba13ccc22071b34e7573b3c6ae95bee9"
+  },
+  "database/migrations/2026_08_13_100606_add_dashboard_report_indexes.php": {
+    "mtime": 1789107523.3385112,
+    "seen": 1789109797.377764,
+    "ast_hash": "ef82d2f5688c65153e22f35f9375b282",
+    "semantic_hash": "ef82d2f5688c65153e22f35f9375b282"
+  },
+  "database/migrations/2026_08_13_101316_add_role_dashboard_three_indexes.php": {
+    "mtime": 1789107523.3386254,
+    "seen": 1789109797.3777652,
+    "ast_hash": "a45e9eded2522f35d9ff0e2d21b51bd2",
+    "semantic_hash": "a45e9eded2522f35d9ff0e2d21b51bd2"
+  },
+  "database/migrations/2026_08_17_120000_add_department_wise_audit_report_permission.php": {
+    "mtime": 1789107523.338724,
+    "seen": 1789109797.377766,
+    "ast_hash": "e0c46aa76d3cdcfd2019e77a87d80223",
+    "semantic_hash": "e0c46aa76d3cdcfd2019e77a87d80223"
+  },
+  "database/seeders/AdmissionWardSeeder.php": {
+    "mtime": 1789107379.959883,
+    "seen": 1789109797.377766,
+    "ast_hash": "189870e886cd34e84286db363f1ec592",
+    "semantic_hash": "189870e886cd34e84286db363f1ec592"
+  },
+  "database/seeders/DatabaseSeeder.php": {
+    "mtime": 1789107379.9599714,
+    "seen": 1789109797.3777668,
+    "ast_hash": "fe67497e09197954666eaf77a36714da",
+    "semantic_hash": "fe67497e09197954666eaf77a36714da"
+  },
+  "database/seeders/DepartmentSeeder.php": {
+    "mtime": 1789107379.9600594,
+    "seen": 1789109797.377768,
+    "ast_hash": "7bb82b569f606cc2c762645f2569d0fa",
+    "semantic_hash": "7bb82b569f606cc2c762645f2569d0fa"
+  },
+  "database/seeders/DiseaseSeeder.php": {
+    "mtime": 1789107379.9601393,
+    "seen": 1789109797.377768,
+    "ast_hash": "3108b6e92f77201ccd604a18c36eb84e",
+    "semantic_hash": "3108b6e92f77201ccd604a18c36eb84e"
+  },
+  "database/seeders/EmergencyFeeTypeSeeder.php": {
+    "mtime": 1789107379.9602132,
+    "seen": 1789109797.377769,
+    "ast_hash": "d2f0fa64216017e257e58a1ef51f8639",
+    "semantic_hash": "d2f0fa64216017e257e58a1ef51f8639"
+  },
+  "database/seeders/FeeSeeder.php": {
+    "mtime": 1789107379.9603105,
+    "seen": 1789109797.377769,
+    "ast_hash": "0440339b3ba3f5255667d4078f31b163",
+    "semantic_hash": "0440339b3ba3f5255667d4078f31b163"
+  },
+  "database/seeders/GovernmentDepartmentSeeder.php": {
+    "mtime": 1789107379.960399,
+    "seen": 1789109797.37777,
+    "ast_hash": "2dd21cdbae42e3b76cf7a76025f4b0e4",
+    "semantic_hash": "2dd21cdbae42e3b76cf7a76025f4b0e4"
+  },
+  "database/seeders/LocationSeeder.php": {
+    "mtime": 1789107379.9604802,
+    "seen": 1789109797.377771,
+    "ast_hash": "2427344736ec03aac44780af459f73c9",
+    "semantic_hash": "2427344736ec03aac44780af459f73c9"
+  },
+  "database/seeders/PatientAttendantRelationSeeder.php": {
+    "mtime": 1789107379.9605663,
+    "seen": 1789109797.377771,
+    "ast_hash": "83d2961d2a8f524f3843b0117daa9294",
+    "semantic_hash": "83d2961d2a8f524f3843b0117daa9294"
+  },
+  "database/seeders/RolesAndPermissionsSeeder.php": {
+    "mtime": 1789107523.3389225,
+    "seen": 1789109797.377772,
+    "ast_hash": "8b218f5fdf72f456d0efc143589e3d5e",
+    "semantic_hash": "8b218f5fdf72f456d0efc143589e3d5e"
+  },
+  "database/seeders/UserSeeder.php": {
+    "mtime": 1789107379.9607704,
+    "seen": 1789109797.377772,
+    "ast_hash": "a1c81d05827b49fe41e51d8827789b11",
+    "semantic_hash": "a1c81d05827b49fe41e51d8827789b11"
+  },
+  "database/seeders/data/departments.json": {
+    "mtime": 1789107379.960894,
+    "seen": 1789109797.377773,
+    "ast_hash": "50ca9320274c654e89c2b900971807a2",
+    "semantic_hash": "50ca9320274c654e89c2b900971807a2"
+  },
+  "database/seeders/data/diseases.json": {
+    "mtime": 1789107379.9609869,
+    "seen": 1789109797.377774,
+    "ast_hash": "d347c39247af7bcf8086bc2b0566ff34",
+    "semantic_hash": "d347c39247af7bcf8086bc2b0566ff34"
+  },
+  "database/seeders/data/districts.json": {
+    "mtime": 1789107379.9610763,
+    "seen": 1789109797.377774,
+    "ast_hash": "3577ef12ae9b36431a718dc403a155c9",
+    "semantic_hash": "3577ef12ae9b36431a718dc403a155c9"
+  },
+  "database/seeders/data/fee_categories.json": {
+    "mtime": 1789107379.9611654,
+    "seen": 1789109797.3777752,
+    "ast_hash": "6fbae307a240a87f1a3efdcd1fb23972",
+    "semantic_hash": "6fbae307a240a87f1a3efdcd1fb23972"
+  },
+  "database/seeders/data/fee_types.json": {
+    "mtime": 1789107379.961304,
+    "seen": 1789109797.3777761,
+    "ast_hash": "a80e21c74351a56868d15030a4fa946d",
+    "semantic_hash": "a80e21c74351a56868d15030a4fa946d"
+  },
+  "database/seeders/data/government_departments.json": {
+    "mtime": 1789107379.9615376,
+    "seen": 1789109797.3777761,
+    "ast_hash": "4c8a2cbfc62c1d48af107d0d35cd2287",
+    "semantic_hash": "4c8a2cbfc62c1d48af107d0d35cd2287"
+  },
+  "database/seeders/data/roles.json": {
+    "mtime": 1789107379.9616842,
+    "seen": 1789109797.3777769,
+    "ast_hash": "9a5ede76aba60c2058b16d0927291355",
+    "semantic_hash": "9a5ede76aba60c2058b16d0927291355"
+  },
+  "database/seeders/data/tehsils.json": {
+    "mtime": 1789107379.9617822,
+    "seen": 1789109797.3777769,
+    "ast_hash": "073c8a7fa5a7a7f4eaa7099d14ac3b28",
+    "semantic_hash": "073c8a7fa5a7a7f4eaa7099d14ac3b28"
+  },
+  "database/seeders/data/user_roles.json": {
+    "mtime": 1789107379.9618843,
+    "seen": 1789109797.3777778,
+    "ast_hash": "bcaea054763b6c007efc7b9d9c19de89",
+    "semantic_hash": "bcaea054763b6c007efc7b9d9c19de89"
+  },
+  "database/seeders/data/users.json": {
+    "mtime": 1789107379.962102,
+    "seen": 1789109797.3777778,
+    "ast_hash": "2320db4b5efb06e311bd9c58dc7efe9b",
+    "semantic_hash": "2320db4b5efb06e311bd9c58dc7efe9b"
+  },
+  "package.json": {
+    "mtime": 1789107523.3392599,
+    "seen": 1789109797.377779,
+    "ast_hash": "d0707d41b1dd143669f7763f923dfdd8",
+    "semantic_hash": "d0707d41b1dd143669f7763f923dfdd8"
+  },
+  "postcss.config.js": {
+    "mtime": 1789107379.9624345,
+    "seen": 1789109797.37778,
+    "ast_hash": "8c0f11a0c0827cfe223e0f448dd743ee",
+    "semantic_hash": "8c0f11a0c0827cfe223e0f448dd743ee"
+  },
+  "public/index.php": {
+    "mtime": 1789107379.9749298,
+    "seen": 1789109797.37778,
+    "ast_hash": "3b58bff18126a61c142cc576457c82a6",
+    "semantic_hash": "3b58bff18126a61c142cc576457c82a6"
+  },
+  "public/js/apexcharts.js": {
+    "mtime": 1789107379.9758909,
+    "seen": 1789109797.377781,
+    "ast_hash": "ca7ef6b5ccff9053d0d0fcbf0956cf4e",
+    "semantic_hash": "ca7ef6b5ccff9053d0d0fcbf0956cf4e"
+  },
+  "public/js/jquery-3.6.0.min.js": {
+    "mtime": 1789107379.976154,
+    "seen": 1789109797.377782,
+    "ast_hash": "8fb8fee4fcc3cc86ff6c724154c49c42",
+    "semantic_hash": "8fb8fee4fcc3cc86ff6c724154c49c42"
+  },
+  "public/js/select2.min.js": {
+    "mtime": 1789107379.9763503,
+    "seen": 1789109797.377782,
+    "ast_hash": "7c98b05dd4f3d7c693eb34690737f0d8",
+    "semantic_hash": "7c98b05dd4f3d7c693eb34690737f0d8"
+  },
+  "resources/js/app.js": {
+    "mtime": 1789107523.3394608,
+    "seen": 1789109797.377783,
+    "ast_hash": "edbea4ba1f162dbe7106ac2ca85c7b76",
+    "semantic_hash": "edbea4ba1f162dbe7106ac2ca85c7b76"
+  },
+  "resources/js/bootstrap.js": {
+    "mtime": 1789107379.9767766,
+    "seen": 1789109797.377783,
+    "ast_hash": "3836060411368a5c3c6e59295ce7aa77",
+    "semantic_hash": "3836060411368a5c3c6e59295ce7aa77"
+  },
+  "resources/views/api/api-token-manager.blade.php": {
+    "mtime": 1789107379.9771595,
+    "seen": 1789109797.377784,
+    "ast_hash": "6c2ea70b875d192e04fafa6b319af319",
+    "semantic_hash": "6c2ea70b875d192e04fafa6b319af319"
+  },
+  "resources/views/api/index.blade.php": {
+    "mtime": 1789107379.9772797,
+    "seen": 1789109797.3777852,
+    "ast_hash": "79acc591e29efc5d9d8d699669d850a9",
+    "semantic_hash": "79acc591e29efc5d9d8d699669d850a9"
+  },
+  "resources/views/auth/confirm-password.blade.php": {
+    "mtime": 1789107379.9774551,
+    "seen": 1789109797.3777852,
+    "ast_hash": "2a7c305f33101a29ecae776cad96f557",
+    "semantic_hash": "2a7c305f33101a29ecae776cad96f557"
+  },
+  "resources/views/auth/forgot-password.blade.php": {
+    "mtime": 1789107379.9775252,
+    "seen": 1789109797.3777862,
+    "ast_hash": "db35ed00c135a61a70cc787199e82107",
+    "semantic_hash": "db35ed00c135a61a70cc787199e82107"
+  },
+  "resources/views/auth/login.blade.php": {
+    "mtime": 1789107379.9776323,
+    "seen": 1789109797.3777862,
+    "ast_hash": "a2c2abd291781ba80748ec95c4ac689a",
+    "semantic_hash": "a2c2abd291781ba80748ec95c4ac689a"
+  },
+  "resources/views/auth/register.blade.php": {
+    "mtime": 1789107379.977741,
+    "seen": 1789109797.3777869,
+    "ast_hash": "beaf328871bb6b8bcd29bc2b25777409",
+    "semantic_hash": "beaf328871bb6b8bcd29bc2b25777409"
+  },
+  "resources/views/auth/reset-password.blade.php": {
+    "mtime": 1789107379.9778159,
+    "seen": 1789109797.3777878,
+    "ast_hash": "92b77ff2f93bd86d0bf14829819416e9",
+    "semantic_hash": "92b77ff2f93bd86d0bf14829819416e9"
+  },
+  "resources/views/auth/two-factor-challenge.blade.php": {
+    "mtime": 1789107379.9780376,
+    "seen": 1789109797.3777878,
+    "ast_hash": "37036b3531eae4040a145e24f75899f8",
+    "semantic_hash": "37036b3531eae4040a145e24f75899f8"
+  },
+  "resources/views/auth/verify-email.blade.php": {
+    "mtime": 1789107379.9781175,
+    "seen": 1789109797.377789,
+    "ast_hash": "e461f8ea01df4ca070df2161141b3c87",
+    "semantic_hash": "e461f8ea01df4ca070df2161141b3c87"
+  },
+  "resources/views/chit/issue_new_chit.blade.php": {
+    "mtime": 1789107379.978251,
+    "seen": 1789109797.377789,
+    "ast_hash": "34b663572be2fcc2f3d5663353a9d855",
+    "semantic_hash": "34b663572be2fcc2f3d5663353a9d855"
+  },
+  "resources/views/chit/issued.blade.php": {
+    "mtime": 1789107379.978398,
+    "seen": 1789109797.37779,
+    "ast_hash": "71ab81984a80c5ea0cd9c484c36874aa",
+    "semantic_hash": "71ab81984a80c5ea0cd9c484c36874aa"
+  },
+  "resources/views/chit/issued_chits.blade.php": {
+    "mtime": 1789107379.978468,
+    "seen": 1789109797.377791,
+    "ast_hash": "247be6d24b4bb73f9a2fd4e7213b281c",
+    "semantic_hash": "247be6d24b4bb73f9a2fd4e7213b281c"
+  },
+  "resources/views/chit/print.blade.php": {
+    "mtime": 1789107379.9785767,
+    "seen": 1789109797.377791,
+    "ast_hash": "340afb4bef9bd7964e997da95e804fe4",
+    "semantic_hash": "340afb4bef9bd7964e997da95e804fe4"
+  },
+  "resources/views/chit/today.blade.php": {
+    "mtime": 1789107379.978675,
+    "seen": 1789109797.377792,
+    "ast_hash": "b6e904f4fc51dac09009f714ee6fa506",
+    "semantic_hash": "b6e904f4fc51dac09009f714ee6fa506"
+  },
+  "resources/views/components/action-message.blade.php": {
+    "mtime": 1789107379.9790084,
+    "seen": 1789109797.377792,
+    "ast_hash": "95397c0483ce0d288c2648d40fd21367",
+    "semantic_hash": "95397c0483ce0d288c2648d40fd21367"
+  },
+  "resources/views/components/action-section.blade.php": {
+    "mtime": 1789107379.979219,
+    "seen": 1789109797.377793,
+    "ast_hash": "dbb65b1b2da8bad8e338acefdc1f1bb5",
+    "semantic_hash": "dbb65b1b2da8bad8e338acefdc1f1bb5"
+  },
+  "resources/views/components/application-logo.blade.php": {
+    "mtime": 1789107379.9794528,
+    "seen": 1789109797.377794,
+    "ast_hash": "30a9682c97e7d026117fb9a2b4d5f857",
+    "semantic_hash": "30a9682c97e7d026117fb9a2b4d5f857"
+  },
+  "resources/views/components/application-mark.blade.php": {
+    "mtime": 1789107379.9795263,
+    "seen": 1789109797.377794,
+    "ast_hash": "e0630943a5e85df0b9ebb45e727c489b",
+    "semantic_hash": "e0630943a5e85df0b9ebb45e727c489b"
+  },
+  "resources/views/components/authentication-card-logo.blade.php": {
+    "mtime": 1789107379.9795926,
+    "seen": 1789109797.377795,
+    "ast_hash": "6e5c13e0b18826d48d5cc6f90c79e61b",
+    "semantic_hash": "6e5c13e0b18826d48d5cc6f90c79e61b"
+  },
+  "resources/views/components/authentication-card.blade.php": {
+    "mtime": 1789107379.979662,
+    "seen": 1789109797.377795,
+    "ast_hash": "babf8db7953f524513bb4d4f3d2af302",
+    "semantic_hash": "babf8db7953f524513bb4d4f3d2af302"
+  },
+  "resources/views/components/banner.blade.php": {
+    "mtime": 1789107379.9797359,
+    "seen": 1789109797.3777962,
+    "ast_hash": "4088efae909a52ac6d55641e0357fa66",
+    "semantic_hash": "4088efae909a52ac6d55641e0357fa66"
+  },
+  "resources/views/components/button.blade.php": {
+    "mtime": 1789107379.9799216,
+    "seen": 1789109797.3777971,
+    "ast_hash": "a9e11d81e853e101adb1964e74241686",
+    "semantic_hash": "a9e11d81e853e101adb1964e74241686"
+  },
+  "resources/views/components/checkbox.blade.php": {
+    "mtime": 1789107379.9800017,
+    "seen": 1789109797.3777971,
+    "ast_hash": "eabd817c09d6bbb28dd667b573f727b7",
+    "semantic_hash": "eabd817c09d6bbb28dd667b573f727b7"
+  },
+  "resources/views/components/confirmation-modal.blade.php": {
+    "mtime": 1789107379.9800682,
+    "seen": 1789109797.3777978,
+    "ast_hash": "6f85e43904ceac69415f1677feb855ac",
+    "semantic_hash": "6f85e43904ceac69415f1677feb855ac"
+  },
+  "resources/views/components/confirms-password.blade.php": {
+    "mtime": 1789107379.980139,
+    "seen": 1789109797.3777978,
+    "ast_hash": "a30114af22ca63c3ffe4b5c1b53a1a83",
+    "semantic_hash": "a30114af22ca63c3ffe4b5c1b53a1a83"
+  },
+  "resources/views/components/danger-button.blade.php": {
+    "mtime": 1789107379.9802022,
+    "seen": 1789109797.3777988,
+    "ast_hash": "9128ca2a02e26333d9d362bdf635ceab",
+    "semantic_hash": "9128ca2a02e26333d9d362bdf635ceab"
+  },
+  "resources/views/components/dialog-modal.blade.php": {
+    "mtime": 1789107379.980395,
+    "seen": 1789109797.3778,
+    "ast_hash": "c713fbfe1c6953744cecfa45ef1526c1",
+    "semantic_hash": "c713fbfe1c6953744cecfa45ef1526c1"
+  },
+  "resources/views/components/dropdown-link.blade.php": {
+    "mtime": 1789107379.9805999,
+    "seen": 1789109797.3778,
+    "ast_hash": "2cf1dae4580a81ba42b835e2a239985c",
+    "semantic_hash": "2cf1dae4580a81ba42b835e2a239985c"
+  },
+  "resources/views/components/dropdown.blade.php": {
+    "mtime": 1789107379.9806786,
+    "seen": 1789109797.377801,
+    "ast_hash": "1e271c0d92adb89b176adafe6dad83fd",
+    "semantic_hash": "1e271c0d92adb89b176adafe6dad83fd"
+  },
+  "resources/views/components/form-section.blade.php": {
+    "mtime": 1789107379.980744,
+    "seen": 1789109797.377801,
+    "ast_hash": "80cfd5469e7d48c74766f9ecf62c91e1",
+    "semantic_hash": "80cfd5469e7d48c74766f9ecf62c91e1"
+  },
+  "resources/views/components/input-error.blade.php": {
+    "mtime": 1789107379.9808066,
+    "seen": 1789109797.377802,
+    "ast_hash": "97f0303fdf94b633f7a60f62c948613c",
+    "semantic_hash": "97f0303fdf94b633f7a60f62c948613c"
+  },
+  "resources/views/components/input.blade.php": {
+    "mtime": 1789107379.9808695,
+    "seen": 1789109797.377803,
+    "ast_hash": "b44a141cc4f5569f29c7fc07c0e4626c",
+    "semantic_hash": "b44a141cc4f5569f29c7fc07c0e4626c"
+  },
+  "resources/views/components/label.blade.php": {
+    "mtime": 1789107379.9809673,
+    "seen": 1789109797.377803,
+    "ast_hash": "ac3bc3a64e8085c49af8915cf05eb87f",
+    "semantic_hash": "ac3bc3a64e8085c49af8915cf05eb87f"
+  },
+  "resources/views/components/modal.blade.php": {
+    "mtime": 1789107379.981037,
+    "seen": 1789109797.377804,
+    "ast_hash": "d2764596e7839c18dc391e8182f93a75",
+    "semantic_hash": "d2764596e7839c18dc391e8182f93a75"
+  },
+  "resources/views/components/nav-link.blade.php": {
+    "mtime": 1789107379.9811056,
+    "seen": 1789109797.377804,
+    "ast_hash": "2e3873c46196df715f42705950a1ade7",
+    "semantic_hash": "2e3873c46196df715f42705950a1ade7"
+  },
+  "resources/views/components/responsive-nav-link.blade.php": {
+    "mtime": 1789107379.9811723,
+    "seen": 1789109797.377805,
+    "ast_hash": "c6b4dc77ba79f90c9b9505e9ec52d523",
+    "semantic_hash": "c6b4dc77ba79f90c9b9505e9ec52d523"
+  },
+  "resources/views/components/secondary-button.blade.php": {
+    "mtime": 1789107379.9812284,
+    "seen": 1789109797.3778062,
+    "ast_hash": "0bba7f2251160081062a1085be9dd117",
+    "semantic_hash": "0bba7f2251160081062a1085be9dd117"
+  },
+  "resources/views/components/section-border.blade.php": {
+    "mtime": 1789107379.9814327,
+    "seen": 1789109797.3778062,
+    "ast_hash": "f1bcbcbc8c4bbdad4448e52655166646",
+    "semantic_hash": "f1bcbcbc8c4bbdad4448e52655166646"
+  },
+  "resources/views/components/section-title.blade.php": {
+    "mtime": 1789107379.9819992,
+    "seen": 1789109797.3778071,
+    "ast_hash": "f70a76ace5a456421ad77a48c1e67f65",
+    "semantic_hash": "f70a76ace5a456421ad77a48c1e67f65"
+  },
+  "resources/views/components/success-message.blade.php": {
+    "mtime": 1789107379.9820771,
+    "seen": 1789109797.3778071,
+    "ast_hash": "c092e3deb18257a00519c138dca3ce84",
+    "semantic_hash": "c092e3deb18257a00519c138dca3ce84"
+  },
+  "resources/views/components/switchable-team.blade.php": {
+    "mtime": 1789107379.982265,
+    "seen": 1789109797.3778079,
+    "ast_hash": "ff1b5d72dc8dbc4817076af439902cc7",
+    "semantic_hash": "ff1b5d72dc8dbc4817076af439902cc7"
+  },
+  "resources/views/components/validation-errors.blade.php": {
+    "mtime": 1789107379.9824448,
+    "seen": 1789109797.3778088,
+    "ast_hash": "8fdbc3473d8e9b957b8cf6df3c342e0a",
+    "semantic_hash": "8fdbc3473d8e9b957b8cf6df3c342e0a"
+  },
+  "resources/views/components/welcome.blade.php": {
+    "mtime": 1789107379.9825282,
+    "seen": 1789109797.3778088,
+    "ast_hash": "f8271eedd5787a6aa5272fef95003f1d",
+    "semantic_hash": "f8271eedd5787a6aa5272fef95003f1d"
+  },
+  "resources/views/dashboard.blade.php": {
+    "mtime": 1789107379.9826536,
+    "seen": 1789109797.37781,
+    "ast_hash": "24b7b7eafe4d3f8b69a600214de1e7b7",
+    "semantic_hash": "24b7b7eafe4d3f8b69a600214de1e7b7"
+  },
+  "resources/views/department/create.blade.php": {
+    "mtime": 1789107379.9828107,
+    "seen": 1789109797.37781,
+    "ast_hash": "ea65aa20192d734e0afa172a5b11887b",
+    "semantic_hash": "ea65aa20192d734e0afa172a5b11887b"
+  },
+  "resources/views/department/edit.blade.php": {
+    "mtime": 1789107379.9830685,
+    "seen": 1789109797.377811,
+    "ast_hash": "c2caff05a4b680b2c97ab798ac01a600",
+    "semantic_hash": "c2caff05a4b680b2c97ab798ac01a600"
+  },
+  "resources/views/department/index.blade.php": {
+    "mtime": 1789107379.9831824,
+    "seen": 1789109797.377812,
+    "ast_hash": "70610ee8d8b5c57c257622c1c5dc82c5",
+    "semantic_hash": "70610ee8d8b5c57c257622c1c5dc82c5"
+  },
+  "resources/views/emails/team-invitation.blade.php": {
+    "mtime": 1789107379.9834123,
+    "seen": 1789109797.377812,
+    "ast_hash": "8ca68a2fb3357ec39e757c87bce3946e",
+    "semantic_hash": "8ca68a2fb3357ec39e757c87bce3946e"
+  },
+  "resources/views/fee-types/create.blade.php": {
+    "mtime": 1789107379.9836466,
+    "seen": 1789109797.377813,
+    "ast_hash": "2d71ec95676a4867afbd99d8f0bb026d",
+    "semantic_hash": "2d71ec95676a4867afbd99d8f0bb026d"
+  },
+  "resources/views/fee-types/edit.blade.php": {
+    "mtime": 1789107379.9837246,
+    "seen": 1789109797.377813,
+    "ast_hash": "e35a4847996221962035fb837bffc592",
+    "semantic_hash": "e35a4847996221962035fb837bffc592"
+  },
+  "resources/views/fee-types/index.blade.php": {
+    "mtime": 1789107523.339739,
+    "seen": 1789109797.377814,
+    "ast_hash": "2edffb79e2c7c9eda9d054a24a7c3533",
+    "semantic_hash": "2edffb79e2c7c9eda9d054a24a7c3533"
+  },
+  "resources/views/government-departments/create.blade.php": {
+    "mtime": 1789107379.9840164,
+    "seen": 1789109797.377815,
+    "ast_hash": "02cfd37ba4a083efbc969dd959ad0407",
+    "semantic_hash": "02cfd37ba4a083efbc969dd959ad0407"
+  },
+  "resources/views/government-departments/edit.blade.php": {
+    "mtime": 1789107379.9840984,
+    "seen": 1789109797.377815,
+    "ast_hash": "e97886ac38d110b9ee90efef51b1ce11",
+    "semantic_hash": "e97886ac38d110b9ee90efef51b1ce11"
+  },
+  "resources/views/government-departments/index.blade.php": {
+    "mtime": 1789107379.9841676,
+    "seen": 1789109797.377816,
+    "ast_hash": "267f6490405e7b72f3822f7e331ae605",
+    "semantic_hash": "267f6490405e7b72f3822f7e331ae605"
+  },
+  "resources/views/invoices/issued.blade.php": {
+    "mtime": 1789107379.9843433,
+    "seen": 1789109797.377816,
+    "ast_hash": "9bd7aa431746be58d34c4698a70ea789",
+    "semantic_hash": "9bd7aa431746be58d34c4698a70ea789"
+  },
+  "resources/views/invoices/issued_invoices.blade.php": {
+    "mtime": 1789107379.9844208,
+    "seen": 1789109797.3778172,
+    "ast_hash": "6871d7626cf2f55df58ba098c5a62c84",
+    "semantic_hash": "6871d7626cf2f55df58ba098c5a62c84"
+  },
+  "resources/views/invoices/today.blade.php": {
+    "mtime": 1789107379.984505,
+    "seen": 1789109797.377818,
+    "ast_hash": "1dcbf48e4fbab02fbc27fb3f6ee3d04a",
+    "semantic_hash": "1dcbf48e4fbab02fbc27fb3f6ee3d04a"
+  },
+  "resources/views/labTest/create.blade.php": {
+    "mtime": 1789107379.984603,
+    "seen": 1789109797.377818,
+    "ast_hash": "df7ba175f4c620399cebf51e19cbd57e",
+    "semantic_hash": "df7ba175f4c620399cebf51e19cbd57e"
+  },
+  "resources/views/labTest/edit.blade.php": {
+    "mtime": 1789107379.9846604,
+    "seen": 1789109797.3778188,
+    "ast_hash": "acc9e7bc07548a79a7971685ab88dd50",
+    "semantic_hash": "acc9e7bc07548a79a7971685ab88dd50"
+  },
+  "resources/views/labTest/index.blade.php": {
+    "mtime": 1789107379.9847233,
+    "seen": 1789109797.3778188,
+    "ast_hash": "3b596efe94b36a8b305a2f3a7e70c8f3",
+    "semantic_hash": "3b596efe94b36a8b305a2f3a7e70c8f3"
+  },
+  "resources/views/layouts/app.blade.php": {
+    "mtime": 1789107379.9849093,
+    "seen": 1789109797.37782,
+    "ast_hash": "25a9b90abf09c673e2cef27be387639d",
+    "semantic_hash": "25a9b90abf09c673e2cef27be387639d"
+  },
+  "resources/views/layouts/guest.blade.php": {
+    "mtime": 1789107379.98515,
+    "seen": 1789109797.377821,
+    "ast_hash": "f16f78f1288223be24fdf4fa518788a3",
+    "semantic_hash": "f16f78f1288223be24fdf4fa518788a3"
+  },
+  "resources/views/livewire/government-details.blade.php": {
+    "mtime": 1789107523.3399174,
+    "seen": 1789109797.377821,
+    "ast_hash": "66d9e8e54caf35cd6a109b305110f2bb",
+    "semantic_hash": "66d9e8e54caf35cd6a109b305110f2bb"
+  },
+  "resources/views/livewire/ipd-opd.blade.php": {
+    "mtime": 1789107379.985357,
+    "seen": 1789109797.377822,
+    "ast_hash": "285a58ac0fff4dd06ad6a842cbf6c71b",
+    "semantic_hash": "285a58ac0fff4dd06ad6a842cbf6c71b"
+  },
+  "resources/views/livewire/select2.blade.php": {
+    "mtime": 1789107379.9854188,
+    "seen": 1789109797.3778229,
+    "ast_hash": "13ea59c49fe6c50de29c8d7c7bda4be4",
+    "semantic_hash": "13ea59c49fe6c50de29c8d7c7bda4be4"
+  },
+  "resources/views/navigation-menu.blade.php": {
+    "mtime": 1789107379.985498,
+    "seen": 1789109797.3778229,
+    "ast_hash": "38e4f839fc8b42c863e8f2dfee96c4df",
+    "semantic_hash": "38e4f839fc8b42c863e8f2dfee96c4df"
+  },
+  "resources/views/patient/actions.blade.php": {
+    "mtime": 1789107379.9859567,
+    "seen": 1789109797.377824,
+    "ast_hash": "5cd72252dd456fa976831279533030a8",
+    "semantic_hash": "5cd72252dd456fa976831279533030a8"
+  },
+  "resources/views/patient/create-ipd.blade.php": {
+    "mtime": 1789107379.9860477,
+    "seen": 1789109797.377824,
+    "ast_hash": "6cf3dabb27b36589272f6c8ee8ed2bda",
+    "semantic_hash": "6cf3dabb27b36589272f6c8ee8ed2bda"
+  },
+  "resources/views/patient/create-opd.blade.php": {
+    "mtime": 1789107379.9861362,
+    "seen": 1789109797.377825,
+    "ast_hash": "7610129c429296155a1cd3c05a0bbef3",
+    "semantic_hash": "7610129c429296155a1cd3c05a0bbef3"
+  },
+  "resources/views/patient/create.blade.php": {
+    "mtime": 1789107379.986218,
+    "seen": 1789109797.377826,
+    "ast_hash": "dde02a1d6dcf274e8cbb3b526471bbc7",
+    "semantic_hash": "dde02a1d6dcf274e8cbb3b526471bbc7"
+  },
+  "resources/views/patient/edit.blade.php": {
+    "mtime": 1789107379.9862936,
+    "seen": 1789109797.377826,
+    "ast_hash": "e8c4fe6cf176261ca914c427323054a5",
+    "semantic_hash": "e8c4fe6cf176261ca914c427323054a5"
+  },
+  "resources/views/patient/emergency-treatment.blade.php": {
+    "mtime": 1789107379.9863873,
+    "seen": 1789109797.3778272,
+    "ast_hash": "f57e52694af8f50f38fd1d6b7111c177",
+    "semantic_hash": "f57e52694af8f50f38fd1d6b7111c177"
+  },
+  "resources/views/patient/history.blade.php": {
+    "mtime": 1789107379.9864626,
+    "seen": 1789109797.3778272,
+    "ast_hash": "f456c21a0d57014e0cb2a36487e03a4c",
+    "semantic_hash": "f456c21a0d57014e0cb2a36487e03a4c"
+  },
+  "resources/views/patient/index.blade.php": {
+    "mtime": 1789107523.3402755,
+    "seen": 1789109797.3778281,
+    "ast_hash": "01eca64359a72c8f2e5eceb8840b3ca6",
+    "semantic_hash": "01eca64359a72c8f2e5eceb8840b3ca6"
+  },
+  "resources/views/patient/invoice.blade.php": {
+    "mtime": 1789107379.9866388,
+    "seen": 1789109797.377829,
+    "ast_hash": "1c74e9c1eba6e9d1e4a258f5b7216914",
+    "semantic_hash": "1c74e9c1eba6e9d1e4a258f5b7216914"
+  },
+  "resources/views/patient/proceed.blade.php": {
+    "mtime": 1789107379.9867368,
+    "seen": 1789109797.377829,
+    "ast_hash": "795ff0d3fa352be4ad50e3f2d59eb572",
+    "semantic_hash": "795ff0d3fa352be4ad50e3f2d59eb572"
+  },
+  "resources/views/patient/show.blade.php": {
+    "mtime": 1789107379.986825,
+    "seen": 1789109797.3778298,
+    "ast_hash": "d890a469f749049fa3e3a7e8b14ebb9f",
+    "semantic_hash": "d890a469f749049fa3e3a7e8b14ebb9f"
+  },
+  "resources/views/patient/thermal-print.blade.php": {
+    "mtime": 1789107379.9869158,
+    "seen": 1789109797.377831,
+    "ast_hash": "08f91ba711fac86d4bef8f4453bf419e",
+    "semantic_hash": "08f91ba711fac86d4bef8f4453bf419e"
+  },
+  "resources/views/permissions/create.blade.php": {
+    "mtime": 1789107379.987019,
+    "seen": 1789109797.377831,
+    "ast_hash": "8a1545c8dea4dda8893af599b066f8a4",
+    "semantic_hash": "8a1545c8dea4dda8893af599b066f8a4"
+  },
+  "resources/views/permissions/edit.blade.php": {
+    "mtime": 1789107379.9870908,
+    "seen": 1789109797.377832,
+    "ast_hash": "e06bbf214494eebc13d6ce56ad74eabe",
+    "semantic_hash": "e06bbf214494eebc13d6ce56ad74eabe"
+  },
+  "resources/views/permissions/index.blade.php": {
+    "mtime": 1789107379.9871821,
+    "seen": 1789109797.377832,
+    "ast_hash": "c5d60b5302b27593eb00f77110763fcb",
+    "semantic_hash": "c5d60b5302b27593eb00f77110763fcb"
+  },
+  "resources/views/policy.blade.php": {
+    "mtime": 1789107379.987326,
+    "seen": 1789109797.377833,
+    "ast_hash": "23c29f4f4025c77b52993bdd86b18bbb",
+    "semantic_hash": "23c29f4f4025c77b52993bdd86b18bbb"
+  },
+  "resources/views/profile/delete-user-form.blade.php": {
+    "mtime": 1789107379.9874353,
+    "seen": 1789109797.377834,
+    "ast_hash": "9a3fe1fec09a629fa9818a51f250725c",
+    "semantic_hash": "9a3fe1fec09a629fa9818a51f250725c"
+  },
+  "resources/views/profile/logout-other-browser-sessions-form.blade.php": {
+    "mtime": 1789107379.9874964,
+    "seen": 1789109797.377834,
+    "ast_hash": "de88ca3df56d14fcb99cb5fa13fc62df",
+    "semantic_hash": "de88ca3df56d14fcb99cb5fa13fc62df"
+  },
+  "resources/views/profile/show.blade.php": {
+    "mtime": 1789107379.9875555,
+    "seen": 1789109797.377835,
+    "ast_hash": "19848a5b2d6b4bb6b0be8e12e5e677c7",
+    "semantic_hash": "19848a5b2d6b4bb6b0be8e12e5e677c7"
+  },
+  "resources/views/profile/two-factor-authentication-form.blade.php": {
+    "mtime": 1789107379.9876232,
+    "seen": 1789109797.377835,
+    "ast_hash": "2f3791c4b5a5dc6ae1c26a857bad9073",
+    "semantic_hash": "2f3791c4b5a5dc6ae1c26a857bad9073"
+  },
+  "resources/views/profile/update-password-form.blade.php": {
+    "mtime": 1789107379.9876966,
+    "seen": 1789109797.377836,
+    "ast_hash": "efcde48c91c053983c7fd2a4f15858de",
+    "semantic_hash": "efcde48c91c053983c7fd2a4f15858de"
+  },
+  "resources/views/profile/update-profile-information-form.blade.php": {
+    "mtime": 1789107379.9877617,
+    "seen": 1789109797.377837,
+    "ast_hash": "a0229355ef767c4b8271df6b91859fd8",
+    "semantic_hash": "a0229355ef767c4b8271df6b91859fd8"
+  },
+  "resources/views/reports/auditor/department-wise.blade.php": {
+    "mtime": 1789107379.98791,
+    "seen": 1789109797.377837,
+    "ast_hash": "c0c04cda0a4331e92fcdc01ad67a8a62",
+    "semantic_hash": "c0c04cda0a4331e92fcdc01ad67a8a62"
+  },
+  "resources/views/reports/auditor/reports-daily-ipd.blade.php": {
+    "mtime": 1789107379.9881926,
+    "seen": 1789109797.3778381,
+    "ast_hash": "df203987f165eea1cc47b23a07ae4967",
+    "semantic_hash": "df203987f165eea1cc47b23a07ae4967"
+  },
+  "resources/views/reports/auditor/reports-daily.blade.php": {
+    "mtime": 1789107379.9882689,
+    "seen": 1789109797.3778381,
+    "ast_hash": "56e002e9ad6afa3d1d0a373ad5e9bfff",
+    "semantic_hash": "56e002e9ad6afa3d1d0a373ad5e9bfff"
+  },
+  "resources/views/reports/category-wise/department-wise-audit.blade.php": {
+    "mtime": 1789107523.340435,
+    "seen": 1789109797.377839,
+    "ast_hash": "54849cc4e83081f3bda341de26a3aec7",
+    "semantic_hash": "54849cc4e83081f3bda341de26a3aec7"
+  },
+  "resources/views/reports/category-wise/department-wise-two.blade.php": {
+    "mtime": 1789107523.3407054,
+    "seen": 1789109797.37784,
+    "ast_hash": "f5b695337a33e2f0dc00ebea69a626eb",
+    "semantic_hash": "f5b695337a33e2f0dc00ebea69a626eb"
+  },
+  "resources/views/reports/category-wise/department-wise.blade.php": {
+    "mtime": 1789107379.9884696,
+    "seen": 1789109797.37784,
+    "ast_hash": "769eb01d6b3234b829d622f8644ea5f5",
+    "semantic_hash": "769eb01d6b3234b829d622f8644ea5f5"
+  },
+  "resources/views/reports/category-wise/index.blade.php": {
+    "mtime": 1789107379.9886293,
+    "seen": 1789109797.377841,
+    "ast_hash": "c01191125a968db339818030761e69c0",
+    "semantic_hash": "c01191125a968db339818030761e69c0"
+  },
+  "resources/views/reports/category-wise/misc.blade.php": {
+    "mtime": 1789107379.9887435,
+    "seen": 1789109797.377841,
+    "ast_hash": "8625bedd258f8e13a3241e855bac1e0a",
+    "semantic_hash": "8625bedd258f8e13a3241e855bac1e0a"
+  },
+  "resources/views/reports/emergency-treatments/index.blade.php": {
+    "mtime": 1789107379.9888697,
+    "seen": 1789109797.377842,
+    "ast_hash": "8ffb03449a661d4513000e8f6a85e9e1",
+    "semantic_hash": "8ffb03449a661d4513000e8f6a85e9e1"
+  },
+  "resources/views/reports/general-information/index.blade.php": {
+    "mtime": 1789107379.9889975,
+    "seen": 1789109797.377843,
+    "ast_hash": "76c1bf5d31a4bc748f688604b8e465ba",
+    "semantic_hash": "76c1bf5d31a4bc748f688604b8e465ba"
+  },
+  "resources/views/reports/general-information/misc.blade.php": {
+    "mtime": 1789107379.9890642,
+    "seen": 1789109797.377843,
+    "ast_hash": "8625bedd258f8e13a3241e855bac1e0a",
+    "semantic_hash": "8625bedd258f8e13a3241e855bac1e0a"
+  },
+  "resources/views/reports/index.blade.php": {
+    "mtime": 1789107523.340938,
+    "seen": 1789109797.3778439,
+    "ast_hash": "36fa75ea9c9e525973b32a73e43335ba",
+    "semantic_hash": "36fa75ea9c9e525973b32a73e43335ba"
+  },
+  "resources/views/reports/ipd/index.blade.php": {
+    "mtime": 1789107379.989247,
+    "seen": 1789109797.3778439,
+    "ast_hash": "0e7dd6599710e9ba82384df44bce95ff",
+    "semantic_hash": "0e7dd6599710e9ba82384df44bce95ff"
+  },
+  "resources/views/reports/ipd/monthly-income-statement.blade.php": {
+    "mtime": 1789107523.3411179,
+    "seen": 1789109797.377845,
+    "ast_hash": "d780b6987655a38b72d23002a72037f6",
+    "semantic_hash": "d780b6987655a38b72d23002a72037f6"
+  },
+  "resources/views/reports/opd/index.blade.php": {
+    "mtime": 1789107379.9894345,
+    "seen": 1789109797.377846,
+    "ast_hash": "458c936b8c6abcc8f0b0eef374c62c30",
+    "semantic_hash": "458c936b8c6abcc8f0b0eef374c62c30"
+  },
+  "resources/views/reports/opd/specialist-fees.blade.php": {
+    "mtime": 1789107379.9895296,
+    "seen": 1789109797.377846,
+    "ast_hash": "19539f3f065cd135d3f381e6f022171e",
+    "semantic_hash": "19539f3f065cd135d3f381e6f022171e"
+  },
+  "resources/views/reports/opd/user-wise.blade.php": {
+    "mtime": 1789107379.9895973,
+    "seen": 1789109797.377847,
+    "ast_hash": "a2ba6f7af76262df3c07e44b786e227e",
+    "semantic_hash": "a2ba6f7af76262df3c07e44b786e227e"
+  },
+  "resources/views/reports/reports-daily-ipd.blade.php": {
+    "mtime": 1789107523.3413289,
+    "seen": 1789109797.3778481,
+    "ast_hash": "d0ad8bfce2566ce0bed2bfeeed1fc7b3",
+    "semantic_hash": "d0ad8bfce2566ce0bed2bfeeed1fc7b3"
+  },
+  "resources/views/reports/reports-daily.blade.php": {
+    "mtime": 1789107379.9897642,
+    "seen": 1789109797.3778481,
+    "ast_hash": "c4c6d546ce20ccfe90dcabd70faa4ba6",
+    "semantic_hash": "c4c6d546ce20ccfe90dcabd70faa4ba6"
+  },
+  "resources/views/reports/ssp/claims.blade.php": {
+    "mtime": 1789107379.9898753,
+    "seen": 1789109797.37785,
+    "ast_hash": "b9c003045114d21392cb81d7117119e4",
+    "semantic_hash": "b9c003045114d21392cb81d7117119e4"
+  },
+  "resources/views/roles/create.blade.php": {
+    "mtime": 1789107379.990089,
+    "seen": 1789109797.3778508,
+    "ast_hash": "1791e2df671718d5b56ec7c6e1d6572b",
+    "semantic_hash": "1791e2df671718d5b56ec7c6e1d6572b"
+  },
+  "resources/views/roles/edit.blade.php": {
+    "mtime": 1789107379.9901514,
+    "seen": 1789109797.377852,
+    "ast_hash": "a2fdcf9d0ac0b28c96cb83c9c9dabd11",
+    "semantic_hash": "a2fdcf9d0ac0b28c96cb83c9c9dabd11"
+  },
+  "resources/views/roles/index.blade.php": {
+    "mtime": 1789107379.9902127,
+    "seen": 1789109797.377852,
+    "ast_hash": "dae3411888cedba24c189aa276057ade",
+    "semantic_hash": "dae3411888cedba24c189aa276057ade"
+  },
+  "resources/views/teams/create-team-form.blade.php": {
+    "mtime": 1789107379.990331,
+    "seen": 1789109797.377853,
+    "ast_hash": "229f255b353df61b1a3e19ddb66869c7",
+    "semantic_hash": "229f255b353df61b1a3e19ddb66869c7"
+  },
+  "resources/views/teams/create.blade.php": {
+    "mtime": 1789107379.9903946,
+    "seen": 1789109797.377853,
+    "ast_hash": "9087d312cea4459032a6264ff7653da0",
+    "semantic_hash": "9087d312cea4459032a6264ff7653da0"
+  },
+  "resources/views/teams/delete-team-form.blade.php": {
+    "mtime": 1789107379.990478,
+    "seen": 1789109797.3778539,
+    "ast_hash": "8648b7514f013006b8e95959d47a76ca",
+    "semantic_hash": "8648b7514f013006b8e95959d47a76ca"
+  },
+  "resources/views/teams/show.blade.php": {
+    "mtime": 1789107379.9905546,
+    "seen": 1789109797.377855,
+    "ast_hash": "67709f6e8a77f699a7c1931bbb8bb3c2",
+    "semantic_hash": "67709f6e8a77f699a7c1931bbb8bb3c2"
+  },
+  "resources/views/teams/team-member-manager.blade.php": {
+    "mtime": 1789107379.99065,
+    "seen": 1789109797.377855,
+    "ast_hash": "d432f6f6bf87fc29750456f8cb8ef043",
+    "semantic_hash": "d432f6f6bf87fc29750456f8cb8ef043"
+  },
+  "resources/views/teams/update-team-name-form.blade.php": {
+    "mtime": 1789107379.9907222,
+    "seen": 1789109797.377856,
+    "ast_hash": "5db64a9aed362d48c57fe7b481800b47",
+    "semantic_hash": "5db64a9aed362d48c57fe7b481800b47"
+  },
+  "resources/views/terms.blade.php": {
+    "mtime": 1789107379.990796,
+    "seen": 1789109797.377856,
+    "ast_hash": "8f031b509fcb406c239db52bcb183351",
+    "semantic_hash": "8f031b509fcb406c239db52bcb183351"
+  },
+  "resources/views/users/create.blade.php": {
+    "mtime": 1789107379.9910407,
+    "seen": 1789109797.377857,
+    "ast_hash": "2d7beef13cabdfbaa6fad26e871acfa7",
+    "semantic_hash": "2d7beef13cabdfbaa6fad26e871acfa7"
+  },
+  "resources/views/users/edit.blade.php": {
+    "mtime": 1789107379.9911282,
+    "seen": 1789109797.3778582,
+    "ast_hash": "35dbedfffbfe0cbb1fec082009ab1840",
+    "semantic_hash": "35dbedfffbfe0cbb1fec082009ab1840"
+  },
+  "resources/views/users/index.blade.php": {
+    "mtime": 1789107379.9912229,
+    "seen": 1789109797.3778582,
+    "ast_hash": "9afb1157e98a7bd3b74226acdaf465cf",
+    "semantic_hash": "9afb1157e98a7bd3b74226acdaf465cf"
+  },
+  "resources/views/users/show.blade.php": {
+    "mtime": 1789107379.9913123,
+    "seen": 1789109797.377859,
+    "ast_hash": "e3536b2caafa72f988a1eedfd56577df",
+    "semantic_hash": "e3536b2caafa72f988a1eedfd56577df"
+  },
+  "resources/views/welcome.blade.php": {
+    "mtime": 1789107379.9914334,
+    "seen": 1789109797.37786,
+    "ast_hash": "2c4bfd8d0014f9fe298680768afce646",
+    "semantic_hash": "2c4bfd8d0014f9fe298680768afce646"
+  },
+  "routes/api.php": {
+    "mtime": 1789107379.991577,
+    "seen": 1789109797.37786,
+    "ast_hash": "d0ac6c929e5892959c5d73b9ff296cb1",
+    "semantic_hash": "d0ac6c929e5892959c5d73b9ff296cb1"
+  },
+  "routes/console.php": {
+    "mtime": 1789107379.9919813,
+    "seen": 1789109797.377861,
+    "ast_hash": "91800591b4dbe2e21e16e2bdd47ad803",
+    "semantic_hash": "91800591b4dbe2e21e16e2bdd47ad803"
+  },
+  "routes/web.php": {
+    "mtime": 1789107523.3416636,
+    "seen": 1789109797.377861,
+    "ast_hash": "ec3b149609e1157f5bbc69aac5ecd9e8",
+    "semantic_hash": "ec3b149609e1157f5bbc69aac5ecd9e8"
+  },
+  "scripts/migrate_aims_to_pgsql.py": {
+    "mtime": 1789107379.9922915,
+    "seen": 1789109797.377862,
+    "ast_hash": "195b335f65dfe783c05b9d82ab80bac6",
+    "semantic_hash": "195b335f65dfe783c05b9d82ab80bac6"
+  },
+  "tailwind.config.js": {
+    "mtime": 1789107379.993658,
+    "seen": 1789109797.377863,
+    "ast_hash": "4f9e648f3b698b55cd224285c53eb400",
+    "semantic_hash": "4f9e648f3b698b55cd224285c53eb400"
+  },
+  "tests/Feature/ApiTokenPermissionsTest.php": {
+    "mtime": 1789107379.9938,
+    "seen": 1789109797.377863,
+    "ast_hash": "6f6324b568deea0ac5c6d5136932fa30",
+    "semantic_hash": "6f6324b568deea0ac5c6d5136932fa30"
+  },
+  "tests/Feature/AuthenticationTest.php": {
+    "mtime": 1789107379.9938734,
+    "seen": 1789109797.377864,
+    "ast_hash": "f8f841a43ce43e1cf2cc0db79273f69d",
+    "semantic_hash": "f8f841a43ce43e1cf2cc0db79273f69d"
+  },
+  "tests/Feature/BrowserSessionsTest.php": {
+    "mtime": 1789107379.9939446,
+    "seen": 1789109797.377864,
+    "ast_hash": "4f082e102caf01f35ade3b0f05b8b249",
+    "semantic_hash": "4f082e102caf01f35ade3b0f05b8b249"
+  },
+  "tests/Feature/ChitGovtAmountCalculationTest.php": {
+    "mtime": 1789107379.9940164,
+    "seen": 1789109797.377865,
+    "ast_hash": "d961bc31168d94bbad4deaa0bf02d095",
+    "semantic_hash": "d961bc31168d94bbad4deaa0bf02d095"
+  },
+  "tests/Feature/CreateApiTokenTest.php": {
+    "mtime": 1789107379.9940805,
+    "seen": 1789109797.377866,
+    "ast_hash": "ac9af827f314a11b2e95dfb1606f4414",
+    "semantic_hash": "ac9af827f314a11b2e95dfb1606f4414"
+  },
+  "tests/Feature/CreateTeamTest.php": {
+    "mtime": 1789107379.9942582,
+    "seen": 1789109797.377866,
+    "ast_hash": "a9f57a588fb8c45d2710944c6b9931b4",
+    "semantic_hash": "a9f57a588fb8c45d2710944c6b9931b4"
+  },
+  "tests/Feature/DeleteAccountTest.php": {
+    "mtime": 1789107379.9943378,
+    "seen": 1789109797.377867,
+    "ast_hash": "402fbafa4b40db115217314f47bf98f3",
+    "semantic_hash": "402fbafa4b40db115217314f47bf98f3"
+  },
+  "tests/Feature/DeleteApiTokenTest.php": {
+    "mtime": 1789107379.9944134,
+    "seen": 1789109797.377868,
+    "ast_hash": "a83b49156e08ca190bbe6b5ec0939559",
+    "semantic_hash": "a83b49156e08ca190bbe6b5ec0939559"
+  },
+  "tests/Feature/DeleteTeamTest.php": {
+    "mtime": 1789107379.9945068,
+    "seen": 1789109797.377868,
+    "ast_hash": "9e21c844508e75c6a8a0c3b9eb07f33a",
+    "semantic_hash": "9e21c844508e75c6a8a0c3b9eb07f33a"
+  },
+  "tests/Feature/EmailVerificationTest.php": {
+    "mtime": 1789107379.994583,
+    "seen": 1789109797.3778691,
+    "ast_hash": "d0cd826870940994c79e2f8390e13a46",
+    "semantic_hash": "d0cd826870940994c79e2f8390e13a46"
+  },
+  "tests/Feature/EmergencyFeeTypeSeederTest.php": {
+    "mtime": 1789107379.9946563,
+    "seen": 1789109797.3778691,
+    "ast_hash": "cc4eadb1492a81c0540155277ec879f9",
+    "semantic_hash": "cc4eadb1492a81c0540155277ec879f9"
+  },
+  "tests/Feature/ExampleTest.php": {
+    "mtime": 1789107379.9947157,
+    "seen": 1789109797.37787,
+    "ast_hash": "54eaa1d73e1004b504a45010af58e7dc",
+    "semantic_hash": "54eaa1d73e1004b504a45010af58e7dc"
+  },
+  "tests/Feature/FrontDeskPermissionTest.php": {
+    "mtime": 1789107379.9947844,
+    "seen": 1789109797.377871,
+    "ast_hash": "e0fd0a403f89fc11ab732e1bf1607a80",
+    "semantic_hash": "e0fd0a403f89fc11ab732e1bf1607a80"
+  },
+  "tests/Feature/InviteTeamMemberTest.php": {
+    "mtime": 1789107379.9948735,
+    "seen": 1789109797.377871,
+    "ast_hash": "0950b22915c450417b0a9cf05aa3f04d",
+    "semantic_hash": "0950b22915c450417b0a9cf05aa3f04d"
+  },
+  "tests/Feature/LeaveTeamTest.php": {
+    "mtime": 1789107379.9949303,
+    "seen": 1789109797.377872,
+    "ast_hash": "f2b10997df4e8975ede104b4ff42ef0b",
+    "semantic_hash": "f2b10997df4e8975ede104b4ff42ef0b"
+  },
+  "tests/Feature/MonthlyIncomeStatementReportTest.php": {
+    "mtime": 1789107523.3420384,
+    "seen": 1789109797.377872,
+    "ast_hash": "e1497dadcf264c54596c2e7b76d6918a",
+    "semantic_hash": "e1497dadcf264c54596c2e7b76d6918a"
+  },
+  "tests/Feature/PasswordConfirmationTest.php": {
+    "mtime": 1789107379.9953775,
+    "seen": 1789109797.377873,
+    "ast_hash": "adfd8518b2e786721d749d7694cdae9f",
+    "semantic_hash": "adfd8518b2e786721d749d7694cdae9f"
+  },
+  "tests/Feature/PasswordResetTest.php": {
+    "mtime": 1789107379.9954462,
+    "seen": 1789109797.377874,
+    "ast_hash": "fe47dbbdd2b5104e46e3f8da1e919526",
+    "semantic_hash": "fe47dbbdd2b5104e46e3f8da1e919526"
+  },
+  "tests/Feature/PatientReturnPermissionTest.php": {
+    "mtime": 1789107379.9955099,
+    "seen": 1789109797.377874,
+    "ast_hash": "f6755d7746823d4884c5d15fc9ca6394",
+    "semantic_hash": "f6755d7746823d4884c5d15fc9ca6394"
+  },
+  "tests/Feature/ProfileInformationTest.php": {
+    "mtime": 1789107379.995578,
+    "seen": 1789109797.3778749,
+    "ast_hash": "2ffc2c413cc3872be8c09f3f19dc227a",
+    "semantic_hash": "2ffc2c413cc3872be8c09f3f19dc227a"
+  },
+  "tests/Feature/RegistrationTest.php": {
+    "mtime": 1789107379.9956489,
+    "seen": 1789109797.3778749,
+    "ast_hash": "a95624f82a7cea1c24702adbfbd2522e",
+    "semantic_hash": "a95624f82a7cea1c24702adbfbd2522e"
+  },
+  "tests/Feature/RemoveTeamMemberTest.php": {
+    "mtime": 1789107379.9958363,
+    "seen": 1789109797.377876,
+    "ast_hash": "830a7771ad1fe78b1741484d24735f50",
+    "semantic_hash": "830a7771ad1fe78b1741484d24735f50"
+  },
+  "tests/Feature/Reports/OpdUserWiseReportTest.php": {
+    "mtime": 1789107379.9959514,
+    "seen": 1789109797.377877,
+    "ast_hash": "b2a8948a63f5b8e42ec14c3f6ab88065",
+    "semantic_hash": "b2a8948a63f5b8e42ec14c3f6ab88065"
+  },
+  "tests/Feature/Reports/SpecialistFeesReportTest.php": {
+    "mtime": 1789107379.9960325,
+    "seen": 1789109797.377877,
+    "ast_hash": "343aa4cd490a43f4b7f03bbb5e64d9f4",
+    "semantic_hash": "343aa4cd490a43f4b7f03bbb5e64d9f4"
+  },
+  "tests/Feature/RolesAndPermissionsSeederTest.php": {
+    "mtime": 1789107379.9961066,
+    "seen": 1789109797.377878,
+    "ast_hash": "d99da8146f4abdaac8ff6217818c3f79",
+    "semantic_hash": "d99da8146f4abdaac8ff6217818c3f79"
+  },
+  "tests/Feature/SspActualAmountTrackingTest.php": {
+    "mtime": 1789107379.9962113,
+    "seen": 1789109797.377878,
+    "ast_hash": "e9a81c7dd135896e1b8f4756e9728f34",
+    "semantic_hash": "e9a81c7dd135896e1b8f4756e9728f34"
+  },
+  "tests/Feature/SspClaimsReportTest.php": {
+    "mtime": 1789107379.996299,
+    "seen": 1789109797.3778791,
+    "ast_hash": "0bbd9d70311a9e414df186c6adc4577a",
+    "semantic_hash": "0bbd9d70311a9e414df186c6adc4577a"
+  },
+  "tests/Feature/SuperAdminPatientActionsTest.php": {
+    "mtime": 1789107379.9965448,
+    "seen": 1789109797.3778791,
+    "ast_hash": "0b6cc66e636cd3666ce20ddb2349eebf",
+    "semantic_hash": "0b6cc66e636cd3666ce20ddb2349eebf"
+  },
+  "tests/Feature/TwoFactorAuthenticationSettingsTest.php": {
+    "mtime": 1789107379.9966164,
+    "seen": 1789109797.37788,
+    "ast_hash": "d78e0a7b0914e3cb598ca4bd8712f5ea",
+    "semantic_hash": "d78e0a7b0914e3cb598ca4bd8712f5ea"
+  },
+  "tests/Feature/UpdatePasswordTest.php": {
+    "mtime": 1789107379.9970899,
+    "seen": 1789109797.377881,
+    "ast_hash": "1efe27b5bdc4b7b258b11a5d30297131",
+    "semantic_hash": "1efe27b5bdc4b7b258b11a5d30297131"
+  },
+  "tests/Feature/UpdateTeamMemberRoleTest.php": {
+    "mtime": 1789107379.9971597,
+    "seen": 1789109797.377881,
+    "ast_hash": "8b78ee85d6d17901098a9b6e855424e9",
+    "semantic_hash": "8b78ee85d6d17901098a9b6e855424e9"
+  },
+  "tests/Feature/UpdateTeamNameTest.php": {
+    "mtime": 1789107379.9972222,
+    "seen": 1789109797.377882,
+    "ast_hash": "4229e13a9e4ffe3474a89b20c879fb61",
+    "semantic_hash": "4229e13a9e4ffe3474a89b20c879fb61"
+  },
+  "tests/Feature/UserEditPermissionsTest.php": {
+    "mtime": 1789107379.9972913,
+    "seen": 1789109797.377883,
+    "ast_hash": "49c5d53ee11688c135b8f62a4b591f6b",
+    "semantic_hash": "49c5d53ee11688c135b8f62a4b591f6b"
+  },
+  "tests/Pest.php": {
+    "mtime": 1789107379.9973626,
+    "seen": 1789109797.377883,
+    "ast_hash": "e39d27ac32ec81653b688a7bcae8d676",
+    "semantic_hash": "e39d27ac32ec81653b688a7bcae8d676"
+  },
+  "tests/TestCase.php": {
+    "mtime": 1789107379.9975905,
+    "seen": 1789109797.377884,
+    "ast_hash": "7e567dc27e68d5b57bae16af07f68907",
+    "semantic_hash": "7e567dc27e68d5b57bae16af07f68907"
+  },
+  "tests/Unit/ExampleTest.php": {
+    "mtime": 1789107379.9977005,
+    "seen": 1789109797.3778849,
+    "ast_hash": "2bc41f1156dead26b2a3082f9634b041",
+    "semantic_hash": "2bc41f1156dead26b2a3082f9634b041"
+  },
+  "vite.config.js": {
+    "mtime": 1789107379.9977715,
+    "seen": 1789109797.3778849,
+    "ast_hash": "64fed4a455e1ade0f3ab40ccc0d56294",
+    "semantic_hash": "64fed4a455e1ade0f3ab40ccc0d56294"
+  }
+}
