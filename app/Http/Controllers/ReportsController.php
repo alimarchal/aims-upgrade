@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateAdmissionWardRequest;
 use App\Models\Admission;
 use App\Models\AdmissionWard;
 use App\Models\Chit;
@@ -748,6 +749,13 @@ class ReportsController extends Controller
             ->get();
 
         return view('reports.general-information.index', compact('admissions'));
+    }
+
+    public function updateAdmissionWard(UpdateAdmissionWardRequest $request, Admission $admission)
+    {
+        $admission->update($request->validated());
+
+        return back()->with('success', 'Patient ward updated successfully.');
     }
 
     public function emergency_treatments(Request $request)

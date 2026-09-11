@@ -156,7 +156,6 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-validation-errors class="mb-4"/>
-            <x-success-message class="mb-4"/>
             <div class="bg-white overflow-x-auto p-4">
                 <div class="overflow-x-auto">
                     <div class="grid grid-cols-3 gap-4">
@@ -225,7 +224,16 @@
                                 </td>
 
                                 <td class="border-black text-center border px-1 py-1">
-                                    {{ $admision->unit_ward }}
+                                    <form action="{{ route('reports.misc.admission.ward.update', $admision) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <select name="unit_ward" id="unit_ward_{{ $admision->id }}" aria-label="Ward" class="w-full border-0 bg-transparent p-0 text-center focus:ring-0 print:hidden" onchange="this.form.submit()">
+                                            @foreach(\App\Models\AdmissionWard::orderBy('name', 'ASC')->get() as $ward)
+                                                <option value="{{ $ward->name }}" @selected($admision->unit_ward === $ward->name)>{{ $ward->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="hidden print:inline">{{ $admision->unit_ward }}</span>
+                                    </form>
                                 </td>
 
                                 <td class="border-black text-center border px-1 py-1">
@@ -265,6 +273,16 @@
             </div>
         </div>
     </div>
+    @if(session('success'))
+        <dialog id="ward-update-confirmation" class="rounded-lg border border-gray-200 p-0 shadow-xl backdrop:bg-black/30">
+            <div class="flex min-w-72 flex-col gap-4 p-6 text-center">
+                <p class="font-semibold text-gray-800">{{ session('success') }}</p>
+                <form method="dialog">
+                    <button class="bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" type="submit">OK</button>
+                </form>
+            </div>
+        </dialog>
+    @endif
     @section('custom_script')
         <script>
             const targetDiv = document.getElementById("filters");
@@ -284,6 +302,11 @@
             }
 
             window.onbeforeprint = scaleTable; // Run before printing
+
+            const wardUpdateConfirmation = document.getElementById('ward-update-confirmation');
+            if (wardUpdateConfirmation) {
+                wardUpdateConfirmation.showModal();
+            }
         </script>
 
     @endsection

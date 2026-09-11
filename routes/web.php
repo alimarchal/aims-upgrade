@@ -106,6 +106,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
         Route::get('reports/misc', [ReportsController::class, 'reportMisc'])->name('reports.misc');
         Route::get('reports/misc/admission', [ReportsController::class, 'admission'])->name('reports.misc.admission')->middleware('permission:view admission reports');
+        Route::patch('reports/misc/admission/{admission}/ward', [ReportsController::class, 'updateAdmissionWard'])->name('reports.misc.admission.ward.update')->middleware('permission:view admission reports');
         Route::get('reports/emergency-treatments', [ReportsController::class, 'emergency_treatments'])->name('reports.emergency_treatments')->middleware('permission:view emergency reports');
 
         Route::get('reports/misc/department-wise', [ReportsController::class, 'department_wise'])->name('reports.misc.category-wise')->middleware('permission:view department reports');

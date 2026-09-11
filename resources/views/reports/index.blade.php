@@ -105,7 +105,7 @@
                                         Department
                                     </div>
                                     <div class="mt-1 text-base  font-bold text-gray-600">
-                                        Wise Audit
+                                        Wise -
                                     </div>
                                 </div>
                                 <div class="col-span-1 flex items-center justify-end">
