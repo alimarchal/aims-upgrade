@@ -1,9 +1,9 @@
 {
   ".mcp.json": {
-    "mtime": 1789107379.9272954,
-    "seen": 1789109797.377635,
-    "ast_hash": "22270ca6ee7bec5f0d76fa5de12079a0",
-    "semantic_hash": "22270ca6ee7bec5f0d76fa5de12079a0"
+    "mtime": 1789110373.7511578,
+    "seen": 1789110631.615572,
+    "ast_hash": "358eefcba6033b666a746683a919ddbf",
+    "semantic_hash": ""
   },
   "app/Actions/Fortify/CreateNewUser.php": {
     "mtime": 1789107379.9282105,
@@ -738,10 +738,10 @@
     "semantic_hash": "9d88489831f90855deb8783a16c93408"
   },
   "boost.json": {
-    "mtime": 1789107379.9501147,
-    "seen": 1789109797.377716,
-    "ast_hash": "cec1f4626f0f629f7da44d14b57e0f11",
-    "semantic_hash": "cec1f4626f0f629f7da44d14b57e0f11"
+    "mtime": 1789110373.755425,
+    "seen": 1789110631.61567,
+    "ast_hash": "a0f91a467f2f59cfeb2fbb1ecc726b36",
+    "semantic_hash": ""
   },
   "bootstrap/app.php": {
     "mtime": 1789107379.950298,
@@ -2398,5 +2398,239 @@
     "seen": 1789109797.3778849,
     "ast_hash": "64fed4a455e1ade0f3ab40ccc0d56294",
     "semantic_hash": "64fed4a455e1ade0f3ab40ccc0d56294"
+  },
+  ".gemini/settings.json": {
+    "mtime": 1789110373.754427,
+    "seen": 1789110631.615568,
+    "ast_hash": "358eefcba6033b666a746683a919ddbf",
+    "semantic_hash": ""
+  },
+  ".agents/skills/livewire-development/SKILL.md": {
+    "mtime": 1789110372.990042,
+    "seen": 1789110631.615886,
+    "ast_hash": "a46d93a4e5f8b2222f65210bed2aaf69",
+    "semantic_hash": ""
+  },
+  ".agents/skills/pest-testing/SKILL.md": {
+    "mtime": 1789110372.9911945,
+    "seen": 1789110631.6158872,
+    "ast_hash": "80fc59dc8b23cb9fb84a72df1ab7cdee",
+    "semantic_hash": ""
+  },
+  ".agents/skills/tailwindcss-development/SKILL.md": {
+    "mtime": 1789110372.9920447,
+    "seen": 1789110631.6158879,
+    "ast_hash": "7d315be170dfc1c36e2199730f2c4546",
+    "semantic_hash": ""
+  },
+  ".github/copilot-instructions.md": {
+    "mtime": 1789109587.7998285,
+    "seen": 1789110631.6158879,
+    "ast_hash": "49c42c99208b41a5e6bae2397d6542dc",
+    "semantic_hash": ""
+  },
+  ".github/skills/livewire-development/SKILL.md": {
+    "mtime": 1789110372.987235,
+    "seen": 1789110631.6158888,
+    "ast_hash": "a46d93a4e5f8b2222f65210bed2aaf69",
+    "semantic_hash": ""
+  },
+  ".github/skills/pest-testing/SKILL.md": {
+    "mtime": 1789110372.9881809,
+    "seen": 1789110631.6158888,
+    "ast_hash": "80fc59dc8b23cb9fb84a72df1ab7cdee",
+    "semantic_hash": ""
+  },
+  ".github/skills/tailwindcss-development/SKILL.md": {
+    "mtime": 1789110372.9889932,
+    "seen": 1789110631.61589,
+    "ast_hash": "7d315be170dfc1c36e2199730f2c4546",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1789110372.9705775,
+    "seen": 1789110631.615891,
+    "ast_hash": "d595e8bac2ba972088b5f6f82f8a0318",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1789110372.9682677,
+    "seen": 1789110631.615891,
+    "ast_hash": "d595e8bac2ba972088b5f6f82f8a0318",
+    "semantic_hash": ""
+  },
+  "GEMINI.md": {
+    "mtime": 1789110372.9719532,
+    "seen": 1789110631.615892,
+    "ast_hash": "d595e8bac2ba972088b5f6f82f8a0318",
+    "semantic_hash": ""
+  },
+  "public/robots.txt": {
+    "mtime": 1789107379.9764345,
+    "seen": 1789110631.615893,
+    "ast_hash": "b6216d61c03e6ce0c9aea6ca7808f7ca",
+    "semantic_hash": ""
+  },
+  "resources/markdown/policy.md": {
+    "mtime": 1789107379.9768784,
+    "seen": 1789110631.615893,
+    "ast_hash": "1076df2a46c70636274b5f195695c2b2",
+    "semantic_hash": ""
+  },
+  "resources/markdown/terms.md": {
+    "mtime": 1789107379.9769382,
+    "seen": 1789110631.615894,
+    "ast_hash": "2db3fecb7a4eb9ca6775307837a2368e",
+    "semantic_hash": ""
+  },
+  "public/images/1728946.png": {
+    "mtime": 1789107379.963035,
+    "seen": 1789110631.615895,
+    "ast_hash": "2576e06594dc3f44f6cc91ac0362b82c",
+    "semantic_hash": ""
+  },
+  "public/images/2906361.png": {
+    "mtime": 1789107379.963215,
+    "seen": 1789110631.615895,
+    "ast_hash": "5a2a607b2c5852a50ce569e9ac4b2b3a",
+    "semantic_hash": ""
+  },
+  "public/images/3127109.png": {
+    "mtime": 1789107379.9633617,
+    "seen": 1789110631.615896,
+    "ast_hash": "fd168dca9bbffde6afde13ae61e5440c",
+    "semantic_hash": ""
+  },
+  "public/images/817729.png": {
+    "mtime": 1789107379.963539,
+    "seen": 1789110631.6158972,
+    "ast_hash": "117058e790149ade5c07b346de1fba41",
+    "semantic_hash": ""
+  },
+  "public/images/Aimsa8.jpg": {
+    "mtime": 1789107379.9646025,
+    "seen": 1789110631.6158972,
+    "ast_hash": "2d5b1d1d3b7083baad4693fcee72d918",
+    "semantic_hash": ""
+  },
+  "public/images/Aimsa8.png": {
+    "mtime": 1789107379.9649472,
+    "seen": 1789110631.6158981,
+    "ast_hash": "b98c5b2c43f89d33d24f664f7c577684",
+    "semantic_hash": ""
+  },
+  "public/images/Aimsa8_LOGO.png": {
+    "mtime": 1789107379.9658453,
+    "seen": 1789110631.6158988,
+    "ast_hash": "1022ad5f2f95cb37cde7bc76533e57a6",
+    "semantic_hash": ""
+  },
+  "public/images/chits.png": {
+    "mtime": 1789107379.9660954,
+    "seen": 1789110631.6158988,
+    "ast_hash": "1a21825dfb2a25f5eadfeaaf341a2508",
+    "semantic_hash": ""
+  },
+  "public/images/delete.png": {
+    "mtime": 1789107379.9662178,
+    "seen": 1789110631.6158998,
+    "ast_hash": "32071ce2f745e63d3f259e01b982dfbe",
+    "semantic_hash": ""
+  },
+  "public/images/emergency.png": {
+    "mtime": 1789107379.96634,
+    "seen": 1789110631.615901,
+    "ast_hash": "0e5ef192a8e9de6b2212fc7863f921de",
+    "semantic_hash": ""
+  },
+  "public/images/invoice-revenue.png": {
+    "mtime": 1789107379.9664621,
+    "seen": 1789110631.615901,
+    "ast_hash": "f1f7c85aef360e9a08284e4e94491369",
+    "semantic_hash": ""
+  },
+  "public/images/issue_new_chit.png": {
+    "mtime": 1789107379.9665997,
+    "seen": 1789110631.615902,
+    "ast_hash": "fdb018c774f73293e7f84bbbe63f8e26",
+    "semantic_hash": ""
+  },
+  "public/images/logo.png": {
+    "mtime": 1789107379.9707353,
+    "seen": 1789110631.615903,
+    "ast_hash": "d4721f674e076e4fc4bce618e75f0150",
+    "semantic_hash": ""
+  },
+  "public/images/new.png": {
+    "mtime": 1789107379.9709966,
+    "seen": 1789110631.615903,
+    "ast_hash": "e7057a81c7fe2d400be7c7fc3ced861f",
+    "semantic_hash": ""
+  },
+  "public/images/new_2 (1).png": {
+    "mtime": 1789107379.971139,
+    "seen": 1789110631.615904,
+    "ast_hash": "a1724f5185addfcfd520eb832d47bcc1",
+    "semantic_hash": ""
+  },
+  "public/images/new_2.png": {
+    "mtime": 1789107379.971384,
+    "seen": 1789110631.615905,
+    "ast_hash": "a1724f5185addfcfd520eb832d47bcc1",
+    "semantic_hash": ""
+  },
+  "public/images/note.jpg": {
+    "mtime": 1789107379.9715538,
+    "seen": 1789110631.615906,
+    "ast_hash": "a41deda82b20e13721cedd4bda094e83",
+    "semantic_hash": ""
+  },
+  "public/images/opd.jpeg": {
+    "mtime": 1789107379.9717607,
+    "seen": 1789110631.615906,
+    "ast_hash": "19651b2e09f8ed9c9d02a0fb0c2ac39b",
+    "semantic_hash": ""
+  },
+  "public/images/orignal_logo.jpg": {
+    "mtime": 1789107379.9729621,
+    "seen": 1789110631.615907,
+    "ast_hash": "358b3d16e2acbcbab05141aa9593aa7c",
+    "semantic_hash": ""
+  },
+  "public/images/paid-5025785_1280.png": {
+    "mtime": 1789107379.9734316,
+    "seen": 1789110631.615907,
+    "ast_hash": "cfd13fbf8f24853ec467edb9d04804f9",
+    "semantic_hash": ""
+  },
+  "public/images/patient-emergency.png": {
+    "mtime": 1789107379.974251,
+    "seen": 1789110631.6159081,
+    "ast_hash": "87202c8849e30d91f7615db6dfd0937d",
+    "semantic_hash": ""
+  },
+  "public/images/patient.png": {
+    "mtime": 1789107379.9744167,
+    "seen": 1789110631.615909,
+    "ast_hash": "167ccb7ac777c40bfd229c4faa772059",
+    "semantic_hash": ""
+  },
+  "public/images/reports.png": {
+    "mtime": 1789107379.974509,
+    "seen": 1789110631.615909,
+    "ast_hash": "806f52f4ab7571223c3076e4a2154904",
+    "semantic_hash": ""
+  },
+  "public/images/settings (1).png": {
+    "mtime": 1789107379.974675,
+    "seen": 1789110631.6159098,
+    "ast_hash": "d171b2d426f5ec122b4b88c261e3e74c",
+    "semantic_hash": ""
+  },
+  "public/images/settings.png": {
+    "mtime": 1789107379.9748511,
+    "seen": 1789110631.615911,
+    "ast_hash": "d171b2d426f5ec122b4b88c261e3e74c",
+    "semantic_hash": ""
   }
 }
