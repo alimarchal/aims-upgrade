@@ -123,14 +123,16 @@
                                 <th class="border-black border px-4 py-2">ID</th>
                                 <th class="border-black border px-4 py-2">Category</th>
                                 <th class="border-black border px-4 py-2">Name</th>
-                                <th class="border-black border px-4 py-2">Count</th>
+                                <th class="border-black border px-4 py-2">Entitled</th>
+                                <th class="border-black border px-4 py-2">Non Entitled</th>
                                 <th class="border-black border px-4 py-2">Total Amount</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $count = 1;
-                                $total_sum = 0;
+                                $entitled_sum = 0;
+                                $non_entitled_sum = 0;
                                 $govt_sum = 0;
                                 // Fee type id 1 ("Emergency") is hidden from the table but still counted in totals below
                                 $hiddenFeeTypeIds = [1];
@@ -138,7 +140,8 @@
                             @foreach($categories as $fee_category_id => $fee_types)
                                 @foreach($fee_types as $data)
                                     @php
-                                        $total_sum += $data['Entitled'] + $data['Non Entitled'];
+                                        $entitled_sum += $data['Entitled'];
+                                        $non_entitled_sum += $data['Non Entitled'];
                                         $govt_sum += $data['GOVT'];
                                     @endphp
                                 @endforeach
@@ -152,7 +155,6 @@
                                 @foreach($visibleFeeTypes as $fee_type_id => $data)
                                     @php
                                         $fee_type = \App\Models\FeeType::find($fee_type_id);
-                                        $total = $data['Entitled'] + $data['Non Entitled'];
                                     @endphp
                                     <tr class="border-black">
                                         <td class="border-black border px-4 py-2 text-center">{{ $count }}</td>
@@ -161,7 +163,8 @@
                                                 {{ $fee_category_name }}</td>
                                         @endif
                                         <td class="border-black border px-4 py-2">{{ $fee_type->type }}</td>
-                                        <td class="border-black border px-4 py-2 text-right">{{ $total }}</td>
+                                        <td class="border-black border px-4 py-2 text-right">{{ $data['Entitled'] }}</td>
+                                        <td class="border-black border px-4 py-2 text-right">{{ $data['Non Entitled'] }}</td>
                                         <td class="border-black border px-4 py-2 text-right">
                                             {{ number_format($data['GOVT'], 2) }}</td>
                                         @php
@@ -175,7 +178,9 @@
                             <tr class="border-black">
                                 <td class="border-black border px-4 py-2 text-right font-bold" colspan="3">Total</td>
                                 <td class="border-black border px-4 py-2 text-center font-bold">
-                                    {{ number_format($total_sum, 0) }}</td>
+                                    {{ number_format($entitled_sum, 0) }}</td>
+                                <td class="border-black border px-4 py-2 text-center font-bold">
+                                    {{ number_format($non_entitled_sum, 0) }}</td>
                                 <td class="border-black border px-4 py-2 text-center font-bold">
                                     {{ number_format($govt_sum, 2) }}</td>
                             </tr>
