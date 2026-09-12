@@ -116,7 +116,7 @@ class PatientController extends Controller
     {
         $request->validate([
             'first_name' => 'required',
-            'department_id' => 'required',
+            'department_id' => 'required|exists:departments,id',
             'mobile' => 'required|regex:/^03\d{2}-\d{7}$/',
             'phone' => 'nullable|string|max:15',
             'age' => 'required|integer|min:0',
@@ -168,8 +168,9 @@ class PatientController extends Controller
         // 1 for opd 0 for ipd
         $ipd_opd = null;
 
+        $department = Department::findOrFail($request->department_id);
         $count_chit_of_today = Chit::where('department_id', $request->department_id)->where('issued_date', '>=', Carbon::today())->count();
-        $count_chit_of_today_limit = Department::where('id', $request->department_id)->first()->daily_patient_limit;
+        $count_chit_of_today_limit = $department->daily_patient_limit;
         $count_chit_of_today++;
 
         if ($count_chit_of_today_limit <= $count_chit_of_today) {
@@ -209,8 +210,6 @@ class PatientController extends Controller
             $fee_type_id = null;
             $actual_amount = 0;
 
-            // Get department name for dynamic fee lookup
-            $department = Department::find($request->department_id);
             $emergencyOpdFeeType = FeeType::where('fee_category_id', 13)
                 ->where('type', 'Emergency Chit')
                 ->first();
@@ -230,7 +229,12 @@ class PatientController extends Controller
                     $fee_type_id = 1;
                 } elseif ($request->department_id == 16) {
                     // For Cardiology
-                    $fee_type_id = 19;
+                    $feeType = FeeType::find(107);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Chit Fee is not configured.');
+                    }
+
+                    $fee_type_id = $feeType->id;
                 } else {
                     // Dynamic lookup for specialist departments by name
                     $feeType = FeeType::where('type', $department->name)->first();
@@ -255,27 +259,47 @@ class PatientController extends Controller
                     $fee_type_id = $emergencyOpdFeeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 7) {
-                    $amount = FeeType::find(108)->amount;
-                    $amount_hif = FeeType::find(108)->hif;
-                    $fee_type_id = 108;
+                    $feeType = FeeType::find(108);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Screening OPD Female fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
+                    $fee_type_id = $feeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 23) {
-                    $amount = FeeType::find(270)->amount;
-                    $amount_hif = FeeType::find(270)->hif;
-                    $fee_type_id = 270;
+                    $feeType = FeeType::find(270);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Screening OPD Male fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
+                    $fee_type_id = $feeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 1) {
                     // For emergency
-                    $amount = FeeType::find(1)->amount;
-                    $amount_hif = FeeType::find(1)->hif;
+                    $feeType = FeeType::find(1);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Emergency fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
                     $govt_amount = $amount - $amount_hif;
-                    $fee_type_id = 1;
+                    $fee_type_id = $feeType->id;
                 } elseif ($request->department_id == 16) {
                     // For Cardiology
-                    $amount = FeeType::find(19)->amount;
-                    $amount_hif = FeeType::find(19)->hif;
+                    $feeType = FeeType::find(107);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Chit Fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
                     $govt_amount = $amount - $amount_hif;
-                    $fee_type_id = 19;
+                    $fee_type_id = $feeType->id;
                 } else {
                     // Dynamic lookup for specialist departments by name
                     $feeType = FeeType::where('type', $department->name)->first();
@@ -285,9 +309,14 @@ class PatientController extends Controller
                         $amount_hif = $feeType->hif;
                         $govt_amount = $amount - $amount_hif;
                     } else {
-                        $fee_type_id = 107;
-                        $amount = FeeType::find(107)->amount;
-                        $amount_hif = FeeType::find(107)->hif;
+                        $feeType = FeeType::find(107);
+                        if (! $feeType) {
+                            throw new \RuntimeException('Default chit fee is not configured.');
+                        }
+
+                        $fee_type_id = $feeType->id;
+                        $amount = $feeType->amount;
+                        $amount_hif = $feeType->hif;
                         $govt_amount = $amount - $amount_hif;
                     }
                 }

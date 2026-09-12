@@ -36,7 +36,7 @@ class ChitController extends Controller
     {
         $request->validate([
             'ipd_opd' => 'required',
-            'department_id' => 'required',
+            'department_id' => 'required|exists:departments,id',
             'government_department_id' => 'required_with:government_card_no,designation,sehat_sahulat_visit_no,sehat_sahulat_patient_id',
             'government_card_no' => [
                 'nullable',
@@ -116,7 +116,12 @@ class ChitController extends Controller
                 } elseif ($request->department_id == 1) {
                     $fee_type_id = 1;
                 } elseif ($request->department_id == 16) {
-                    $fee_type_id = 19;
+                    $feeType = FeeType::find(107);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Chit Fee is not configured.');
+                    }
+
+                    $fee_type_id = $feeType->id;
                 } else {
                     // Dynamic lookup for specialist departments by name
                     $feeType = FeeType::where('type', $department->name)->first();
@@ -141,26 +146,46 @@ class ChitController extends Controller
                     $fee_type_id = $emergencyOpdFeeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 7) {
-                    $amount = FeeType::find(108)->amount;
-                    $amount_hif = FeeType::find(108)->hif;
-                    $fee_type_id = 108;
+                    $feeType = FeeType::find(108);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Screening OPD Female fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
+                    $fee_type_id = $feeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 23) {
-                    $amount = FeeType::find(270)->amount;
-                    $amount_hif = FeeType::find(270)->hif;
-                    $fee_type_id = 270;
+                    $feeType = FeeType::find(270);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Screening OPD Male fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
+                    $fee_type_id = $feeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 1) {
                     // For emergency
-                    $amount = FeeType::find(1)->amount;
-                    $amount_hif = FeeType::find(1)->hif;
-                    $fee_type_id = 1;
+                    $feeType = FeeType::find(1);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Emergency fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
+                    $fee_type_id = $feeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } elseif ($request->department_id == 16) {
                     // For Cardiology
-                    $amount = FeeType::find(19)->amount;
-                    $amount_hif = FeeType::find(19)->hif;
-                    $fee_type_id = 19;
+                    $feeType = FeeType::find(107);
+                    if (! $feeType) {
+                        throw new \RuntimeException('Chit Fee is not configured.');
+                    }
+
+                    $amount = $feeType->amount;
+                    $amount_hif = $feeType->hif;
+                    $fee_type_id = $feeType->id;
                     $govt_amount = $amount - $amount_hif;
                 } else {
                     // Dynamic lookup for specialist departments by name
@@ -172,17 +197,18 @@ class ChitController extends Controller
                         $govt_amount = $amount - $amount_hif;
                     } else {
                         $fee_type_id = 107;
-                        $amount = FeeType::find(107)->amount;
-                        $amount_hif = FeeType::find(107)->hif;
+                        $fallbackFeeType = FeeType::find(107);
+                        if (! $fallbackFeeType) {
+                            throw new \RuntimeException('Default chit fee is not configured.');
+                        }
+
+                        $amount = $fallbackFeeType->amount;
+                        $amount_hif = $fallbackFeeType->hif;
                         $govt_amount = $amount - $amount_hif;
                     }
                 }
             }
-            if ($request->has('ipd_opd')) {
-                $ipd_opd = 0;
-            } else {
-                $ipd_opd = 1;
-            }
+            $ipd_opd = (int) $request->input('ipd_opd');
 
             // Update patient details if Sehat Sahulat fields are present
             if ($request->government_department_id == 95) {
@@ -218,6 +244,8 @@ class ChitController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Issue Chit Error: '.$e->getMessage());
+
+            return back()->withInput()->with('error', 'Chit issue nahi ho saka: '.$e->getMessage());
         }
 
         return to_route('chit.print', [$patient->id, $chit->id]);
