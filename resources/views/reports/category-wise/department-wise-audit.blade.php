@@ -166,7 +166,12 @@
                                         <td class="border-black border px-4 py-2 text-right">{{ $data['Entitled'] }}</td>
                                         <td class="border-black border px-4 py-2 text-right">{{ $data['Non Entitled'] }}</td>
                                         <td class="border-black border px-4 py-2 text-right">
-                                            {{ number_format($data['GOVT'], 2) }}</td>
+                                            @if ($data['GOVT'] >= 0)
+                                                {{ number_format($data['GOVT'], 2) }}
+                                            @else
+                                                {{ number_format(0, 2) }}
+                                            @endif
+                                        </td>
                                         @php
                                             $count++;
                                         @endphp
@@ -182,7 +187,12 @@
                                 <td class="border-black border px-4 py-2 text-center font-bold">
                                     {{ number_format($non_entitled_sum, 0) }}</td>
                                 <td class="border-black border px-4 py-2 text-center font-bold">
-                                    {{ number_format($govt_sum, 2) }}</td>
+                                    @if ($govt_sum >= 0)
+                                        {{ number_format($govt_sum, 2) }}
+                                    @else
+                                        {{ number_format(0, 2) }}
+                                    @endif
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
