@@ -8,5 +8,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('backup:run --only-db')->daily()->at('08:00');
-Schedule::command('backup:run --only-db')->daily()->at('02:00');
+Schedule::command('backup:run --only-db')->dailyAt('00:01')->name('backup-midnight')->withoutOverlapping();
