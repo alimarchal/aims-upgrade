@@ -4,7 +4,7 @@ REM  AIMS - Laravel scheduler runner for Windows Task Scheduler
 REM
 REM  Task Scheduler runs this file every minute. Laravel decides
 REM  what is due: the database backup to Google Drive runs daily
-REM  at 00:01 (see routes/console.php).
+REM  at 00:05 (see routes/console.php).
 REM
 REM  Register once from an Administrator Command Prompt:
 REM    schtasks /create /tn "AIMS Laravel Scheduler" /tr "C:\xampp\htdocs\aims\scripts\aimsu-scheduler.bat" /sc minute /mo 1 /ru SYSTEM /rl HIGHEST /f

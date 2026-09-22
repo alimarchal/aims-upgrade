@@ -5,13 +5,13 @@ use Tests\TestCase;
 
 uses(TestCase::class);
 
-it('schedules the database backup only at 00:01', function () {
+it('schedules the database backup only at 00:05', function () {
     $backupEvents = collect(app(Schedule::class)->events())
         ->filter(fn ($event) => str_contains($event->command ?? '', 'backup:run --only-db'))
         ->values();
 
     expect($backupEvents)->toHaveCount(1)
-        ->and($backupEvents->first()->expression)->toBe('1 0 * * *')
+        ->and($backupEvents->first()->expression)->toBe('5 0 * * *')
         ->and($backupEvents->first()->withoutOverlapping)->toBeTrue();
 });
 
