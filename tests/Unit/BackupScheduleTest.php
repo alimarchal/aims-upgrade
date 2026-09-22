@@ -29,6 +29,12 @@ it('configures the google drive disk for backups', function () {
         ->and(config('filesystems.disks.google.backup_name'))->toBe(config('backup.backup.name'));
 });
 
+it('dumps postgres as a compressed custom-format .backup file stored uncompressed in the zip', function () {
+    expect(config('database.connections.pgsql.dump.add_extra_option'))->toBe('--format=custom --compress=9')
+        ->and(config('backup.backup.database_dump_file_extension'))->toBe('backup')
+        ->and(config('backup.backup.destination.compression_method'))->toBe(ZipArchive::CM_STORE);
+});
+
 it('reads the pg_dump binary path from the environment', function () {
     expect(config('database.connections.pgsql.dump'))->toHaveKey('dump_binary_path');
 });
