@@ -10,7 +10,6 @@ use Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotificatio
 use Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes;
-use Spatie\DbDumper\Compressors\GzipCompressor;
 
 return [
 
@@ -107,7 +106,7 @@ return [
          *
          * If you do not want any compressor at all, set it to null.
          */
-        'database_dump_compressor' => GzipCompressor::class,
+        'database_dump_compressor' => null,
 
         /*
          * The file extension used for the database dump files.

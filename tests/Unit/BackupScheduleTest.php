@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Console\Scheduling\Schedule;
-use Spatie\DbDumper\Compressors\GzipCompressor;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -18,8 +17,11 @@ it('schedules the database backup only at 00:01', function () {
 
 it('backs up the default database connection to the local and google disks', function () {
     expect(config('backup.backup.source.databases'))->toBe([config('database.default')])
-        ->and(config('backup.backup.destination.disks'))->toBe(['local', 'google'])
-        ->and(config('backup.backup.database_dump_compressor'))->toBe(GzipCompressor::class);
+        ->and(config('backup.backup.destination.disks'))->toBe(['local', 'google']);
+});
+
+it('does not pipe the dump through gzip, which is missing on the windows server', function () {
+    expect(config('backup.backup.database_dump_compressor'))->toBeNull();
 });
 
 it('configures the google drive disk for backups', function () {
