@@ -116,6 +116,13 @@ it('reconciles the audit total with the monthly income statement total', functio
         ->assertDontSee('<th class="border-black border px-4 py-2 text-center">Returns</th>', false);
 });
 
+it('shows the seechange innovative contact number in the report footer', function () {
+    $this->actingAs($this->viewer)
+        ->get(route('reports.ipd.reportDailyUserWiseGovt', ['start_date' => '2025-07-01', 'end_date' => '2025-07-31']))
+        ->assertSee('Software Developed By SeeChange Innovative - Contact No: 0335-9991441')
+        ->assertDontSee('0300-8169924');
+});
+
 it('forbids users without the govt user wise reports permission', function () {
     $user = User::factory()->create();
     $user->givePermissionTo(Permission::findOrCreate('view reports', 'sanctum'));

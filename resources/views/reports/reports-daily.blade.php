@@ -97,13 +97,13 @@
                         <p class="text-center font-extrabold mb-4">
                             Report from {{ \Carbon\Carbon::parse(request('start_date'))->format('d-M-Y') }} to {{ \Carbon\Carbon::parse(request('end_date'))->format('d-M-Y') }} - OPD Issued Chits
                             <br>
-                            <span>Software Developed By SeeChange Innovative - Contact No: 0300-8169924</span>
+                            <span>Software Developed By SeeChange Innovative - Contact No: 0335-9991441</span>
                         </p>
                     @else
                         <p class="text-center font-extrabold mb-4">
                             Report as of {{ now()->format('d-M-Y h:m:s') }} - OPD Issued Chits
                             <br>
-                            <span>Software Developed By SeeChange Innovative - Contact No: 0300-8169924</span>
+                            <span>Software Developed By SeeChange Innovative - Contact No: 0335-9991441</span>
                         </p>
                     @endif
                     <table class="table-auto w-full border-collapse border border-black">

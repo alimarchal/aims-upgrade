@@ -160,7 +160,7 @@
                         For the date starting {{ \Carbon\Carbon::parse($start_date)->format('d-M-Y') }} to
                         {{ \Carbon\Carbon::parse($end_date)->format('d-M-Y') }}
                         <br>
-                        <span>Software Developed By SeeChange Innovative - Contact No: 0300-8169924</span>
+                        <span>Software Developed By SeeChange Innovative - Contact No: 0335-9991441</span>
                     </p>
 
                     <table class="report-table">

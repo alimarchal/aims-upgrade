@@ -176,14 +176,14 @@
                         \Carbon\Carbon::parse(request('start_date'))->format('d-M-Y H:i:s') }} to {{
                         \Carbon\Carbon::parse(request('end_date'))->format('d-M-Y H:i:s') }}
                         <br>
-                        <span>Software Developed By SeeChange Innovative - Contact No: 0300-8169924</span>
+                        <span>Software Developed By SeeChange Innovative - Contact No: 0335-9991441</span>
                     </p>
                     @else
                     <p class="text-center font-extrabold mb-4">
                         Emergency Treatments Report as of {{ \Carbon\Carbon::parse($start_date)->format('d-M-Y') }} from
                         00:00:00 to {{ \Carbon\Carbon::now()->format('H:i:s') }}
                         <br>
-                        <span>Software Developed By SeeChange Innovative - Contact No: 0300-8169924</span>
+                        <span>Software Developed By SeeChange Innovative - Contact No: 0335-9991441</span>
                     </p>
                     @endif
 

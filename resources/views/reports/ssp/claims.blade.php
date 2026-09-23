@@ -266,7 +266,7 @@
                     {{ \Carbon\Carbon::parse($end_date)->format('d-M-Y') }}
                     <br>
                     <span class="text-sm font-normal text-gray-500">Software Developed By SeeChange Innovative - Contact
-                        No: 0300-8169924</span>
+                        No: 0335-9991441</span>
                 </p>
 
                 {{-- Applied Filters Display --}}
