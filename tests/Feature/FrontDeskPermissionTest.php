@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\User;
+use Laravel\Jetstream\Features;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 beforeEach(function () {
     $permissions = [
@@ -35,7 +37,6 @@ beforeEach(function () {
         'create patients',
         'view chits',
         'view admissions',
-        'view dashboard',
         'view invoices',
         'view patients',
     ]);
@@ -45,8 +46,7 @@ test('front desk user has all default permissions', function () {
     $user = User::factory()->create();
     $user->assignRole('Front Desk/Receptionist');
 
-    expect($user->hasPermissionTo('view dashboard'))->toBeTrue()
-        ->and($user->hasPermissionTo('view patients'))->toBeTrue()
+    expect($user->hasPermissionTo('view patients'))->toBeTrue()
         ->and($user->hasPermissionTo('create patients'))->toBeTrue()
         ->and($user->hasPermissionTo('view chits'))->toBeTrue()
         ->and($user->hasPermissionTo('create chits'))->toBeTrue()
@@ -68,13 +68,16 @@ test('front desk user cannot access restricted areas', function () {
         ->and($user->hasPermissionTo('view opd reports'))->toBeFalse();
 });
 
-test('front desk user can access dashboard', function () {
+test('front desk user with dashboard permission sees dashboard statistics', function () {
     $user = User::factory()->create();
     $user->assignRole('Front Desk/Receptionist');
+    $user->givePermissionTo('view dashboard');
 
     $this->actingAs($user)
         ->get('/dashboard')
-        ->assertSuccessful();
+        ->assertSuccessful()
+        ->assertSee('Issued Chits Today')
+        ->assertDontSee('Please use the navigation menu above to access your modules');
 });
 
 test('front desk user can access patients page', function () {
@@ -150,11 +153,22 @@ test('front desk permissions are removable', function () {
     $role->revokePermissionTo('view patients');
 
     $user = $user->fresh();
-    app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+    app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
     expect($user->hasPermissionTo('view patients'))->toBeFalse();
 });
 
 test('teams feature is disabled', function () {
-    expect(\Laravel\Jetstream\Features::hasTeamFeatures())->toBeFalse();
+    expect(Features::hasTeamFeatures())->toBeFalse();
+});
+
+test('user without dashboard permission sees a welcome message instead of statistics', function () {
+    $user = User::factory()->create();
+    $user->assignRole('Front Desk/Receptionist');
+
+    $this->actingAs($user)
+        ->get('/dashboard')
+        ->assertSuccessful()
+        ->assertSee('Please use the navigation menu above to access your modules')
+        ->assertDontSee('Issued Chits Today');
 });

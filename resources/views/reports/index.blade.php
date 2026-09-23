@@ -59,7 +59,7 @@
                             <div class="grid grid-cols-3 gap-1">
                                 <div class="col-span-2">
                                     <div class="text-3xl font-bold leading-8">
-                                        Govt
+                                        OPD
                                     </div>
                                     <div class="mt-1 text-base  font-bold text-gray-600">
                                         Daily Report

@@ -40,7 +40,9 @@ class DashboardController extends Controller
         $patient_test_daily_report_rd = [];
 
         // OPD Front Desk
-        if ($user->hasRole('Front Desk/Receptionist')) {
+        $canViewDashboard = $user->can('view dashboard');
+
+        if ($canViewDashboard && $user->hasRole('Front Desk/Receptionist')) {
             $chitStats = Chit::query()
                 ->where('user_id', $user->id)
                 ->whereBetween('issued_date', [$todayStart, $todayEnd])
@@ -64,7 +66,7 @@ class DashboardController extends Controller
             $issued_invoices = (int) ($invoiceStats->issued_invoices ?? 0);
             $issued_invoices_revenue = (float) ($invoiceStats->issued_invoices_revenue ?? 0);
 
-        } elseif ($user->hasRole(['Administrator', 'Super-Admin'])) {
+        } elseif ($canViewDashboard && $user->hasRole(['Administrator', 'Super-Admin'])) {
 
             $departmentNames = Department::query()->pluck('name', 'id');
             $opd_department_wise = array_fill_keys($departmentNames->values()->toArray(), 0);

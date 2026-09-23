@@ -82,6 +82,11 @@ class UserController extends Controller
         $role = Role::findById($request->integer('role'), self::ROLE_GUARD);
         $user->assignRole($role);
 
+        // Front Desk users get the dashboard as a direct permission so it can be revoked per user
+        if ($role->name === 'Front Desk/Receptionist') {
+            $user->givePermissionTo(Permission::findByName('view dashboard', self::ROLE_GUARD));
+        }
+
         session()->flash('status', 'User has been successfully added into database.');
 
         return to_route('users.index');

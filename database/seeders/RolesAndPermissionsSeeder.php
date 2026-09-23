@@ -181,7 +181,6 @@ class RolesAndPermissionsSeeder extends Seeder
                         'create patients',
                         'view chits',
                         'view admissions',
-                        'view dashboard',
                         'view invoices',
                         'view patients',
                     ];

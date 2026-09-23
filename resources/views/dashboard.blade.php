@@ -377,6 +377,21 @@
 
                     </div>
                 @endcan
+            @else
+                <div class="bg-white shadow-xl rounded-lg px-6 py-12 text-center">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50">
+                        <svg class="h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-6 text-2xl font-bold text-gray-800">Welcome, {{ Auth::user()->name }}</h3>
+                    <p class="mt-3 text-base text-gray-600 max-w-xl mx-auto">
+                        Please use the navigation menu above to access your modules and get started with your work.
+                    </p>
+                    <p class="mt-2 text-sm text-gray-500">{{ now()->format('l, d F Y') }}</p>
+                </div>
             @endif
 
 
