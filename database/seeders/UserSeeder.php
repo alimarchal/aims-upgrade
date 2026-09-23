@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         // Super-Admin user
         $admin = User::updateOrCreate(['id' => 2], [
-            'name' => 'Ali Raza Marchal (SA)',
+            'name' => 'SeeChange Innovative',
             'email' => 'kh.marchal@gmail.com',
             'password' => Hash::make('Ali@03008169924'),
             'department_id' => null,
@@ -32,7 +32,6 @@ class UserSeeder extends Seeder
             'profile_photo_path' => null,
         ]);
         $admin->syncRoles(['Super-Admin']);
-
 
         // Front Desk users
         $frontDesk_1 = User::updateOrCreate(['id' => 1], [

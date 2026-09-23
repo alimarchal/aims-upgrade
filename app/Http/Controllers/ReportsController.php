@@ -15,6 +15,7 @@ use App\Models\PatientTest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -215,6 +216,118 @@ class ReportsController extends Controller
         }
 
         return view('reports.reports-daily-ipd', compact('data'));
+    }
+
+    /**
+     * User wise daily revenue excluding HIF, reconciled with the department wise audit report totals.
+     */
+    public function reportDailyUserWiseGovt(Request $request): View
+    {
+        $date_start_at = Carbon::parse($request->start_date)->format('Y-m-d').' 00:00:00';
+        $date_end_at = Carbon::parse($request->end_date)->format('Y-m-d').' 23:59:59';
+
+        $users = $request->input('user_id')
+            ? User::query()->role('Front Desk/Receptionist')->where('id', $request->input('user_id'))->get(['id', 'name'])
+            : User::query()->orderBy('id')->get(['id', 'name']);
+
+        $fee_types = $this->userWiseGovtFeeTypes();
+
+        $return_fee_ids = FeeType::query()
+            ->whereIn('type', $fee_types->map(fn (FeeType $fee_type): string => 'Return '.$fee_type->type))
+            ->orderBy('id')
+            ->get(['id', 'type'])
+            ->unique('type')
+            ->pluck('id', 'type');
+
+        // Same split as the audit report: chit based fee types are counted from chits, the rest from patient tests
+        $chit_count_fee_type_ids = [];
+        $chit_amount_fee_type_ids = [];
+        $test_fee_type_ids = [];
+        $test_amount_fee_type_ids = [];
+
+        foreach ($fee_types as $fee_type) {
+            if ($fee_type->fee_category_id == 13 || $fee_type->id == 1 || $fee_type->id == 19) {
+                $chit_count_fee_type_ids[] = $fee_type->id;
+                $chit_amount_fee_type_ids[] = $fee_type->id;
+
+                continue;
+            }
+
+            $related_fee_type_ids = array_filter([$fee_type->id, $return_fee_ids->get('Return '.$fee_type->type)]);
+
+            $test_fee_type_ids[] = $fee_type->id;
+            array_push($test_amount_fee_type_ids, ...$related_fee_type_ids);
+            array_push($chit_amount_fee_type_ids, ...$related_fee_type_ids);
+        }
+
+        $chitStatsByUser = Chit::query()
+            ->whereBetween('issued_date', [$date_start_at, $date_end_at])
+            ->whereIn('fee_type_id', array_unique($chit_amount_fee_type_ids))
+            ->whereIn('user_id', $users->pluck('id'))
+            ->groupBy('user_id')
+            ->select('user_id')
+            ->selectRaw('SUM(CASE WHEN government_non_gov IS TRUE AND fee_type_id IN ('.implode(',', $chit_count_fee_type_ids ?: [0]).') THEN 1 ELSE 0 END) AS entitled')
+            ->selectRaw('SUM(CASE WHEN government_non_gov IS FALSE AND fee_type_id IN ('.implode(',', $chit_count_fee_type_ids ?: [0]).') THEN 1 ELSE 0 END) AS non_entitled')
+            ->selectRaw('COALESCE(SUM(amount), 0) - COALESCE(SUM(amount_hif), 0) AS govt')
+            ->get()
+            ->keyBy('user_id');
+
+        $testCountsByUser = PatientTest::query()
+            ->join('invoices', 'invoices.id', '=', 'patient_tests.invoice_id')
+            ->whereBetween('patient_tests.created_at', [$date_start_at, $date_end_at])
+            ->whereIn('patient_tests.fee_type_id', $test_fee_type_ids)
+            ->where('patient_tests.status', 'Normal')
+            ->whereIn('invoices.user_id', $users->pluck('id'))
+            ->groupBy('invoices.user_id')
+            ->select('invoices.user_id')
+            ->selectRaw("SUM(CASE WHEN patient_tests.status = 'Normal' AND patient_tests.government_non_gov IS TRUE THEN 1 ELSE 0 END) AS entitled")
+            ->selectRaw("SUM(CASE WHEN patient_tests.status = 'Normal' AND patient_tests.government_non_gov IS FALSE THEN 1 ELSE 0 END) AS non_entitled")
+            ->get()
+            ->keyBy('user_id');
+
+        // Exclude tests on invoices that never had their totals synced, as the audit report does
+        $testAmountsByUser = PatientTest::query()
+            ->join('invoices', 'invoices.id', '=', 'patient_tests.invoice_id')
+            ->whereNull('invoices.deleted_at')
+            ->where(fn ($query) => $query->where('invoices.total_amount', '!=', 0)->orWhere('invoices.hif_amount', '!=', 0))
+            ->whereBetween('patient_tests.created_at', [$date_start_at, $date_end_at])
+            ->whereIn('patient_tests.fee_type_id', array_unique($test_amount_fee_type_ids))
+            ->whereIn('invoices.user_id', $users->pluck('id'))
+            ->groupBy('invoices.user_id')
+            ->select('invoices.user_id')
+            ->selectRaw('COALESCE(SUM(patient_tests.total_amount), 0) - COALESCE(SUM(patient_tests.hif_amount), 0) AS govt')
+            ->selectRaw("SUM(CASE WHEN patient_tests.status = 'Return' THEN 1 ELSE 0 END) AS returns")
+            ->selectRaw("COALESCE(SUM(CASE WHEN patient_tests.status = 'Return' THEN patient_tests.total_amount - patient_tests.hif_amount ELSE 0 END), 0) AS returns_govt")
+            ->get()
+            ->keyBy('user_id');
+
+        $data = [];
+
+        foreach ($users as $user) {
+            $data[$user->id] = [
+                'Name' => $user->name,
+                'Invoices Entitled' => (int) ($testCountsByUser->get($user->id)->entitled ?? 0),
+                'Invoices Non Entitled' => (int) ($testCountsByUser->get($user->id)->non_entitled ?? 0),
+                'Invoices Returns' => (int) ($testAmountsByUser->get($user->id)->returns ?? 0),
+                'Invoices Returns Amount' => (float) ($testAmountsByUser->get($user->id)->returns_govt ?? 0),
+                'Invoices' => (float) ($testAmountsByUser->get($user->id)->govt ?? 0),
+                'Chit Entitled' => (int) ($chitStatsByUser->get($user->id)->entitled ?? 0),
+                'Chit Non Entitled' => (int) ($chitStatsByUser->get($user->id)->non_entitled ?? 0),
+                'Chits' => (float) ($chitStatsByUser->get($user->id)->govt ?? 0),
+            ];
+        }
+
+        $reconciliation = $request->input('user_id')
+            ? null
+            : $this->userWiseGovtReconciliation(
+                $date_start_at,
+                $date_end_at,
+                collect($data)->sum(fn (array $row): float => $row['Invoices'] + $row['Chits']),
+                $test_amount_fee_type_ids,
+                $chit_amount_fee_type_ids,
+            );
+
+        return view('reports.reports-daily-user-wise-govt', compact('data', 'reconciliation'));
     }
 
     public function index()
@@ -770,6 +883,114 @@ class ReportsController extends Controller
         }
 
         return view('reports.category-wise.department-wise-audit', compact('categories', 'fee_types'));
+    }
+
+    /**
+     * Break down the difference between the audit total and the monthly income statement total for the same period.
+     *
+     * @param  array<int, int>  $test_amount_fee_type_ids
+     * @param  array<int, int>  $chit_amount_fee_type_ids
+     * @return array{audit_total: float, items: array<string, float>, income_statement_total: float}
+     */
+    private function userWiseGovtReconciliation(string $date_start_at, string $date_end_at, float $audit_total, array $test_amount_fee_type_ids, array $chit_amount_fee_type_ids): array
+    {
+        $income_statement_total = (float) Invoice::query()
+            ->whereBetween('created_at', [$date_start_at, $date_end_at])
+            ->sum(DB::raw('total_amount - hif_amount'))
+            + (float) Chit::query()
+                ->whereBetween('created_at', [$date_start_at, $date_end_at])
+                ->sum(DB::raw('amount - amount_hif'));
+
+        $excluded_tests = PatientTest::query()
+            ->join('invoices', 'invoices.id', '=', 'patient_tests.invoice_id')
+            ->join('fee_types', 'fee_types.id', '=', 'patient_tests.fee_type_id')
+            ->whereNull('invoices.deleted_at')
+            ->whereBetween('patient_tests.created_at', [$date_start_at, $date_end_at])
+            ->whereNotIn('patient_tests.fee_type_id', array_unique($test_amount_fee_type_ids) ?: [0])
+            ->groupBy('fee_types.type')
+            ->selectRaw('fee_types.type AS name, SUM(patient_tests.total_amount - patient_tests.hif_amount) AS amount')
+            ->get();
+
+        $excluded_chits = Chit::query()
+            ->leftJoin('fee_types', 'fee_types.id', '=', 'chits.fee_type_id')
+            ->whereBetween('chits.created_at', [$date_start_at, $date_end_at])
+            ->where(fn ($query) => $query->whereNull('chits.fee_type_id')->orWhereNotIn('chits.fee_type_id', array_unique($chit_amount_fee_type_ids) ?: [0]))
+            ->groupBy('fee_types.type')
+            ->selectRaw("COALESCE(fee_types.type, 'No Fee Type') AS name, SUM(chits.amount - chits.amount_hif) AS amount")
+            ->get();
+
+        $items = [];
+
+        foreach ($excluded_tests->concat($excluded_chits) as $row) {
+            $items[$row->name] = ($items[$row->name] ?? 0) + (float) $row->amount;
+        }
+
+        $items = array_filter($items, fn (float $amount): bool => round($amount, 2) != 0);
+
+        $other_differences = round($income_statement_total - $audit_total - array_sum($items), 2);
+
+        if ($other_differences != 0) {
+            $items['Other differences (date / unsynced invoices)'] = $other_differences;
+        }
+
+        return [
+            'audit_total' => $audit_total,
+            'items' => $items,
+            'income_statement_total' => $income_statement_total,
+        ];
+    }
+
+    /**
+     * Fee types used by the user wise govt report, mirroring the department wise audit report's selection.
+     *
+     * @return Collection<int, FeeType>
+     */
+    private function userWiseGovtFeeTypes(?string $fee_category_ids = null): Collection
+    {
+        $fee_types = null;
+        $status = ['Normal'];
+        $excluded_fee_types = [
+            'Driving Licence',
+            'Weapon Licence',
+            'Wapon Licence',
+            'Birth Certificate',
+            'Gynae & Obs',
+            'Gynae & Obs Ultrasound',
+            'Room Charges',
+            'CTG FEE',
+            'Delivery',
+            'Clonocopy',
+            'Endoscopy',
+            'ERCP',
+            'Na',
+            'Chit Fee (Screening OPD Male)',
+            'Chit Fee (Screening OPD Female)',
+        ];
+        $excluded_fee_types = array_map('strtolower', $excluded_fee_types);
+
+        if ($fee_category_ids !== null) {
+            // Split the string into an array of individual IDs
+            $fee_category_ids = explode(',', $fee_category_ids);
+
+            $fee_types = QueryBuilder::for(FeeType::class)
+                ->orderBy('fee_category_id')
+                ->whereIn('fee_category_id', $fee_category_ids)
+                ->whereIn('status', $status)
+                ->get();
+        } else {
+            $fee_types = QueryBuilder::for(FeeType::class)
+                ->orderBy('fee_category_id')
+                ->whereIn('status', $status)
+                ->get();
+        }
+
+        $fee_types = $fee_types->reject(function (FeeType $fee_type) use ($excluded_fee_types): bool {
+            $fee_type_name = strtolower(preg_replace('/^Return\s+/i', '', trim($fee_type->type)));
+
+            return in_array($fee_type_name, $excluded_fee_types, true);
+        });
+
+        return $fee_types;
     }
 
     public function admission(Request $request)
