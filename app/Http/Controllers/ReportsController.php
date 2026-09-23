@@ -83,6 +83,59 @@ class ReportsController extends Controller
 
     }
 
+    public function reportDailyOpd(Request $request)
+    {
+        $start_date = Carbon::parse($request->start_date)->format('Y-m-d');
+        $end_date = Carbon::parse($request->end_date)->format('Y-m-d');
+
+        $date_start_at = $start_date.' 00:00:00';
+        $date_end_at = $end_date.' 23:59:59';
+
+        $data = [];
+        foreach (Department::where('name', '!=', 'Emergency')->get() as $dpt) {
+            $data[$dpt->name] = ['Non_Entitiled' => 0, 'Entitiled' => 0, 'Revenue' => 0, 'Revenue_HIF' => 0, 'department_id' => $dpt->id];
+        }
+
+        $non_entitled = DB::table('chits')
+            ->join('departments', 'chits.department_id', '=', 'departments.id')
+            ->select('departments.name', DB::raw('COUNT(chits.government_non_gov) AS "Non_Entitiled"'), DB::raw('SUM(chits.amount) as "Revenue", SUM(chits.amount_hif) as "Revenue_HIF"'))
+            ->whereBetween('chits.issued_date', [$date_start_at, $date_end_at])
+            ->where('chits.government_non_gov', 0)
+            ->where('departments.name', '!=', 'Emergency')
+            ->whereIn('ipd_opd', [1, 0])
+            ->groupBy('chits.department_id', 'departments.name')
+            ->get();
+
+        $entitled = DB::table('chits')
+            ->join('departments', 'chits.department_id', '=', 'departments.id')
+            ->select('departments.name', DB::raw('COUNT(chits.government_non_gov) AS "Entitiled"'), DB::raw('SUM(chits.amount) as "Revenue", SUM(chits.amount_hif) as "Revenue_HIF"'))
+            ->whereBetween('chits.issued_date', [$date_start_at, $date_end_at])
+            ->where('chits.government_non_gov', 1)
+            ->where('departments.name', '!=', 'Emergency')
+            ->whereIn('ipd_opd', [1, 0])
+            ->groupBy('chits.department_id', 'departments.name')
+            ->get();
+
+        // Update the $data array with figures from $non_entitled and $entitled queries
+        foreach ($non_entitled as $row) {
+            if (! isset($data[$row->name])) {
+                $data[$row->name] = ['Non_Entitiled' => 0, 'Entitiled' => 0, 'Revenue' => 0, 'Revenue_HIF' => 0, 'department_id' => null];
+            }
+            $data[$row->name]['Non_Entitiled'] = $row->Non_Entitiled;
+            $data[$row->name]['Revenue'] = $row->Revenue;
+            $data[$row->name]['Revenue_HIF'] = $row->Revenue_HIF;
+        }
+
+        foreach ($entitled as $row) {
+            if (! isset($data[$row->name])) {
+                $data[$row->name] = ['Non_Entitiled' => 0, 'Entitiled' => 0, 'Revenue' => 0, 'Revenue_HIF' => 0, 'department_id' => null];
+            }
+            $data[$row->name]['Entitiled'] = $row->Entitiled;
+        }
+
+        return view('reports.report-daily-opd', compact('data'));
+    }
+
     public function reportDailyIPD(Request $request)
     {
 

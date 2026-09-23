@@ -101,6 +101,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('reports/opd/specialist-fees', [ReportsController::class, 'reportOpdSpecialistFees'])->name('reports.opd.specialist-fees')->middleware('permission:view opd reports');
         Route::get('reports/ipd', [ReportsController::class, 'ipd'])->name('reports.ipd');
         Route::get('reports/opd/reports-daily', [ReportsController::class, 'reportDaily'])->name('reports.opd.reportDaily')->middleware('permission:view daily reports');
+        Route::get('reports/opd/report-daily-opd', [ReportsController::class, 'reportDailyOpd'])->name('reports.opd.reportDailyOpd')->middleware('permission:view government daily reports');
         Route::get('reports/ipd/reports-daily', [ReportsController::class, 'reportDailyIPD'])->name('reports.opd.reportDailyIPD')->middleware('permission:view daily reports');
         Route::get('reports/ipd/monthly-income-statement', [ReportsController::class, 'monthlyIncomeStatement'])->name('reports.ipd.monthly-income-statement')->middleware('permission:view monthly income reports');
 
