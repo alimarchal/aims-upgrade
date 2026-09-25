@@ -113,8 +113,9 @@
                             <th class="border-black border px-4 py-2 text-left">OPD</th>
                             <th class="border-black border px-4 py-2 text-center">Entitled</th>
                             <th class="border-black border px-4 py-2 text-center">Non-Entitled</th>
-                            <th class="border-black border px-4 py-2 text-center">Govt</th>
-                            <th class="border-black border px-4 py-2 text-center">Total</th>
+                            <th class="border-black border px-4 py-2 text-center">Total Count</th>
+                            {{-- <th class="border-black border px-4 py-2 text-center">Govt</th>
+                            <th class="border-black border px-4 py-2 text-center">Total</th> --}}
                         </tr>
                         </thead>
                         <tbody>
@@ -123,6 +124,7 @@
                             $totalEntitiled = 0;
                             $totalRevenue = 0;
                             $totalRevenue_HIF = 0;
+                            $totalCount = 0;
                         @endphp
 
                         @foreach($data as $key => $value)
@@ -149,8 +151,14 @@
                                     --}}
                                     {{ $value['Non_Entitiled'] }}
                                 </td>
-                                <td class="border-black border px-4 py-2 text-right">{{ number_format(($value['Revenue']-$value['Revenue_HIF']),2) }}</td>
-                                <td class="border-black border px-4 py-2 text-right">{{ number_format(($value['Revenue']-$value['Revenue_HIF']),2) }}</td>
+
+
+                                <td class="border-black border px-4 py-2 text-center">
+                                    {{ $value['Entitiled']+$value['Non_Entitiled'] }}
+                                </td>
+
+                                {{-- <td class="border-black border px-4 py-2 text-right">{{ number_format(($value['Revenue']-$value['Revenue_HIF']),2) }}</td>
+                                <td class="border-black border px-4 py-2 text-right">{{ number_format(($value['Revenue']-$value['Revenue_HIF']),2) }}</td> --}}
                             </tr>
                             @php
                                 $totalNonEntitiled += $value['Non_Entitiled'];
@@ -162,11 +170,13 @@
 
                         <!-- Total row -->
                         <tr class="border-black">
-                            <td class="border-black border px-4 py-2 text-right font-bold" colspan="2">Total: {{ $totalNonEntitiled }} + {{ $totalEntitiled }} = {{ $totalNonEntitiled+$totalEntitiled }}</td>
+                            <td class="border-black border px-4 py-2 text-right font-bold" colspan="2">Total: {{ $totalEntitiled }} + {{ $totalNonEntitiled }} = {{ $totalNonEntitiled+$totalEntitiled }}</td>
+                                                        <td class="border-black border px-4 py-2 text-center font-bold">{{ $totalEntitiled }}</td>
                             <td class="border-black border px-4 py-2 text-center font-bold">{{ $totalNonEntitiled }}</td>
-                            <td class="border-black border px-4 py-2 text-center font-bold">{{ $totalEntitiled }}</td>
-                            <td class="border-black border px-4 py-2 text-right font-bold">{{ number_format($totalRevenue-$totalRevenue_HIF,2) }}</td>
-                            <td class="border-black border px-4 py-2 text-right font-bold">{{ number_format($totalRevenue-$totalRevenue_HIF,2) }}</td>
+
+                            <td class="border-black border px-4 py-2 text-center font-bold">{{ $totalNonEntitiled+$totalEntitiled }}</td>
+                            {{-- <td class="border-black border px-4 py-2 text-right font-bold">{{ number_format($totalRevenue-$totalRevenue_HIF,2) }}</td>
+                            <td class="border-black border px-4 py-2 text-right font-bold">{{ number_format($totalRevenue-$totalRevenue_HIF,2) }}</td> --}}
                         </tr>
 
                         </tbody>
