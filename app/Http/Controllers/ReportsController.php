@@ -137,6 +137,33 @@ class ReportsController extends Controller
         return view('reports.report-daily-opd', compact('data'));
     }
 
+    public function reportDailyOpdStatistician(Request $request): View
+    {
+        $date_start_at = Carbon::parse($request->start_date)->format('Y-m-d').' 00:00:00';
+        $date_end_at = Carbon::parse($request->end_date)->format('Y-m-d').' 23:59:59';
+
+        $data = [];
+        foreach (Department::where('name', '!=', 'Emergency')->get() as $dpt) {
+            $data[$dpt->name] = 0;
+        }
+
+        $patientCounts = DB::table('chits')
+            ->join('departments', 'chits.department_id', '=', 'departments.id')
+            ->select('departments.name', DB::raw('COUNT(chits.id) AS patient_count'))
+            ->whereBetween('chits.issued_date', [$date_start_at, $date_end_at])
+            ->whereIn('chits.government_non_gov', [0, 1])
+            ->where('departments.name', '!=', 'Emergency')
+            ->whereIn('ipd_opd', [1, 0])
+            ->groupBy('chits.department_id', 'departments.name')
+            ->get();
+
+        foreach ($patientCounts as $row) {
+            $data[$row->name] = (int) $row->patient_count;
+        }
+
+        return view('reports.report-daily-opd-statistician', compact('data'));
+    }
+
     public function reportDailyIPD(Request $request)
     {
 
