@@ -49,6 +49,7 @@
 
 @livewireScripts
 @yield('custom_script')
+@stack('scripts')
 <script>
     $('form').submit(function () {
         $(this).find(':submit').attr('disabled', 'disabled');

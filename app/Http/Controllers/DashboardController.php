@@ -9,14 +9,47 @@ use App\Models\FeeCategory;
 use App\Models\FeeType;
 use App\Models\Invoice;
 use App\Models\Patient;
+use App\Services\DashboardData;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    //
-    public function index(): View
+    /** Administrators get the management overview, front desk users their own work; everyone else keeps the classic dashboard. */
+    public function index(Request $request): View
+    {
+        $user = $request->user();
+
+        if ($user->can('view dashboard')) {
+            $isAdmin = $user->can('view admin dashboard') || $user->hasRole(['Super-Admin', 'Administrator']);
+            $isFrontDesk = ! $isAdmin && ($user->can('view front desk dashboard') || $user->hasRole('Front Desk/Receptionist'));
+
+            if ($isAdmin) {
+                $parse = function (?string $value): ?Carbon {
+                    try {
+                        return $value ? Carbon::parse($value) : null;
+                    } catch (\Throwable) {
+                        return null;
+                    }
+                };
+                $from = $parse($request->query('from'));
+                $to = $parse($request->query('to'));
+
+                return view('dashboards.admin', ['data' => DashboardData::admin($from ?? $to, $to ?? $from)]);
+            }
+
+            if ($isFrontDesk) {
+                return view('dashboards.front-desk', ['data' => DashboardData::frontDesk($user)]);
+            }
+        }
+
+        return $this->classic();
+    }
+
+    /** The original dashboard, kept for roles such as Auditor. */
+    private function classic(): View
     {
         $todayStart = Carbon::today()->startOfDay();
         $todayEnd = Carbon::today()->endOfDay();
