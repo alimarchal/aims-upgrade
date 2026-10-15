@@ -76,7 +76,7 @@ test('front desk user with dashboard permission sees dashboard statistics', func
     $this->actingAs($user)
         ->get('/dashboard')
         ->assertSuccessful()
-        ->assertSee('Issued Chits Today')
+        ->assertSee('Issued chits today')
         ->assertDontSee('Please use the navigation menu above to access your modules');
 });
 
