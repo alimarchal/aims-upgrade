@@ -152,12 +152,14 @@
                                 <tr class="border-black">
                                     <td class="border-black border px-4 py-2">{{$loop->iteration}}</td>
                                     <td class="border-black border px-4 py-2">
-                                        {{-- <a href="{{ route('patient.edit', $patient->id) }}"
-                                            class="text-indigo-600 hover:text-indigo-900 hover:underline">
+                                        @can('edit patients')
+                                            <a href="{{ route('patient.edit', $patient->id) }}"
+                                                class="text-indigo-600 hover:text-indigo-900 hover:underline">
+                                                {{ $patient->title }} {{$patient->first_name . ' ' . $patient->last_name}}
+                                            </a>
+                                        @else
                                             {{ $patient->title }} {{$patient->first_name . ' ' . $patient->last_name}}
-                                        </a> --}}
-
-                                        {{ $patient->title }} {{$patient->first_name . ' ' . $patient->last_name}}
+                                        @endcan
                                     </td>
                                     {{-- <td class="border-black border px-4 py-2">{{$patient->father_husband_name}}</td>
                                     --}}

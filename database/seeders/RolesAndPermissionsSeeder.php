@@ -157,6 +157,7 @@ class RolesAndPermissionsSeeder extends Seeder
                         'view dashboard',
                         'view dashboard statistics',
                         'view patients',
+                        'edit patients',
                         'view reports',
                         'view opd reports',
                         'view daily reports',

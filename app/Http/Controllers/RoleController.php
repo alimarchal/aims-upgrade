@@ -2,100 +2,149 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PermissionCatalog;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private const GUARD = 'sanctum';
+
+    private const SUPER_ADMIN_ROLE = 'Super-Admin';
+
+    public function __construct()
+    {
+        $this->middleware('permission:view roles')->only(['index', 'show']);
+        $this->middleware('permission:create roles')->only(['create', 'store']);
+        $this->middleware('permission:edit roles')->only(['edit', 'update']);
+    }
+
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::where('guard_name', self::GUARD)->withCount('permissions')->orderBy('name')->get();
+        $userCounts = DB::table('model_has_roles')
+            ->select('role_id', DB::raw('count(*) as total'))
+            ->groupBy('role_id')
+            ->pluck('total', 'role_id');
 
-        return view('roles.index', compact('roles'));
+        return view('roles.index', compact('roles', 'userCounts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $permissions = Permission::all();
-        return view('roles.create', compact('permissions'));
+        return view('roles.form', $this->formData(new Role));
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $data = $request->validate($this->rules());
+
+        DB::transaction(function () use ($data) {
+            $role = Role::create(['name' => $data['name'], 'guard_name' => self::GUARD]);
+            $role->syncPermissions($this->permissions($data['permissions'] ?? []));
+        });
+
+        return to_route('roles.index')->with('success', 'Role created successfully.');
+    }
+
+    public function show(Role $role): RedirectResponse
+    {
+        return to_route('roles.edit', $role);
+    }
+
+    public function edit(Role $role)
+    {
+        $this->authorizeRole($role);
+
+        return view('roles.form', $this->formData($role));
+    }
+
+    public function update(Request $request, Role $role): RedirectResponse
+    {
+        $this->authorizeRole($role);
+
+        if ($role->name === self::SUPER_ADMIN_ROLE && $request->input('name') !== self::SUPER_ADMIN_ROLE) {
+            return back()->withInput()->withErrors(['name' => 'The Super-Admin role cannot be renamed.']);
+        }
+
+        $data = $request->validate($this->rules($role));
+
+        DB::transaction(function () use ($data, $role) {
+            $role->update(['name' => $data['name']]);
+
+            if ($role->name !== self::SUPER_ADMIN_ROLE) {
+                $role->syncPermissions($this->permissions($data['permissions'] ?? []));
+            }
+        });
+
+        return to_route('roles.index')->with('success', 'Role updated successfully.');
+    }
+
+    public function destroy(Role $role): RedirectResponse
+    {
+        abort_unless(auth()->user()->hasRole(self::SUPER_ADMIN_ROLE), 403, 'Only a Super-Admin can delete roles.');
+
+        $this->authorizeRole($role);
+
+        if ($role->name === self::SUPER_ADMIN_ROLE) {
+            return back()->with('error', 'The Super-Admin role cannot be deleted.');
+        }
+
+        if (DB::table('model_has_roles')->where('role_id', $role->id)->exists()) {
+            return back()->with('error', 'This role is assigned to users. Move those users to another role first.');
+        }
+
+        $role->delete();
+
+        return to_route('roles.index')->with('success', 'Role deleted. Permissions were not touched.');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @return array<string, mixed>
      */
-    public function store(Request $request)
+    private function rules(?Role $role = null): array
     {
-        $request->validate([
-            'name' => 'required|unique:roles,name',
-        ]);
+        $unique = Rule::unique('roles', 'name')->where('guard_name', self::GUARD);
 
-        $request->validate([
-            'name' => 'required|unique:roles,name',
-            'permissions' => 'required|array',
-            'permissions.*' => 'exists:permissions,id',
-        ]);
-
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permissions'));
-
-        return redirect()->route('roles.index')->with('success', 'Role created successfully.');
-
-    }
-    public function edit(Role $role)
-    {
-        $permissions = Permission::all();
-
-        return view('roles.edit', compact('role', 'permissions'));
+        return [
+            'name' => ['required', 'string', 'max:255', $role ? $unique->ignore($role->id) : $unique],
+            'permissions' => ['nullable', 'array'],
+            'permissions.*' => ['integer', Rule::exists('permissions', 'id')->where('guard_name', self::GUARD)],
+        ];
     }
 
-    public function update(Request $request, Role $role)
+    /**
+     * @param  array<int, int|string>  $ids
+     * @return \Illuminate\Support\Collection<int, Permission>
+     */
+    private function permissions(array $ids)
     {
-        $request->validate([
-            'name' => 'required|unique:roles,name,' . $role->id,
-            'permissions' => 'nullable|array',
-            'permissions.*' => 'exists:permissions,id',
-        ]);
-
-        $role->name = $request->input('name');
-        $role->save();
-
-        $permissions = $request->input('permissions', []);
-
-        // Get the current permissions directly assigned to the role
-        $currentPermissions = $role->permissions()->pluck('id')->toArray();
-
-        // Detach permissions that are no longer selected
-        $permissionsToDetach = array_diff($currentPermissions, $permissions);
-        $role->permissions()->detach($permissionsToDetach);
-
-        // Attach new permissions
-        $permissionsToAttach = array_diff($permissions, $currentPermissions);
-        $role->permissions()->attach($permissionsToAttach);
-
-        return redirect()->route('roles.index')->with('success', 'Role updated successfully.');
+        return Permission::whereIn('id', $ids)->where('guard_name', self::GUARD)->get();
     }
 
-    public function destroy(Role $role)
+    /**
+     * @return array<string, mixed>
+     */
+    private function formData(Role $role): array
     {
-        // Retrieve the related permissions
-        $permissions = $role->permissions;
+        return [
+            'role' => $role,
+            'catalog' => PermissionCatalog::build(Permission::where('guard_name', self::GUARD)->get()),
+            'checked' => array_map('intval', old('permissions', $role->exists ? $role->permissions->pluck('id')->all() : [])),
+        ];
+    }
 
-        // Delete the role
-        $role->delete();
-
-        // Delete the related permissions
-        foreach ($permissions as $permission) {
-            $permission->delete();
-        }
-
-        return redirect()->route('roles.index')->with('success', 'Role and related permissions deleted successfully.');
+    private function authorizeRole(Role $role): void
+    {
+        abort_if($role->guard_name !== self::GUARD, 404);
+        abort_if(
+            $role->name === self::SUPER_ADMIN_ROLE && ! auth()->user()->hasRole(self::SUPER_ADMIN_ROLE),
+            403,
+            'Only a Super-Admin can manage the Super-Admin role.'
+        );
     }
 }

@@ -9,6 +9,12 @@ use App\Models\FeeType;
 
 class FeeTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:create fee types')->only(['create', 'store']);
+        $this->middleware('permission:edit fee types')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -71,6 +77,8 @@ class FeeTypeController extends Controller
      */
     public function destroy(FeeType $feeType)
     {
+        abort_unless(auth()->user()->hasRole('Super-Admin'), 403, 'Only a Super-Admin can delete records.');
+
         $feeType->delete();
         return redirect()->route('feeType.index')->with('message', 'Fee type deleted successfully!');
     }

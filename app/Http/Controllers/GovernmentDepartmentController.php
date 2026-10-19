@@ -9,6 +9,12 @@ use App\Models\GovernmentDepartment;
 
 class GovernmentDepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:create government departments')->only(['create', 'store']);
+        $this->middleware('permission:edit government departments')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -67,6 +73,8 @@ class GovernmentDepartmentController extends Controller
      */
     public function destroy(GovernmentDepartment $governmentDepartment)
     {
+        abort_unless(auth()->user()->hasRole('Super-Admin'), 403, 'Only a Super-Admin can delete records.');
+
         $governmentDepartment->delete();
 
         return redirect()->route('governmentDepartment.index')

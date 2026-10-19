@@ -64,7 +64,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('patient/{patient}/history', [PatientController::class, 'patient_history'])->name('patient.history');
         Route::post('patient/invoice', [PatientController::class, 'patient_test_invoice_generate'])->name('patient.patient_test_invoice_generate');
 
-        Route::resource('patient', PatientController::class);
+        Route::resource('patient', PatientController::class)->except(['edit', 'update']);
+        Route::get('patient/{patient}/edit', [PatientController::class, 'edit'])
+            ->name('patient.edit')
+            ->middleware('permission:edit patients');
+        Route::match(['put', 'patch'], 'patient/{patient}', [PatientController::class, 'update'])
+            ->name('patient.update')
+            ->middleware('permission:edit patients');
         Route::get('patient/ipd/create', [PatientController::class, 'createIPD'])->name('patient.create-ipd');
         Route::get('patient/opd/create', [PatientController::class, 'createOPD'])->name('patient.create-opd');
         Route::post('patient/opd', [PatientController::class, 'storeOPD'])->name('patient.store-opd');

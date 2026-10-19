@@ -8,6 +8,12 @@ use App\Models\Department;
 
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:create departments')->only(['create', 'store']);
+        $this->middleware('permission:edit departments')->only(['edit', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -66,6 +72,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+        abort_unless(auth()->user()->hasRole('Super-Admin'), 403, 'Only a Super-Admin can delete records.');
+
         $department->delete();
 
         return redirect()->route('department.index')
