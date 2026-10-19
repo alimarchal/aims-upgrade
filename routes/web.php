@@ -114,6 +114,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
         Route::get('reports/misc/department-wise', [ReportsController::class, 'department_wise'])->name('reports.misc.category-wise')->middleware('permission:view department reports');
         Route::get('reports/misc/department-wise-two', [ReportsController::class, 'department_wise_two'])->name('reports.misc.category-wise-two')->middleware('permission:view department reports');
+        Route::get('reports/misc/department-wise-stats', [ReportsController::class, 'department_wise_stats'])->name('reports.misc.department-wise-stats')->middleware('permission:view department wise stats reports');
         Route::get('reports/misc/department-wise-audit', [ReportsController::class, 'department_wise_audit'])->name('reports.misc.department-wise-audit')->middleware('permission:view department wise audit reports');
 
         Route::get('reports/ssp/claims', [ReportsController::class, 'sspClaims'])->name('reports.ssp.claims')->middleware('permission:view ssp reports');

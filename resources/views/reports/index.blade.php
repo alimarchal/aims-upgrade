@@ -158,6 +158,27 @@
                     </a>
                 @endcan
 
+                @can('view department wise stats reports')
+                    <a href="{{ route('reports.misc.department-wise-stats') }}"
+                        class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white">
+                        <div class="p-5">
+                            <div class="grid grid-cols-3 gap-1">
+                                <div class="col-span-2">
+                                    <div class="text-3xl font-bold leading-8">
+                                        Department
+                                    </div>
+                                    <div class="mt-1 text-base  font-bold text-gray-600">
+                                        Wise Stats
+                                    </div>
+                                </div>
+                                <div class="col-span-1 flex items-center justify-end">
+                                    <img src="{{ url('images/reports.png') }}" alt="department wise stats" class="h-12 w-12">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endcan
+
                 @can('view department wise audit reports')
                     <a href="{{ route('reports.misc.department-wise-audit') }}"
                         class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white">

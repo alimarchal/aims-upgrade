@@ -805,6 +805,62 @@ class ReportsController extends Controller
         return view('reports.category-wise.department-wise-two', compact('categories', 'fee_types'));
     }
 
+    /**
+     * Department wise patient counts (entitled + non entitled combined) net of returns.
+     */
+    public function department_wise_stats(Request $request): View
+    {
+        ini_set('max_execution_time', 300);
+
+        $start_date = Carbon::parse($request->input('start_date', now()))->format('Y-m-d');
+        $end_date = Carbon::parse($request->input('end_date', now()))->format('Y-m-d');
+        $date_start_at = $start_date.' 00:00:00';
+        $date_end_at = $end_date.' 23:59:59';
+
+        $fee_types = FeeType::query()
+            ->where('status', 'Normal')
+            ->when($request->input('filter.fee_category_id'), function ($query, $ids) {
+                $query->whereIn('fee_category_id', explode(',', $ids));
+            })
+            ->when($request->input('filter.fee_type_id'), function ($query, $ids) {
+                $query->whereIn('id', explode(',', $ids));
+            })
+            ->orderBy('fee_category_id')
+            ->get();
+
+        $categories = [];
+
+        foreach ($fee_types as $fee_type) {
+            $is_chit = $fee_type->fee_category_id == 13 || $fee_type->id == 1 || $fee_type->id == 19;
+
+            if ($is_chit) {
+                $patient_count = Chit::query()
+                    ->whereBetween('issued_date', [$date_start_at, $date_end_at])
+                    ->where('fee_type_id', $fee_type->id)
+                    ->count();
+            } else {
+                $counts = PatientTest::query()
+                    ->whereBetween('created_at', [$date_start_at, $date_end_at])
+                    ->where('fee_type_id', $fee_type->id)
+                    ->whereIn('status', ['Normal', 'Return'])
+                    ->selectRaw('status, COUNT(*) as aggregate')
+                    ->groupBy('status')
+                    ->pluck('aggregate', 'status');
+
+                $patient_count = (int) ($counts['Normal'] ?? 0) - (int) ($counts['Return'] ?? 0);
+            }
+
+            $categories[$fee_type->fee_category_id][$fee_type->id] = [
+                'Patient Count' => $patient_count,
+                'fee_type' => $fee_type->type,
+            ];
+        }
+
+        $category_names = FeeCategory::query()->pluck('name', 'id');
+
+        return view('reports.category-wise.department-wise-stats', compact('categories', 'category_names'));
+    }
+
     public function department_wise_audit(Request $request)
     {
 
