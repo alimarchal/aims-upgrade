@@ -45,7 +45,7 @@
                     this.saving = false;
                     this.review = true;
                 },
-                confirmSave() { if (this.saving) return; this.saving = true; this.$el.submit(); } }"
+                confirmSave() { if (this.saving) return; this.saving = true; this.$root.submit(); } }"
             @submit.prevent="openReview()">
             @csrf
             @unless ($isCreate) @method('PUT') @endunless
