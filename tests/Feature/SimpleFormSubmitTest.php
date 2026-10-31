@@ -34,3 +34,19 @@ test('an administrator can update a fee type', function () {
 
     expect($fee->refresh())->type->toBe('Emergency')->hif->toEqual(25);
 });
+
+test('the role and permission forms confirm button submits the form element', function () {
+    foreach (['view roles', 'create roles', 'edit roles', 'manage permissions'] as $name) {
+        Permission::findOrCreate($name, 'sanctum');
+    }
+    $role = Role::findOrCreate('Administrator', 'sanctum');
+    $role->givePermissionTo(['view roles', 'create roles', 'edit roles', 'manage permissions']);
+    $admin = User::factory()->create();
+    $admin->assignRole('Administrator');
+
+    foreach (['roles.create', 'permissions.create'] as $routeName) {
+        $html = $this->actingAs($admin)->get(route($routeName))->assertOk()->getContent();
+
+        expect($html)->toContain('this.$root.submit()')->not->toContain('this.$el.submit()');
+    }
+});
