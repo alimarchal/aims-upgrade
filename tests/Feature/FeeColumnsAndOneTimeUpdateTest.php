@@ -30,15 +30,15 @@ test('the one-time command skips missing fee types without failing', function ()
     $this->artisan('fees:apply-one-time-update')->assertSuccessful();
 });
 
-test('the one-time update is scheduled for 12:00 on 1 November only', function () {
+test('the one-time update is scheduled for 23:55 on 31 October only', function () {
     $event = collect(app(Schedule::class)->events())->first(fn ($e) => str_contains($e->command, 'fees:apply-one-time-update'));
 
-    expect($event->expression)->toBe('0 12 * * *');
+    expect($event->expression)->toBe('55 23 * * *');
 
-    $this->travelTo(now()->setDate(2026, 11, 1)->setTime(12, 0));
+    $this->travelTo(now()->setDate(2026, 10, 31)->setTime(23, 55));
     expect($event->filtersPass(app()))->toBeTrue();
 
-    $this->travelTo(now()->setDate(2026, 11, 2)->setTime(12, 0));
+    $this->travelTo(now()->setDate(2026, 11, 1)->setTime(23, 55));
     expect($event->filtersPass(app()))->toBeFalse();
 });
 
