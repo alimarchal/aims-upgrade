@@ -11,7 +11,7 @@ Artisan::command('inspire', function () {
 Schedule::command('backup:run --only-db')->dailyAt('00:05')->name('backup-midnight')->withoutOverlapping();
 
 Schedule::command('fees:apply-one-time-update')
-    ->dailyAt('23:55')
-    ->when(fn (): bool => now()->toDateString() === '2026-10-31')
+    ->dailyAt('00:00')
+    ->when(fn (): bool => now()->toDateString() === '2026-11-01')
     ->name('fees-one-time-update')
     ->withoutOverlapping();
