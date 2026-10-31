@@ -26,7 +26,7 @@
         <form method="POST" id="role-form" novalidate action="{{ $isCreate ? route('roles.store') : route('roles.update', $role) }}"
             x-data="{ ...permissionForm({ direct: {{ \Illuminate\Support\Js::from($checked) }} }), review: false, saving: false, name: {{ \Illuminate\Support\Js::from(old('name', $role->name ?? '')) }},
                 openReview() { if (!this.$el.reportValidity()) return; this.saving = false; this.review = true; },
-                confirmSave() { if (this.saving) return; this.saving = true; this.$el.submit(); } }"
+                confirmSave() { if (this.saving) return; this.saving = true; this.$root.submit(); } }"
             @submit.prevent="openReview()">
             @csrf
             @unless ($isCreate) @method('PUT') @endunless
