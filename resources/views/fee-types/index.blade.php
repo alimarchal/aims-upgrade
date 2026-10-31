@@ -25,13 +25,14 @@
             <div class="ak-card" style="overflow-x:auto">
                 <div class="ak-card-head"><span>{{ $category->name }} <span class="ak-muted">({{ $category->id }})</span></span><span class="ak-badge">{{ $category->feeTypes->count() }} fees</span></div>
                 <table class="ak-table">
-                    <thead><tr><th>Name</th><th style="text-align:right">Fee</th><th style="text-align:right">HIF</th><th style="text-align:center" class="print:hidden">Actions</th></tr></thead>
+                    <thead><tr><th>Name</th><th style="text-align:right">HIF</th><th style="text-align:right">Govt</th><th style="text-align:right">Total</th><th style="text-align:center" class="print:hidden">Actions</th></tr></thead>
                     <tbody>
                         @forelse ($category->feeTypes as $feeType)
                             <tr>
                                 <td>{{ $feeType->type }} <span class="ak-muted">({{ $feeType->id }})</span></td>
-                                <td style="text-align:right">{{ number_format($feeType->amount, 2) }}</td>
                                 <td style="text-align:right">{{ number_format($feeType->hif, 2) }}</td>
+                                <td style="text-align:right">{{ number_format($feeType->amount - $feeType->hif, 2) }}</td>
+                                <td style="text-align:right">{{ number_format($feeType->amount, 2) }}</td>
                                 <td class="print:hidden">
                                     <div class="ak-rowact">
                                         @can('edit fee types')
@@ -41,7 +42,7 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr><td colspan="4" class="ak-muted" style="text-align:center">No fees in this category.</td></tr>
+                            <tr><td colspan="5" class="ak-muted" style="text-align:center">No fees in this category.</td></tr>
                         @endforelse
                     </tbody>
                 </table>
