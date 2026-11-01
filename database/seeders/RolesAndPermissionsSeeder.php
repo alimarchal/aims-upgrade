@@ -29,6 +29,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'create patients',
             'edit patients',
             'delete patients',
+            'view patient import archive',
 
             // Chits/OPD
             'view chits',

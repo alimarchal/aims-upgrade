@@ -232,6 +232,10 @@
                                 <td class="border-black border text-center">{{ count($test) }}</td>
                             </tr>
                         @endforeach
+                        <tr class="border-black font-bold">
+                            <td class="border-black border px-2 text-right" colspan="2">Total Amount</td>
+                            <td class="border-black border px-2 text-center">{{ number_format((float) $total_amount, 2) }}</td>
+                        </tr>
                     </tbody>
                 </table>
         @endif

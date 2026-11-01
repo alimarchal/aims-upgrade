@@ -5,9 +5,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FeeTypeController;
 use App\Http\Controllers\GovernmentDepartmentController;
+use App\Http\Controllers\GovernmentPatientInvoiceImportController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LabTestController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientImportController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\RoleController;
@@ -33,6 +35,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('patient-import', [PatientImportController::class, 'index'])
+        ->name('patient-import.index')
+        ->middleware('permission:view patient import archive');
+    Route::post('patient-import/{patientId}/{batchId}/restore', [PatientImportController::class, 'restore'])
+        ->whereNumber('patientId')
+        ->whereUuid('batchId')
+        ->name('patient-import.restore')
+        ->middleware('permission:view patient import archive');
 
     // Roles & Permissions Management
     Route::resource('roles', RoleController::class)->middleware('permission:view roles');
@@ -50,6 +60,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Patient Management
     Route::middleware('permission:view patients')->group(function () {
+        Route::middleware(['role:Super-Admin', 'government-import-access'])->group(function () {
+            Route::get('patient/government-import', [GovernmentPatientInvoiceImportController::class, 'index'])
+                ->name('patient.government-import');
+            Route::get('patient/government-import/help', [GovernmentPatientInvoiceImportController::class, 'help'])
+                ->name('patient.government-import.help');
+            Route::get('patient/government-import/template', [GovernmentPatientInvoiceImportController::class, 'template'])
+                ->name('patient.government-import.template');
+            Route::post('patient/government-import', [GovernmentPatientInvoiceImportController::class, 'run'])
+                ->name('patient.government-import.run');
+        });
+
         Route::get('patient/{patient}/proceed', [PatientController::class, 'proceed'])->name('patient.proceed');
         Route::post('patient/{patient}/add-to-cart', [PatientController::class, 'add_to_cart'])->name('patient.add-to-cart');
         Route::delete('patient/{patientTestCart}', [PatientController::class, 'proceed_cart_destroy'])->name('patient_cart.destroy');
