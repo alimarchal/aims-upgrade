@@ -26,6 +26,19 @@
 
             </a>
 
+            @if (auth()->user()->hasRole('Super-Admin') && config('government_import.access'))
+                <a href="{{ route('patient.government-import') }}"
+                    class="ml-2 inline-flex items-center rounded-lg border border-indigo-700 bg-indigo-700 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white hover:bg-indigo-800">
+                    Government Excel Import
+                </a>
+            @endif
+            @can('view patient import archive')
+                <a href="{{ route('patient-import.index') }}"
+                    class="ml-2 inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 hover:bg-gray-100">
+                    Patient Import Archive
+                </a>
+            @endcan
+
 
             <a href="javascript:;" id="toggle"
                 class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2"

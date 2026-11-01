@@ -8,6 +8,7 @@ use App\Models\Chit;
 use App\Models\Department;
 use App\Models\FeeType;
 use App\Models\Patient;
+use App\Services\PatientImportSnapshotReader;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,8 +23,11 @@ class ChitController extends Controller
         return view('chit.issued_chits', compact('patient'));
     }
 
-    public function issued_invoices(Patient $patient)
+    public function issued_invoices(Patient $patient, PatientImportSnapshotReader $snapshotReader)
     {
+        $patient = $snapshotReader->patient($patient);
+        $patient->setRelation('invoices', $snapshotReader->invoicesForPatient($patient));
+
         return view('invoices.issued_invoices', compact('patient'));
     }
 

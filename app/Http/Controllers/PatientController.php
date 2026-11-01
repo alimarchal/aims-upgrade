@@ -14,6 +14,7 @@ use App\Models\Patient;
 use App\Models\PatientEmergencyTreatment;
 use App\Models\PatientTest;
 use App\Models\PatientTestCart;
+use App\Services\PatientImportSnapshotReader;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,9 +27,42 @@ class PatientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PatientImportSnapshotReader $snapshotReader)
     {
-        $patients = QueryBuilder::for(Patient::class)
+        $patientQuery = Patient::query();
+
+        if ($snapshotReader->shouldUseArchivedData()) {
+            $columns = DB::getSchemaBuilder()->getColumnListing('patients');
+            $archiveRows = DB::table('patients_import as archived')
+                ->select(array_map(fn (string $column): string => 'archived.'.$column, $columns))
+                ->whereNull('archived.deleted_at')
+                ->whereNotExists(function ($query): void {
+                    $query->selectRaw('1')
+                        ->from('patients_import as newer_archive')
+                        ->whereColumn('newer_archive.id', 'archived.id')
+                        ->whereNull('newer_archive.deleted_at')
+                        ->where(function ($query): void {
+                            $query->whereColumn('newer_archive.archived_at', '>', 'archived.archived_at')
+                                ->orWhere(function ($query): void {
+                                    $query->whereColumn('newer_archive.archived_at', '=', 'archived.archived_at')
+                                        ->whereColumn('newer_archive.import_batch_id', '>', 'archived.import_batch_id');
+                                });
+                        });
+                });
+            $liveRows = DB::table('patients as live')
+                ->select(array_map(fn (string $column): string => 'live.'.$column, $columns))
+                ->whereNull('live.deleted_at')
+                ->whereNotExists(function ($query): void {
+                    $query->selectRaw('1')
+                        ->from('patients_import as archived')
+                        ->whereColumn('archived.id', 'live.id')
+                        ->whereNull('archived.deleted_at');
+                });
+
+            $patientQuery = Patient::query()->fromSub($archiveRows->unionAll($liveRows), 'patients');
+        }
+
+        $patients = QueryBuilder::for($patientQuery)
             ->allowedFilters([
                 'first_name',
                 'last_name',
@@ -733,8 +767,10 @@ class PatientController extends Controller
         }
     }
 
-    public function patient_invoice(Patient $patient, Invoice $invoice)
+    public function patient_invoice(Patient $patient, Invoice $invoice, PatientImportSnapshotReader $snapshotReader)
     {
+        $patient = $snapshotReader->patient($patient);
+        $invoice = $snapshotReader->invoice($patient, $invoice);
         $date_of_day = Carbon::parse($invoice->created_at)->format('Y-m-d');
         $fee_type_id = $invoice->patient_test_latest->fee_type_id;
         $patient_test_latest_id = $invoice->patient_test_latest->id;
@@ -748,7 +784,7 @@ class PatientController extends Controller
 
         $chitNumber = $result->where('id', $patient_test_latest_id)->first()->count_no;
 
-        $total_amount = $invoice->patient_test->sum('total_amount');
+        $total_amount = $invoice->total_amount;
         $department = null;
         $fee_category = null;
         $fee_category_main = null;
@@ -771,8 +807,10 @@ class PatientController extends Controller
         return view('patient.invoice', compact('patient', 'patient', 'fee_category_main', 'invoice', 'total_amount', 'department', 'fee_category', 'chitNumber'));
     }
 
-    public function patient_invoice_thermal_print(Patient $patient, Invoice $invoice)
+    public function patient_invoice_thermal_print(Patient $patient, Invoice $invoice, PatientImportSnapshotReader $snapshotReader)
     {
+        $patient = $snapshotReader->patient($patient);
+        $invoice = $snapshotReader->invoice($patient, $invoice);
         $date_of_day = Carbon::parse($invoice->created_at)->format('Y-m-d');
         $fee_type_id = $invoice->patient_test_latest->fee_type_id;
         $patient_test_latest_id = $invoice->patient_test_latest->id;
@@ -786,7 +824,7 @@ class PatientController extends Controller
 
         $chitNumber = $result->where('id', $patient_test_latest_id)->first()->count_no;
 
-        $total_amount = $invoice->patient_test->sum('total_amount');
+        $total_amount = $invoice->total_amount;
         $department = null;
         $fee_category = null;
         $fee_category_main = null;
