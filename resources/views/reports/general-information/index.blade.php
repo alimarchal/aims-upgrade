@@ -57,7 +57,7 @@
     </x-slot>
 
 
-    <div class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8" id="filters">
+    <div class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8" style="display: none" id="filters">
         <div class="rounded-xl p-4 bg-white shadow-lg">
             <form action="">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
