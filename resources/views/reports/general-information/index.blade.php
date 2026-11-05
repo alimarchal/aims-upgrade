@@ -21,6 +21,7 @@
         }
     </style>
 @endsection
+@php $filter = request('filter', []); @endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -33,6 +34,13 @@
                         </svg>
                     </button>
                 </div>
+
+                @if($searched)
+                <a href="{{ route('reports.misc.admission.pdf', request()->query()) }}"
+                   class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg hover:bg-gray-100 transition-colors duration-200 ml-2" title="Download PDF">
+                    <span style="font-size: 14px;">Download PDF</span>
+                </a>
+                @endif
 
                 <a href="javascript:;" id="toggle"
                    class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2"
@@ -49,33 +57,33 @@
     </x-slot>
 
 
-    <div class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8" style="display: none" id="filters">
+    <div class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8" id="filters">
         <div class="rounded-xl p-4 bg-white shadow-lg">
             <form action="">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                     <div>
                         <label for="start_date" class="block text-gray-700 font-bold mb-2">Start Date</label>
-                        <input type="date" name="start_date" value="{{ request('filter.start_date') }}" id="start_date" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500" placeholder="Enter name">
+                        <input type="date" name="start_date" value="{{ request('start_date') }}" required id="start_date" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500" placeholder="Enter name">
                     </div>
 
                     <div>
                         <label for="end_date" class="block text-gray-700 font-bold mb-2">End Date</label>
-                        <input type="date" name="end_date" value="{{ request('filter.end_date') }}" id="end_date" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500" placeholder="Enter name">
+                        <input type="date" name="end_date" value="{{ request('end_date') }}" required id="end_date" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500" placeholder="Enter name">
                     </div>
                     <div>
                         <x-label for="category" value="Category" :required="false"/>
-                        <input type="text" name="filter[category]" id="category" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
+                        <input type="text" name="filter[category]" value="{{ $filter['category'] ?? '' }}" id="category" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                     </div>
 
                     <div>
                         <x-label for="patient_id" value="Patient ID" :required="false"/>
-                        <input type="text" name="filter[patient_id]" id="patient_id" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
+                        <input type="text" name="filter[patient_id]" value="{{ $filter['patient_id'] ?? '' }}" id="patient_id" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                     </div>
 
                     <div>
                         <x-label for="invoice_id" value="Invoice ID" :required="false"/>
-                        <input type="text" name="filter[invoice_id]" id="invoice_id" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
+                        <input type="text" name="filter[invoice_id]" value="{{ $filter['invoice_id'] ?? '' }}" id="invoice_id" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                     </div>
 
 
@@ -83,8 +91,8 @@
                         <x-label for="government_non_government" value="Entitled/Non-Entitled" :required="false"/>
                         <select name="filter[invoice.government_non_government]" id="government_non_government" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                             <option value="">None</option>
-                            <option value="1">Entitled</option>
-                            <option value="0">Non-Entitled</option>
+                            <option value="1" @selected(($filter['invoice.government_non_government'] ?? '') === '1')>Entitled</option>
+                            <option value="0" @selected(($filter['invoice.government_non_government'] ?? '') === '0')>Non-Entitled</option>
                         </select>
                     </div>
 
@@ -92,8 +100,8 @@
                         <x-label for="gender" value="Sex/Gender" :required="false"/>
                         <select name="filter[patient.sex]" id="gender" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                             <option value="">None</option>
-                            <option value="1">Male</option>
-                            <option value="0">Female</option>
+                            <option value="1" @selected(($filter['patient.sex'] ?? '') === '1')>Male</option>
+                            <option value="0" @selected(($filter['patient.sex'] ?? '') === '0')>Female</option>
                         </select>
                     </div>
 
@@ -101,8 +109,8 @@
                         <x-label for="unit_ward" value="Unit/Ward" :required="false"/>
                         <select name="filter[unit_ward]" id="unit_ward" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                             <option value="">None</option>
-                            @foreach(\App\Models\AdmissionWard::orderBy('name', 'ASC')->get() as $aw)
-                                <option value="{{ $aw->name }}" {{ old('unit_ward') === $aw->name ? 'selected' : '' }}>{{ $aw->name }}</option>
+                            @foreach($wards as $aw)
+                                <option value="{{ $aw->name }}" @selected(($filter['unit_ward'] ?? '') === $aw->name)>{{ $aw->name }}</option>
                             @endforeach
                         </select>
 
@@ -112,8 +120,8 @@
                         <x-label for="tehsil" value="Tehsil" :required="false"/>
                         <select name="filter[tehsil]" id="tehsil" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                             <option value="">None</option>
-                            @foreach(\App\Models\Tehsil::orderBy('name', 'ASC')->get() as $aw)
-                                <option value="{{ $aw->name }}" {{ old('tehsil') === $aw->name ? 'selected' : '' }}>{{ $aw->name }}</option>
+                            @foreach($tehsils as $aw)
+                                <option value="{{ $aw->name }}" @selected(($filter['tehsil'] ?? '') === $aw->name)>{{ $aw->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -123,19 +131,22 @@
                         <x-label for="district" value="District" :required="false"/>
                         <select name="filter[district]" id="district" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
                             <option value="">None</option>
-                            @foreach(\App\Models\District::orderBy('name', 'ASC')->get() as $aw)
-                                <option value="{{ $aw->name }}" {{ old('district') === $aw->name ? 'selected' : '' }}>{{ $aw->name }}</option>
+                            @foreach($districts as $aw)
+                                <option value="{{ $aw->name }}" @selected(($filter['district'] ?? '') === $aw->name)>{{ $aw->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
 
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <x-label for="output" value="Output" :required="false"/>
+                        <select name="output" id="output" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
+                            <option value="screen" @selected(request('output', 'screen') === 'screen')>Show on screen</option>
+                            <option value="pdf" @selected(request('output') === 'pdf')>Download PDF</option>
+                            <option value="excel" @selected(request('output') === 'excel')>Download Excel</option>
+                        </select>
+                        <p class="mt-1 text-xs text-gray-500">For large ranges choose Download PDF or Excel instead of showing on screen.</p>
+                    </div>
 
 
                     <div class="flex items-center justify-between">
@@ -187,8 +198,11 @@
                             <span>Software Developed By SeeChange Innovative - Contact No: 0335-9991441</span>
                         </p>
                     @endif
+                    @unless($searched)
+                        <p class="text-center text-gray-500 py-12">Select a date range and press Search.</p>
+                    @endunless
                     {{--            <table class="table-auto w-full border-collapse border border-black">--}}
-                    <table class="min-w-full divide-y divide-gray-200 print-table" style="font-size: 10px!important;">
+                    <table @class(['min-w-full divide-y divide-gray-200 print-table', 'hidden' => ! $searched]) style="font-size: 10px!important;">
                         {{--                <table class="min-w-full divide-y divide-gray-200">--}}
                         <thead>
                         <tr class="border-black">
@@ -228,7 +242,7 @@
                                         @csrf
                                         @method('PATCH')
                                         <select name="unit_ward" id="unit_ward_{{ $admision->id }}" aria-label="Ward" class="w-full border-0 bg-transparent p-0 text-center focus:ring-0 print:hidden" onchange="this.form.submit()">
-                                            @foreach(\App\Models\AdmissionWard::orderBy('name', 'ASC')->get() as $ward)
+                                            @foreach($wards as $ward)
                                                 <option value="{{ $ward->name }}" @selected($admision->unit_ward === $ward->name)>{{ $ward->name }}</option>
                                             @endforeach
                                         </select>
