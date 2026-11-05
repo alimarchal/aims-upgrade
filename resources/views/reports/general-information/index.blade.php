@@ -63,6 +63,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                     <div>
+                        <x-label for="period" value="Period" :required="false"/>
+                        <select name="period" id="period" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500">
+                            @foreach(['custom' => 'Custom range', 'current_month' => 'Current month', 'last_month' => 'Last month', 'current_quarter' => 'Current quarter', 'last_quarter' => 'Last quarter', 'current_year' => 'Current year (Jan-Dec)', 'last_year' => 'Last year (Jan-Dec)', 'current_tax_year' => 'Current tax year (Jul-Jun)', 'last_tax_year' => 'Last tax year (Jul-Jun)'] as $value => $label)
+                                <option value="{{ $value }}" @selected(request('period', 'custom') === $value)>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div>
                         <label for="start_date" class="block text-gray-700 font-bold mb-2">Start Date</label>
                         <input type="date" name="start_date" value="{{ request('start_date') }}" required id="start_date" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-blue-500" placeholder="Enter name">
                     </div>
@@ -316,6 +325,41 @@
             }
 
             window.onbeforeprint = scaleTable; // Run before printing
+
+            const periodSelect = document.getElementById('period');
+            const pad = (n) => String(n).padStart(2, '0');
+            const fmt = (d) => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+
+            function periodRange(period) {
+                const now = new Date();
+                const y = now.getFullYear();
+                const m = now.getMonth();
+                const q = Math.floor(m / 3);
+                const taxStartYear = m >= 6 ? y : y - 1;
+                const ranges = {
+                    current_month: [new Date(y, m, 1), new Date(y, m + 1, 0)],
+                    last_month: [new Date(y, m - 1, 1), new Date(y, m, 0)],
+                    current_quarter: [new Date(y, q * 3, 1), new Date(y, q * 3 + 3, 0)],
+                    last_quarter: [new Date(y, q * 3 - 3, 1), new Date(y, q * 3, 0)],
+                    current_year: [new Date(y, 0, 1), new Date(y, 11, 31)],
+                    last_year: [new Date(y - 1, 0, 1), new Date(y - 1, 11, 31)],
+                    current_tax_year: [new Date(taxStartYear, 6, 1), new Date(taxStartYear + 1, 5, 30)],
+                    last_tax_year: [new Date(taxStartYear - 1, 6, 1), new Date(taxStartYear, 5, 30)],
+                };
+                return ranges[period] ?? null;
+            }
+
+            periodSelect.addEventListener('change', function () {
+                const range = periodRange(this.value);
+                if (range) {
+                    document.getElementById('start_date').value = fmt(range[0]);
+                    document.getElementById('end_date').value = fmt(range[1]);
+                }
+            });
+
+            ['start_date', 'end_date'].forEach((id) => {
+                document.getElementById(id).addEventListener('change', () => { periodSelect.value = 'custom'; });
+            });
 
             const wardUpdateConfirmation = document.getElementById('ward-update-confirmation');
             if (wardUpdateConfirmation) {

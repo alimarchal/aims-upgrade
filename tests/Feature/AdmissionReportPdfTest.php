@@ -135,3 +135,11 @@ it('shows a long range on screen when screen output is selected', function () {
         'output' => 'screen',
     ]))->assertOk()->assertViewHas('admissions', fn ($a) => $a->count() === 1);
 });
+
+it('offers period presets and retains the selected one without loading data', function () {
+    $this->actingAs($this->user)->get(route('reports.misc.admission', ['period' => 'last_tax_year']))
+        ->assertOk()
+        ->assertSee('Last tax year (Jul-Jun)')
+        ->assertSee('value="last_tax_year" selected', false)
+        ->assertViewHas('admissions', fn ($a) => $a->isEmpty());
+});
