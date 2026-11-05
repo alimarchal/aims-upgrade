@@ -2,24 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AdmissionReportExport;
+use App\Http\Requests\AdmissionReportRequest;
 use App\Http\Requests\UpdateAdmissionWardRequest;
 use App\Models\Admission;
 use App\Models\AdmissionWard;
 use App\Models\Chit;
 use App\Models\Department;
+use App\Models\District;
 use App\Models\FeeCategory;
 use App\Models\FeeType;
 use App\Models\Invoice;
 use App\Models\PatientEmergencyTreatment;
 use App\Models\PatientTest;
+use App\Models\Tehsil;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use Mpdf\HTMLParserMode;
+use Mpdf\Mpdf;
+use Mpdf\Output\Destination;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ReportsController extends Controller
 {
@@ -1076,15 +1087,120 @@ class ReportsController extends Controller
         return $fee_types;
     }
 
-    public function admission(Request $request)
+    public function admission(AdmissionReportRequest $request): View|StreamedResponse|BinaryFileResponse
     {
-        $start_date = Carbon::parse($request->start_date)->format('Y-m-d');
-        $end_date = Carbon::parse($request->end_date)->format('Y-m-d');
+        $wards = AdmissionWard::query()->orderBy('name')->get(['id', 'name']);
 
-        $date_start_at = $start_date.' 00:00:00';
-        $date_end_at = $end_date.' 23:59:59';
+        if (! $request->filled('start_date') || ! $request->filled('end_date')) {
+            return view('reports.general-information.index', ['admissions' => collect(), 'wards' => $wards, 'tehsils' => Tehsil::query()->orderBy('name')->get(['id', 'name']), 'districts' => District::query()->orderBy('name')->get(['id', 'name']), 'searched' => false]);
+        }
 
-        $admissions = QueryBuilder::for(Admission::class)->with('invoice', 'patient')
+        if ($request->input('output') === 'excel') {
+            return $this->admissionExcel($request);
+        }
+
+        if ($request->input('output') === 'pdf') {
+            return $this->admissionPdf($request);
+        }
+
+        $admissions = $this->admissionQuery($request)->get();
+
+        return view('reports.general-information.index', ['admissions' => $admissions, 'wards' => $wards, 'tehsils' => Tehsil::query()->orderBy('name')->get(['id', 'name']), 'districts' => District::query()->orderBy('name')->get(['id', 'name']), 'searched' => true]);
+    }
+
+    /**
+     * Stream the admission report as a PDF, built in chunks to keep memory low on large date ranges.
+     */
+    public function admissionPdf(AdmissionReportRequest $request): StreamedResponse
+    {
+        set_time_limit(0);
+
+        $start_date = Carbon::parse($request->start_date)->format('d-M-Y');
+        $end_date = Carbon::parse($request->end_date)->format('d-M-Y');
+
+        $tempDir = storage_path('app/mpdf');
+        File::ensureDirectoryExists($tempDir);
+
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'margin_top' => 10,
+            'margin_bottom' => 12,
+            'margin_left' => 8,
+            'margin_right' => 8,
+            'tempDir' => $tempDir,
+        ]);
+        $mpdf->simpleTables = true;
+        $mpdf->useSubstitutions = false;
+        $mpdf->SetTitle("Admission Report {$start_date} to {$end_date}");
+        $mpdf->setFooter('Page {PAGENO} of {nbpg}');
+        $mpdf->WriteHTML('<style>
+            body { font-family: sans-serif; font-size: 8pt; }
+            h3, p.sub { text-align: center; margin: 0 0 4px 0; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 0.3mm solid #000; padding: 2px; text-align: center; font-size: 8pt; }
+            th { background: #eee; }
+        </style>
+        <h3>Admission Report</h3>
+        <p class="sub">From '.e($start_date).' to '.e($end_date).' - AIMS, Muzaffarabad, AJK</p>', HTMLParserMode::HTML_BODY);
+
+        $head = '<tr><th>#</th><th>MR Number</th><th>Patient Name</th><th>Age/Sex</th><th>Admission Date</th><th>Ward</th><th>Address</th><th>Category</th><th>Return</th></tr>';
+
+        $buffer = '';
+        $count = 0;
+
+        foreach ($this->admissionQuery($request)->lazy(500) as $admission) {
+            $count++;
+            $patient = $admission->patient;
+            $buffer .= '<tr><td>'.$count.'</td>'
+                .'<td>'.e($patient->id.'-'.$admission->invoice_id.'-'.$admission->id).'</td>'
+                .'<td>'.e(trim($patient->title.' '.$patient->first_name.' '.$patient->last_name)).'</td>'
+                .'<td>'.e($patient->age.' '.$patient->years_months.' / '.($patient->sex == 1 ? 'M' : 'F')).'</td>'
+                .'<td>'.e(Carbon::parse($admission->created_at)->format('d-m-Y H:i:s')).'</td>'
+                .'<td>'.e($admission->unit_ward).'</td>'
+                .'<td>'.e($admission->address).'</td>'
+                .'<td>'.e($admission->category).'</td>'
+                .'<td>'.e($admission->status).'</td></tr>';
+
+            if ($count % 200 === 0) {
+                $mpdf->WriteHTML('<table><thead>'.$head.'</thead><tbody>'.$buffer.'</tbody></table>', HTMLParserMode::HTML_BODY);
+                $buffer = '';
+            }
+        }
+
+        if ($buffer !== '') {
+            $mpdf->WriteHTML('<table><thead>'.$head.'</thead><tbody>'.$buffer.'</tbody></table>', HTMLParserMode::HTML_BODY);
+        }
+
+        $mpdf->WriteHTML('<p>Total: '.$count.'</p>', HTMLParserMode::HTML_BODY);
+
+        $filename = 'admission-report-'.Carbon::parse($request->start_date)->format('Ymd').'-'.Carbon::parse($request->end_date)->format('Ymd').'.pdf';
+
+        return response()->streamDownload(function () use ($mpdf, $filename): void {
+            echo $mpdf->Output($filename, Destination::STRING_RETURN);
+        }, $filename, ['Content-Type' => 'application/pdf']);
+    }
+
+    /**
+     * Download the admission report as an Excel file, generated row by row to keep memory low.
+     */
+    public function admissionExcel(AdmissionReportRequest $request): BinaryFileResponse
+    {
+        set_time_limit(0);
+
+        $filename = 'admission-report-'.Carbon::parse($request->start_date)->format('Ymd').'-'.Carbon::parse($request->end_date)->format('Ymd').'.xlsx';
+
+        return Excel::download(new AdmissionReportExport(fn () => $this->admissionQuery($request)->lazy(2000)), $filename);
+    }
+
+    protected function admissionQuery(Request $request): QueryBuilder
+    {
+        $date_start_at = Carbon::parse($request->start_date)->format('Y-m-d').' 00:00:00';
+        $date_end_at = Carbon::parse($request->end_date)->format('Y-m-d').' 23:59:59';
+
+        return QueryBuilder::for(Admission::class)
+            ->select(['admissions.id', 'admissions.invoice_id', 'admissions.patient_id', 'admissions.created_at', 'admissions.unit_ward', 'admissions.address', 'admissions.category', 'admissions.status'])
+            ->with(['invoice:id,total_amount', 'patient:id,title,first_name,last_name,age,years_months,sex'])
             ->allowedFilters([
                 'patient.sex',
                 'disease',
@@ -1101,11 +1217,8 @@ class ReportsController extends Controller
                 AllowedFilter::exact('district'),
                 AllowedFilter::exact('patient_id'),
                 AllowedFilter::exact('invoice_id'),
-            ], )
-            ->whereBetween('created_at', [$date_start_at, $date_end_at])
-            ->get();
-
-        return view('reports.general-information.index', compact('admissions'));
+            ])
+            ->whereBetween('created_at', [$date_start_at, $date_end_at]);
     }
 
     public function updateAdmissionWard(UpdateAdmissionWardRequest $request, Admission $admission)
