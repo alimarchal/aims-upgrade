@@ -143,3 +143,17 @@ it('offers period presets and retains the selected one without loading data', fu
         ->assertSee('value="last_tax_year" selected', false)
         ->assertViewHas('admissions', fn ($a) => $a->isEmpty());
 });
+
+it('sets a download cookie so the progress modal can close', function () {
+    $response = $this->actingAs($this->user)->get(route('reports.misc.admission', [
+        'start_date' => now()->subMonth()->format('Y-m-d'),
+        'end_date' => now()->format('Y-m-d'),
+        'output' => 'excel',
+        'download_token' => 'abc123',
+    ]));
+
+    $cookie = collect($response->headers->getCookies())->first(fn ($c) => $c->getName() === 'report_download');
+
+    expect($cookie)->not->toBeNull()
+        ->and($cookie->getValue())->toBe('abc123');
+});
