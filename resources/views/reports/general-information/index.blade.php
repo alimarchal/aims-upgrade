@@ -59,7 +59,8 @@
 
     <div class="max-w-7xl mx-auto mt-12 px-4 sm:px-6 lg:px-8" id="filters">
         <div class="rounded-xl p-4 bg-white shadow-lg">
-            <form action="">
+            <form action="" id="report-form">
+                <input type="hidden" name="download_token" id="download_token" value="">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                     <div>
@@ -159,7 +160,7 @@
 
 
                     <div class="flex items-center justify-between">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button id="search-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 disabled:cursor-not-allowed" type="submit">
                             Search
                         </button>
                     </div>
@@ -171,6 +172,19 @@
             </form>
         </div>
     </div>
+
+    <div id="progress-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50" role="alertdialog" aria-modal="true" aria-live="polite">
+        <div class="w-80 rounded-lg bg-white p-6 text-center shadow-xl">
+            <p id="progress-title" class="font-semibold text-gray-800">Generating report...</p>
+            <p class="mt-1 text-sm text-gray-500">Please wait, do not close or refresh this page.</p>
+            <div class="mt-4 h-2 w-full overflow-hidden rounded bg-gray-200">
+                <div class="h-2 w-1/3 animate-pulse rounded bg-blue-500" style="animation: progress-slide 1.2s ease-in-out infinite;"></div>
+            </div>
+        </div>
+    </div>
+    <style>
+        @keyframes progress-slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+    </style>
 
     <div class="py-12">
 
@@ -359,6 +373,44 @@
 
             ['start_date', 'end_date'].forEach((id) => {
                 document.getElementById(id).addEventListener('change', () => { periodSelect.value = 'custom'; });
+            });
+
+            const reportForm = document.getElementById('report-form');
+            const progressModal = document.getElementById('progress-modal');
+            const searchButton = document.getElementById('search-button');
+            let downloadTimer = null;
+
+            function setBusy(busy, title) {
+                progressModal.classList.toggle('hidden', !busy);
+                progressModal.classList.toggle('flex', busy);
+                searchButton.disabled = busy;
+                if (title) {
+                    document.getElementById('progress-title').textContent = title;
+                }
+            }
+
+            reportForm.addEventListener('submit', function () {
+                const output = document.getElementById('output').value;
+                const token = Date.now() + '' + Math.floor(Math.random() * 1000);
+                document.getElementById('download_token').value = token;
+                setBusy(true, output === 'pdf' ? 'Generating PDF...' : output === 'excel' ? 'Generating Excel file...' : 'Loading report...');
+
+                if (output === 'screen') {
+                    return;
+                }
+
+                const startedAt = Date.now();
+                downloadTimer = setInterval(function () {
+                    if (document.cookie.split('; ').includes('report_download=' + token) || Date.now() - startedAt > 600000) {
+                        clearInterval(downloadTimer);
+                        document.cookie = 'report_download=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+                        setBusy(false);
+                    }
+                }, 500);
+            });
+
+            window.addEventListener('pageshow', function () {
+                setBusy(false);
             });
 
             const wardUpdateConfirmation = document.getElementById('ward-update-confirmation');

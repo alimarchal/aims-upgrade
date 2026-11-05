@@ -26,6 +26,7 @@ class AdmissionReportRequest extends FormRequest
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'period' => ['nullable', 'in:custom,current_month,last_month,current_quarter,last_quarter,current_year,last_year,current_tax_year,last_tax_year'],
+            'download_token' => ['nullable', 'alpha_dash', 'max:40'],
             'output' => ['nullable', 'in:screen,pdf,excel'],
         ];
     }

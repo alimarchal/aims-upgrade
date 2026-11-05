@@ -1176,9 +1176,11 @@ class ReportsController extends Controller
 
         $filename = 'admission-report-'.Carbon::parse($request->start_date)->format('Ymd').'-'.Carbon::parse($request->end_date)->format('Ymd').'.pdf';
 
-        return response()->streamDownload(function () use ($mpdf, $filename): void {
+        $response = response()->streamDownload(function () use ($mpdf, $filename): void {
             echo $mpdf->Output($filename, Destination::STRING_RETURN);
         }, $filename, ['Content-Type' => 'application/pdf']);
+
+        return $this->withDownloadToken($response, $request);
     }
 
     /**
@@ -1190,7 +1192,21 @@ class ReportsController extends Controller
 
         $filename = 'admission-report-'.Carbon::parse($request->start_date)->format('Ymd').'-'.Carbon::parse($request->end_date)->format('Ymd').'.xlsx';
 
-        return Excel::download(new AdmissionReportExport(fn () => $this->admissionQuery($request)->lazy(2000)), $filename);
+        $response = Excel::download(new AdmissionReportExport(fn () => $this->admissionQuery($request)->lazy(2000)), $filename);
+
+        return $this->withDownloadToken($response, $request);
+    }
+
+    /**
+     * Flag the response with a cookie so the browser can tell when the download has started.
+     */
+    protected function withDownloadToken(StreamedResponse|BinaryFileResponse $response, AdmissionReportRequest $request): StreamedResponse|BinaryFileResponse
+    {
+        if ($request->filled('download_token')) {
+            $response->headers->setCookie(cookie('report_download', $request->input('download_token'), 1, '/', null, null, false));
+        }
+
+        return $response;
     }
 
     protected function admissionQuery(Request $request): QueryBuilder
