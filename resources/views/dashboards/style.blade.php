@@ -45,6 +45,8 @@
     @media (min-width: 1024px) { .db-two { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } .db-two.is-even { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     .db-three { grid-template-columns: 1fr; }
     @media (min-width: 1024px) { .db-three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    /* a card whose neighbours are hidden by permissions takes the whole row */
+    .db-two > :only-child, .db-three > :only-child { grid-column: 1 / -1; }
     .db-card { background: #fff; border: 1px solid var(--ak-border); border-radius: 14px; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
     .db-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px 0; }
     .db-card-head h2 { margin: 0; font-size: 15px; font-weight: 800; color: var(--ak-text); }

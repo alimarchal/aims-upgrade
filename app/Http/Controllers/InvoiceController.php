@@ -32,7 +32,7 @@ class InvoiceController extends Controller
 //                ->orderByDesc('created_at') // Corrected 'DSEC' to 'DESC'
                 ->paginate(1000);
 
-        } elseif ($user->hasRole(['Administrator', 'Super-Admin'])) {
+        } elseif ($user->hasRole(['Administrator', 'Super-Admin']) || $user->can('view admin dashboard')) {
             $issued_invoices = QueryBuilder::for(Invoice::class)
                 ->allowedFilters(['patient_id', 'fee_type_id', AllowedFilter::exact('department_id')])
                 ->whereDate('created_at', Carbon::today())
@@ -70,7 +70,7 @@ class InvoiceController extends Controller
                 ->whereBetween('created_at', [$date_start_at, $date_end_at])
                 ->orderBy('created_at')
                 ->paginate(100000)->withQueryString();
-        } elseif ($user->hasRole(['Administrator', 'Super-Admin'])) {
+        } elseif ($user->hasRole(['Administrator', 'Super-Admin']) || $user->can('view admin dashboard')) {
             $issued_invoices = QueryBuilder::for(Invoice::class)->with('patient_test', 'admission', 'patient', 'user')
                 ->allowedFilters($allowedFilters)
                 ->whereBetween('created_at', [$date_start_at, $date_end_at])

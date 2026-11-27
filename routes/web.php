@@ -71,37 +71,43 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
                 ->name('patient.government-import.run');
         });
 
-        Route::get('patient/{patient}/proceed', [PatientController::class, 'proceed'])->name('patient.proceed');
-        Route::post('patient/{patient}/add-to-cart', [PatientController::class, 'add_to_cart'])->name('patient.add-to-cart');
-        Route::delete('patient/{patientTestCart}', [PatientController::class, 'proceed_cart_destroy'])->name('patient_cart.destroy');
-        Route::post('patient/{patient}/generateInvoice', [PatientController::class, 'proceed_to_invoice'])->name('patient.proceed_to_invoice');
+        Route::get('patient/{patient}/proceed', [PatientController::class, 'proceed'])->name('patient.proceed')->middleware('permission:create invoices');
+        Route::post('patient/{patient}/add-to-cart', [PatientController::class, 'add_to_cart'])->name('patient.add-to-cart')->middleware('permission:create invoices');
+        Route::delete('patient/{patientTestCart}', [PatientController::class, 'proceed_cart_destroy'])->name('patient_cart.destroy')->middleware('permission:create invoices');
+        Route::post('patient/{patient}/generateInvoice', [PatientController::class, 'proceed_to_invoice'])->name('patient.proceed_to_invoice')->middleware('permission:create invoices');
         Route::get('patient/{patient}/{invoice}/show', [PatientController::class, 'patient_invoice'])->name('patient.patient_invoice');
         Route::get('patient/{patient}/{invoice}/show/thermal-print', [PatientController::class, 'patient_invoice_thermal_print'])->name('patient.patient_invoice_thermal_print');
 
         // Emergency Treatment
-        Route::get('patient/{patient}/emergency-treatment', [PatientController::class, 'emergency_treatment'])->name('patient.emergency_treatment');
-        Route::post('patient/{patient}/emergency-treatment', [PatientController::class, 'emergency_treatment_store'])->name('patient.emergency_treatment_store');
+        Route::get('patient/{patient}/emergency-treatment', [PatientController::class, 'emergency_treatment'])->name('patient.emergency_treatment')->middleware('permission:create invoices');
+        Route::post('patient/{patient}/emergency-treatment', [PatientController::class, 'emergency_treatment_store'])->name('patient.emergency_treatment_store')->middleware('permission:create invoices');
 
         Route::get('patient/{patient}/history', [PatientController::class, 'patient_history'])->name('patient.history');
-        Route::post('patient/invoice', [PatientController::class, 'patient_test_invoice_generate'])->name('patient.patient_test_invoice_generate');
+        Route::post('patient/invoice', [PatientController::class, 'patient_test_invoice_generate'])->name('patient.patient_test_invoice_generate')->middleware('permission:create invoices');
 
-        Route::resource('patient', PatientController::class)->except(['edit', 'update']);
+        Route::resource('patient', PatientController::class)->except(['create', 'store', 'edit', 'update']);
+        Route::get('patient/create', [PatientController::class, 'create'])
+            ->name('patient.create')
+            ->middleware('permission:create patients');
+        Route::post('patient', [PatientController::class, 'store'])
+            ->name('patient.store')
+            ->middleware('permission:create patients');
         Route::get('patient/{patient}/edit', [PatientController::class, 'edit'])
             ->name('patient.edit')
             ->middleware('permission:edit patients');
         Route::match(['put', 'patch'], 'patient/{patient}', [PatientController::class, 'update'])
             ->name('patient.update')
             ->middleware('permission:edit patients');
-        Route::get('patient/ipd/create', [PatientController::class, 'createIPD'])->name('patient.create-ipd');
-        Route::get('patient/opd/create', [PatientController::class, 'createOPD'])->name('patient.create-opd');
-        Route::post('patient/opd', [PatientController::class, 'storeOPD'])->name('patient.store-opd');
-        Route::post('patient/ipd', [PatientController::class, 'storeIPD'])->name('patient.store-ipd');
+        Route::get('patient/ipd/create', [PatientController::class, 'createIPD'])->name('patient.create-ipd')->middleware('permission:create patients');
+        Route::get('patient/opd/create', [PatientController::class, 'createOPD'])->name('patient.create-opd')->middleware('permission:create patients');
+        Route::post('patient/opd', [PatientController::class, 'storeOPD'])->name('patient.store-opd')->middleware('permission:create patients');
+        Route::post('patient/ipd', [PatientController::class, 'storeIPD'])->name('patient.store-ipd')->middleware('permission:create patients');
 
         Route::get('patient/{patient}/actions', [PatientController::class, 'patient_actions'])->name('patient.actions');
         Route::get('patient/{patient}/issued-chits', [ChitController::class, 'issued_chits'])->name('patient.issued-chits');
         Route::get('patient/{patient}/issued-invoices', [ChitController::class, 'issued_invoices'])->name('patient.issued-invoices');
-        Route::get('patient/{patient}/issue-new-chit', [ChitController::class, 'issue_new_chit'])->name('patient.issue-new-chit');
-        Route::post('patient/{patient}/issue-new-chit', [ChitController::class, 'issue_new_chit_store'])->name('patient.issue-new-chitStore');
+        Route::get('patient/{patient}/issue-new-chit', [ChitController::class, 'issue_new_chit'])->name('patient.issue-new-chit')->middleware('permission:create chits');
+        Route::post('patient/{patient}/issue-new-chit', [ChitController::class, 'issue_new_chit_store'])->name('patient.issue-new-chitStore')->middleware('permission:create chits');
     });
 
     // Fee Types

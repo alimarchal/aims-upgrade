@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Support\DashboardPermissions;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -23,6 +24,7 @@ class RolesAndPermissionsSeeder extends Seeder
             // Dashboard
             'view dashboard',
             'view dashboard statistics',
+            ...DashboardPermissions::all(),
 
             // Patients
             'view patients',
@@ -157,6 +159,7 @@ class RolesAndPermissionsSeeder extends Seeder
                     $adminPermissions = [
                         'view dashboard',
                         'view dashboard statistics',
+                        ...DashboardPermissions::all(),
                         'view patients',
                         'edit patients',
                         'view reports',

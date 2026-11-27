@@ -6,6 +6,7 @@
 
 
         <div class="flex justify-center items-center float-right">
+            @can('create patients')
             <a href="{{route('patient.create-opd')}}"
                 class="mx-2 float-right inline-flex items-center px-4 py-2 bg-red-800 border border-transparent
             rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900
@@ -25,6 +26,7 @@
                 </svg>
 
             </a>
+            @endcan
 
             @if (auth()->user()->hasRole('Super-Admin') && config('government_import.access'))
                 <a href="{{ route('patient.government-import') }}"

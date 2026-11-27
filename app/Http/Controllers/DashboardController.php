@@ -10,6 +10,7 @@ use App\Models\FeeType;
 use App\Models\Invoice;
 use App\Models\Patient;
 use App\Services\DashboardData;
+use App\Support\DashboardPermissions;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,8 +35,10 @@ class DashboardController extends Controller
                         return null;
                     }
                 };
-                $from = $parse($request->query('from'));
-                $to = $parse($request->query('to'));
+                // Without the filters permission the dashboard always shows today
+                $canFilter = $user->can(DashboardPermissions::FILTERS);
+                $from = $canFilter ? $parse($request->query('from')) : null;
+                $to = $canFilter ? $parse($request->query('to')) : null;
 
                 return view('dashboards.admin', ['data' => DashboardData::admin($from ?? $to, $to ?? $from)]);
             }
