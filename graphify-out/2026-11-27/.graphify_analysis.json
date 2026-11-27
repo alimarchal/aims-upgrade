@@ -1,0 +1,2335 @@
+{
+  "communities": {
+    "0": [
+      "public_js_apexcharts",
+      "public_js_apexcharts_a",
+      "public_js_apexcharts_b",
+      "public_js_apexcharts_c",
+      "public_js_apexcharts_d",
+      "public_js_apexcharts_e",
+      "public_js_apexcharts_f",
+      "public_js_apexcharts_g",
+      "public_js_apexcharts_h",
+      "public_js_apexcharts_i",
+      "public_js_apexcharts_l",
+      "public_js_apexcharts_n",
+      "public_js_apexcharts_o",
+      "public_js_apexcharts_p",
+      "public_js_apexcharts_r",
+      "public_js_apexcharts_s",
+      "public_js_apexcharts_t",
+      "public_js_apexcharts_u",
+      "public_js_apexcharts_x",
+      "public_js_apexcharts_yt",
+      "public_js_jquery_3_6_0_min",
+      "public_js_jquery_3_6_0_min_a",
+      "public_js_jquery_3_6_0_min_at",
+      "public_js_jquery_3_6_0_min_b",
+      "public_js_jquery_3_6_0_min_be",
+      "public_js_jquery_3_6_0_min_ce",
+      "public_js_jquery_3_6_0_min_de",
+      "public_js_jquery_3_6_0_min_e",
+      "public_js_jquery_3_6_0_min_ee",
+      "public_js_jquery_3_6_0_min_fe",
+      "public_js_jquery_3_6_0_min_ft",
+      "public_js_jquery_3_6_0_min_g",
+      "public_js_jquery_3_6_0_min_ge",
+      "public_js_jquery_3_6_0_min_gt",
+      "public_js_jquery_3_6_0_min_he",
+      "public_js_jquery_3_6_0_min_ht",
+      "public_js_jquery_3_6_0_min_i",
+      "public_js_jquery_3_6_0_min_it",
+      "public_js_jquery_3_6_0_min_j",
+      "public_js_jquery_3_6_0_min_je",
+      "public_js_jquery_3_6_0_min_ke",
+      "public_js_jquery_3_6_0_min_l",
+      "public_js_jquery_3_6_0_min_le",
+      "public_js_jquery_3_6_0_min_lt",
+      "public_js_jquery_3_6_0_min_m",
+      "public_js_jquery_3_6_0_min_me",
+      "public_js_jquery_3_6_0_min_o",
+      "public_js_jquery_3_6_0_min_oe",
+      "public_js_jquery_3_6_0_min_ot",
+      "public_js_jquery_3_6_0_min_p",
+      "public_js_jquery_3_6_0_min_pe",
+      "public_js_jquery_3_6_0_min_qe",
+      "public_js_jquery_3_6_0_min_r",
+      "public_js_jquery_3_6_0_min_se",
+      "public_js_jquery_3_6_0_min_st",
+      "public_js_jquery_3_6_0_min_t",
+      "public_js_jquery_3_6_0_min_te",
+      "public_js_jquery_3_6_0_min_u",
+      "public_js_jquery_3_6_0_min_ue",
+      "public_js_jquery_3_6_0_min_ut",
+      "public_js_jquery_3_6_0_min_ve",
+      "public_js_jquery_3_6_0_min_vt",
+      "public_js_jquery_3_6_0_min_w",
+      "public_js_jquery_3_6_0_min_we",
+      "public_js_jquery_3_6_0_min_wt",
+      "public_js_jquery_3_6_0_min_wt_l",
+      "public_js_jquery_3_6_0_min_x",
+      "public_js_jquery_3_6_0_min_xe",
+      "public_js_jquery_3_6_0_min_ye",
+      "public_js_jquery_3_6_0_min_z",
+      "public_js_jquery_3_6_0_min_ze"
+    ],
+    "1": [
+      "app_models_admissionward_admissionward",
+      "app_models_user",
+      "app_models_user_php_belongsto",
+      "app_models_user_user",
+      "app_models_user_user_department",
+      "app_policies_admissionwardpolicy",
+      "app_policies_admissionwardpolicy_admissionwardpolicy",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_create",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_delete",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_forcedelete",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_restore",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_update",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_view",
+      "app_policies_admissionwardpolicy_admissionwardpolicy_viewany",
+      "app_policies_chitpolicy",
+      "app_policies_chitpolicy_chitpolicy",
+      "app_policies_chitpolicy_chitpolicy_create",
+      "app_policies_chitpolicy_chitpolicy_delete",
+      "app_policies_chitpolicy_chitpolicy_forcedelete",
+      "app_policies_chitpolicy_chitpolicy_restore",
+      "app_policies_chitpolicy_chitpolicy_update",
+      "app_policies_chitpolicy_chitpolicy_view",
+      "app_policies_chitpolicy_chitpolicy_viewany",
+      "app_policies_governmentdepartmentpolicy",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_create",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_delete",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_forcedelete",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_restore",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_update",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_view",
+      "app_policies_governmentdepartmentpolicy_governmentdepartmentpolicy_viewany",
+      "app_policies_patientpolicy",
+      "app_policies_patientpolicy_patientpolicy",
+      "app_policies_patientpolicy_patientpolicy_create",
+      "app_policies_patientpolicy_patientpolicy_delete",
+      "app_policies_patientpolicy_patientpolicy_forcedelete",
+      "app_policies_patientpolicy_patientpolicy_restore",
+      "app_policies_patientpolicy_patientpolicy_update",
+      "app_policies_patientpolicy_patientpolicy_view",
+      "app_policies_patientpolicy_patientpolicy_viewany",
+      "illuminate_auth_access_response",
+      "illuminate_foundation_auth_user",
+      "illuminate_notifications_notifiable",
+      "laravel_fortify_twofactorauthenticatable",
+      "laravel_jetstream_hasprofilephoto",
+      "laravel_sanctum_hasapitokens",
+      "spatie_permission_traits_hasroles",
+      "tests_feature_authenticationtest"
+    ],
+    "2": [
+      "app_http_controllers_chitcontroller_chitcontroller",
+      "app_http_controllers_chitcontroller_chitcontroller_create",
+      "app_http_controllers_chitcontroller_chitcontroller_destroy",
+      "app_http_controllers_chitcontroller_chitcontroller_edit",
+      "app_http_controllers_chitcontroller_chitcontroller_issue_new_chit",
+      "app_http_controllers_chitcontroller_chitcontroller_issue_new_chit_store",
+      "app_http_controllers_chitcontroller_chitcontroller_issued",
+      "app_http_controllers_chitcontroller_chitcontroller_issued_chits",
+      "app_http_controllers_chitcontroller_chitcontroller_issued_invoices",
+      "app_http_controllers_chitcontroller_chitcontroller_print",
+      "app_http_controllers_chitcontroller_chitcontroller_show",
+      "app_http_controllers_chitcontroller_chitcontroller_today",
+      "app_http_controllers_chitcontroller_chitcontroller_update",
+      "app_http_controllers_reportscontroller_reportscontroller",
+      "app_http_controllers_reportscontroller_reportscontroller_admission",
+      "app_http_controllers_reportscontroller_reportscontroller_categorywise",
+      "app_http_controllers_reportscontroller_reportscontroller_department_wise",
+      "app_http_controllers_reportscontroller_reportscontroller_department_wise_audit",
+      "app_http_controllers_reportscontroller_reportscontroller_department_wise_two",
+      "app_http_controllers_reportscontroller_reportscontroller_emergency_treatments",
+      "app_http_controllers_reportscontroller_reportscontroller_index",
+      "app_http_controllers_reportscontroller_reportscontroller_ipd",
+      "app_http_controllers_reportscontroller_reportscontroller_monthlyincomestatement",
+      "app_http_controllers_reportscontroller_reportscontroller_opd",
+      "app_http_controllers_reportscontroller_reportscontroller_reportdaily",
+      "app_http_controllers_reportscontroller_reportscontroller_reportdailyipd",
+      "app_http_controllers_reportscontroller_reportscontroller_reportmisc",
+      "app_http_controllers_reportscontroller_reportscontroller_reportopdspecialistfees",
+      "app_http_controllers_reportscontroller_reportscontroller_reportopduserwise",
+      "app_http_controllers_reportscontroller_reportscontroller_sspclaims",
+      "app_models_chit_chit",
+      "illuminate_contracts_http_kernel",
+      "illuminate_http_request",
+      "public_index"
+    ],
+    "3": [
+      "app_actions_fortify_createnewuser",
+      "app_actions_fortify_createnewuser_createnewuser",
+      "app_actions_fortify_createnewuser_createnewuser_create",
+      "app_actions_fortify_createnewuser_createnewuser_createteam",
+      "app_actions_fortify_passwordvalidationrules",
+      "app_actions_fortify_passwordvalidationrules_passwordvalidationrules",
+      "app_actions_fortify_passwordvalidationrules_passwordvalidationrules_passwordrules",
+      "app_actions_fortify_resetuserpassword",
+      "app_actions_fortify_resetuserpassword_resetuserpassword",
+      "app_actions_fortify_resetuserpassword_resetuserpassword_reset",
+      "app_actions_fortify_updateuserpassword",
+      "app_actions_fortify_updateuserpassword_updateuserpassword",
+      "app_actions_fortify_updateuserpassword_updateuserpassword_update",
+      "app_actions_fortify_updateuserprofileinformation",
+      "app_actions_fortify_updateuserprofileinformation_updateuserprofileinformation",
+      "app_actions_fortify_updateuserprofileinformation_updateuserprofileinformation_update",
+      "app_actions_fortify_updateuserprofileinformation_updateuserprofileinformation_updateverifieduser",
+      "app_providers_fortifyserviceprovider",
+      "app_providers_fortifyserviceprovider_fortifyserviceprovider",
+      "app_providers_fortifyserviceprovider_fortifyserviceprovider_boot",
+      "app_providers_fortifyserviceprovider_fortifyserviceprovider_register",
+      "illuminate_cache_ratelimiting_limit",
+      "illuminate_contracts_auth_mustverifyemail",
+      "illuminate_support_facades_ratelimiter",
+      "illuminate_support_facades_validator",
+      "laravel_fortify_contracts_createsnewusers",
+      "laravel_fortify_contracts_resetsuserpasswords",
+      "laravel_fortify_contracts_updatesuserpasswords",
+      "laravel_fortify_contracts_updatesuserprofileinformation",
+      "laravel_fortify_fortify",
+      "laravel_fortify_rules_password",
+      "laravel_jetstream_jetstream"
+    ],
+    "4": [
+      "package",
+      "package_dependencies",
+      "package_dependencies_watch",
+      "package_devdependencies",
+      "package_devdependencies_alpinejs",
+      "package_devdependencies_alpinejs_focus",
+      "package_devdependencies_autoprefixer",
+      "package_devdependencies_axios",
+      "package_devdependencies_laravel_vite_plugin",
+      "package_devdependencies_postcss",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_forms",
+      "package_devdependencies_tailwindcss_typography",
+      "package_devdependencies_vite",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "ref_alpinejs",
+      "ref_alpinejs_focus",
+      "ref_autoprefixer",
+      "ref_axios",
+      "ref_laravel_vite_plugin",
+      "ref_postcss",
+      "ref_tailwindcss",
+      "ref_tailwindcss_forms",
+      "ref_tailwindcss_typography",
+      "ref_vite",
+      "ref_watch",
+      "resources_js_app",
+      "resources_js_bootstrap",
+      "vite_config"
+    ],
+    "5": [
+      "app_http_controllers_patientcontroller_patientcontroller_patient_test_invoice_generate",
+      "app_http_controllers_patientcontroller_patientcontroller_proceed_cart_destroy",
+      "app_http_controllers_patienttestcartcontroller",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_create",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_destroy",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_edit",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_index",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_show",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_store",
+      "app_http_controllers_patienttestcartcontroller_patienttestcartcontroller_update",
+      "app_http_requests_storepatienttestcartrequest",
+      "app_http_requests_storepatienttestcartrequest_storepatienttestcartrequest",
+      "app_http_requests_storepatienttestcartrequest_storepatienttestcartrequest_authorize",
+      "app_http_requests_storepatienttestcartrequest_storepatienttestcartrequest_rules",
+      "app_http_requests_updatepatienttestcartrequest",
+      "app_http_requests_updatepatienttestcartrequest_updatepatienttestcartrequest",
+      "app_http_requests_updatepatienttestcartrequest_updatepatienttestcartrequest_authorize",
+      "app_http_requests_updatepatienttestcartrequest_updatepatienttestcartrequest_rules",
+      "app_models_patienttestcart_patienttestcart",
+      "app_models_patienttestcart_patienttestcart_fee_type",
+      "app_policies_patienttestcartpolicy",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_create",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_delete",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_forcedelete",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_restore",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_update",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_view",
+      "app_policies_patienttestcartpolicy_patienttestcartpolicy_viewany"
+    ],
+    "6": [
+      "app_http_controllers_patientcontroller_patientcontroller",
+      "app_http_controllers_patientcontroller_patientcontroller_add_to_cart",
+      "app_http_controllers_patientcontroller_patientcontroller_create",
+      "app_http_controllers_patientcontroller_patientcontroller_createipd",
+      "app_http_controllers_patientcontroller_patientcontroller_createopd",
+      "app_http_controllers_patientcontroller_patientcontroller_destroy",
+      "app_http_controllers_patientcontroller_patientcontroller_edit",
+      "app_http_controllers_patientcontroller_patientcontroller_emergency_treatment",
+      "app_http_controllers_patientcontroller_patientcontroller_emergency_treatment_store",
+      "app_http_controllers_patientcontroller_patientcontroller_getautogender",
+      "app_http_controllers_patientcontroller_patientcontroller_index",
+      "app_http_controllers_patientcontroller_patientcontroller_patient_actions",
+      "app_http_controllers_patientcontroller_patientcontroller_patient_history",
+      "app_http_controllers_patientcontroller_patientcontroller_patient_invoice",
+      "app_http_controllers_patientcontroller_patientcontroller_patient_invoice_thermal_print",
+      "app_http_controllers_patientcontroller_patientcontroller_proceed",
+      "app_http_controllers_patientcontroller_patientcontroller_proceed_to_invoice",
+      "app_http_controllers_patientcontroller_patientcontroller_show",
+      "app_http_controllers_patientcontroller_patientcontroller_store",
+      "app_http_controllers_patientcontroller_patientcontroller_storeipd",
+      "app_http_controllers_patientcontroller_patientcontroller_storeopd",
+      "app_http_controllers_patientcontroller_patientcontroller_update",
+      "app_models_invoice_invoice_patient_test",
+      "app_models_patient_patient",
+      "app_models_patient_patient_chits",
+      "app_models_patient_patient_emergencytreatments",
+      "app_models_patient_patient_invoices",
+      "app_models_patient_patient_patient_test_cart",
+      "illuminate_database_eloquent_relations_hasmany"
+    ],
+    "7": [
+      "app_http_controllers_admissioncontroller",
+      "app_http_controllers_admissioncontroller_admissioncontroller",
+      "app_http_controllers_admissioncontroller_admissioncontroller_create",
+      "app_http_controllers_admissioncontroller_admissioncontroller_destroy",
+      "app_http_controllers_admissioncontroller_admissioncontroller_edit",
+      "app_http_controllers_admissioncontroller_admissioncontroller_index",
+      "app_http_controllers_admissioncontroller_admissioncontroller_show",
+      "app_http_controllers_admissioncontroller_admissioncontroller_store",
+      "app_http_controllers_admissioncontroller_admissioncontroller_update",
+      "app_http_requests_storeadmissionrequest",
+      "app_http_requests_storeadmissionrequest_storeadmissionrequest",
+      "app_http_requests_storeadmissionrequest_storeadmissionrequest_authorize",
+      "app_http_requests_storeadmissionrequest_storeadmissionrequest_rules",
+      "app_http_requests_updateadmissionrequest",
+      "app_http_requests_updateadmissionrequest_updateadmissionrequest",
+      "app_http_requests_updateadmissionrequest_updateadmissionrequest_authorize",
+      "app_http_requests_updateadmissionrequest_updateadmissionrequest_rules",
+      "app_models_admission_admission",
+      "app_models_admission_admission_user",
+      "app_policies_admissionpolicy",
+      "app_policies_admissionpolicy_admissionpolicy",
+      "app_policies_admissionpolicy_admissionpolicy_create",
+      "app_policies_admissionpolicy_admissionpolicy_delete",
+      "app_policies_admissionpolicy_admissionpolicy_forcedelete",
+      "app_policies_admissionpolicy_admissionpolicy_restore",
+      "app_policies_admissionpolicy_admissionpolicy_update",
+      "app_policies_admissionpolicy_admissionpolicy_view",
+      "app_policies_admissionpolicy_admissionpolicy_viewany"
+    ],
+    "8": [
+      "app_http_controllers_invoicecontroller_invoicecontroller",
+      "app_http_controllers_invoicecontroller_invoicecontroller_create",
+      "app_http_controllers_invoicecontroller_invoicecontroller_destroy",
+      "app_http_controllers_invoicecontroller_invoicecontroller_edit",
+      "app_http_controllers_invoicecontroller_invoicecontroller_index",
+      "app_http_controllers_invoicecontroller_invoicecontroller_issued",
+      "app_http_controllers_invoicecontroller_invoicecontroller_show",
+      "app_http_controllers_invoicecontroller_invoicecontroller_today",
+      "app_http_controllers_invoicecontroller_invoicecontroller_update",
+      "app_http_requests_updateinvoicerequest",
+      "app_http_requests_updateinvoicerequest_updateinvoicerequest",
+      "app_http_requests_updateinvoicerequest_updateinvoicerequest_authorize",
+      "app_http_requests_updateinvoicerequest_updateinvoicerequest_rules",
+      "app_models_invoice",
+      "app_models_invoice_invoice",
+      "app_models_invoice_invoice_admission",
+      "app_models_invoice_invoice_patient_test_latest",
+      "app_models_invoice_invoice_patient_test_sum",
+      "app_policies_invoicepolicy",
+      "app_policies_invoicepolicy_invoicepolicy",
+      "app_policies_invoicepolicy_invoicepolicy_create",
+      "app_policies_invoicepolicy_invoicepolicy_delete",
+      "app_policies_invoicepolicy_invoicepolicy_forcedelete",
+      "app_policies_invoicepolicy_invoicepolicy_restore",
+      "app_policies_invoicepolicy_invoicepolicy_update",
+      "app_policies_invoicepolicy_invoicepolicy_view",
+      "app_policies_invoicepolicy_invoicepolicy_viewany",
+      "illuminate_database_eloquent_relations_hasone"
+    ],
+    "9": [
+      "app_http_controllers_labtestcontroller",
+      "app_http_controllers_labtestcontroller_labtestcontroller",
+      "app_http_controllers_labtestcontroller_labtestcontroller_create",
+      "app_http_controllers_labtestcontroller_labtestcontroller_destroy",
+      "app_http_controllers_labtestcontroller_labtestcontroller_edit",
+      "app_http_controllers_labtestcontroller_labtestcontroller_index",
+      "app_http_controllers_labtestcontroller_labtestcontroller_show",
+      "app_http_controllers_labtestcontroller_labtestcontroller_store",
+      "app_http_controllers_labtestcontroller_labtestcontroller_update",
+      "app_http_requests_storelabtestrequest",
+      "app_http_requests_storelabtestrequest_storelabtestrequest",
+      "app_http_requests_storelabtestrequest_storelabtestrequest_authorize",
+      "app_http_requests_storelabtestrequest_storelabtestrequest_rules",
+      "app_http_requests_updatelabtestrequest",
+      "app_http_requests_updatelabtestrequest_updatelabtestrequest",
+      "app_http_requests_updatelabtestrequest_updatelabtestrequest_authorize",
+      "app_http_requests_updatelabtestrequest_updatelabtestrequest_rules",
+      "app_models_labtest_labtest",
+      "app_policies_labtestpolicy",
+      "app_policies_labtestpolicy_labtestpolicy",
+      "app_policies_labtestpolicy_labtestpolicy_create",
+      "app_policies_labtestpolicy_labtestpolicy_delete",
+      "app_policies_labtestpolicy_labtestpolicy_forcedelete",
+      "app_policies_labtestpolicy_labtestpolicy_restore",
+      "app_policies_labtestpolicy_labtestpolicy_update",
+      "app_policies_labtestpolicy_labtestpolicy_view",
+      "app_policies_labtestpolicy_labtestpolicy_viewany"
+    ],
+    "10": [
+      "app_http_controllers_patientattendantrelationcontroller",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_create",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_destroy",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_edit",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_index",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_show",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_store",
+      "app_http_controllers_patientattendantrelationcontroller_patientattendantrelationcontroller_update",
+      "app_http_requests_storepatientattendantrelationrequest",
+      "app_http_requests_storepatientattendantrelationrequest_storepatientattendantrelationrequest",
+      "app_http_requests_storepatientattendantrelationrequest_storepatientattendantrelationrequest_authorize",
+      "app_http_requests_storepatientattendantrelationrequest_storepatientattendantrelationrequest_rules",
+      "app_http_requests_updatepatientattendantrelationrequest",
+      "app_http_requests_updatepatientattendantrelationrequest_updatepatientattendantrelationrequest",
+      "app_http_requests_updatepatientattendantrelationrequest_updatepatientattendantrelationrequest_authorize",
+      "app_http_requests_updatepatientattendantrelationrequest_updatepatientattendantrelationrequest_rules",
+      "app_models_patientattendantrelation_patientattendantrelation",
+      "app_policies_patientattendantrelationpolicy",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_create",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_delete",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_forcedelete",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_restore",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_update",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_view",
+      "app_policies_patientattendantrelationpolicy_patientattendantrelationpolicy_viewany"
+    ],
+    "11": [
+      "app_http_controllers_tehsilcontroller",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_create",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_destroy",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_edit",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_index",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_show",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_store",
+      "app_http_controllers_tehsilcontroller_tehsilcontroller_update",
+      "app_http_requests_storetehsilrequest",
+      "app_http_requests_storetehsilrequest_storetehsilrequest",
+      "app_http_requests_storetehsilrequest_storetehsilrequest_authorize",
+      "app_http_requests_storetehsilrequest_storetehsilrequest_rules",
+      "app_http_requests_updatetehsilrequest",
+      "app_http_requests_updatetehsilrequest_updatetehsilrequest",
+      "app_http_requests_updatetehsilrequest_updatetehsilrequest_authorize",
+      "app_http_requests_updatetehsilrequest_updatetehsilrequest_rules",
+      "app_models_tehsil_tehsil",
+      "app_policies_tehsilpolicy",
+      "app_policies_tehsilpolicy_tehsilpolicy",
+      "app_policies_tehsilpolicy_tehsilpolicy_create",
+      "app_policies_tehsilpolicy_tehsilpolicy_delete",
+      "app_policies_tehsilpolicy_tehsilpolicy_forcedelete",
+      "app_policies_tehsilpolicy_tehsilpolicy_restore",
+      "app_policies_tehsilpolicy_tehsilpolicy_update",
+      "app_policies_tehsilpolicy_tehsilpolicy_view",
+      "app_policies_tehsilpolicy_tehsilpolicy_viewany"
+    ],
+    "12": [
+      "app_http_controllers_totalfeecontroller",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_create",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_destroy",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_edit",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_index",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_show",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_store",
+      "app_http_controllers_totalfeecontroller_totalfeecontroller_update",
+      "app_http_requests_storetotalfeerequest",
+      "app_http_requests_storetotalfeerequest_storetotalfeerequest",
+      "app_http_requests_storetotalfeerequest_storetotalfeerequest_authorize",
+      "app_http_requests_storetotalfeerequest_storetotalfeerequest_rules",
+      "app_http_requests_updatetotalfeerequest",
+      "app_http_requests_updatetotalfeerequest_updatetotalfeerequest",
+      "app_http_requests_updatetotalfeerequest_updatetotalfeerequest_authorize",
+      "app_http_requests_updatetotalfeerequest_updatetotalfeerequest_rules",
+      "app_models_totalfee_totalfee",
+      "app_policies_totalfeepolicy",
+      "app_policies_totalfeepolicy_totalfeepolicy",
+      "app_policies_totalfeepolicy_totalfeepolicy_create",
+      "app_policies_totalfeepolicy_totalfeepolicy_delete",
+      "app_policies_totalfeepolicy_totalfeepolicy_forcedelete",
+      "app_policies_totalfeepolicy_totalfeepolicy_restore",
+      "app_policies_totalfeepolicy_totalfeepolicy_update",
+      "app_policies_totalfeepolicy_totalfeepolicy_view",
+      "app_policies_totalfeepolicy_totalfeepolicy_viewany"
+    ],
+    "13": [
+      "app_http_controllers_departmentcontroller_departmentcontroller",
+      "app_http_controllers_departmentcontroller_departmentcontroller_create",
+      "app_http_controllers_departmentcontroller_departmentcontroller_destroy",
+      "app_http_controllers_departmentcontroller_departmentcontroller_edit",
+      "app_http_controllers_departmentcontroller_departmentcontroller_index",
+      "app_http_controllers_departmentcontroller_departmentcontroller_show",
+      "app_models_department_department",
+      "app_policies_departmentpolicy",
+      "app_policies_departmentpolicy_departmentpolicy",
+      "app_policies_departmentpolicy_departmentpolicy_create",
+      "app_policies_departmentpolicy_departmentpolicy_delete",
+      "app_policies_departmentpolicy_departmentpolicy_forcedelete",
+      "app_policies_departmentpolicy_departmentpolicy_restore",
+      "app_policies_departmentpolicy_departmentpolicy_update",
+      "app_policies_departmentpolicy_departmentpolicy_view",
+      "app_policies_departmentpolicy_departmentpolicy_viewany",
+      "database_factories_chitfactory",
+      "database_factories_chitfactory_chitfactory",
+      "database_factories_chitfactory_chitfactory_definition",
+      "illuminate_support_facades_hash",
+      "tests_feature_chitgovtamountcalculationtest",
+      "tests_feature_sspactualamounttrackingtest",
+      "tests_feature_sspclaimsreporttest"
+    ],
+    "14": [
+      "any",
+      "namespace",
+      "scripts_migrate_aims_to_pgsql",
+      "scripts_migrate_aims_to_pgsql_build_import_order",
+      "scripts_migrate_aims_to_pgsql_copy_table",
+      "scripts_migrate_aims_to_pgsql_dbconfig",
+      "scripts_migrate_aims_to_pgsql_destination_table_exists",
+      "scripts_migrate_aims_to_pgsql_fetch_source_tables",
+      "scripts_migrate_aims_to_pgsql_get_dest_columns_and_types",
+      "scripts_migrate_aims_to_pgsql_get_destination_row_count",
+      "scripts_migrate_aims_to_pgsql_get_mariadb_connection",
+      "scripts_migrate_aims_to_pgsql_get_postgres_connection",
+      "scripts_migrate_aims_to_pgsql_get_source_columns",
+      "scripts_migrate_aims_to_pgsql_get_source_row_count",
+      "scripts_migrate_aims_to_pgsql_main",
+      "scripts_migrate_aims_to_pgsql_parse_args",
+      "scripts_migrate_aims_to_pgsql_quote_mysql_columns",
+      "scripts_migrate_aims_to_pgsql_rationale_2",
+      "scripts_migrate_aims_to_pgsql_sanitize_value",
+      "scripts_migrate_aims_to_pgsql_sequencesyncresult",
+      "scripts_migrate_aims_to_pgsql_sync_postgres_sequences",
+      "scripts_migrate_aims_to_pgsql_tableresult"
+    ],
+    "15": [
+      "app_actions_jetstream_inviteteammember_inviteteammember",
+      "app_actions_jetstream_inviteteammember_inviteteammember_ensureuserisnotalreadyonteam",
+      "app_actions_jetstream_inviteteammember_inviteteammember_invite",
+      "app_actions_jetstream_inviteteammember_inviteteammember_rules",
+      "app_actions_jetstream_inviteteammember_inviteteammember_validate",
+      "app_models_team",
+      "app_models_team_team",
+      "app_policies_teampolicy",
+      "app_policies_teampolicy_teampolicy",
+      "app_policies_teampolicy_teampolicy_addteammember",
+      "app_policies_teampolicy_teampolicy_create",
+      "app_policies_teampolicy_teampolicy_delete",
+      "app_policies_teampolicy_teampolicy_removeteammember",
+      "app_policies_teampolicy_teampolicy_update",
+      "app_policies_teampolicy_teampolicy_updateteammember",
+      "app_policies_teampolicy_teampolicy_view",
+      "app_policies_teampolicy_teampolicy_viewany",
+      "illuminate_auth_access_handlesauthorization",
+      "laravel_jetstream_events_teamcreated",
+      "laravel_jetstream_events_teamdeleted",
+      "laravel_jetstream_events_teamupdated",
+      "laravel_jetstream_team"
+    ],
+    "16": [
+      "app_http_controllers_permissioncontroller",
+      "app_http_controllers_permissioncontroller_permissioncontroller",
+      "app_http_controllers_permissioncontroller_permissioncontroller_create",
+      "app_http_controllers_permissioncontroller_permissioncontroller_destroy",
+      "app_http_controllers_permissioncontroller_permissioncontroller_edit",
+      "app_http_controllers_permissioncontroller_permissioncontroller_update",
+      "app_http_controllers_rolecontroller",
+      "app_http_controllers_usercontroller",
+      "database_seeders_rolesandpermissionsseeder",
+      "database_seeders_rolesandpermissionsseeder_rolesandpermissionsseeder",
+      "database_seeders_rolesandpermissionsseeder_rolesandpermissionsseeder_run",
+      "illuminate_validation_rule",
+      "spatie_permission_models_permission",
+      "spatie_permission_models_role",
+      "spatie_permission_permissionregistrar",
+      "tests_feature_frontdeskpermissiontest",
+      "tests_feature_monthlyincomestatementreporttest",
+      "tests_feature_patientreturnpermissiontest",
+      "tests_feature_reports_opduserwisereporttest",
+      "tests_feature_rolesandpermissionsseedertest",
+      "tests_feature_superadminpatientactionstest",
+      "tests_feature_usereditpermissionstest"
+    ],
+    "17": [
+      "app_http_controllers_permissioncontroller_permissioncontroller_index",
+      "app_http_controllers_permissioncontroller_permissioncontroller_store",
+      "app_http_controllers_rolecontroller_rolecontroller",
+      "app_http_controllers_rolecontroller_rolecontroller_create",
+      "app_http_controllers_rolecontroller_rolecontroller_destroy",
+      "app_http_controllers_rolecontroller_rolecontroller_edit",
+      "app_http_controllers_rolecontroller_rolecontroller_index",
+      "app_http_controllers_rolecontroller_rolecontroller_store",
+      "app_http_controllers_rolecontroller_rolecontroller_update",
+      "app_http_controllers_usercontroller_usercontroller",
+      "app_http_controllers_usercontroller_usercontroller_create",
+      "app_http_controllers_usercontroller_usercontroller_destroy",
+      "app_http_controllers_usercontroller_usercontroller_edit",
+      "app_http_controllers_usercontroller_usercontroller_index",
+      "app_http_controllers_usercontroller_usercontroller_show",
+      "app_http_controllers_usercontroller_usercontroller_store",
+      "app_http_controllers_usercontroller_usercontroller_update",
+      "illuminate_support_facades_route",
+      "permission",
+      "role",
+      "routes_api",
+      "routes_web"
+    ],
+    "18": [
+      "app_models_admission",
+      "app_models_admissionward",
+      "app_models_chit",
+      "app_models_department",
+      "app_models_disease",
+      "app_models_disease_disease",
+      "app_models_disease_disease_scopeactive",
+      "app_models_district",
+      "app_models_feecategory",
+      "app_models_feetype",
+      "app_models_governmentdepartment",
+      "app_models_labtest",
+      "app_models_patient",
+      "app_models_patientattendantrelation",
+      "app_models_patientemergencytreatment",
+      "app_models_patienttest",
+      "app_models_patienttestcart",
+      "app_models_tehsil",
+      "app_models_totalfee",
+      "illuminate_database_eloquent_factories_hasfactory",
+      "illuminate_database_eloquent_model",
+      "illuminate_database_eloquent_softdeletes"
+    ],
+    "19": [
+      "app_actions_jetstream_createteam",
+      "app_actions_jetstream_createteam_createteam",
+      "app_actions_jetstream_createteam_createteam_create",
+      "app_actions_jetstream_updateteamname",
+      "app_actions_jetstream_updateteamname_updateteamname",
+      "app_actions_jetstream_updateteamname_updateteamname_update",
+      "app_providers_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider_boot",
+      "app_providers_appserviceprovider_appserviceprovider_register",
+      "app_providers_jetstreamserviceprovider",
+      "app_providers_jetstreamserviceprovider_jetstreamserviceprovider",
+      "app_providers_jetstreamserviceprovider_jetstreamserviceprovider_boot",
+      "app_providers_jetstreamserviceprovider_jetstreamserviceprovider_configurepermissions",
+      "app_providers_jetstreamserviceprovider_jetstreamserviceprovider_register",
+      "illuminate_foundation_aliasloader",
+      "illuminate_support_facades_gate",
+      "illuminate_support_serviceprovider",
+      "laravel_jetstream_contracts_createsteams",
+      "laravel_jetstream_contracts_updatesteamnames",
+      "laravel_jetstream_events_addingteam"
+    ],
+    "20": [
+      "app_http_controllers_feetypecontroller",
+      "app_http_controllers_feetypecontroller_feetypecontroller",
+      "app_http_controllers_feetypecontroller_feetypecontroller_create",
+      "app_http_controllers_feetypecontroller_feetypecontroller_destroy",
+      "app_http_controllers_feetypecontroller_feetypecontroller_edit",
+      "app_http_controllers_feetypecontroller_feetypecontroller_show",
+      "app_http_controllers_feetypecontroller_feetypecontroller_store",
+      "app_http_controllers_feetypecontroller_feetypecontroller_update",
+      "app_models_feetype_feetype",
+      "app_models_feetype_feetype_feecategory",
+      "app_policies_feetypepolicy",
+      "app_policies_feetypepolicy_feetypepolicy",
+      "app_policies_feetypepolicy_feetypepolicy_create",
+      "app_policies_feetypepolicy_feetypepolicy_delete",
+      "app_policies_feetypepolicy_feetypepolicy_forcedelete",
+      "app_policies_feetypepolicy_feetypepolicy_restore",
+      "app_policies_feetypepolicy_feetypepolicy_update",
+      "app_policies_feetypepolicy_feetypepolicy_view",
+      "app_policies_feetypepolicy_feetypepolicy_viewany"
+    ],
+    "21": [
+      "database_factories_departmentfactory",
+      "database_factories_departmentfactory_departmentfactory",
+      "database_factories_departmentfactory_departmentfactory_definition",
+      "database_factories_feecategoryfactory",
+      "database_factories_feecategoryfactory_feecategoryfactory",
+      "database_factories_feecategoryfactory_feecategoryfactory_definition",
+      "database_factories_feetypefactory",
+      "database_factories_feetypefactory_feetypefactory",
+      "database_factories_feetypefactory_feetypefactory_definition",
+      "database_factories_governmentdepartmentfactory",
+      "database_factories_governmentdepartmentfactory_governmentdepartmentfactory",
+      "database_factories_governmentdepartmentfactory_governmentdepartmentfactory_definition",
+      "database_factories_patientfactory",
+      "database_factories_patientfactory_patientfactory",
+      "database_factories_patientfactory_patientfactory_definition",
+      "database_factories_teamfactory",
+      "database_factories_teamfactory_teamfactory",
+      "database_factories_teamfactory_teamfactory_definition",
+      "illuminate_database_eloquent_factories_factory"
+    ],
+    "22": [
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_invoices_table",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_invoices_table_down",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_invoices_table_up",
+      "database_migrations_2025_11_23_192549_create_admissions_table",
+      "database_migrations_2025_11_23_192549_create_admissions_table_down",
+      "database_migrations_2025_11_23_192549_create_admissions_table_up",
+      "database_migrations_2026_03_11_221803_add_opd_emergency_department_and_fee_type",
+      "database_migrations_2026_03_11_221803_add_opd_emergency_department_and_fee_type_down",
+      "database_migrations_2026_03_11_221803_add_opd_emergency_department_and_fee_type_up",
+      "database_migrations_2026_03_11_222057_add_return_invoice_permission",
+      "database_migrations_2026_03_11_222057_add_return_invoice_permission_down",
+      "database_migrations_2026_03_11_222057_add_return_invoice_permission_up",
+      "database_migrations_2026_08_12_163300_add_view_monthly_income_reports_permission",
+      "database_migrations_2026_08_12_163300_add_view_monthly_income_reports_permission_down",
+      "database_migrations_2026_08_12_163300_add_view_monthly_income_reports_permission_up",
+      "database_migrations_2026_08_17_120000_add_department_wise_audit_report_permission",
+      "database_migrations_2026_08_17_120000_add_department_wise_audit_report_permission_down",
+      "database_migrations_2026_08_17_120000_add_department_wise_audit_report_permission_up",
+      "illuminate_database_migrations_migration"
+    ],
+    "23": [
+      "database_seeders_admissionwardseeder",
+      "database_seeders_admissionwardseeder_admissionwardseeder",
+      "database_seeders_admissionwardseeder_admissionwardseeder_run",
+      "database_seeders_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder_run",
+      "database_seeders_diseaseseeder",
+      "database_seeders_diseaseseeder_diseaseseeder",
+      "database_seeders_diseaseseeder_diseaseseeder_run",
+      "database_seeders_governmentdepartmentseeder",
+      "database_seeders_governmentdepartmentseeder_governmentdepartmentseeder",
+      "database_seeders_governmentdepartmentseeder_governmentdepartmentseeder_run",
+      "database_seeders_patientattendantrelationseeder",
+      "database_seeders_patientattendantrelationseeder_patientattendantrelationseeder",
+      "database_seeders_patientattendantrelationseeder_patientattendantrelationseeder_run",
+      "database_seeders_userseeder",
+      "database_seeders_userseeder_userseeder",
+      "database_seeders_userseeder_userseeder_run",
+      "illuminate_database_seeder"
+    ],
+    "24": [
+      "laravel_jetstream_http_livewire_createteamform",
+      "laravel_jetstream_http_livewire_deleteteamform",
+      "laravel_jetstream_http_livewire_deleteuserform",
+      "laravel_jetstream_http_livewire_logoutotherbrowsersessionsform",
+      "laravel_jetstream_http_livewire_teammembermanager",
+      "laravel_jetstream_http_livewire_updatepasswordform",
+      "laravel_jetstream_http_livewire_updateprofileinformationform",
+      "laravel_jetstream_http_livewire_updateteamnameform",
+      "livewire_livewire",
+      "tests_feature_browsersessionstest",
+      "tests_feature_createteamtest",
+      "tests_feature_deleteaccounttest",
+      "tests_feature_deleteteamtest",
+      "tests_feature_leaveteamtest",
+      "tests_feature_profileinformationtest",
+      "tests_feature_removeteammembertest",
+      "tests_feature_updatepasswordtest",
+      "tests_feature_updateteammemberroletest",
+      "tests_feature_updateteamnametest"
+    ],
+    "25": [
+      "app_actions_jetstream_addteammember",
+      "app_actions_jetstream_addteammember_addteammember",
+      "app_actions_jetstream_addteammember_addteammember_add",
+      "app_actions_jetstream_addteammember_addteammember_ensureuserisnotalreadyonteam",
+      "app_actions_jetstream_addteammember_addteammember_rules",
+      "app_actions_jetstream_addteammember_addteammember_validate",
+      "app_actions_jetstream_inviteteammember",
+      "closure",
+      "illuminate_database_query_builder",
+      "illuminate_support_facades_mail",
+      "laravel_jetstream_contracts_addsteammembers",
+      "laravel_jetstream_contracts_invitesteammembers",
+      "laravel_jetstream_events_addingteammember",
+      "laravel_jetstream_events_invitingteammember",
+      "laravel_jetstream_events_teammemberadded",
+      "laravel_jetstream_mail_teaminvitation",
+      "laravel_jetstream_rules_role",
+      "tests_feature_inviteteammembertest"
+    ],
+    "26": [
+      "app_http_controllers_invoicecontroller_invoicecontroller_store",
+      "app_http_requests_storehifrequest",
+      "app_http_requests_storehifrequest_storehifrequest",
+      "app_http_requests_storehifrequest_storehifrequest_authorize",
+      "app_http_requests_storehifrequest_storehifrequest_rules",
+      "app_http_requests_storeinvoicerequest",
+      "app_http_requests_storeinvoicerequest_storeinvoicerequest",
+      "app_http_requests_storeinvoicerequest_storeinvoicerequest_authorize",
+      "app_http_requests_storeinvoicerequest_storeinvoicerequest_rules",
+      "app_http_requests_updatechitrequest",
+      "app_http_requests_updatechitrequest_updatechitrequest",
+      "app_http_requests_updatechitrequest_updatechitrequest_authorize",
+      "app_http_requests_updatechitrequest_updatechitrequest_rules",
+      "app_http_requests_updatehifrequest",
+      "app_http_requests_updatehifrequest_updatehifrequest",
+      "app_http_requests_updatehifrequest_updatehifrequest_authorize",
+      "app_http_requests_updatehifrequest_updatehifrequest_rules",
+      "illuminate_foundation_http_formrequest"
+    ],
+    "27": [
+      "config_cache",
+      "config_database",
+      "config_jetstream",
+      "config_session",
+      "database_factories_userfactory",
+      "database_factories_userfactory_userfactory",
+      "database_factories_userfactory_userfactory_definition",
+      "database_factories_userfactory_userfactory_unverified",
+      "database_factories_userfactory_userfactory_withpersonalteam",
+      "illuminate_support_str",
+      "laravel_jetstream_features",
+      "laravel_jetstream_http_livewire_apitokenmanager",
+      "laravel_jetstream_http_middleware_authenticatesession",
+      "static",
+      "tests_feature_apitokenpermissionstest",
+      "tests_feature_createapitokentest",
+      "tests_feature_deleteapitokentest",
+      "tests_feature_passwordconfirmationtest"
+    ],
+    "28": [
+      "app_http_controllers_admissionwardcontroller",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_create",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_destroy",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_edit",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_index",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_show",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_store",
+      "app_http_controllers_admissionwardcontroller_admissionwardcontroller_update",
+      "app_http_requests_storeadmissionwardrequest",
+      "app_http_requests_storeadmissionwardrequest_storeadmissionwardrequest",
+      "app_http_requests_storeadmissionwardrequest_storeadmissionwardrequest_authorize",
+      "app_http_requests_storeadmissionwardrequest_storeadmissionwardrequest_rules",
+      "app_http_requests_updateadmissionwardrequest",
+      "app_http_requests_updateadmissionwardrequest_updateadmissionwardrequest",
+      "app_http_requests_updateadmissionwardrequest_updateadmissionwardrequest_authorize",
+      "app_http_requests_updateadmissionwardrequest_updateadmissionwardrequest_rules"
+    ],
+    "29": [
+      "app_http_controllers_districtcontroller",
+      "app_http_controllers_districtcontroller_districtcontroller",
+      "app_http_controllers_districtcontroller_districtcontroller_create",
+      "app_http_controllers_districtcontroller_districtcontroller_destroy",
+      "app_http_controllers_districtcontroller_districtcontroller_edit",
+      "app_http_controllers_districtcontroller_districtcontroller_index",
+      "app_http_controllers_districtcontroller_districtcontroller_show",
+      "app_http_controllers_districtcontroller_districtcontroller_store",
+      "app_http_controllers_districtcontroller_districtcontroller_update",
+      "app_http_requests_storedistrictrequest",
+      "app_http_requests_storedistrictrequest_storedistrictrequest",
+      "app_http_requests_storedistrictrequest_storedistrictrequest_authorize",
+      "app_http_requests_storedistrictrequest_storedistrictrequest_rules",
+      "app_http_requests_updatedistrictrequest",
+      "app_http_requests_updatedistrictrequest_updatedistrictrequest",
+      "app_http_requests_updatedistrictrequest_updatedistrictrequest_authorize",
+      "app_http_requests_updatedistrictrequest_updatedistrictrequest_rules"
+    ],
+    "30": [
+      "app_http_controllers_feecategorycontroller",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_create",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_destroy",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_edit",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_index",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_show",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_store",
+      "app_http_controllers_feecategorycontroller_feecategorycontroller_update",
+      "app_http_requests_storefeecategoryrequest",
+      "app_http_requests_storefeecategoryrequest_storefeecategoryrequest",
+      "app_http_requests_storefeecategoryrequest_storefeecategoryrequest_authorize",
+      "app_http_requests_storefeecategoryrequest_storefeecategoryrequest_rules",
+      "app_http_requests_updatefeecategoryrequest",
+      "app_http_requests_updatefeecategoryrequest_updatefeecategoryrequest",
+      "app_http_requests_updatefeecategoryrequest_updatefeecategoryrequest_authorize",
+      "app_http_requests_updatefeecategoryrequest_updatefeecategoryrequest_rules"
+    ],
+    "31": [
+      "app_http_controllers_governmentdepartmentcontroller",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_create",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_destroy",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_edit",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_index",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_show",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_store",
+      "app_http_controllers_governmentdepartmentcontroller_governmentdepartmentcontroller_update",
+      "app_http_requests_storegovernmentdepartmentrequest",
+      "app_http_requests_storegovernmentdepartmentrequest_storegovernmentdepartmentrequest",
+      "app_http_requests_storegovernmentdepartmentrequest_storegovernmentdepartmentrequest_authorize",
+      "app_http_requests_storegovernmentdepartmentrequest_storegovernmentdepartmentrequest_rules",
+      "app_models_governmentdepartment_governmentdepartment",
+      "database_seeders_departmentseeder",
+      "database_seeders_departmentseeder_departmentseeder",
+      "database_seeders_departmentseeder_departmentseeder_run"
+    ],
+    "32": [
+      "app_http_controllers_patientemergencytreatmentcontroller",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_create",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_destroy",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_edit",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_index",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_show",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_store",
+      "app_http_controllers_patientemergencytreatmentcontroller_patientemergencytreatmentcontroller_update",
+      "app_http_requests_storepatientemergencytreatmentrequest",
+      "app_http_requests_storepatientemergencytreatmentrequest_storepatientemergencytreatmentrequest",
+      "app_http_requests_storepatientemergencytreatmentrequest_storepatientemergencytreatmentrequest_authorize",
+      "app_http_requests_storepatientemergencytreatmentrequest_storepatientemergencytreatmentrequest_rules",
+      "app_http_requests_updatepatientemergencytreatmentrequest",
+      "app_http_requests_updatepatientemergencytreatmentrequest_updatepatientemergencytreatmentrequest",
+      "app_http_requests_updatepatientemergencytreatmentrequest_updatepatientemergencytreatmentrequest_authorize",
+      "app_http_requests_updatepatientemergencytreatmentrequest_updatepatientemergencytreatmentrequest_rules"
+    ],
+    "33": [
+      "app_http_controllers_patienttestcontroller",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_create",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_destroy",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_edit",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_index",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_show",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_store",
+      "app_http_controllers_patienttestcontroller_patienttestcontroller_update",
+      "app_http_requests_storepatienttestrequest",
+      "app_http_requests_storepatienttestrequest_storepatienttestrequest",
+      "app_http_requests_storepatienttestrequest_storepatienttestrequest_authorize",
+      "app_http_requests_storepatienttestrequest_storepatienttestrequest_rules",
+      "app_http_requests_updatepatienttestrequest",
+      "app_http_requests_updatepatienttestrequest_updatepatienttestrequest",
+      "app_http_requests_updatepatienttestrequest_updatepatienttestrequest_authorize",
+      "app_http_requests_updatepatienttestrequest_updatepatienttestrequest_rules"
+    ],
+    "34": [
+      "app_models_admission_admission_invoice",
+      "app_models_admission_admission_patient",
+      "app_models_chit_chit_department",
+      "app_models_chit_chit_fee_type",
+      "app_models_chit_chit_patient",
+      "app_models_chit_chit_user",
+      "app_models_feecategory_feecategory_feecategory",
+      "app_models_invoice_invoice_patient",
+      "app_models_invoice_invoice_user",
+      "app_models_patient_patient_government_department",
+      "app_models_patient_patient_user",
+      "app_models_patienttest_patienttest_invoice",
+      "app_models_teaminvitation",
+      "app_models_teaminvitation_teaminvitation",
+      "app_models_teaminvitation_teaminvitation_team",
+      "illuminate_database_eloquent_relations_belongsto",
+      "laravel_jetstream_teaminvitation"
+    ],
+    "35": [
+      "app_http_controllers_processinvoicescontroller",
+      "app_http_controllers_processinvoicescontroller_processinvoicescontroller",
+      "app_http_controllers_processinvoicescontroller_processinvoicescontroller_process",
+      "app_http_controllers_processinvoicescontroller_processinvoicescontroller_restore",
+      "app_models_patienttest_patienttest",
+      "app_models_patienttest_patienttest_fee_type",
+      "app_models_patienttest_patienttest_patient",
+      "app_policies_patienttestpolicy",
+      "app_policies_patienttestpolicy_patienttestpolicy",
+      "app_policies_patienttestpolicy_patienttestpolicy_create",
+      "app_policies_patienttestpolicy_patienttestpolicy_delete",
+      "app_policies_patienttestpolicy_patienttestpolicy_forcedelete",
+      "app_policies_patienttestpolicy_patienttestpolicy_restore",
+      "app_policies_patienttestpolicy_patienttestpolicy_update",
+      "app_policies_patienttestpolicy_patienttestpolicy_view",
+      "app_policies_patienttestpolicy_patienttestpolicy_viewany"
+    ],
+    "36": [
+      "database_migrations_2025_11_23_192508_create_sessions_table",
+      "database_migrations_2025_11_23_192508_create_sessions_table_down",
+      "database_migrations_2025_11_23_192508_create_sessions_table_up",
+      "database_migrations_2025_11_23_192508_create_teams_table",
+      "database_migrations_2025_11_23_192508_create_teams_table_down",
+      "database_migrations_2025_11_23_192508_create_teams_table_up",
+      "database_migrations_2025_11_23_192515_create_permissions_table",
+      "database_migrations_2025_11_23_192515_create_permissions_table_down",
+      "database_migrations_2025_11_23_192515_create_permissions_table_up",
+      "database_migrations_2025_11_23_192522_create_government_departments_table",
+      "database_migrations_2025_11_23_192522_create_government_departments_table_down",
+      "database_migrations_2025_11_23_192522_create_government_departments_table_up",
+      "database_migrations_2025_11_23_192549_create_patient_tests_table",
+      "database_migrations_2025_11_23_192549_create_patient_tests_table_down",
+      "database_migrations_2025_11_23_192549_create_patient_tests_table_up",
+      "illuminate_support_facades_schema"
+    ],
+    "37": [
+      "app_http_controllers_feetypecontroller_feetypecontroller_index",
+      "app_models_feecategory_feecategory",
+      "app_models_feecategory_feecategory_feetypes",
+      "app_policies_feecategorypolicy",
+      "app_policies_feecategorypolicy_feecategorypolicy",
+      "app_policies_feecategorypolicy_feecategorypolicy_create",
+      "app_policies_feecategorypolicy_feecategorypolicy_delete",
+      "app_policies_feecategorypolicy_feecategorypolicy_forcedelete",
+      "app_policies_feecategorypolicy_feecategorypolicy_restore",
+      "app_policies_feecategorypolicy_feecategorypolicy_update",
+      "app_policies_feecategorypolicy_feecategorypolicy_view",
+      "app_policies_feecategorypolicy_feecategorypolicy_viewany",
+      "database_seeders_feeseeder",
+      "database_seeders_feeseeder_feeseeder",
+      "database_seeders_feeseeder_feeseeder_run"
+    ],
+    "38": [
+      "app_models_district_district",
+      "app_policies_districtpolicy",
+      "app_policies_districtpolicy_districtpolicy",
+      "app_policies_districtpolicy_districtpolicy_create",
+      "app_policies_districtpolicy_districtpolicy_delete",
+      "app_policies_districtpolicy_districtpolicy_forcedelete",
+      "app_policies_districtpolicy_districtpolicy_restore",
+      "app_policies_districtpolicy_districtpolicy_update",
+      "app_policies_districtpolicy_districtpolicy_view",
+      "app_policies_districtpolicy_districtpolicy_viewany",
+      "database_seeders_locationseeder",
+      "database_seeders_locationseeder_locationseeder",
+      "database_seeders_locationseeder_locationseeder_run"
+    ],
+    "39": [
+      "app_models_patientemergencytreatment_patientemergencytreatment",
+      "app_models_patientemergencytreatment_patientemergencytreatment_disease",
+      "app_models_patientemergencytreatment_patientemergencytreatment_patient",
+      "app_models_patientemergencytreatment_patientemergencytreatment_user",
+      "app_policies_patientemergencytreatmentpolicy",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_create",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_delete",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_forcedelete",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_restore",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_update",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_view",
+      "app_policies_patientemergencytreatmentpolicy_patientemergencytreatmentpolicy_viewany"
+    ],
+    "40": [
+      "illuminate_foundation_testing_refreshdatabase",
+      "illuminate_foundation_testing_testcase",
+      "phpunit_framework_attributes_test",
+      "tests_feature_reports_specialistfeesreporttest",
+      "tests_feature_reports_specialistfeesreporttest_specialistfeesreporttest",
+      "tests_feature_reports_specialistfeesreporttest_specialistfeesreporttest_it_correctly_calculates_govt_amount_for_specialist_fees",
+      "tests_feature_reports_specialistfeesreporttest_specialistfeesreporttest_it_filters_by_specific_specialist_department",
+      "tests_feature_reports_specialistfeesreporttest_specialistfeesreporttest_it_shows_all_specialist_departments_even_with_no_data",
+      "tests_feature_reports_specialistfeesreporttest_specialistfeesreporttest_setup",
+      "tests_pest",
+      "tests_pest_something",
+      "tests_testcase",
+      "tests_testcase_testcase"
+    ],
+    "41": [
+      "composer_require",
+      "composer_require_guzzlehttp_guzzle",
+      "composer_require_laravel_framework",
+      "composer_require_laravel_jetstream",
+      "composer_require_laravel_sanctum",
+      "composer_require_laravel_tinker",
+      "composer_require_livewire_livewire",
+      "composer_require_milon_barcode",
+      "composer_require_php",
+      "composer_require_spatie_laravel_backup",
+      "composer_require_spatie_laravel_permission",
+      "composer_require_spatie_laravel_query_builder"
+    ],
+    "42": [
+      "config_fortify",
+      "illuminate_auth_events_verified",
+      "illuminate_auth_notifications_resetpassword",
+      "illuminate_support_facades_event",
+      "illuminate_support_facades_notification",
+      "illuminate_support_facades_url",
+      "laravel_fortify_features",
+      "laravel_jetstream_http_livewire_twofactorauthenticationform",
+      "tests_feature_emailverificationtest",
+      "tests_feature_passwordresettest",
+      "tests_feature_registrationtest",
+      "tests_feature_twofactorauthenticationsettingstest"
+    ],
+    "43": [
+      "public_js_select2_min",
+      "public_js_select2_min_a",
+      "public_js_select2_min_b",
+      "public_js_select2_min_c",
+      "public_js_select2_min_e",
+      "public_js_select2_min_i",
+      "public_js_select2_min_l",
+      "public_js_select2_min_n",
+      "public_js_select2_min_r",
+      "public_js_select2_min_s",
+      "public_js_select2_min_w",
+      "public_js_select2_min_x"
+    ],
+    "44": [
+      "app_http_controllers_departmentcontroller",
+      "app_http_controllers_departmentcontroller_departmentcontroller_store",
+      "app_http_controllers_departmentcontroller_departmentcontroller_update",
+      "app_http_requests_storedepartmentrequest",
+      "app_http_requests_storedepartmentrequest_storedepartmentrequest",
+      "app_http_requests_storedepartmentrequest_storedepartmentrequest_authorize",
+      "app_http_requests_storedepartmentrequest_storedepartmentrequest_rules",
+      "app_http_requests_updatedepartmentrequest",
+      "app_http_requests_updatedepartmentrequest_updatedepartmentrequest",
+      "app_http_requests_updatedepartmentrequest_updatedepartmentrequest_authorize",
+      "app_http_requests_updatedepartmentrequest_updatedepartmentrequest_rules"
+    ],
+    "45": [
+      "composer",
+      "composer_autoload_dev",
+      "composer_autoload_dev_psr_4",
+      "composer_description",
+      "composer_keywords",
+      "composer_license",
+      "composer_minimum_stability",
+      "composer_name",
+      "composer_prefer_stable",
+      "composer_psr_4_tests",
+      "composer_type"
+    ],
+    "46": [
+      "composer_require_dev",
+      "composer_require_dev_fakerphp_faker",
+      "composer_require_dev_kitloong_laravel_migrations_generator",
+      "composer_require_dev_laravel_boost",
+      "composer_require_dev_laravel_pint",
+      "composer_require_dev_laravel_sail",
+      "composer_require_dev_mockery_mockery",
+      "composer_require_dev_nunomaduro_collision",
+      "composer_require_dev_pestphp_pest",
+      "composer_require_dev_pestphp_pest_plugin_laravel",
+      "composer_require_dev_spatie_laravel_ignition"
+    ],
+    "47": [
+      "app_actions_jetstream_deleteteam",
+      "app_actions_jetstream_deleteteam_deleteteam",
+      "app_actions_jetstream_deleteteam_deleteteam_delete",
+      "app_actions_jetstream_deleteuser",
+      "app_actions_jetstream_deleteuser_deleteuser",
+      "app_actions_jetstream_deleteuser_deleteuser_construct",
+      "app_actions_jetstream_deleteuser_deleteuser_delete",
+      "app_actions_jetstream_deleteuser_deleteuser_deleteteams",
+      "laravel_jetstream_contracts_deletesteams",
+      "laravel_jetstream_contracts_deletesusers"
+    ],
+    "48": [
+      "app_http_controllers_chitcontroller",
+      "app_http_controllers_dashboardcontroller",
+      "app_http_controllers_invoicecontroller",
+      "app_http_controllers_patientcontroller",
+      "app_http_controllers_reportscontroller",
+      "carbon_carbon",
+      "illuminate_support_facades_db",
+      "illuminate_support_facades_log",
+      "spatie_querybuilder_allowedfilter",
+      "spatie_querybuilder_querybuilder"
+    ],
+    "49": [
+      "cancelteaminvitation_invitation_id",
+      "confirmteammemberremoval",
+      "leaveteam",
+      "managerole",
+      "removeteammember",
+      "resources_views_teams_team_member_manager_blade",
+      "resources_views_teams_team_member_manager_blade_php_set",
+      "resources_views_teams_team_member_manager_blade_php_toggle",
+      "stopmanagingrole",
+      "updaterole"
+    ],
+    "50": [
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_total_fees_table",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_total_fees_table_down",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_total_fees_table_up",
+      "database_migrations_2026_02_28_192209_add_performance_indexes",
+      "database_migrations_2026_02_28_192209_add_performance_indexes_createindexifnotexists",
+      "database_migrations_2026_02_28_192209_add_performance_indexes_down",
+      "database_migrations_2026_02_28_192209_add_performance_indexes_dropindexifexists",
+      "database_migrations_2026_02_28_192209_add_performance_indexes_indexexists",
+      "database_migrations_2026_02_28_192209_add_performance_indexes_up",
+      "illuminate_database_schema_blueprint"
+    ],
+    "51": [
+      "app_actions_jetstream_removeteammember",
+      "app_actions_jetstream_removeteammember_removeteammember",
+      "app_actions_jetstream_removeteammember_removeteammember_authorize",
+      "app_actions_jetstream_removeteammember_removeteammember_ensureuserdoesnotownteam",
+      "app_actions_jetstream_removeteammember_removeteammember_remove",
+      "illuminate_auth_access_authorizationexception",
+      "illuminate_validation_validationexception",
+      "laravel_jetstream_contracts_removesteammembers",
+      "laravel_jetstream_events_teammemberremoved"
+    ],
+    "52": [
+      "app_view_components_applayout",
+      "app_view_components_applayout_applayout",
+      "app_view_components_applayout_applayout_render",
+      "app_view_components_guestlayout",
+      "app_view_components_guestlayout_guestlayout",
+      "app_view_components_guestlayout_guestlayout_render",
+      "illuminate_view_component",
+      "illuminate_view_view"
+    ],
+    "53": [
+      "app_http_controllers_controller",
+      "app_http_controllers_controller_controller",
+      "app_http_controllers_dashboardcontroller_dashboardcontroller",
+      "app_http_controllers_dashboardcontroller_dashboardcontroller_index",
+      "illuminate_foundation_auth_access_authorizesrequests",
+      "illuminate_foundation_validation_validatesrequests",
+      "illuminate_routing_controller"
+    ],
+    "54": [
+      "app_livewire_governmentdetails",
+      "app_livewire_governmentdetails_governmentdetails",
+      "app_livewire_governmentdetails_governmentdetails_render",
+      "app_livewire_ipdopd",
+      "app_livewire_ipdopd_ipdopd",
+      "app_livewire_ipdopd_ipdopd_render",
+      "livewire_component"
+    ],
+    "55": [
+      "composer_allow_plugins_pestphp_pest_plugin",
+      "composer_allow_plugins_php_http_discovery",
+      "composer_config",
+      "composer_config_allow_plugins",
+      "composer_config_optimize_autoloader",
+      "composer_config_preferred_install",
+      "composer_config_sort_packages"
+    ],
+    "56": [
+      "confirmapitokendeletion_token_id",
+      "deleteapitoken",
+      "manageapitokenpermissions_token_id",
+      "resources_views_api_api_token_manager_blade",
+      "resources_views_api_api_token_manager_blade_php_set",
+      "resources_views_api_api_token_manager_blade_php_toggle",
+      "updateapitoken"
+    ],
+    "57": [
+      "database_migrations_2026_03_16_224335_seed_emergency_fee_types",
+      "database_migrations_2026_03_16_224335_seed_emergency_fee_types_down",
+      "database_migrations_2026_03_16_224335_seed_emergency_fee_types_up",
+      "database_seeders_emergencyfeetypeseeder",
+      "database_seeders_emergencyfeetypeseeder_emergencyfeetypeseeder",
+      "database_seeders_emergencyfeetypeseeder_emergencyfeetypeseeder_run",
+      "tests_feature_emergencyfeetypeseedertest"
+    ],
+    "58": [
+      "database_migrations_2026_08_13_100606_add_dashboard_report_indexes",
+      "database_migrations_2026_08_13_100606_add_dashboard_report_indexes_createindexifnotexists",
+      "database_migrations_2026_08_13_100606_add_dashboard_report_indexes_down",
+      "database_migrations_2026_08_13_100606_add_dashboard_report_indexes_dropindexifexists",
+      "database_migrations_2026_08_13_100606_add_dashboard_report_indexes_indexexists",
+      "database_migrations_2026_08_13_100606_add_dashboard_report_indexes_up"
+    ],
+    "59": [
+      "database_migrations_2026_08_13_101316_add_role_dashboard_three_indexes",
+      "database_migrations_2026_08_13_101316_add_role_dashboard_three_indexes_createindexifnotexists",
+      "database_migrations_2026_08_13_101316_add_role_dashboard_three_indexes_down",
+      "database_migrations_2026_08_13_101316_add_role_dashboard_three_indexes_dropindexifexists",
+      "database_migrations_2026_08_13_101316_add_role_dashboard_three_indexes_indexexists",
+      "database_migrations_2026_08_13_101316_add_role_dashboard_three_indexes_up"
+    ],
+    "60": [
+      "app_http_controllers_chitcontroller_chitcontroller_store",
+      "app_http_requests_storechitrequest",
+      "app_http_requests_storechitrequest_storechitrequest",
+      "app_http_requests_storechitrequest_storechitrequest_authorize",
+      "app_http_requests_storechitrequest_storechitrequest_rules"
+    ],
+    "61": [
+      "app_http_requests_storepatientrequest",
+      "app_http_requests_storepatientrequest_storepatientrequest",
+      "app_http_requests_storepatientrequest_storepatientrequest_authorize",
+      "app_http_requests_storepatientrequest_storepatientrequest_messages",
+      "app_http_requests_storepatientrequest_storepatientrequest_rules"
+    ],
+    "62": [
+      "composer_autoload",
+      "composer_autoload_psr_4",
+      "composer_psr_4_app",
+      "composer_psr_4_database_factories",
+      "composer_psr_4_database_seeders"
+    ],
+    "63": [
+      "composer_scripts",
+      "composer_scripts_post_autoload_dump",
+      "composer_scripts_post_create_project_cmd",
+      "composer_scripts_post_root_package_install",
+      "composer_scripts_post_update_cmd"
+    ],
+    "64": [
+      "config_logging",
+      "monolog_handler_nullhandler",
+      "monolog_handler_streamhandler",
+      "monolog_handler_syslogudphandler",
+      "monolog_processor_psrlogmessageprocessor"
+    ],
+    "65": [
+      "env_var_site_path",
+      "mcp",
+      "mcp_command_php",
+      "mcp_mcp_server_herd",
+      "mcp_mcp_server_laravel_boost"
+    ],
+    "66": [
+      "app_http_requests_storefeetyperequest",
+      "app_http_requests_storefeetyperequest_storefeetyperequest",
+      "app_http_requests_storefeetyperequest_storefeetyperequest_authorize",
+      "app_http_requests_storefeetyperequest_storefeetyperequest_rules"
+    ],
+    "67": [
+      "app_http_requests_storegovernmentfeerequest",
+      "app_http_requests_storegovernmentfeerequest_storegovernmentfeerequest",
+      "app_http_requests_storegovernmentfeerequest_storegovernmentfeerequest_authorize",
+      "app_http_requests_storegovernmentfeerequest_storegovernmentfeerequest_rules"
+    ],
+    "68": [
+      "app_http_requests_updatefeetyperequest",
+      "app_http_requests_updatefeetyperequest_updatefeetyperequest",
+      "app_http_requests_updatefeetyperequest_updatefeetyperequest_authorize",
+      "app_http_requests_updatefeetyperequest_updatefeetyperequest_rules"
+    ],
+    "69": [
+      "app_http_requests_updategovernmentdepartmentrequest",
+      "app_http_requests_updategovernmentdepartmentrequest_updategovernmentdepartmentrequest",
+      "app_http_requests_updategovernmentdepartmentrequest_updategovernmentdepartmentrequest_authorize",
+      "app_http_requests_updategovernmentdepartmentrequest_updategovernmentdepartmentrequest_rules"
+    ],
+    "70": [
+      "app_http_requests_updategovernmentfeerequest",
+      "app_http_requests_updategovernmentfeerequest_updategovernmentfeerequest",
+      "app_http_requests_updategovernmentfeerequest_updategovernmentfeerequest_authorize",
+      "app_http_requests_updategovernmentfeerequest_updategovernmentfeerequest_rules"
+    ],
+    "71": [
+      "app_http_requests_updatepatientrequest",
+      "app_http_requests_updatepatientrequest_updatepatientrequest",
+      "app_http_requests_updatepatientrequest_updatepatientrequest_authorize",
+      "app_http_requests_updatepatientrequest_updatepatientrequest_rules"
+    ],
+    "72": [
+      "bootstrap_app",
+      "illuminate_foundation_application",
+      "illuminate_foundation_configuration_exceptions",
+      "illuminate_foundation_configuration_middleware"
+    ],
+    "73": [
+      "confirmlogout",
+      "logoutotherbrowsersessions",
+      "resources_views_profile_logout_other_browser_sessions_form_blade",
+      "resources_views_profile_logout_other_browser_sessions_form_blade_php_toggle"
+    ],
+    "74": [
+      "confirmuserdeletion",
+      "deleteuser",
+      "resources_views_profile_delete_user_form_blade",
+      "resources_views_profile_delete_user_form_blade_php_toggle"
+    ],
+    "75": [
+      "illuminate_foundation_inspiring",
+      "illuminate_support_facades_artisan",
+      "illuminate_support_facades_schedule",
+      "routes_console"
+    ],
+    "76": [
+      "app_models_membership",
+      "app_models_membership_membership",
+      "laravel_jetstream_membership"
+    ],
+    "77": [
+      "composer_extra",
+      "composer_extra_laravel",
+      "composer_laravel_dont_discover"
+    ],
+    "78": [
+      "confirmpassword",
+      "resources_views_components_confirms_password_blade",
+      "stopconfirmingpassword"
+    ],
+    "79": [
+      "database_migrations_2019_12_14_000001_create_personal_access_tokens_table",
+      "database_migrations_2019_12_14_000001_create_personal_access_tokens_table_down",
+      "database_migrations_2019_12_14_000001_create_personal_access_tokens_table_up"
+    ],
+    "80": [
+      "database_migrations_2025_11_23_192501_create_failed_jobs_table",
+      "database_migrations_2025_11_23_192501_create_failed_jobs_table_down",
+      "database_migrations_2025_11_23_192501_create_failed_jobs_table_up"
+    ],
+    "81": [
+      "database_migrations_2025_11_23_192501_create_password_reset_tokens_table",
+      "database_migrations_2025_11_23_192501_create_password_reset_tokens_table_down",
+      "database_migrations_2025_11_23_192501_create_password_reset_tokens_table_up"
+    ],
+    "82": [
+      "database_migrations_2025_11_23_192501_create_users_table",
+      "database_migrations_2025_11_23_192501_create_users_table_down",
+      "database_migrations_2025_11_23_192501_create_users_table_up"
+    ],
+    "83": [
+      "database_migrations_2025_11_23_192508_create_cache_locks_table",
+      "database_migrations_2025_11_23_192508_create_cache_locks_table_down",
+      "database_migrations_2025_11_23_192508_create_cache_locks_table_up"
+    ],
+    "84": [
+      "database_migrations_2025_11_23_192508_create_cache_table",
+      "database_migrations_2025_11_23_192508_create_cache_table_down",
+      "database_migrations_2025_11_23_192508_create_cache_table_up"
+    ],
+    "85": [
+      "database_migrations_2025_11_23_192508_create_team_invitations_table",
+      "database_migrations_2025_11_23_192508_create_team_invitations_table_down",
+      "database_migrations_2025_11_23_192508_create_team_invitations_table_up"
+    ],
+    "86": [
+      "database_migrations_2025_11_23_192508_create_team_user_table",
+      "database_migrations_2025_11_23_192508_create_team_user_table_down",
+      "database_migrations_2025_11_23_192508_create_team_user_table_up"
+    ],
+    "87": [
+      "database_migrations_2025_11_23_192511_add_foreign_keys_to_team_invitations_table",
+      "database_migrations_2025_11_23_192511_add_foreign_keys_to_team_invitations_table_down",
+      "database_migrations_2025_11_23_192511_add_foreign_keys_to_team_invitations_table_up"
+    ],
+    "88": [
+      "database_migrations_2025_11_23_192515_create_model_has_permissions_table",
+      "database_migrations_2025_11_23_192515_create_model_has_permissions_table_down",
+      "database_migrations_2025_11_23_192515_create_model_has_permissions_table_up"
+    ],
+    "89": [
+      "database_migrations_2025_11_23_192515_create_model_has_roles_table",
+      "database_migrations_2025_11_23_192515_create_model_has_roles_table_down",
+      "database_migrations_2025_11_23_192515_create_model_has_roles_table_up"
+    ],
+    "90": [
+      "database_migrations_2025_11_23_192515_create_role_has_permissions_table",
+      "database_migrations_2025_11_23_192515_create_role_has_permissions_table_down",
+      "database_migrations_2025_11_23_192515_create_role_has_permissions_table_up"
+    ],
+    "91": [
+      "database_migrations_2025_11_23_192515_create_roles_table",
+      "database_migrations_2025_11_23_192515_create_roles_table_down",
+      "database_migrations_2025_11_23_192515_create_roles_table_up"
+    ],
+    "92": [
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_model_has_permissions_table",
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_model_has_permissions_table_down",
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_model_has_permissions_table_up"
+    ],
+    "93": [
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_model_has_roles_table",
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_model_has_roles_table_down",
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_model_has_roles_table_up"
+    ],
+    "94": [
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_role_has_permissions_table",
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_role_has_permissions_table_down",
+      "database_migrations_2025_11_23_192518_add_foreign_keys_to_role_has_permissions_table_up"
+    ],
+    "95": [
+      "database_migrations_2025_11_23_192522_create_admission_wards_table",
+      "database_migrations_2025_11_23_192522_create_admission_wards_table_down",
+      "database_migrations_2025_11_23_192522_create_admission_wards_table_up"
+    ],
+    "96": [
+      "database_migrations_2025_11_23_192522_create_departments_table",
+      "database_migrations_2025_11_23_192522_create_departments_table_down",
+      "database_migrations_2025_11_23_192522_create_departments_table_up"
+    ],
+    "97": [
+      "database_migrations_2025_11_23_192522_create_diseases_table",
+      "database_migrations_2025_11_23_192522_create_diseases_table_down",
+      "database_migrations_2025_11_23_192522_create_diseases_table_up"
+    ],
+    "98": [
+      "database_migrations_2025_11_23_192522_create_districts_table",
+      "database_migrations_2025_11_23_192522_create_districts_table_down",
+      "database_migrations_2025_11_23_192522_create_districts_table_up"
+    ],
+    "99": [
+      "database_migrations_2025_11_23_192522_create_fee_categories_table",
+      "database_migrations_2025_11_23_192522_create_fee_categories_table_down",
+      "database_migrations_2025_11_23_192522_create_fee_categories_table_up"
+    ],
+    "100": [
+      "database_migrations_2025_11_23_192522_create_lab_tests_table",
+      "database_migrations_2025_11_23_192522_create_lab_tests_table_down",
+      "database_migrations_2025_11_23_192522_create_lab_tests_table_up"
+    ],
+    "101": [
+      "database_migrations_2025_11_23_192522_create_patient_attendant_relations_table",
+      "database_migrations_2025_11_23_192522_create_patient_attendant_relations_table_down",
+      "database_migrations_2025_11_23_192522_create_patient_attendant_relations_table_up"
+    ],
+    "102": [
+      "database_migrations_2025_11_23_192530_create_fee_types_table",
+      "database_migrations_2025_11_23_192530_create_fee_types_table_down",
+      "database_migrations_2025_11_23_192530_create_fee_types_table_up"
+    ],
+    "103": [
+      "database_migrations_2025_11_23_192530_create_tehsils_table",
+      "database_migrations_2025_11_23_192530_create_tehsils_table_down",
+      "database_migrations_2025_11_23_192530_create_tehsils_table_up"
+    ],
+    "104": [
+      "database_migrations_2025_11_23_192533_add_foreign_keys_to_fee_types_table",
+      "database_migrations_2025_11_23_192533_add_foreign_keys_to_fee_types_table_down",
+      "database_migrations_2025_11_23_192533_add_foreign_keys_to_fee_types_table_up"
+    ],
+    "105": [
+      "database_migrations_2025_11_23_192533_add_foreign_keys_to_tehsils_table",
+      "database_migrations_2025_11_23_192533_add_foreign_keys_to_tehsils_table_down",
+      "database_migrations_2025_11_23_192533_add_foreign_keys_to_tehsils_table_up"
+    ],
+    "106": [
+      "database_migrations_2025_11_23_192536_create_patients_table",
+      "database_migrations_2025_11_23_192536_create_patients_table_down",
+      "database_migrations_2025_11_23_192536_create_patients_table_up"
+    ],
+    "107": [
+      "database_migrations_2025_11_23_192539_add_foreign_keys_to_patients_table",
+      "database_migrations_2025_11_23_192539_add_foreign_keys_to_patients_table_down",
+      "database_migrations_2025_11_23_192539_add_foreign_keys_to_patients_table_up"
+    ],
+    "108": [
+      "database_migrations_2025_11_23_192542_create_invoices_table",
+      "database_migrations_2025_11_23_192542_create_invoices_table_down",
+      "database_migrations_2025_11_23_192542_create_invoices_table_up"
+    ],
+    "109": [
+      "database_migrations_2025_11_23_192542_create_patient_emergency_treatments_table",
+      "database_migrations_2025_11_23_192542_create_patient_emergency_treatments_table_down",
+      "database_migrations_2025_11_23_192542_create_patient_emergency_treatments_table_up"
+    ],
+    "110": [
+      "database_migrations_2025_11_23_192542_create_patient_test_carts_table",
+      "database_migrations_2025_11_23_192542_create_patient_test_carts_table_down",
+      "database_migrations_2025_11_23_192542_create_patient_test_carts_table_up"
+    ],
+    "111": [
+      "database_migrations_2025_11_23_192542_create_total_fees_table",
+      "database_migrations_2025_11_23_192542_create_total_fees_table_down",
+      "database_migrations_2025_11_23_192542_create_total_fees_table_up"
+    ],
+    "112": [
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_patient_emergency_treatments_table",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_patient_emergency_treatments_table_down",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_patient_emergency_treatments_table_up"
+    ],
+    "113": [
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_patient_test_carts_table",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_patient_test_carts_table_down",
+      "database_migrations_2025_11_23_192545_add_foreign_keys_to_patient_test_carts_table_up"
+    ],
+    "114": [
+      "database_migrations_2025_11_23_192549_create_chits_table",
+      "database_migrations_2025_11_23_192549_create_chits_table_down",
+      "database_migrations_2025_11_23_192549_create_chits_table_up"
+    ],
+    "115": [
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_admissions_table",
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_admissions_table_down",
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_admissions_table_up"
+    ],
+    "116": [
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_chits_table",
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_chits_table_down",
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_chits_table_up"
+    ],
+    "117": [
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_patient_tests_table",
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_patient_tests_table_down",
+      "database_migrations_2025_11_23_192552_add_foreign_keys_to_patient_tests_table_up"
+    ],
+    "118": [
+      "deleteteam",
+      "resources_views_teams_delete_team_form_blade",
+      "resources_views_teams_delete_team_form_blade_php_toggle"
+    ],
+    "119": [
+      "ipd_opd",
+      "resources_views_chit_issue_new_chit_blade",
+      "resources_views_chit_issue_new_chit_blade_php_government_details"
+    ],
+    "120": [
+      "tailwind_config",
+      "tailwind_config_defaulttheme",
+      "tailwindcss"
+    ],
+    "121": [
+      "config_sanctum",
+      "laravel_sanctum_sanctum"
+    ],
+    "122": [
+      "deleteprofilephoto",
+      "resources_views_profile_update_profile_information_form_blade"
+    ],
+    "123": [
+      "resources_views_patient_create_blade",
+      "resources_views_patient_create_blade_php_government_details"
+    ],
+    "124": [
+      "resources_views_patient_create_ipd_blade",
+      "resources_views_patient_create_ipd_blade_php_government_details"
+    ],
+    "125": [
+      "resources_views_patient_create_opd_blade",
+      "resources_views_patient_create_opd_blade_php_government_details"
+    ],
+    "126": [
+      "resources_views_patient_edit_blade",
+      "resources_views_patient_edit_blade_php_government_details"
+    ],
+    "127": [
+      "bootstrap_providers"
+    ],
+    "128": [
+      "config_app"
+    ],
+    "129": [
+      "config_auth"
+    ],
+    "130": [
+      "config_backup"
+    ],
+    "131": [
+      "config_filesystems"
+    ],
+    "132": [
+      "config_mail"
+    ],
+    "133": [
+      "config_permission"
+    ],
+    "134": [
+      "config_query_builder"
+    ],
+    "135": [
+      "config_queue"
+    ],
+    "136": [
+      "config_services"
+    ],
+    "137": [
+      "postcss_config"
+    ],
+    "138": [
+      "resources_views_api_index_blade"
+    ],
+    "139": [
+      "resources_views_auth_confirm_password_blade"
+    ],
+    "140": [
+      "resources_views_auth_forgot_password_blade"
+    ],
+    "141": [
+      "resources_views_auth_login_blade"
+    ],
+    "142": [
+      "resources_views_auth_register_blade"
+    ],
+    "143": [
+      "resources_views_auth_reset_password_blade"
+    ],
+    "144": [
+      "resources_views_auth_two_factor_challenge_blade"
+    ],
+    "145": [
+      "resources_views_auth_verify_email_blade"
+    ],
+    "146": [
+      "resources_views_chit_issued_blade"
+    ],
+    "147": [
+      "resources_views_chit_issued_chits_blade"
+    ],
+    "148": [
+      "resources_views_chit_print_blade"
+    ],
+    "149": [
+      "resources_views_chit_today_blade"
+    ],
+    "150": [
+      "resources_views_components_action_message_blade"
+    ],
+    "151": [
+      "resources_views_components_action_section_blade"
+    ],
+    "152": [
+      "resources_views_components_application_logo_blade"
+    ],
+    "153": [
+      "resources_views_components_application_mark_blade"
+    ],
+    "154": [
+      "resources_views_components_authentication_card_blade"
+    ],
+    "155": [
+      "resources_views_components_authentication_card_logo_blade"
+    ],
+    "156": [
+      "resources_views_components_banner_blade"
+    ],
+    "157": [
+      "resources_views_components_button_blade"
+    ],
+    "158": [
+      "resources_views_components_checkbox_blade"
+    ],
+    "159": [
+      "resources_views_components_confirmation_modal_blade"
+    ],
+    "160": [
+      "resources_views_components_danger_button_blade"
+    ],
+    "161": [
+      "resources_views_components_dialog_modal_blade"
+    ],
+    "162": [
+      "resources_views_components_dropdown_blade"
+    ],
+    "163": [
+      "resources_views_components_dropdown_link_blade"
+    ],
+    "164": [
+      "resources_views_components_form_section_blade"
+    ],
+    "165": [
+      "resources_views_components_input_blade"
+    ],
+    "166": [
+      "resources_views_components_input_error_blade"
+    ],
+    "167": [
+      "resources_views_components_label_blade"
+    ],
+    "168": [
+      "resources_views_components_modal_blade"
+    ],
+    "169": [
+      "resources_views_components_nav_link_blade"
+    ],
+    "170": [
+      "resources_views_components_responsive_nav_link_blade"
+    ],
+    "171": [
+      "resources_views_components_secondary_button_blade"
+    ],
+    "172": [
+      "resources_views_components_section_border_blade"
+    ],
+    "173": [
+      "resources_views_components_section_title_blade"
+    ],
+    "174": [
+      "resources_views_components_success_message_blade"
+    ],
+    "175": [
+      "resources_views_components_switchable_team_blade"
+    ],
+    "176": [
+      "resources_views_components_validation_errors_blade"
+    ],
+    "177": [
+      "resources_views_components_welcome_blade"
+    ],
+    "178": [
+      "resources_views_dashboard_blade"
+    ],
+    "179": [
+      "resources_views_department_create_blade"
+    ],
+    "180": [
+      "resources_views_department_edit_blade"
+    ],
+    "181": [
+      "resources_views_department_index_blade"
+    ],
+    "182": [
+      "resources_views_emails_team_invitation_blade"
+    ],
+    "183": [
+      "resources_views_fee_types_create_blade"
+    ],
+    "184": [
+      "resources_views_fee_types_edit_blade"
+    ],
+    "185": [
+      "resources_views_fee_types_index_blade"
+    ],
+    "186": [
+      "resources_views_government_departments_create_blade"
+    ],
+    "187": [
+      "resources_views_government_departments_edit_blade"
+    ],
+    "188": [
+      "resources_views_government_departments_index_blade"
+    ],
+    "189": [
+      "resources_views_invoices_issued_blade"
+    ],
+    "190": [
+      "resources_views_invoices_issued_invoices_blade"
+    ],
+    "191": [
+      "resources_views_invoices_today_blade"
+    ],
+    "192": [
+      "resources_views_labtest_create_blade"
+    ],
+    "193": [
+      "resources_views_labtest_edit_blade"
+    ],
+    "194": [
+      "resources_views_labtest_index_blade"
+    ],
+    "195": [
+      "resources_views_layouts_app_blade"
+    ],
+    "196": [
+      "resources_views_layouts_guest_blade"
+    ],
+    "197": [
+      "resources_views_livewire_government_details_blade"
+    ],
+    "198": [
+      "resources_views_livewire_ipd_opd_blade"
+    ],
+    "199": [
+      "resources_views_livewire_select2_blade"
+    ],
+    "200": [
+      "resources_views_navigation_menu_blade"
+    ],
+    "201": [
+      "resources_views_patient_actions_blade"
+    ],
+    "202": [
+      "resources_views_patient_emergency_treatment_blade"
+    ],
+    "203": [
+      "resources_views_patient_history_blade"
+    ],
+    "204": [
+      "resources_views_patient_index_blade"
+    ],
+    "205": [
+      "resources_views_patient_invoice_blade"
+    ],
+    "206": [
+      "resources_views_patient_proceed_blade"
+    ],
+    "207": [
+      "resources_views_patient_show_blade"
+    ],
+    "208": [
+      "resources_views_patient_thermal_print_blade"
+    ],
+    "209": [
+      "resources_views_permissions_create_blade"
+    ],
+    "210": [
+      "resources_views_permissions_edit_blade"
+    ],
+    "211": [
+      "resources_views_permissions_index_blade"
+    ],
+    "212": [
+      "resources_views_policy_blade"
+    ],
+    "213": [
+      "resources_views_profile_show_blade"
+    ],
+    "214": [
+      "resources_views_profile_two_factor_authentication_form_blade"
+    ],
+    "215": [
+      "resources_views_profile_update_password_form_blade"
+    ],
+    "216": [
+      "resources_views_reports_auditor_department_wise_blade"
+    ],
+    "217": [
+      "resources_views_reports_auditor_reports_daily_blade"
+    ],
+    "218": [
+      "resources_views_reports_auditor_reports_daily_ipd_blade"
+    ],
+    "219": [
+      "resources_views_reports_category_wise_department_wise_audit_blade"
+    ],
+    "220": [
+      "resources_views_reports_category_wise_department_wise_blade"
+    ],
+    "221": [
+      "resources_views_reports_category_wise_department_wise_two_blade"
+    ],
+    "222": [
+      "resources_views_reports_category_wise_index_blade"
+    ],
+    "223": [
+      "resources_views_reports_category_wise_misc_blade"
+    ],
+    "224": [
+      "resources_views_reports_emergency_treatments_index_blade"
+    ],
+    "225": [
+      "resources_views_reports_general_information_index_blade"
+    ],
+    "226": [
+      "resources_views_reports_general_information_misc_blade"
+    ],
+    "227": [
+      "resources_views_reports_index_blade"
+    ],
+    "228": [
+      "resources_views_reports_ipd_index_blade"
+    ],
+    "229": [
+      "resources_views_reports_ipd_monthly_income_statement_blade"
+    ],
+    "230": [
+      "resources_views_reports_opd_index_blade"
+    ],
+    "231": [
+      "resources_views_reports_opd_specialist_fees_blade"
+    ],
+    "232": [
+      "resources_views_reports_opd_user_wise_blade"
+    ],
+    "233": [
+      "resources_views_reports_reports_daily_blade"
+    ],
+    "234": [
+      "resources_views_reports_reports_daily_ipd_blade"
+    ],
+    "235": [
+      "resources_views_reports_ssp_claims_blade"
+    ],
+    "236": [
+      "resources_views_roles_create_blade"
+    ],
+    "237": [
+      "resources_views_roles_edit_blade"
+    ],
+    "238": [
+      "resources_views_roles_index_blade"
+    ],
+    "239": [
+      "resources_views_teams_create_blade"
+    ],
+    "240": [
+      "resources_views_teams_create_team_form_blade"
+    ],
+    "241": [
+      "resources_views_teams_show_blade"
+    ],
+    "242": [
+      "resources_views_teams_update_team_name_form_blade"
+    ],
+    "243": [
+      "resources_views_terms_blade"
+    ],
+    "244": [
+      "resources_views_users_create_blade"
+    ],
+    "245": [
+      "resources_views_users_edit_blade"
+    ],
+    "246": [
+      "resources_views_users_index_blade"
+    ],
+    "247": [
+      "resources_views_users_show_blade"
+    ],
+    "248": [
+      "resources_views_welcome_blade"
+    ],
+    "249": [
+      "tests_feature_exampletest"
+    ],
+    "250": [
+      "tests_unit_exampletest"
+    ]
+  },
+  "cohesion": {
+    "0": 0.0647887323943662,
+    "1": 0.07653061224489796,
+    "2": 0.11229946524064172,
+    "3": 0.0846774193548387,
+    "4": 0.06653225806451613,
+    "5": 0.09195402298850575,
+    "6": 0.12315270935960591,
+    "7": 0.10052910052910052,
+    "8": 0.10317460317460317,
+    "9": 0.11396011396011396,
+    "10": 0.10541310541310542,
+    "11": 0.10541310541310542,
+    "12": 0.10541310541310542,
+    "13": 0.12648221343873517,
+    "14": 0.17316017316017315,
+    "15": 0.15151515151515152,
+    "16": 0.1341991341991342,
+    "17": 0.1341991341991342,
+    "18": 0.19480519480519481,
+    "19": 0.13333333333333333,
+    "20": 0.1695906432748538,
+    "21": 0.14035087719298245,
+    "22": 0.10526315789473684,
+    "23": 0.14035087719298245,
+    "24": 0.11695906432748537,
+    "25": 0.1568627450980392,
+    "26": 0.13725490196078433,
+    "27": 0.1503267973856209,
+    "28": 0.1323529411764706,
+    "29": 0.1323529411764706,
+    "30": 0.1323529411764706,
+    "31": 0.18382352941176472,
+    "32": 0.1323529411764706,
+    "33": 0.1323529411764706,
+    "34": 0.1323529411764706,
+    "35": 0.19166666666666668,
+    "36": 0.125,
+    "37": 0.19047619047619047,
+    "38": 0.23076923076923078,
+    "39": 0.21794871794871795,
+    "40": 0.20512820512820512,
+    "41": 0.16666666666666666,
+    "42": 0.16666666666666666,
+    "43": 0.24242424242424243,
+    "44": 0.2,
+    "45": 0.18181818181818182,
+    "46": 0.18181818181818182,
+    "47": 0.3111111111111111,
+    "48": 0.4222222222222222,
+    "49": 0.2,
+    "50": 0.3333333333333333,
+    "51": 0.3055555555555556,
+    "52": 0.42857142857142855,
+    "53": 0.42857142857142855,
+    "54": 0.38095238095238093,
+    "55": 0.2857142857142857,
+    "56": 0.2857142857142857,
+    "57": 0.2857142857142857,
+    "58": 0.6,
+    "59": 0.6,
+    "60": 0.4,
+    "61": 0.4,
+    "62": 0.4,
+    "63": 0.4,
+    "64": 0.4,
+    "65": 0.5,
+    "66": 0.5,
+    "67": 0.5,
+    "68": 0.5,
+    "69": 0.5,
+    "70": 0.5,
+    "71": 0.5,
+    "72": 0.5,
+    "73": 0.5,
+    "74": 0.5,
+    "75": 0.5,
+    "76": 1.0,
+    "77": 0.6666666666666666,
+    "78": 0.6666666666666666,
+    "79": 0.6666666666666666,
+    "80": 0.6666666666666666,
+    "81": 0.6666666666666666,
+    "82": 0.6666666666666666,
+    "83": 0.6666666666666666,
+    "84": 0.6666666666666666,
+    "85": 0.6666666666666666,
+    "86": 0.6666666666666666,
+    "87": 0.6666666666666666,
+    "88": 0.6666666666666666,
+    "89": 0.6666666666666666,
+    "90": 0.6666666666666666,
+    "91": 0.6666666666666666,
+    "92": 0.6666666666666666,
+    "93": 0.6666666666666666,
+    "94": 0.6666666666666666,
+    "95": 0.6666666666666666,
+    "96": 0.6666666666666666,
+    "97": 0.6666666666666666,
+    "98": 0.6666666666666666,
+    "99": 0.6666666666666666,
+    "100": 0.6666666666666666,
+    "101": 0.6666666666666666,
+    "102": 0.6666666666666666,
+    "103": 0.6666666666666666,
+    "104": 0.6666666666666666,
+    "105": 0.6666666666666666,
+    "106": 0.6666666666666666,
+    "107": 0.6666666666666666,
+    "108": 0.6666666666666666,
+    "109": 0.6666666666666666,
+    "110": 0.6666666666666666,
+    "111": 0.6666666666666666,
+    "112": 0.6666666666666666,
+    "113": 0.6666666666666666,
+    "114": 0.6666666666666666,
+    "115": 0.6666666666666666,
+    "116": 0.6666666666666666,
+    "117": 0.6666666666666666,
+    "118": 0.6666666666666666,
+    "119": 0.6666666666666666,
+    "120": 0.6666666666666666,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0,
+    "200": 1.0,
+    "201": 1.0,
+    "202": 1.0,
+    "203": 1.0,
+    "204": 1.0,
+    "205": 1.0,
+    "206": 1.0,
+    "207": 1.0,
+    "208": 1.0,
+    "209": 1.0,
+    "210": 1.0,
+    "211": 1.0,
+    "212": 1.0,
+    "213": 1.0,
+    "214": 1.0,
+    "215": 1.0,
+    "216": 1.0,
+    "217": 1.0,
+    "218": 1.0,
+    "219": 1.0,
+    "220": 1.0,
+    "221": 1.0,
+    "222": 1.0,
+    "223": 1.0,
+    "224": 1.0,
+    "225": 1.0,
+    "226": 1.0,
+    "227": 1.0,
+    "228": 1.0,
+    "229": 1.0,
+    "230": 1.0,
+    "231": 1.0,
+    "232": 1.0,
+    "233": 1.0,
+    "234": 1.0,
+    "235": 1.0,
+    "236": 1.0,
+    "237": 1.0,
+    "238": 1.0,
+    "239": 1.0,
+    "240": 1.0,
+    "241": 1.0,
+    "242": 1.0,
+    "243": 1.0,
+    "244": 1.0,
+    "245": 1.0,
+    "246": 1.0,
+    "247": 1.0,
+    "248": 1.0,
+    "249": 1.0,
+    "250": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_models_user_user",
+      "label": "User",
+      "degree": 233
+    },
+    {
+      "id": "app_models_patient_patient",
+      "label": "Patient",
+      "degree": 54
+    },
+    {
+      "id": "app_models_department_department",
+      "label": "Department",
+      "degree": 48
+    },
+    {
+      "id": "app_models_chit_chit",
+      "label": "Chit",
+      "degree": 46
+    },
+    {
+      "id": "app_models_feetype_feetype",
+      "label": "FeeType",
+      "degree": 39
+    },
+    {
+      "id": "app_models_invoice_invoice",
+      "label": "Invoice",
+      "degree": 39
+    },
+    {
+      "id": "app_models_feecategory_feecategory",
+      "label": "FeeCategory",
+      "degree": 36
+    },
+    {
+      "id": "app_models_team_team",
+      "label": "Team",
+      "degree": 35
+    },
+    {
+      "id": "app_models_patienttest_patienttest",
+      "label": "PatientTest",
+      "degree": 31
+    },
+    {
+      "id": "app_http_controllers_controller_controller",
+      "label": "Controller",
+      "degree": 27
+    }
+  ],
+  "surprises": [
+    {
+      "source": "e()",
+      "target": "o()",
+      "source_files": [
+        "public/js/select2.min.js",
+        "public/js/apexcharts.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "indirect_call",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "x()",
+      "target": "g()",
+      "source_files": [
+        "public/js/select2.min.js",
+        "public/js/apexcharts.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "indirect_call",
+      "why": "inferred connection - not explicitly stated in source; bridges separate communities"
+    },
+    {
+      "source": "AdmissionController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/AdmissionController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "AdmissionWardController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/AdmissionWardController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "ChitController",
+      "target": "Controller",
+      "source_files": [
+        "app/Http/Controllers/ChitController.php",
+        "app/Http/Controllers/Controller.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
