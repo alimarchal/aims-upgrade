@@ -2,16 +2,20 @@
     "agents": [
         "claude_code",
         "codex",
-        "copilot",
-        "gemini"
+        "copilot"
     ],
+    "cloud": true,
     "guidelines": true,
-    "herd_mcp": true,
     "mcp": true,
+    "nightwatch": false,
     "sail": false,
     "skills": [
+        "infer-conventions",
+        "deploying-to-cloud",
+        "fortify-development",
+        "laravel-best-practices",
+        "testing-best-practices",
         "livewire-development",
-        "pest-testing",
         "tailwindcss-development"
     ]
 }
