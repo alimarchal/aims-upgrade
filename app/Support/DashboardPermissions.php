@@ -42,8 +42,6 @@ class DashboardPermissions
         'admissions' => 'view dashboard admissions chart',
         'wards' => 'view dashboard wards chart',
         'projection' => 'view dashboard month projection',
-        'team' => 'view dashboard team performance',
-        'unusual_days' => 'view dashboard unusual days',
     ];
 
     /**

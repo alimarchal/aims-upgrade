@@ -140,6 +140,25 @@
             @endif
         </header>
 
+        {{-- KPIs, in three groups ------------------------------------------------------------------- --}}
+        @if ($can('kpis'))
+        <h2 class="db-section"><i>1</i> At a glance <span>{{ $label }} · each % compares with {{ $prevLabel }}@if ($data['live']) up to {{ $data['compare_until'] }} — the same stretch of time, not the whole earlier period @endif</span></h2>
+        @foreach ($kpiGroups as [$groupTitle, $dot, $groupHint, $cards])
+            <div class="db-group" style="--dot: {{ $dot }}">{{ $groupTitle }} <span>— {{ $groupHint }}</span></div>
+            <section class="db-grid db-kpis" aria-label="{{ $groupTitle }}">
+                @foreach ($cards as [$name, $value, $now, $before, $tone, $icon, $spark, $hint, $link])
+                    @php [$tone2, $text] = $before === null ? [null, null] : $change((float) $now, (float) $before, ''); @endphp
+                    <{{ $link ? 'a href='.chr(34).$link.chr(34) : 'div' }} class="db-kpi" style="{{ \App\Support\DashboardFormat::tone($tone) }}; display:block; text-decoration:none">
+                        <div class="db-kpi-top"><span class="db-kpi-label">{{ $name }}</span>@include('dashboards.icon', ['icon' => $icon])</div>
+                        <div class="db-kpi-value">{{ $value }}</div>
+                        <div class="db-kpi-hint">@if ($tone2)<span class="db-delta {{ $tone2 }}" title="{{ trim($text) }} {{ $vs }}">{{ trim($text) }}</span> @endif{{ $hint }}</div>
+                        @if ($spark)<div class="db-spark" id="spark-{{ $spark }}"></div>@endif
+                    </{{ $link ? 'a' : 'div' }}>
+                @endforeach
+            </section>
+        @endforeach
+        @endif
+
         {{-- Highlights: the story of the period as gauges ------------------------------------------------- --}}
         @php
             $gaugeChits = $data['length'] === 1 ? ($data['usual'] > 0 ? round($p['chits'] / $data['usual'] * 100) : 0) : ($data['daily_mean'] > 0 ? round($perDay / $data['daily_mean'] * 100) : 0);
@@ -162,85 +181,9 @@
         </section>
         @endif
 
-        <details class="db-help">
-            <summary>How to read this dashboard</summary>
-            <ul>
-                @if (! $canFilter)
-                <li><b>Period:</b> every number and chart shows today. Percent badges compare with yesterday up to the same time.</li>
-                @else
-                <li><b>Period:</b> pick Today, a month, a year or any dates at the top — every number and chart below follows it. Percent badges compare with the previous period of the same length (for a day that is still going, with yesterday up to the same time).</li>
-                @endif
-                <li><b>Government revenue</b> is what the hospital keeps (amount minus HIF). <b>HIF</b> is the share passed on to the Health Insurance Fund. <b>Total revenue</b> is both together.</li>
-                <li><b>Entitled</b> patients are government employees treated free; <b>non-entitled</b> patients pay the fee.</li>
-                <li>Small lines inside the cards show the trend over the period; hover any chart for exact values, and use the icons on the trend chart to zoom or download it.</li>
-            </ul>
-        </details>
-
-        {{-- KPIs, in three groups ------------------------------------------------------------------- --}}
-        @if ($can('kpis'))
-        <h2 class="db-section"><i>1</i> At a glance <span>{{ $label }} · each % compares with {{ $prevLabel }}@if ($data['live']) up to {{ $data['compare_until'] }} — the same stretch of time, not the whole earlier period @endif</span></h2>
-        @foreach ($kpiGroups as [$groupTitle, $dot, $groupHint, $cards])
-            <div class="db-group" style="--dot: {{ $dot }}">{{ $groupTitle }} <span>— {{ $groupHint }}</span></div>
-            <section class="db-grid db-kpis" aria-label="{{ $groupTitle }}">
-                @foreach ($cards as [$name, $value, $now, $before, $tone, $icon, $spark, $hint, $link])
-                    @php [$tone2, $text] = $before === null ? [null, null] : $change((float) $now, (float) $before, ''); @endphp
-                    <{{ $link ? 'a href='.chr(34).$link.chr(34) : 'div' }} class="db-kpi" style="{{ \App\Support\DashboardFormat::tone($tone) }}; display:block; text-decoration:none">
-                        <div class="db-kpi-top"><span class="db-kpi-label">{{ $name }}</span>@include('dashboards.icon', ['icon' => $icon])</div>
-                        <div class="db-kpi-value">{{ $value }}</div>
-                        <div class="db-kpi-hint">@if ($tone2)<span class="db-delta {{ $tone2 }}" title="{{ trim($text) }} {{ $vs }}">{{ trim($text) }}</span> @endif{{ $hint }}</div>
-                        @if ($spark)<div class="db-spark" id="spark-{{ $spark }}"></div>@endif
-                    </{{ $link ? 'a' : 'div' }}>
-                @endforeach
-            </section>
-        @endforeach
-        @endif
-
-        @php
-            $x = $data['extras'];
-            $peakSeconds = $x['peak_per_hour'] > 0 ? 3600 / $x['peak_per_hour'] : null;
-            $peakEvery = $peakSeconds === null ? null : ($peakSeconds < 90 ? round($peakSeconds).' seconds' : round($peakSeconds / 60, 1).' minutes');
-        @endphp
-        @if ($can('insights'))
-        <h2 class="db-section"><i>2</i> What the numbers mean <span>plain-language insights for {{ $label }}</span></h2>
-        <section class="db-grid db-insights" aria-label="Insights">
-            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#0a9bb5') }}">
-                <b>Rs {{ $rs($x['free_care']) }}</b>
-                <h3>Free care given</h3>
-                <p>{{ $rs($p['entitled']) }} entitled patients were treated free. At the normal fee this care is worth Rs {{ $rs($x['free_care']) }} — money the hospital did not collect.</p>
-            </div>
-            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#0071e3') }}">
-                <b>{{ $p['chits'] ? round($x['specialist_chits'] / $p['chits'] * 100) : 0 }}%</b>
-                <h3>Specialist OPD share</h3>
-                <p>{{ $rs($x['specialist_chits']) }} of {{ $rs($p['chits']) }} chits went to specialist clinics and brought Rs {{ $rs($x['specialist_govt']) }} government revenue. The rest is general OPD, mostly free or low-fee.</p>
-            </div>
-            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#ff2d55') }}">
-                <b>{{ $peakEvery ? 'every '.\Illuminate\Support\Str::of($peakEvery)->replace(' seconds', ' sec')->replace(' minutes', ' min') : '—' }}</b>
-                <h3>Peak load</h3>
-                <p>At {{ sprintf('%02d:00', $data['peak_hour']) }} the hospital issues about {{ $rs(round($x['peak_per_hour'])) }} chits an hour on a normal day{{ $peakEvery ? ' — one new chit every '.$peakEvery : '' }}. Keep enough counters open then.</p>
-            </div>
-            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#5856d6') }}">
-                <b>{{ $x['busiest_day'] ? $rs($x['busiest_day']['n']) : '—' }}</b>
-                <h3>Busiest day</h3>
-                <p>@if ($x['busiest_day']){{ $x['busiest_day']['date'] }} was the busiest with {{ $rs($x['busiest_day']['n']) }} chits.@if ($x['quietest_day']) The quietest was {{ $x['quietest_day']['date'] }} with {{ $rs($x['quietest_day']['n']) }}.@endif @else No chits in this period.@endif</p>
-            </div>
-            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone(($x['deleted_chits'] + $x['deleted_invoices'] + $x['returns']) > 0 ? '#ff3b30' : '#30a14e') }}">
-                <b>{{ $rs($x['deleted_chits'] + $x['deleted_invoices'] + $x['returns']) }}</b>
-                <h3>Deletions &amp; returns</h3>
-                <p>{{ $rs($x['deleted_chits']) }} chits and {{ $rs($x['deleted_invoices']) }} invoices were deleted (Rs {{ $rs($x['deleted_chits_amount'] + $x['deleted_invoices_amount']) }}) and {{ $rs($x['returns']) }} tests returned (Rs {{ $rs($x['returns_amount']) }}). This should stay close to zero — a jump deserves a look.</p>
-            </div>
-            @if ($x['ssp'])
-                <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#af52de') }}">
-                    <b>{{ $rs($x['ssp']['n']) }}</b>
-                    <h3>Sehat Sahulat patients</h3>
-                    <p>Patients treated under the Sehat Sahulat Program; the fees to claim from the insurer are Rs {{ $rs($x['ssp']['claims']) }}.</p>
-                </div>
-            @endif
-        </section>
-        @endif
-
-        {{-- 3. Trends ------------------------------------------------------------------------------- --}}
+        {{-- 2. Trends ------------------------------------------------------------------------------- --}}
         @if ($any('daily_chits', 'daily_revenue', 'race', 'mix', 'control', 'split'))
-        <h2 class="db-section"><i>3</i> Trends <span>how patients and revenue move over time</span></h2>
+        <h2 class="db-section"><i>2</i> Trends <span>how patients and revenue move over time</span></h2>
         @endif
         @if ($any('daily_chits', 'daily_revenue'))
         <section class="db-grid db-two is-even">
@@ -297,9 +240,9 @@
         </section>
         @endif
 
-        {{-- 4. Revenue ---------------------------------------------------------------------------- --}}
+        {{-- 3. Revenue ---------------------------------------------------------------------------- --}}
         @if ($any('months', 'yoy', 'services', 'department_revenue'))
-        <h2 class="db-section"><i>4</i> Revenue <span>government + HIF, over the year and by source</span></h2>
+        <h2 class="db-section"><i>3</i> Revenue <span>government + HIF, over the year and by source</span></h2>
         @endif
         @if ($any('months', 'yoy'))
         <section class="db-grid db-two is-even">
@@ -338,61 +281,9 @@
         </section>
         @endif
 
-        {{-- 5. Busy times ------------------------------------------------------------------------- --}}
-        @if ($any('heat_map', 'hours', 'weekdays', 'weekday_variation', 'day_of_month'))
-        <h2 class="db-section"><i>5</i> When it is busy <span>staffing guide</span></h2>
-        @endif
-        @if ($any('heat_map', 'hours', 'weekdays'))
-        <section class="db-grid db-two">
-            @if ($can('heat_map'))
-            <div class="db-card">
-                <div class="db-card-head"><h2>Weekday × hour heat map</h2><span>chits, 90 days up to {{ $to->format('d M Y') }} · darker = busier</span></div>
-                <div class="db-card-body"><div id="heat-chart" style="min-height: 330px"></div>
-                    <p class="db-note">Darker squares are busier. Read across a row for one weekday and down a column for one hour — the darkest block is when the hospital is under most pressure.</p></div>
-            </div>
-            @endif
-            @if ($any('hours', 'weekdays'))
-            <div class="db-grid" style="margin-top:0">
-                @if ($can('hours'))
-                <div class="db-card">
-                    <div class="db-card-head"><h2>Busiest hours</h2><span>period</span></div>
-                    <div class="db-card-body"><div id="hours-chart" style="min-height: 150px"></div>
-                        <p class="db-note">Chits issued in each hour; the dark blue bar is the busiest.</p></div>
-                </div>
-                @endif
-                @if ($can('weekdays'))
-                <div class="db-card">
-                    <div class="db-card-head"><h2>Busiest weekdays</h2><span>average chits per day</span></div>
-                    <div class="db-card-body"><div id="weekday-chart" style="min-height: 150px"></div>
-                        <p class="db-note">Plan leave and extra staff around the tallest bars.</p></div>
-                </div>
-                @endif
-            </div>
-            @endif
-        </section>
-        @endif
-        @if ($any('weekday_variation', 'day_of_month'))
-        <section class="db-grid db-two is-even">
-            @if ($can('weekday_variation'))
-            <div class="db-card">
-                <div class="db-card-head"><h2>How much a normal day varies</h2><span>box plot per weekday, 90 days</span></div>
-                <div class="db-card-body"><div id="box-chart" style="min-height: 280px"></div>
-                    <p class="db-note">Each box covers the middle half of the days for that weekday; the line inside is the median and the whiskers are the quietest and busiest day. Tall boxes mean an unpredictable weekday.</p></div>
-            </div>
-            @endif
-            @if ($can('day_of_month'))
-            <div class="db-card">
-                <div class="db-card-head"><h2>Day of the month</h2><span>average chits per calendar day, last 12 months</span></div>
-                <div class="db-card-body"><div id="dom-chart" style="min-height: 280px"></div>
-                    <p class="db-note">Shows which part of the month is busy — for example the first days after salaries are paid. Day 31 is rarer, so its bar is lower.</p></div>
-            </div>
-            @endif
-        </section>
-        @endif
-
-        {{-- 6. Departments & services --------------------------------------------------------------- --}}
+        {{-- 4. Departments & services --------------------------------------------------------------- --}}
         @if ($any('opd_departments', 'specialist', 'categories', 'operation_theatre', 'radiology', 'employers'))
-        <h2 class="db-section"><i>6</i> Departments &amp; services <span>who uses what</span></h2>
+        <h2 class="db-section"><i>4</i> Departments &amp; services <span>who uses what</span></h2>
         @endif
         @if ($any('opd_departments', 'specialist'))
         <section class="db-grid db-two is-even">
@@ -442,9 +333,9 @@
         </section>
         @endif
 
-        {{-- 7. Patients & admissions ----------------------------------------------------------------- --}}
+        {{-- 5. Patients & admissions ----------------------------------------------------------------- --}}
         @if ($any('gender', 'age_pyramid', 'admissions', 'wards', 'projection'))
-        <h2 class="db-section"><i>7</i> Patients &amp; admissions <span>who the patients are</span></h2>
+        <h2 class="db-section"><i>5</i> Patients &amp; admissions <span>who the patients are</span></h2>
         @endif
         @if ($any('gender', 'age_pyramid', 'admissions'))
         <section class="db-grid db-three">
@@ -495,61 +386,116 @@
         </section>
         @endif
 
-        {{-- 8. People & watch list ------------------------------------------------------------------- --}}
-        @if ($any('team', 'unusual_days'))
-        <h2 class="db-section"><i>8</i> People &amp; watch list <span>team results and days worth a look</span></h2>
+        {{-- 6. Busy times ------------------------------------------------------------------------- --}}
+        @if ($any('heat_map', 'hours', 'weekdays', 'weekday_variation', 'day_of_month'))
+        <h2 class="db-section"><i>6</i> When it is busy <span>staffing guide</span></h2>
+        @endif
+        @if ($any('heat_map', 'hours', 'weekdays'))
         <section class="db-grid db-two">
-            @if ($can('team'))
+            @if ($can('heat_map'))
             <div class="db-card">
-                <div class="db-card-head"><h2>Team performance</h2><span>government revenue collected in the period</span></div>
-                <div class="db-card-body">
-                    @if (empty($data['team']))
-                        <div class="db-empty">No activity in this period.</div>
-                    @else
-                        <div style="overflow-x:auto">
-                            <table class="db-table">
-                                <thead><tr><th>User</th><th class="r">Chits</th><th class="r">Invoices</th><th class="r">Revenue</th><th style="width:22%">Share</th></tr></thead>
-                                <tbody>
-                                    @foreach ($data['team'] as $row)
-                                        <tr>
-                                            <td><b>{{ $row['name'] }}</b></td>
-                                            <td class="r">{{ $rs($row['chits']) }}</td><td class="r">{{ $rs($row['invoices']) }}</td>
-                                            <td class="r"><b>Rs {{ $rs($row['govt']) }}</b></td>
-                                            <td><div class="db-bar"><span style="width: {{ min(100, $row['share']) }}%"></span></div><small class="ak-muted">{{ $row['share'] }}%</small></td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endif
-                </div>
+                <div class="db-card-head"><h2>Weekday × hour heat map</h2><span>chits, 90 days up to {{ $to->format('d M Y') }} · darker = busier</span></div>
+                <div class="db-card-body"><div id="heat-chart" style="min-height: 330px"></div>
+                    <p class="db-note">Darker squares are busier. Read across a row for one weekday and down a column for one hour — the darkest block is when the hospital is under most pressure.</p></div>
             </div>
             @endif
-            @if ($can('unusual_days'))
-            <div class="db-card">
-                <div class="db-card-head"><h2>Unusual days</h2><span>beyond 2 standard deviations of the {{ $rs($data['daily_mean']) }}/day average</span></div>
-                <div class="db-card-body">
-                    @if (empty($data['anomalies']))
-                        <div class="db-empty">Nothing unusual — every recent day was within the normal range.</div>
-                    @else
-                        <table class="db-table">
-                            <thead><tr><th>Day</th><th class="r">Chits</th><th class="r">z-score</th><th></th></tr></thead>
-                            <tbody>
-                                @foreach ($data['anomalies'] as $a)
-                                    <tr><td><b>{{ $a['date'] }}</b></td><td class="r">{{ $rs($a['chits']) }}</td><td class="r">{{ $a['z'] > 0 ? '+' : '' }}{{ $a['z'] }}</td>
-                                        <td><span class="db-pill {{ $a['kind'] }}">{{ $a['kind'] === 'busy' ? 'unusually busy' : 'unusually quiet' }}</span></td></tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <p class="db-note">z-score = how many standard deviations a day is from the average; above +2 or below −2 is unusual.</p>
-                    @endif
+            @if ($any('hours', 'weekdays'))
+            <div class="db-grid" style="margin-top:0">
+                @if ($can('hours'))
+                <div class="db-card">
+                    <div class="db-card-head"><h2>Busiest hours</h2><span>period</span></div>
+                    <div class="db-card-body"><div id="hours-chart" style="min-height: 150px"></div>
+                        <p class="db-note">Chits issued in each hour; the dark blue bar is the busiest.</p></div>
                 </div>
+                @endif
+                @if ($can('weekdays'))
+                <div class="db-card">
+                    <div class="db-card-head"><h2>Busiest weekdays</h2><span>average chits per day</span></div>
+                    <div class="db-card-body"><div id="weekday-chart" style="min-height: 150px"></div>
+                        <p class="db-note">Plan leave and extra staff around the tallest bars.</p></div>
+                </div>
+                @endif
+            </div>
+            @endif
+        </section>
+        @endif
+        @if ($any('weekday_variation', 'day_of_month'))
+        <section class="db-grid db-two is-even">
+            @if ($can('weekday_variation'))
+            <div class="db-card">
+                <div class="db-card-head"><h2>How much a normal day varies</h2><span>box plot per weekday, 90 days</span></div>
+                <div class="db-card-body"><div id="box-chart" style="min-height: 280px"></div>
+                    <p class="db-note">Each box covers the middle half of the days for that weekday; the line inside is the median and the whiskers are the quietest and busiest day. Tall boxes mean an unpredictable weekday.</p></div>
+            </div>
+            @endif
+            @if ($can('day_of_month'))
+            <div class="db-card">
+                <div class="db-card-head"><h2>Day of the month</h2><span>average chits per calendar day, last 12 months</span></div>
+                <div class="db-card-body"><div id="dom-chart" style="min-height: 280px"></div>
+                    <p class="db-note">Shows which part of the month is busy — for example the first days after salaries are paid. Day 31 is rarer, so its bar is lower.</p></div>
             </div>
             @endif
         </section>
         @endif
 
-        <h2 class="db-section"><i>9</i> History &amp; reports <span>open the full lists for {{ $label }}</span></h2>
+        @php
+            $x = $data['extras'];
+            $peakSeconds = $x['peak_per_hour'] > 0 ? 3600 / $x['peak_per_hour'] : null;
+            $peakEvery = $peakSeconds === null ? null : ($peakSeconds < 90 ? round($peakSeconds).' seconds' : round($peakSeconds / 60, 1).' minutes');
+        @endphp
+        @if ($can('insights'))
+        <h2 class="db-section"><i>7</i> What the numbers mean <span>plain-language insights for {{ $label }}</span></h2>
+        <section class="db-grid db-insights" aria-label="Insights">
+            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#0a9bb5') }}">
+                <b>Rs {{ $rs($x['free_care']) }}</b>
+                <h3>Free care given</h3>
+                <p>{{ $rs($p['entitled']) }} entitled patients were treated free. At the normal fee this care is worth Rs {{ $rs($x['free_care']) }} — money the hospital did not collect.</p>
+            </div>
+            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#0071e3') }}">
+                <b>{{ $p['chits'] ? round($x['specialist_chits'] / $p['chits'] * 100) : 0 }}%</b>
+                <h3>Specialist OPD share</h3>
+                <p>{{ $rs($x['specialist_chits']) }} of {{ $rs($p['chits']) }} chits went to specialist clinics and brought Rs {{ $rs($x['specialist_govt']) }} government revenue. The rest is general OPD, mostly free or low-fee.</p>
+            </div>
+            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#ff2d55') }}">
+                <b>{{ $peakEvery ? 'every '.\Illuminate\Support\Str::of($peakEvery)->replace(' seconds', ' sec')->replace(' minutes', ' min') : '—' }}</b>
+                <h3>Peak load</h3>
+                <p>At {{ sprintf('%02d:00', $data['peak_hour']) }} the hospital issues about {{ $rs(round($x['peak_per_hour'])) }} chits an hour on a normal day{{ $peakEvery ? ' — one new chit every '.$peakEvery : '' }}. Keep enough counters open then.</p>
+            </div>
+            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#5856d6') }}">
+                <b>{{ $x['busiest_day'] ? $rs($x['busiest_day']['n']) : '—' }}</b>
+                <h3>Busiest day</h3>
+                <p>@if ($x['busiest_day']){{ $x['busiest_day']['date'] }} was the busiest with {{ $rs($x['busiest_day']['n']) }} chits.@if ($x['quietest_day']) The quietest was {{ $x['quietest_day']['date'] }} with {{ $rs($x['quietest_day']['n']) }}.@endif @else No chits in this period.@endif</p>
+            </div>
+            <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone(($x['deleted_chits'] + $x['deleted_invoices'] + $x['returns']) > 0 ? '#ff3b30' : '#30a14e') }}">
+                <b>{{ $rs($x['deleted_chits'] + $x['deleted_invoices'] + $x['returns']) }}</b>
+                <h3>Deletions &amp; returns</h3>
+                <p>{{ $rs($x['deleted_chits']) }} chits and {{ $rs($x['deleted_invoices']) }} invoices were deleted (Rs {{ $rs($x['deleted_chits_amount'] + $x['deleted_invoices_amount']) }}) and {{ $rs($x['returns']) }} tests returned (Rs {{ $rs($x['returns_amount']) }}). This should stay close to zero — a jump deserves a look.</p>
+            </div>
+            @if ($x['ssp'])
+                <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#af52de') }}">
+                    <b>{{ $rs($x['ssp']['n']) }}</b>
+                    <h3>Sehat Sahulat patients</h3>
+                    <p>Patients treated under the Sehat Sahulat Program; the fees to claim from the insurer are Rs {{ $rs($x['ssp']['claims']) }}.</p>
+                </div>
+            @endif
+        </section>
+        @endif
+
+        <details class="db-help">
+            <summary>How to read this dashboard</summary>
+            <ul>
+                @if (! $canFilter)
+                <li><b>Period:</b> every number and chart shows today. Percent badges compare with yesterday up to the same time.</li>
+                @else
+                <li><b>Period:</b> pick Today, a month, a year or any dates at the top — every number and chart below follows it. Percent badges compare with the previous period of the same length (for a day that is still going, with yesterday up to the same time).</li>
+                @endif
+                <li><b>Government revenue</b> is what the hospital keeps (amount minus HIF). <b>HIF</b> is the share passed on to the Health Insurance Fund. <b>Total revenue</b> is both together.</li>
+                <li><b>Entitled</b> patients are government employees treated free; <b>non-entitled</b> patients pay the fee.</li>
+                <li>Small lines inside the cards show the trend over the period; hover any chart for exact values, and use the icons on the trend chart to zoom or download it.</li>
+            </ul>
+        </details>
+
+        <h2 class="db-section"><i>8</i> History &amp; reports <span>open the full lists for {{ $label }}</span></h2>
         <nav class="db-links" aria-label="History and reports">
             @can('view chits') <a href="{{ route('chits.issued', $range) }}" class="db-link">@include('dashboards.icon', ['icon' => 'chit', 'plain' => true])Chits history</a> @endcan
             @can('view invoices') <a href="{{ route('invoice.issued', $range) }}" class="db-link">@include('dashboards.icon', ['icon' => 'invoice', 'plain' => true])Invoices history</a> @endcan
@@ -588,12 +534,38 @@
                 const render = pending.get(entry.target);
                 if (render) { pending.delete(entry.target); io.unobserve(entry.target); enqueue(render); }
             }), { rootMargin: '600px 0px' });
+            // One look for every chart: no toolbars or axis lines, units live in the card subtitle instead of axis titles,
+            // bars with rounded ends, round legend dots, soft area fills and a calm ease-in-out entrance.
+            const polish = (options) => {
+                const type = options.chart?.type;
+                if (options.chart?.sparkline?.enabled || type === 'radialBar') return;
+                options.chart = { ...options.chart, toolbar: { show: false }, zoom: { enabled: false }, animations: { enabled: true, easing: 'easeinout', speed: 450, animateGradually: { enabled: false }, dynamicAnimation: { enabled: false } } };
+                options.legend = { fontSize: '12px', itemMargin: { horizontal: 8, vertical: 4 }, markers: { width: 9, height: 9, radius: 9 }, ...(options.legend || {}) };
+                options.dataLabels = { ...(options.dataLabels || {}), style: { fontWeight: 600, ...(options.dataLabels?.style || {}) } };
+                options.states = { hover: { filter: { type: 'darken', value: 0.92 } }, active: { filter: { type: 'none' } } };
+                if (type === 'donut' || type === 'pie') return;
+                options.xaxis = { ...(options.xaxis || {}), axisBorder: { show: false }, axisTicks: { show: false } };
+                const yaxes = Array.isArray(options.yaxis) ? options.yaxis : [options.yaxis || {}];
+                yaxes.forEach((y) => { delete y.title; });
+                if (!Array.isArray(options.yaxis)) options.yaxis = yaxes[0];
+                if (type === 'bar' || (options.series || []).some((s) => s.type === 'column')) {
+                    const bar = options.plotOptions?.bar || {};
+                    options.plotOptions = { ...(options.plotOptions || {}), bar: { ...bar, borderRadius: Math.max(5, bar.borderRadius || 0), borderRadiusApplication: 'end', borderRadiusWhenStacked: 'last' } };
+                }
+                if (type === 'area' && !options.fill) options.fill = { type: 'gradient', gradient: { opacityFrom: .28, opacityTo: 0 } };
+                options.tooltip = { theme: 'light', ...(options.tooltip || {}) };
+            };
             const draw = (selector, options) => {
                 const el = document.querySelector(selector);
                 if (!el) return;
                 // stacked bars get a 2px white gap between segments so neighbouring colours stay apart
                 if (options.chart?.stacked && options.chart?.type === 'bar' && !options.stroke) options.stroke = { width: 2, colors: ['#fff'] };
                 options.grid = { borderColor: 'rgba(60,60,67,.1)', strokeDashArray: 0, ...(options.grid || {}) };
+                polish(options);
+                // phones: legends go under the chart and date axes show fewer labels so they do not collide
+                const narrow = { legend: { position: 'bottom', horizontalAlign: 'center' } };
+                if (options.xaxis?.tickAmount) narrow.xaxis = { tickAmount: Math.min(options.xaxis.tickAmount, 4) };
+                if (!options.chart?.sparkline?.enabled && options.chart?.type !== 'radialBar') options.responsive = [{ breakpoint: 640, options: narrow }, ...(options.responsive || [])];
                 pending.set(el, () => new ApexCharts(el, options).render());
                 io.observe(el);
             };

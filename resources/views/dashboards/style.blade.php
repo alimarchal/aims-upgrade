@@ -203,6 +203,27 @@
     .apexcharts-tooltip-title { background: transparent !important; border-bottom: .5px solid var(--db-separator) !important; font-weight: 600; }
     .apexcharts-legend-text { color: var(--db-muted) !important; font-weight: 500 !important; }
 
+    /* ---- phones ----------------------------------------------------------------------------------- */
+    @media (max-width: 639px) {
+        .db-top { top: 6px; padding: 14px 16px; border-radius: var(--db-radius); }
+        .db-top-row { flex-wrap: nowrap; align-items: flex-start; }
+        .db-top-title { min-width: 0; }
+        .db-top-title h1, .db-hero h1 { font-size: 28px; }
+        .db-top.is-compact .db-top-row { align-items: center; }
+        .db-top.is-compact .db-top-title h1 { font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .db-hero { padding: 20px; }
+        .db-section { margin-top: 36px; font-size: 22px; }
+        .db-card-head { flex-direction: column; align-items: flex-start; gap: 2px; padding: 16px 16px 0; }
+        .db-card-head span { text-align: left; }
+        .db-card-body { padding: 6px 6px 12px; }
+        .db-kpi { padding: 16px 16px 12px; }
+        .db-spark { margin-left: -16px; margin-right: -16px; margin-bottom: -12px; }
+        .db-table th, .db-table td { padding: 10px 8px; white-space: nowrap; }
+        .db-words { margin-left: 16px; margin-right: 16px; }
+        .db-help { padding: 0 16px; }
+        .db-proj { padding: 14px 16px; }
+    }
+
     /* ---- motion & accessibility ------------------------------------------------------------------- */
     @keyframes db-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
     .db-kpi, .db-insight { animation: db-in .35s var(--db-ease) both; }
