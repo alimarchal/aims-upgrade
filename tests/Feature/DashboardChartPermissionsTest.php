@@ -56,10 +56,7 @@ test('the dashboard viewer sees today only, without the year on year chart and t
         ->assertDontSee('id="yoy-chart"', false)
         ->assertDontSee('Month projection')
         ->assertDontSee('Quick periods')
-        ->assertSee('Chits history')
-        ->assertSee('Invoices history')
-        ->assertSee(route('patient.index'), false)
-        ->assertDontSee('All reports');
+        ->assertDontSee('History &amp; reports', false);
 });
 
 test('administrator still sees every chart and can pick a period', function () {

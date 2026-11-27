@@ -495,16 +495,6 @@
             </ul>
         </details>
 
-        <h2 class="db-section"><i>8</i> History &amp; reports <span>open the full lists for {{ $label }}</span></h2>
-        <nav class="db-links" aria-label="History and reports">
-            @can('view chits') <a href="{{ route('chits.issued', $range) }}" class="db-link">@include('dashboards.icon', ['icon' => 'chit', 'plain' => true])Chits history</a> @endcan
-            @can('view invoices') <a href="{{ route('invoice.issued', $range) }}" class="db-link">@include('dashboards.icon', ['icon' => 'invoice', 'plain' => true])Invoices history</a> @endcan
-            @can('view patients') <a href="{{ route('patient.index') }}" class="db-link">@include('dashboards.icon', ['icon' => 'users', 'plain' => true])Patients</a> @endcan
-            @can('view daily reports') <a href="{{ route('reports.opd.reportDailyIPD', ['start_date' => $data['from'], 'end_date' => $data['to'], 'show_hif' => 'no']) }}" class="db-link">@include('dashboards.icon', ['icon' => 'invoice', 'plain' => true])Daily revenue</a> @endcan
-            @can('view opd reports') <a href="{{ route('reports.opd.user-wise', ['start_date' => $data['from'], 'end_date' => $data['to']]) }}" class="db-link">@include('dashboards.icon', ['icon' => 'users', 'plain' => true])User-wise OPD</a> @endcan
-            @can('view opd reports') <a href="{{ route('reports.opd.specialist-fees', ['start_date' => $data['from'], 'end_date' => $data['to']]) }}" class="db-link">@include('dashboards.icon', ['icon' => 'shield', 'plain' => true])Specialist fees</a> @endcan
-            @can('view reports') <a href="{{ route('reports.index') }}" class="db-link">@include('dashboards.icon', ['icon' => 'chit', 'plain' => true])All reports</a> @endcan
-        </nav>
     </div>
 
     @push('scripts')
@@ -536,10 +526,12 @@
             }), { rootMargin: '600px 0px' });
             // One look for every chart: no toolbars or axis lines, units live in the card subtitle instead of axis titles,
             // bars with rounded ends, round legend dots, soft area fills and a calm ease-in-out entrance.
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const lighten = (hex, amount = .45) => '#' + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) + (255 - parseInt(hex.slice(i, i + 2), 16)) * amount).toString(16).padStart(2, '0')).join('');
             const polish = (options) => {
                 const type = options.chart?.type;
                 if (options.chart?.sparkline?.enabled || type === 'radialBar') return;
-                options.chart = { ...options.chart, toolbar: { show: false }, zoom: { enabled: false }, animations: { enabled: true, easing: 'easeinout', speed: 450, animateGradually: { enabled: false }, dynamicAnimation: { enabled: false } } };
+                options.chart = { ...options.chart, toolbar: { show: false }, zoom: { enabled: false }, animations: { enabled: !reduceMotion, easing: 'easeinout', speed: 800, animateGradually: { enabled: true, delay: 40 }, dynamicAnimation: { enabled: true, speed: 350 } } };
                 options.legend = { fontSize: '12px', itemMargin: { horizontal: 8, vertical: 4 }, markers: { width: 9, height: 9, radius: 9 }, ...(options.legend || {}) };
                 options.dataLabels = { ...(options.dataLabels || {}), style: { fontWeight: 600, ...(options.dataLabels?.style || {}) } };
                 options.states = { hover: { filter: { type: 'darken', value: 0.92 } }, active: { filter: { type: 'none' } } };
@@ -552,7 +544,9 @@
                     const bar = options.plotOptions?.bar || {};
                     options.plotOptions = { ...(options.plotOptions || {}), bar: { ...bar, borderRadius: Math.max(5, bar.borderRadius || 0), borderRadiusApplication: 'end', borderRadiusWhenStacked: 'last' } };
                 }
-                if (type === 'area' && !options.fill) options.fill = { type: 'gradient', gradient: { opacityFrom: .28, opacityTo: 0 } };
+                if (type === 'area' && !options.fill) options.fill = { type: 'gradient', gradient: { opacityFrom: .34, opacityTo: 0 } };
+                // bars: a gentle top-to-bottom sheen instead of flat paint
+                if (type === 'bar' && !options.fill) options.fill = { type: 'gradient', gradient: { shade: 'light', type: options.plotOptions?.bar?.horizontal ? 'horizontal' : 'vertical', shadeIntensity: .3, opacityFrom: 1, opacityTo: .88, stops: [0, 100] } };
                 options.tooltip = { theme: 'light', ...(options.tooltip || {}) };
             };
             const draw = (selector, options) => {
@@ -582,10 +576,11 @@
             @endif
             @if ($can('highlights'))
             const gauge = (selector, value, color, caption) => draw(selector, {
-                chart: { type: 'radialBar', height: 170, sparkline: { enabled: false }, fontFamily: 'inherit', dropShadow: { enabled: false } },
                 series: [Math.min(100, Math.max(0, value))], colors: [color], labels: [caption],
                 plotOptions: { radialBar: { hollow: { size: '58%' }, track: { background: 'rgba(120,120,128,.14)', strokeWidth: '100%' }, dataLabels: { name: { show: false }, value: { fontSize: '26px', fontWeight: 600, offsetY: 9, color: '#1d1d1f', formatter: () => String(Math.round(value)) + '%' } } } },
-                stroke: { lineCap: 'round' }, 
+                stroke: { lineCap: 'round' },
+                fill: { type: 'gradient', gradient: { shade: 'light', type: 'diagonal1', gradientToColors: [lighten(color)], stops: [0, 100] } },
+                chart: { type: 'radialBar', height: 170, fontFamily: 'inherit', dropShadow: { enabled: false }, animations: { enabled: !reduceMotion, easing: 'easeinout', speed: 1100 } },
             });
             gauge('#gauge-chits', {{ $gaugeChits }}, '#0071e3', 'Chits');
             gauge('#gauge-govt', {{ $p['collected'] ? round($p['govt'] / $p['collected'] * 100) : 0 }}, '#30a14e', 'Government');

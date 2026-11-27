@@ -124,7 +124,7 @@
     @push('scripts')
         <script src="{{ url('js/apexcharts.js') }}"></script>
         <script>
-            const base = { toolbar: { show: false }, fontFamily: 'inherit', foreColor: '#86868b', animations: { enabled: false } };
+            const base = { toolbar: { show: false }, fontFamily: 'inherit', foreColor: '#86868b', animations: { enabled: ! window.matchMedia('(prefers-reduced-motion: reduce)').matches, easing: 'easeinout', speed: 800 } };
             new ApexCharts(document.querySelector('#week-chart'), {
                 chart: { ...base, type: 'bar', height: 280 },
                 series: [{ name: 'Chits', data: @json($data['week_chits']) }, { name: 'Invoices', data: @json($data['week_invoices']) }],
