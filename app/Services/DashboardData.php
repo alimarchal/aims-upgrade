@@ -373,35 +373,8 @@ class DashboardData
             'hif_monthly' => array_values(array_map(fn ($k) => round((float) ($chitMonthly[$k]->h ?? 0) + (float) ($invMonthly[$k]->h ?? 0)), array_keys($months))),
             'heat' => $heatSeries, 'heat_from' => $heatStart->format('d M Y'),
             'anomalies' => $anomalies, 'daily_mean' => $dailyMean, 'projection' => $projection,
-            'team' => self::team($from, $end),
             'last_chit_at' => ($last = DB::table('chits')->whereNull('deleted_at')->max('issued_date')) ? Carbon::parse($last)->toIso8601String() : null,
         ];
-    }
-
-    /** Collection per user for the chosen period. */
-    private static function team(Carbon $from, Carbon $end): array
-    {
-        $rows = [];
-        $add = function ($table, $dateCol, $govtExpr, $key) use (&$rows, $from, $end) {
-            foreach (DB::table($table)->whereNull('deleted_at')->where($dateCol, '>=', $from)->where($dateCol, '<', $end)
-                ->selectRaw("user_id, COUNT(*) n, SUM({$govtExpr}) g")->groupBy('user_id')->get() as $r) {
-                $rows[$r->user_id][$key] = (int) $r->n;
-                $rows[$r->user_id]['govt'] = ($rows[$r->user_id]['govt'] ?? 0) + (float) $r->g;
-            }
-        };
-        $add('chits', 'issued_date', self::CHIT_GOVT, 'chits');
-        $add('invoices', 'created_at', self::INVOICE_GOVT, 'invoices');
-
-        $names = User::whereIn('id', array_keys($rows))->pluck('name', 'id');
-        $total = max(1.0, (float) collect($rows)->sum('govt'));
-
-        return collect($rows)->map(fn ($v, $id) => [
-            'name' => $names[$id] ?? 'User #'.$id,
-            'chits' => $v['chits'] ?? 0,
-            'invoices' => $v['invoices'] ?? 0,
-            'govt' => round($v['govt'] ?? 0),
-            'share' => round(($v['govt'] ?? 0) / $total * 100, 1),
-        ])->sortByDesc('govt')->values()->all();
     }
 
     /** @return array<string, mixed> */

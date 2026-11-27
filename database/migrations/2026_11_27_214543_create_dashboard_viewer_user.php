@@ -53,8 +53,6 @@ return new class extends Migration
         'view dashboard age pyramid chart',
         'view dashboard admissions chart',
         'view dashboard wards chart',
-        'view dashboard team performance',
-        'view dashboard unusual days',
     ];
 
     public function up(): void

@@ -43,8 +43,6 @@ return new class extends Migration
         'view dashboard admissions chart',
         'view dashboard wards chart',
         'view dashboard month projection',
-        'view dashboard team performance',
-        'view dashboard unusual days',
     ];
 
     private const ROLES = ['Super-Admin', 'Administrator'];

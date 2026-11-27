@@ -50,21 +50,21 @@
         </section>
 
         <section class="db-grid db-kpis" aria-label="Today">
-            <a href="{{ route('chits.issued-today') }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Issued chits today', 'value' => $rs($n['chits']), 'tone' => '#4f46e5', 'icon' => 'chit', 'badge' => $chitText, 'badgeTone' => $chitTone, 'hint' => ''])</a>
-            <a href="{{ route('chits.issued-today', ['filter' => ['government_non_gov' => 1]]) }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Entitled (free)', 'value' => $rs($n['entitled']), 'tone' => '#0d9488', 'icon' => 'shield', 'hint' => round($n['entitled'] / $entTotal * 100).'% of today\'s chits'])</a>
-            <a href="{{ route('chits.issued-today', ['filter' => ['government_non_gov' => 0]]) }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Non-entitled (paid)', 'value' => $rs($n['non_entitled']), 'tone' => '#2563eb', 'icon' => 'users', 'hint' => round($n['non_entitled'] / $entTotal * 100).'% of today\'s chits'])</a>
-            <a href="{{ route('invoice.issued-today') }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Invoices today', 'value' => $rs($n['invoices']), 'tone' => '#0891b2', 'icon' => 'invoice', 'badge' => $invText, 'badgeTone' => $invTone, 'hint' => ''])</a>
-            @include('dashboards.kpi', ['label' => 'Today revenue', 'prefix' => 'Rs ', 'value' => $rs($n['chit_gross']), 'tone' => '#4f46e5', 'icon' => 'money', 'hint' => 'from chits (with HIF)'])
-            @include('dashboards.kpi', ['label' => 'Invoices revenue', 'prefix' => 'Rs ', 'value' => $rs($n['invoice_gross']), 'tone' => '#0891b2', 'icon' => 'money', 'hint' => 'from invoices (with HIF)'])
-            @include('dashboards.kpi', ['label' => 'Government share', 'prefix' => 'Rs ', 'value' => $rs($n['govt']), 'tone' => '#16a34a', 'icon' => 'money', 'hint' => 'what the hospital keeps, after HIF'])
-            @include('dashboards.kpi', ['label' => 'HIF share', 'prefix' => 'Rs ', 'value' => $rs($n['hif']), 'tone' => '#f59e0b', 'icon' => 'gift', 'hint' => 'total revenue Rs '.$rs($n['collected'])])
+            <a href="{{ route('chits.issued-today') }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Issued chits today', 'value' => $rs($n['chits']), 'tone' => '#0071e3', 'icon' => 'chit', 'badge' => $chitText, 'badgeTone' => $chitTone, 'hint' => ''])</a>
+            <a href="{{ route('chits.issued-today', ['filter' => ['government_non_gov' => 1]]) }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Entitled (free)', 'value' => $rs($n['entitled']), 'tone' => '#0a9bb5', 'icon' => 'shield', 'hint' => round($n['entitled'] / $entTotal * 100).'% of today\'s chits'])</a>
+            <a href="{{ route('chits.issued-today', ['filter' => ['government_non_gov' => 0]]) }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Non-entitled (paid)', 'value' => $rs($n['non_entitled']), 'tone' => '#5856d6', 'icon' => 'users', 'hint' => round($n['non_entitled'] / $entTotal * 100).'% of today\'s chits'])</a>
+            <a href="{{ route('invoice.issued-today') }}" style="text-decoration:none">@include('dashboards.kpi', ['label' => 'Invoices today', 'value' => $rs($n['invoices']), 'tone' => '#32ade6', 'icon' => 'invoice', 'badge' => $invText, 'badgeTone' => $invTone, 'hint' => ''])</a>
+            @include('dashboards.kpi', ['label' => 'Today revenue', 'prefix' => 'Rs ', 'value' => $rs($n['chit_gross']), 'tone' => '#0071e3', 'icon' => 'money', 'hint' => 'from chits (with HIF)'])
+            @include('dashboards.kpi', ['label' => 'Invoices revenue', 'prefix' => 'Rs ', 'value' => $rs($n['invoice_gross']), 'tone' => '#32ade6', 'icon' => 'money', 'hint' => 'from invoices (with HIF)'])
+            @include('dashboards.kpi', ['label' => 'Government share', 'prefix' => 'Rs ', 'value' => $rs($n['govt']), 'tone' => '#30a14e', 'icon' => 'money', 'hint' => 'what the hospital keeps, after HIF'])
+            @include('dashboards.kpi', ['label' => 'HIF share', 'prefix' => 'Rs ', 'value' => $rs($n['hif']), 'tone' => '#ff9500', 'icon' => 'gift', 'hint' => 'total revenue Rs '.$rs($n['collected'])])
         </section>
 
         <section class="db-grid db-kpis" aria-label="This month">
-            @include('dashboards.kpi', ['label' => 'Chits this month', 'value' => $rs($data['month']['chits']), 'tone' => '#4f46e5', 'icon' => 'chit', 'hint' => $data['worked_days'].' working days'])
-            @include('dashboards.kpi', ['label' => 'Daily average', 'value' => $rs($data['month_daily_avg']), 'tone' => '#4f46e5', 'icon' => 'users', 'hint' => 'chits per working day'])
-            @include('dashboards.kpi', ['label' => 'Government share (month)', 'prefix' => 'Rs ', 'value' => $rs($data['month']['govt']), 'tone' => '#16a34a', 'icon' => 'money', 'hint' => $rs($data['month']['invoices']).' invoices this month'])
-            @include('dashboards.kpi', ['label' => 'Patients registered today', 'value' => $rs($data['registered']), 'tone' => '#0e7490', 'icon' => 'users', 'hint' => 'new patient files by you'])
+            @include('dashboards.kpi', ['label' => 'Chits this month', 'value' => $rs($data['month']['chits']), 'tone' => '#0071e3', 'icon' => 'chit', 'hint' => $data['worked_days'].' working days'])
+            @include('dashboards.kpi', ['label' => 'Daily average', 'value' => $rs($data['month_daily_avg']), 'tone' => '#0071e3', 'icon' => 'users', 'hint' => 'chits per working day'])
+            @include('dashboards.kpi', ['label' => 'Government share (month)', 'prefix' => 'Rs ', 'value' => $rs($data['month']['govt']), 'tone' => '#30a14e', 'icon' => 'money', 'hint' => $rs($data['month']['invoices']).' invoices this month'])
+            @include('dashboards.kpi', ['label' => 'Patients registered today', 'value' => $rs($data['registered']), 'tone' => '#0a9bb5', 'icon' => 'users', 'hint' => 'new patient files by you'])
         </section>
 
         <section class="db-grid db-two">
@@ -124,21 +124,21 @@
     @push('scripts')
         <script src="{{ url('js/apexcharts.js') }}"></script>
         <script>
-            const base = { toolbar: { show: false }, fontFamily: 'inherit', animations: { enabled: false } };
+            const base = { toolbar: { show: false }, fontFamily: 'inherit', foreColor: '#86868b', animations: { enabled: ! window.matchMedia('(prefers-reduced-motion: reduce)').matches, easing: 'easeinout', speed: 800 } };
             new ApexCharts(document.querySelector('#week-chart'), {
                 chart: { ...base, type: 'bar', height: 280 },
                 series: [{ name: 'Chits', data: @json($data['week_chits']) }, { name: 'Invoices', data: @json($data['week_invoices']) }],
                 xaxis: { categories: @json($data['week_labels']) },
-                colors: ['#1e40af', '#0e7490'], plotOptions: { bar: { borderRadius: 5, columnWidth: '52%' } },
-                dataLabels: { enabled: false }, grid: { borderColor: '#e2e8f0', strokeDashArray: 4 },
+                colors: ['#0071e3', '#ff9500'], plotOptions: { bar: { borderRadius: 5, columnWidth: '52%' } },
+                dataLabels: { enabled: false }, grid: { borderColor: 'rgba(60,60,67,.1)', strokeDashArray: 0 },
                 legend: { position: 'top', horizontalAlign: 'right' }, yaxis: { min: 0, forceNiceScale: true, decimalsInFloat: 0, labels: { formatter: (v) => Math.round(v) } },
             }).render();
             new ApexCharts(document.querySelector('#hour-chart'), {
                 chart: { ...base, type: 'area', height: 220 },
                 series: [{ name: 'Chits', data: @json($data['hours']) }],
                 xaxis: { categories: @json($data['hour_labels']), title: { text: 'hour of the day' } },
-                colors: ['#4f46e5'], stroke: { curve: 'smooth', width: 3 }, fill: { type: 'gradient', gradient: { opacityFrom: .35, opacityTo: .02 } },
-                dataLabels: { enabled: false }, grid: { borderColor: '#e2e8f0', strokeDashArray: 4 }, yaxis: { min: 0, forceNiceScale: true, decimalsInFloat: 0, labels: { formatter: (v) => Math.round(v) } },
+                colors: ['#0071e3'], stroke: { curve: 'smooth', width: 2.5 }, fill: { type: 'gradient', gradient: { opacityFrom: .35, opacityTo: .02 } },
+                dataLabels: { enabled: false }, grid: { borderColor: 'rgba(60,60,67,.1)', strokeDashArray: 0 }, yaxis: { min: 0, forceNiceScale: true, decimalsInFloat: 0, labels: { formatter: (v) => Math.round(v) } },
             }).render();
         </script>
     @endpush
