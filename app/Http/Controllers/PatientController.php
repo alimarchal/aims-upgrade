@@ -849,9 +849,15 @@ class PatientController extends Controller
 
     public function patient_history(Patient $patient)
     {
-        $patient_tests = PatientTest::where('patient_id', $patient->id)
-            ->groupBy('patient_test_id')
-            ->orderBy('created_at', 'desc')
+        // One row per invoice (a patient's tests are grouped by the invoice they were billed on), newest first
+        $patient_tests = PatientTest::query()
+            ->with('patient')
+            ->where('patient_id', $patient->id)
+            ->whereNotNull('invoice_id')
+            ->select('patient_id', 'invoice_id')
+            ->selectRaw('MAX(created_at) AS created_at')
+            ->groupBy('patient_id', 'invoice_id')
+            ->orderByDesc('created_at')
             ->get();
 
         return view('patient.history', compact('patient_tests'));
