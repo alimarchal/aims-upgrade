@@ -9,9 +9,10 @@ use Spatie\Permission\Models\Role;
 it('prevents users without return permission from adding return invoices to cart', function () {
     Permission::findOrCreate('view patients', 'sanctum');
     Permission::findOrCreate('return invoices', 'sanctum');
+    Permission::findOrCreate('create invoices', 'sanctum');
 
     $role = Role::findOrCreate('Front Desk/Receptionist', 'sanctum');
-    $role->givePermissionTo('view patients');
+    $role->givePermissionTo(['view patients', 'create invoices']);
 
     $user = User::factory()->create();
     $user->assignRole($role);
@@ -40,9 +41,10 @@ it('prevents users without return permission from adding return invoices to cart
 it('allows users with return permission to add return invoices to cart', function () {
     Permission::findOrCreate('view patients', 'sanctum');
     Permission::findOrCreate('return invoices', 'sanctum');
+    Permission::findOrCreate('create invoices', 'sanctum');
 
     $role = Role::findOrCreate('Front Desk/Receptionist', 'sanctum');
-    $role->givePermissionTo(['view patients', 'return invoices']);
+    $role->givePermissionTo(['view patients', 'create invoices', 'return invoices']);
 
     $user = User::factory()->create();
     $user->assignRole($role);

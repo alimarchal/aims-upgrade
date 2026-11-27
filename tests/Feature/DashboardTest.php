@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Support\DashboardPermissions;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -8,11 +9,11 @@ use Spatie\Permission\PermissionRegistrar;
 beforeEach(function () {
     app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-    foreach (['view dashboard', 'view admin dashboard', 'view front desk dashboard'] as $permission) {
+    foreach (['view dashboard', 'view admin dashboard', 'view front desk dashboard', ...DashboardPermissions::all()] as $permission) {
         Permission::findOrCreate($permission, 'sanctum');
     }
 
-    Role::findOrCreate('Administrator', 'sanctum')->syncPermissions(['view dashboard', 'view admin dashboard']);
+    Role::findOrCreate('Administrator', 'sanctum')->syncPermissions(['view dashboard', 'view admin dashboard', ...DashboardPermissions::all()]);
     Role::findOrCreate('Front Desk/Receptionist', 'sanctum')->syncPermissions(['view front desk dashboard']);
     Role::findOrCreate('Auditor', 'sanctum')->syncPermissions(['view dashboard']);
 });

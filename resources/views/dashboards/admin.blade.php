@@ -6,7 +6,11 @@
 @php
     use Carbon\Carbon;
     $user = auth()->user();
-    $change = fn (float $now, float $before, string $suffix = 'vs previous period') => \App\Support\DashboardFormat::change($now, $before, $suffix);
+    // Each chart / section has its own permission (App\Support\DashboardPermissions); admins hold them all
+    $can = fn (string $key): bool => $user->can(\App\Support\DashboardPermissions::CHARTS[$key]);
+    $any = fn (string ...$keys): bool => collect($keys)->contains($can);
+    $canFilter = $user->can(\App\Support\DashboardPermissions::FILTERS);
+    $change =fn (float $now, float $before, string $suffix = 'vs previous period') => \App\Support\DashboardFormat::change($now, $before, $suffix);
     $rs = fn ($n) => number_format((float) $n);
     $p = $data['period'];
     $pv = $data['previous'];
@@ -40,20 +44,22 @@
     $prevPerChit = $pv['chits'] ? $pv['collected'] / $pv['chits'] : 0;
 
     $range = ['start_date' => $data['from'], 'end_date' => $data['to']];
-    $chitsLink = fn (array $extra = []) => $isToday ? route('chits.issued-today', $extra) : route('chits.issued', $range + $extra);
+    $chitsLink = fn (array $extra = []) => ! $user->can('view chits') ? null : ($isToday ? route('chits.issued-today', $extra) : route('chits.issued', $range + $extra));
+    $invoicesLink = ! $user->can('view invoices') ? null : ($isToday ? route('invoice.issued-today') : route('invoice.issued', $range));
+    $dailyRevenueLink = fn (array $extra = []) => $user->can('view reports') && $user->can('view daily reports') ? route('reports.opd.reportDailyIPD', $range + $extra) : null;
     $x = $data['extras'];
     // [label, shown value, now, before, colour, icon, sparkline key, hint, link]
     $kpiGroups = [
         ['Key numbers', '#4f46e5', 'the four figures to watch first', [
             ['Chits issued', $rs($p['chits']), $p['chits'], $pv['chits'], '#4f46e5', 'chit', 'chits', $rs(round($perDay)).' per day', $chitsLink()],
             ['Total revenue', 'Rs '.$rs($p['collected']), $p['collected'], $pv['collected'], '#7c3aed', 'money', 'total', 'government + HIF together', null],
-            ['Government revenue', 'Rs '.$rs($p['govt']), $p['govt'], $pv['govt'], '#16a34a', 'money', 'govt', 'what the hospital keeps', route('reports.opd.reportDailyIPD', $range + ['show_hif' => 'no'])],
-            ['HIF revenue', 'Rs '.$rs($p['hif']), $p['hif'], $pv['hif'], '#f59e0b', 'gift', 'hif', $hifShare.'% of total revenue', route('reports.opd.reportDailyIPD', $range)],
+            ['Government revenue', 'Rs '.$rs($p['govt']), $p['govt'], $pv['govt'], '#16a34a', 'money', 'govt', 'what the hospital keeps', $dailyRevenueLink(['show_hif' => 'no'])],
+            ['HIF revenue', 'Rs '.$rs($p['hif']), $p['hif'], $pv['hif'], '#f59e0b', 'gift', 'hif', $hifShare.'% of total revenue', $dailyRevenueLink()],
         ]],
         ['Patient flow', '#0891b2', 'who came and how they were billed', [
             ['Entitled (free)', $rs($p['entitled']), $p['entitled'], $pv['entitled'], '#0d9488', 'shield', 'entitled', $entShare.'% of chits', $chitsLink(['filter' => ['government_non_gov' => 1]])],
             ['Non-entitled (paid)', $rs($p['non_entitled']), $p['non_entitled'], $pv['non_entitled'], '#2563eb', 'users', 'paid', (100 - $entShare).'% of chits', $chitsLink(['filter' => ['government_non_gov' => 0]])],
-            ['Invoices', $rs($p['invoices']), $p['invoices'], $pv['invoices'], '#0891b2', 'invoice', 'invoices', 'lab & services', $isToday ? route('invoice.issued-today') : route('invoice.issued', $range)],
+            ['Invoices', $rs($p['invoices']), $p['invoices'], $pv['invoices'], '#0891b2', 'invoice', 'invoices', 'lab & services', $invoicesLink],
             ['New patients', $rs($p['patients']), $p['patients'], $pv['patients'], '#7c3aed', 'users', 'patients', 'registered in the period', null],
         ]],
         ['Care & efficiency', '#e11d48', 'wards, free care and earning per chit', [
@@ -103,13 +109,16 @@
                         @if ($data['last_chit_at'])<span class="db-live"><i></i> last chit {{ Carbon::parse($data['last_chit_at'])->diffForHumans() }}</span>@endif
                     </p>
                 </div>
+                @if ($canFilter)
                 <div class="db-top-actions">
                     <button type="button" class="db-btn" @click="filters = ! filters" :aria-expanded="filters" aria-controls="db-filter-panel">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" /></svg>
                         Filters<span class="db-dot" x-show="{{ $activePreset === 'Today' || $activePreset === false ? 'false' : 'true' }}" x-cloak></span>
                     </button>
                 </div>
+                @endif
             </div>
+            @if ($canFilter)
             <form method="GET" action="{{ route('dashboard') }}" id="db-filter-panel" class="db-filter-panel" x-show="filters" x-cloak x-transition.opacity.duration.200ms aria-label="Choose the period">
                 <div class="db-filter-label">Quick periods</div>
                 <div class="db-chips">
@@ -126,6 +135,7 @@
                     <a class="db-btn" href="{{ route('dashboard') }}">Reset to today</a>
                 </div>
             </form>
+            @endif
         </header>
 
         {{-- Highlights: the story of the period as gauges ------------------------------------------------- --}}
@@ -133,6 +143,7 @@
             $gaugeChits = $data['length'] === 1 ? ($data['usual'] > 0 ? round($p['chits'] / $data['usual'] * 100) : 0) : ($data['daily_mean'] > 0 ? round($perDay / $data['daily_mean'] * 100) : 0);
             $specialistShare = $p['chits'] ? round($x['specialist_chits'] / $p['chits'] * 100) : 0;
         @endphp
+        @if ($can('highlights'))
         <section class="db-card db-highlights" aria-label="Highlights">
             <div class="db-card-head"><h2>Highlights</h2><span>each ring shows one share of the period — the fuller the ring, the bigger the share</span></div>
             <div class="db-gauges">
@@ -147,11 +158,16 @@
                 <ul>@foreach ($insights as $line)<li>{{ $line }}</li>@endforeach</ul>
             </details>
         </section>
+        @endif
 
         <details class="db-help">
             <summary>How to read this dashboard</summary>
             <ul>
+                @if (! $canFilter)
+                <li><b>Period:</b> every number and chart shows today. Percent badges compare with yesterday up to the same time.</li>
+                @else
                 <li><b>Period:</b> pick Today, a month, a year or any dates at the top — every number and chart below follows it. Percent badges compare with the previous period of the same length (for a day that is still going, with yesterday up to the same time).</li>
+                @endif
                 <li><b>Government revenue</b> is what the hospital keeps (amount minus HIF). <b>HIF</b> is the share passed on to the Health Insurance Fund. <b>Total revenue</b> is both together.</li>
                 <li><b>Entitled</b> patients are government employees treated free; <b>non-entitled</b> patients pay the fee.</li>
                 <li>Small lines inside the cards show the trend over the period; hover any chart for exact values, and use the icons on the trend chart to zoom or download it.</li>
@@ -159,6 +175,7 @@
         </details>
 
         {{-- KPIs, in three groups ------------------------------------------------------------------- --}}
+        @if ($can('kpis'))
         <h2 class="db-section"><i>1</i> At a glance <span>{{ $label }} · each % compares with {{ $prevLabel }}@if ($data['live']) up to {{ $data['compare_until'] }} — the same stretch of time, not the whole earlier period @endif</span></h2>
         @foreach ($kpiGroups as [$groupTitle, $dot, $groupHint, $cards])
             <div class="db-group" style="--dot: {{ $dot }}">{{ $groupTitle }} <span>— {{ $groupHint }}</span></div>
@@ -174,12 +191,14 @@
                 @endforeach
             </section>
         @endforeach
+        @endif
 
         @php
             $x = $data['extras'];
             $peakSeconds = $x['peak_per_hour'] > 0 ? 3600 / $x['peak_per_hour'] : null;
             $peakEvery = $peakSeconds === null ? null : ($peakSeconds < 90 ? round($peakSeconds).' seconds' : round($peakSeconds / 60, 1).' minutes');
         @endphp
+        @if ($can('insights'))
         <h2 class="db-section"><i>2</i> What the numbers mean <span>plain-language insights for {{ $label }}</span></h2>
         <section class="db-grid db-insights" aria-label="Insights">
             <div class="db-insight" style="{{ \App\Support\DashboardFormat::tone('#0d9488') }}">
@@ -215,158 +234,241 @@
                 </div>
             @endif
         </section>
+        @endif
 
         {{-- 3. Trends ------------------------------------------------------------------------------- --}}
+        @if ($any('daily_chits', 'daily_revenue', 'race', 'mix', 'control', 'split'))
         <h2 class="db-section"><i>3</i> Trends <span>how patients and revenue move over time</span></h2>
+        @endif
+        @if ($any('daily_chits', 'daily_revenue'))
         <section class="db-grid db-two is-even">
+            @if ($can('daily_chits'))
             <div class="db-card">
                 <div class="db-card-head"><h2>{{ $data['monthly'] ? 'Monthly' : 'Daily' }} chits</h2><span>@if ($data['widened']) last {{ $data['chart_length'] }} days up to {{ $to->format('d M') }} · @endif bars and {{ $data['window'] }}-{{ $data['monthly'] ? 'month' : 'day' }} average</span></div>
                 <div class="db-card-body"><div id="trend-chart" style="min-height: 320px"></div>
                     <p class="db-note">Bars: chits issued each {{ $data['monthly'] ? 'month' : 'day' }}. Dark line: the moving average — it smooths the ups and downs so the direction is clear.</p></div>
             </div>
+            @endif
+            @if ($can('daily_revenue'))
             <div class="db-card">
                 <div class="db-card-head"><h2>{{ $data['monthly'] ? 'Monthly' : 'Daily' }} revenue</h2><span>government + HIF, stacked</span></div>
                 <div class="db-card-body"><div id="revenue-chart" style="min-height: 320px"></div>
                     <p class="db-note">Each bar is the day's total revenue: <b style="color:#16a34a">green</b> is the government share the hospital keeps, <b style="color:#d97706">amber</b> is HIF. Hover a bar for both amounts and the total.</p></div>
             </div>
+            @endif
         </section>
+        @endif
+        @if ($any('race', 'mix'))
         <section class="db-grid db-two is-even">
+            @if ($can('race'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Race against the previous period</h2><span>cumulative total revenue, {{ $data['race']['unit'] === 'hour' ? 'hour by hour' : 'day by day' }}</span></div>
                 <div class="db-card-body"><div id="race-chart" style="min-height: 320px"></div>
                     <p class="db-note">Both lines add up the revenue as time passes. If the green line stays above the grey one, this period is earning faster than the one before it; where they cross, the lead changed.</p></div>
             </div>
+            @endif
+            @if ($can('mix'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Entitled vs paid patients</h2><span>chits per {{ $data['monthly'] ? 'month' : 'day' }}</span></div>
                 <div class="db-card-body"><div id="mix-chart" style="min-height: 320px"></div>
                     <p class="db-note">Teal = entitled (free) chits, blue = paid chits, stacked to the day's total. A growing teal part means more free care and less income per chit.</p></div>
             </div>
+            @endif
         </section>
+        @endif
+        @if ($any('control', 'split'))
         <section class="db-grid db-two is-even">
+            @if ($can('control'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Control chart</h2><span>daily chits, 90 days up to {{ $to->format('d M') }}</span></div>
                 <div class="db-card-body"><div id="control-chart" style="min-height: 300px"></div>
                     <p class="db-note">The dotted lines mark the normal range (average ± 2 standard deviations). A day outside it is unusual — red dots are unusually busy or quiet days worth asking about.</p></div>
             </div>
+            @endif
+            @if ($can('split'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Government vs HIF share</h2><span>how each rupee is divided</span></div>
                 <div class="db-card-body"><div id="split-chart" style="min-height: 300px"></div>
                     <p class="db-note">Each bar is 100%: green is the government share, amber is HIF. A bigger green part means more of each rupee stays with the hospital.</p></div>
             </div>
+            @endif
         </section>
+        @endif
 
         {{-- 4. Revenue ---------------------------------------------------------------------------- --}}
+        @if ($any('months', 'yoy', 'services', 'department_revenue'))
         <h2 class="db-section"><i>4</i> Revenue <span>government + HIF, over the year and by source</span></h2>
+        @endif
+        @if ($any('months', 'yoy'))
         <section class="db-grid db-two is-even">
+            @if ($can('months'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Last 12 months</h2><span>revenue (stacked bars) and chits (line)</span></div>
                 <div class="db-card-body"><div id="months-chart" style="min-height: 250px"></div><div id="months-chits" style="min-height: 190px"></div>
                     <p class="db-note">A year at a glance — green + amber bars are each month's government and HIF revenue; the blue line underneath is the number of chits. Use it to spot seasons and growth.</p></div>
             </div>
+            @endif
+            @if ($can('yoy'))
             <div class="db-card">
                 <div class="db-card-head"><h2>{{ $data['yoy']['year'] }} vs {{ $data['yoy']['year'] - 1 }}</h2><span>total revenue by month (year on year)</span></div>
                 <div class="db-card-body"><div id="yoy-chart" style="min-height: 300px"></div>
                     <p class="db-note">Same month, two years: the solid line is this year, the dashed grey line last year. It shows real growth without the seasonal ups and downs.</p></div>
             </div>
+            @endif
         </section>
+        @endif
+        @if ($any('services', 'department_revenue'))
         <section class="db-grid db-two is-even">
+            @if ($can('services'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Which services earn the money</h2><span>Pareto: top 10 services, government + HIF</span></div>
                 <div class="db-card-body"><div id="services-chart" style="min-height: 250px"></div><div id="services-share" style="min-height: 240px"></div>
                     <p class="db-note">Bars: revenue of each service (green government, amber HIF). Red line below: the running share of the total. When it passes 80% after only a few bars, a small number of services carries most of the income.</p></div>
             </div>
+            @endif
+            @if ($can('department_revenue'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Department revenue</h2><span>government + HIF per department</span></div>
                 <div class="db-card-body"><div id="dept-revenue" style="min-height: 320px"></div>
                     <p class="db-note">Revenue each department earned. General OPD departments are mostly paid by HIF (amber) with little or no government share (green).</p></div>
             </div>
+            @endif
         </section>
+        @endif
 
         {{-- 5. Busy times ------------------------------------------------------------------------- --}}
+        @if ($any('heat_map', 'hours', 'weekdays', 'weekday_variation', 'day_of_month'))
         <h2 class="db-section"><i>5</i> When it is busy <span>staffing guide</span></h2>
+        @endif
+        @if ($any('heat_map', 'hours', 'weekdays'))
         <section class="db-grid db-two">
+            @if ($can('heat_map'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Weekday × hour heat map</h2><span>chits, 90 days up to {{ $to->format('d M Y') }} · darker = busier</span></div>
                 <div class="db-card-body"><div id="heat-chart" style="min-height: 330px"></div>
                     <p class="db-note">Darker squares are busier. Read across a row for one weekday and down a column for one hour — the darkest block is when the hospital is under most pressure.</p></div>
             </div>
+            @endif
+            @if ($any('hours', 'weekdays'))
             <div class="db-grid" style="margin-top:0">
+                @if ($can('hours'))
                 <div class="db-card">
                     <div class="db-card-head"><h2>Busiest hours</h2><span>period</span></div>
                     <div class="db-card-body"><div id="hours-chart" style="min-height: 150px"></div>
                         <p class="db-note">Chits issued in each hour; the dark bar is the busiest.</p></div>
                 </div>
+                @endif
+                @if ($can('weekdays'))
                 <div class="db-card">
                     <div class="db-card-head"><h2>Busiest weekdays</h2><span>average chits per day</span></div>
                     <div class="db-card-body"><div id="weekday-chart" style="min-height: 150px"></div>
                         <p class="db-note">Plan leave and extra staff around the tallest bars.</p></div>
                 </div>
+                @endif
             </div>
+            @endif
         </section>
+        @endif
+        @if ($any('weekday_variation', 'day_of_month'))
         <section class="db-grid db-two is-even">
+            @if ($can('weekday_variation'))
             <div class="db-card">
                 <div class="db-card-head"><h2>How much a normal day varies</h2><span>box plot per weekday, 90 days</span></div>
                 <div class="db-card-body"><div id="box-chart" style="min-height: 280px"></div>
                     <p class="db-note">Each box covers the middle half of the days for that weekday; the line inside is the median and the whiskers are the quietest and busiest day. Tall boxes mean an unpredictable weekday.</p></div>
             </div>
+            @endif
+            @if ($can('day_of_month'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Day of the month</h2><span>average chits per calendar day, last 12 months</span></div>
                 <div class="db-card-body"><div id="dom-chart" style="min-height: 280px"></div>
                     <p class="db-note">Shows which part of the month is busy — for example the first days after salaries are paid. Day 31 is rarer, so its bar is lower.</p></div>
             </div>
+            @endif
         </section>
+        @endif
 
         {{-- 6. Departments & services --------------------------------------------------------------- --}}
+        @if ($any('opd_departments', 'specialist', 'categories', 'operation_theatre', 'radiology', 'employers'))
         <h2 class="db-section"><i>6</i> Departments &amp; services <span>who uses what</span></h2>
+        @endif
+        @if ($any('opd_departments', 'specialist'))
         <section class="db-grid db-two is-even">
+            @if ($can('opd_departments'))
             <div class="db-card">
                 <div class="db-card-head"><h2>OPD by department</h2><span>share of chits</span></div>
                 <div class="db-card-body"><div id="dept-donut" style="min-height: 320px"></div>
                     <p class="db-note">Slices are departments; a bigger slice means more chits. The number in the middle is the total chits of the top departments.</p></div>
             </div>
+            @endif
+            @if ($can('specialist'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Specialist vs general OPD</h2><span>chits</span></div>
                 <div class="db-card-body"><div id="specialist-chart" style="min-height: 320px"></div>
                     <p class="db-note">Specialist clinics charge a fee; general OPD is mostly free or HIF-funded, so it brings many chits but little government revenue.</p></div>
             </div>
+            @endif
         </section>
+        @endif
+        @if ($can('categories'))
         <section class="db-card" style="margin-top:14px">
             <div class="db-card-head"><h2>Laboratory &amp; service categories</h2><span>revenue (government + HIF) and number of tests</span></div>
             <div class="db-card-body"><div id="categories-chart" style="min-height: 260px"></div><div id="categories-tests" style="min-height: 150px"></div>
                 <p class="db-note">Top bars: revenue each category earned (green government, amber HIF). Red bars below: how many tests were done in that category.</p></div>
         </section>
+        @endif
+        @if ($any('operation_theatre', 'radiology', 'employers'))
         <section class="db-grid db-three">
+            @if ($can('operation_theatre'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Operation theatre</h2><span>procedures</span></div>
                 <div class="db-card-body"><div id="ot-chart" style="min-height: 200px"></div><p class="db-note">Theatre procedures done in the period, by type.@if (collect($data['operation_theatre'])->sum('n') === 0) <b>None were recorded in this period.</b>@endif</p></div>
             </div>
+            @endif
+            @if ($can('radiology'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Radiology</h2><span>investigations</span></div>
                 <div class="db-card-body"><div id="radiology-chart" style="min-height: 200px"></div><p class="db-note">Radiology investigations done in the period, by type.@if (collect($data['radiology'])->sum('n') === 0) <b>None were recorded in this period.</b>@endif</p></div>
             </div>
+            @endif
+            @if ($can('employers'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Entitled patients by employer</h2><span>government departments</span></div>
                 <div class="db-card-body"><div id="govt-chart" style="min-height: 200px"></div><p class="db-note">Government employers whose staff used the hospital most — useful when talking to those departments.</p></div>
             </div>
+            @endif
         </section>
+        @endif
 
         {{-- 7. Patients & admissions ----------------------------------------------------------------- --}}
+        @if ($any('gender', 'age_pyramid', 'admissions', 'wards', 'projection'))
         <h2 class="db-section"><i>7</i> Patients &amp; admissions <span>who the patients are</span></h2>
+        @endif
+        @if ($any('gender', 'age_pyramid', 'admissions'))
         <section class="db-grid db-three">
+            @if ($can('gender'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Gender</h2><span>{{ $rs($p['patients']) }} new patients</span></div>
                 <div class="db-card-body">@if ($p['patients'])<div id="gender-chart" style="min-height: 250px"></div><p class="db-note">Share of new patients who are male or female.</p>@else<div class="db-empty">No new patients in this period.</div>@endif</div>
             </div>
+            @endif
+            @if ($can('age_pyramid'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Age &amp; gender pyramid</h2><span>new patients</span></div>
                 <div class="db-card-body">@if ($p['patients'])<div id="pyramid-chart" style="min-height: 250px"></div><p class="db-note">Men on the left, women on the right, by age group — shows who the hospital mostly serves.</p>@else<div class="db-empty">No new patients in this period.</div>@endif</div>
             </div>
+            @endif
+            @if ($can('admissions'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Admissions</h2><span>{{ $data['widened'] ? 'last '.$data['chart_length'].' days' : ($data['monthly'] ? 'per month' : 'per day') }} · {{ $rs($p['admissions']) }} in the period</span></div>
                 <div class="db-card-body"><div id="admissions-chart" style="min-height: 250px"></div><p class="db-note">Patients admitted over time. Peaks show busy days for the wards.</p></div>
             </div>
+            @endif
         </section>
+        @endif
+        @if ($any('wards', 'projection'))
         <section class="db-grid db-two is-even">
+            @if ($can('wards'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Admissions by ward</h2><span>where admitted patients went</span></div>
                 <div class="db-card-body">
@@ -374,6 +476,8 @@
                     <p class="db-note">Each bar is the number of patients admitted to that ward or unit in the period.</p>@endif
                 </div>
             </div>
+            @endif
+            @if ($can('projection'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Month projection</h2><span>{{ now()->format('F Y') }} at the current pace</span></div>
                 <div class="db-proj">
@@ -385,11 +489,15 @@
                 <div class="db-card-body" style="padding-top:0"><div id="projection-chart" style="min-height: 110px"></div>
                     <p class="db-note">Day {{ $proj['elapsed'] }} of {{ $proj['days'] }}. A straight-line estimate — weekends and holidays move the real figure.</p></div>
             </div>
+            @endif
         </section>
+        @endif
 
         {{-- 8. People & watch list ------------------------------------------------------------------- --}}
+        @if ($any('team', 'unusual_days'))
         <h2 class="db-section"><i>8</i> People &amp; watch list <span>team results and days worth a look</span></h2>
         <section class="db-grid db-two">
+            @if ($can('team'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Team performance</h2><span>government revenue collected in the period</span></div>
                 <div class="db-card-body">
@@ -414,6 +522,8 @@
                     @endif
                 </div>
             </div>
+            @endif
+            @if ($can('unusual_days'))
             <div class="db-card">
                 <div class="db-card-head"><h2>Unusual days</h2><span>beyond 2 standard deviations of the {{ $rs($data['daily_mean']) }}/day average</span></div>
                 <div class="db-card-body">
@@ -433,12 +543,15 @@
                     @endif
                 </div>
             </div>
+            @endif
         </section>
+        @endif
 
         <h2 class="db-section"><i>9</i> History &amp; reports <span>open the full lists for {{ $label }}</span></h2>
         <nav class="db-links" aria-label="History and reports">
             @can('view chits') <a href="{{ route('chits.issued', $range) }}" class="db-link">@include('dashboards.icon', ['icon' => 'chit', 'plain' => true])Chits history</a> @endcan
             @can('view invoices') <a href="{{ route('invoice.issued', $range) }}" class="db-link">@include('dashboards.icon', ['icon' => 'invoice', 'plain' => true])Invoices history</a> @endcan
+            @can('view patients') <a href="{{ route('patient.index') }}" class="db-link">@include('dashboards.icon', ['icon' => 'users', 'plain' => true])Patients</a> @endcan
             @can('view daily reports') <a href="{{ route('reports.opd.reportDailyIPD', ['start_date' => $data['from'], 'end_date' => $data['to'], 'show_hif' => 'no']) }}" class="db-link">@include('dashboards.icon', ['icon' => 'invoice', 'plain' => true])Daily revenue</a> @endcan
             @can('view opd reports') <a href="{{ route('reports.opd.user-wise', ['start_date' => $data['from'], 'end_date' => $data['to']]) }}" class="db-link">@include('dashboards.icon', ['icon' => 'users', 'plain' => true])User-wise OPD</a> @endcan
             @can('view opd reports') <a href="{{ route('reports.opd.specialist-fees', ['start_date' => $data['from'], 'end_date' => $data['to']]) }}" class="db-link">@include('dashboards.icon', ['icon' => 'shield', 'plain' => true])Specialist fees</a> @endcan
@@ -479,6 +592,7 @@
                 io.observe(el);
             };
 
+            @if ($can('kpis'))
             // sparklines inside the KPI cards
             const total = series.govt.map((g, i) => g + series.hif[i]);
             const sparks = { chits: ['#4f46e5', series.chits], total: ['#7c3aed', total], entitled: ['#0d9488', series.entitled], paid: ['#2563eb', series.paid], invoices: ['#0891b2', series.invoices],
@@ -487,7 +601,8 @@
                 chart: { type: 'area', height: 30, sparkline: { enabled: true }, animations: { enabled: true } }, series: [{ name, data }], colors: [color],
                 stroke: { curve: 'smooth', width: 2 }, fill: { type: 'gradient', gradient: { opacityFrom: .35, opacityTo: 0 } }, tooltip: { fixed: { enabled: false }, x: { show: false }, marker: { show: false } },
             }));
-
+            @endif
+            @if ($can('highlights'))
             const gauge = (selector, value, color, caption) => draw(selector, {
                 chart: { type: 'radialBar', height: 170, sparkline: { enabled: false }, fontFamily: 'inherit', dropShadow: { enabled: true, top: 3, blur: 5, opacity: 0.18, color } },
                 series: [Math.min(100, Math.max(0, value))], colors: [color], labels: [caption],
@@ -499,8 +614,9 @@
             gauge('#gauge-hif', {{ $hifShare }}, '#f59e0b', 'HIF');
             gauge('#gauge-entitled', {{ $entShare }}, '#0d9488', 'Entitled');
             gauge('#gauge-specialist', {{ $specialistShare }}, '#7c3aed', 'Specialist');
-
+            @endif
             // 3. trends -------------------------------------------------------------------------
+            @if ($can('daily_chits'))
             draw('#trend-chart', {
                 chart: { ...base, ...lineShadow, type: 'line', height: 320, zoom: { enabled: true }, toolbar: { show: true, offsetY: -6, tools: { download: true, zoom: true, zoomin: true, zoomout: true, pan: false, reset: true } } },
                 series: [{ name: 'Chits', type: 'column', data: series.chits }, { name: '{{ $data['window'] }}-{{ $data['monthly'] ? 'month' : 'day' }} average', type: 'line', data: @json($data['moving_average']) }],
@@ -510,6 +626,8 @@
                 grid: { borderColor: '#cbd5e1', strokeDashArray: 3 }, yaxis: { min: 0, title: { text: 'Chits' }, labels: { formatter: int } },
                 legend: { position: 'bottom', horizontalAlign: 'center', fontWeight: 600 }, tooltip: { shared: true, intersect: false },
             });
+            @endif
+            @if ($can('daily_revenue'))
             draw('#revenue-chart', {
                 chart: { ...base, type: 'bar', height: 320, stacked: true, toolbar: { show: true, offsetY: -6, tools: { download: true, zoom: false, zoomin: false, zoomout: false, pan: false, reset: false } } },
                 series: [{ name: 'Government revenue', data: series.govt }, { name: 'HIF revenue', data: series.hif }],
@@ -518,7 +636,9 @@
                 yaxis: { min: 0, title: { text: 'Revenue (Rs)' }, labels: { formatter: k } }, legend: { position: 'bottom', horizontalAlign: 'center', fontWeight: 600 },
                 tooltip: { shared: true, intersect: false, y: { formatter: rupees } },
             });
+            @endif
 
+            @if ($can('race'))
             const race = @json($data['race']);
             const raceLabels = race.unit === 'hour' ? race.labels.map((l) => l.slice(0, 2)) : race.labels.map((l) => l.replace('Day ', ''));
             draw('#race-chart', {
@@ -530,7 +650,8 @@
                 markers: { size: 0, hover: { size: 6 } }, grid, yaxis: { min: 0, title: { text: 'Cumulative total revenue (Rs)' }, labels: { formatter: k } },
                 legend: { position: 'bottom', horizontalAlign: 'center', fontWeight: 600 }, tooltip: { shared: true, intersect: false, y: { formatter: rupees } },
             });
-
+            @endif
+            @if ($can('mix'))
             draw('#mix-chart', {
                 chart: { ...base, type: 'area', height: 280, stacked: true },
                 series: [{ name: 'Entitled (free)', data: series.entitled }, { name: 'Paid', data: series.paid }],
@@ -538,7 +659,8 @@
                 stroke: { width: 2, curve: 'smooth' }, fill: { type: 'gradient', gradient: { opacityFrom: .6, opacityTo: .15 } }, dataLabels: { enabled: false }, grid,
                 yaxis: { min: 0, labels: { formatter: int } }, legend: { position: 'top', horizontalAlign: 'right', fontWeight: 600 }, tooltip: { shared: true, intersect: false },
             });
-
+            @endif
+            @if ($can('control'))
             const control = @json($data['control']);
             const outside = control.values.map((v) => (v > control.upper || v < control.lower ? v : null));
             draw('#control-chart', {
@@ -548,14 +670,18 @@
                 stroke: { width: [2.5, 0, 2, 1.5, 1.5], dashArray: [0, 0, 0, 6, 6], curve: 'straight' }, markers: { size: [0, 6, 0, 0, 0], strokeColors: '#fff', strokeWidth: 2 }, dataLabels: { enabled: false }, grid,
                 yaxis: { min: 0, labels: { formatter: int } }, legend: { position: 'top', horizontalAlign: 'right', fontWeight: 600 }, tooltip: { shared: false },
             });
+            @endif
 
             // 4. revenue -------------------------------------------------------------------------
+            @if ($can('split'))
             draw('#split-chart', {
                 chart: { ...base, type: 'bar', height: 280, stacked: true, stackType: '100%' },
                 series: [{ name: 'Government', data: series.govt }, { name: 'HIF', data: series.hif }], xaxis: { categories: labels, tickAmount: tick, labels: xlabels },
                 colors: ['#16a34a', '#f59e0b'], dataLabels: { enabled: false }, grid, plotOptions: { bar: { columnWidth: '75%', borderRadius: 2 } },
                 legend: { position: 'top', horizontalAlign: 'right', fontWeight: 600 }, tooltip: { y: { formatter: rupees } }, yaxis: { labels: { formatter: (v) => Math.round(v) + '%' } },
             });
+            @endif
+            @if ($can('months'))
             const monthLabels = @json($data['months']);
             draw('#months-chart', {
                 chart: { ...base, type: 'bar', height: 250, stacked: true },
@@ -570,6 +696,8 @@
                 colors: ['#2563eb'], stroke: { width: 3, curve: 'smooth' }, markers: { size: 4, strokeColors: '#fff', strokeWidth: 2 }, dataLabels: { enabled: false }, grid,
                 yaxis: { min: 0, title: { text: 'Chits' }, labels: { formatter: k } }, legend: { show: false }, tooltip: { y: { formatter: int } },
             });
+            @endif
+            @if ($can('yoy'))
             const yoy = @json($data['yoy']);
             draw('#yoy-chart', {
                 chart: { ...base, ...lineShadow, type: 'line', height: 280 },
@@ -577,6 +705,8 @@
                 xaxis: { categories: yoy.labels }, colors: ['#16a34a', '#94a3b8'], stroke: { width: [3.5, 2.5], curve: 'smooth', dashArray: [0, 5] }, markers: { size: [4, 0], strokeColors: '#fff', strokeWidth: 2, hover: { size: 7 } },
                 dataLabels: { enabled: false }, grid, yaxis: { min: 0, title: { text: 'Total revenue (Rs)' }, labels: { formatter: k } }, legend: { position: 'bottom', horizontalAlign: 'center', fontWeight: 600 }, tooltip: { shared: true, intersect: false, y: { formatter: (v) => (v == null ? '—' : rupees(v)) } },
             });
+            @endif
+            @if ($can('services'))
             const services = @json(collect($data['services'])->values());
             const serviceNames = services.map((s) => s.name);
             const serviceTotal = services.reduce((a, s) => a + Number(s.g) + Number(s.h), 0) || 1; let running = 0;
@@ -592,39 +722,53 @@
                 xaxis: { categories: serviceNames, labels: { rotate: -40, rotateAlways: true, trim: true, maxHeight: 80, hideOverlappingLabels: false, style: { fontSize: '10px' } } }, colors: ['#e11d48'], stroke: { width: 3, curve: 'smooth' }, markers: { size: 4, strokeColors: '#fff', strokeWidth: 2 }, dataLabels: { enabled: false }, grid,
                 yaxis: { min: 0, max: 100, tickAmount: 4, title: { text: 'Cumulative %' }, labels: { formatter: (v) => Math.round(v) + '%' } }, legend: { show: false }, tooltip: { y: { formatter: (v) => v + '% of the total' } },
             });
+            @endif
 
             // 5. busy times ----------------------------------------------------------------------
+            @if ($can('heat_map'))
             draw('#heat-chart', {
                 chart: { ...base, type: 'heatmap', height: 330 }, series: @json($data['heat']).reverse(), dataLabels: { enabled: false },
                 plotOptions: { heatmap: { radius: 4, shadeIntensity: .6 } }, colors: ['#4f46e5'], stroke: { width: 2, colors: ['#fff'] },
                 xaxis: { type: 'category', title: { text: 'hour of the day' } }, tooltip: { y: { formatter: (v) => int(v) + ' chits' } },
             });
+            @endif
+            @if ($can('hours'))
             const peak = {{ $data['peak_hour'] }}; const hourLabels = @json($data['hour_labels']);
             draw('#hours-chart', {
                 chart: { ...base, type: 'bar', height: 150 }, series: [{ name: 'Chits', data: @json($data['hours']) }],
                 xaxis: { categories: hourLabels.map((l) => l.slice(0, 2)) }, plotOptions: { bar: { borderRadius: 3, columnWidth: '75%' } }, dataLabels: { enabled: false }, grid,
                 colors: [({ dataPointIndex }) => (hourLabels[dataPointIndex] === String(peak).padStart(2, '0') + ':00' ? '#4f46e5' : '#c7d2fe')], yaxis: { labels: { formatter: int } },
             });
+            @endif
+            @if ($can('weekdays'))
             draw('#weekday-chart', {
                 chart: { ...base, type: 'bar', height: 150 }, series: [{ name: 'Avg chits', data: @json(array_values($data['weekday'])) }],
                 xaxis: { categories: @json(array_keys($data['weekday'])) }, colors: palette, plotOptions: { bar: { borderRadius: 4, columnWidth: '60%', distributed: true } },
                 dataLabels: { enabled: true, formatter: int, style: { fontSize: '10px' } }, grid, legend: { show: false }, yaxis: { show: false },
             });
+            @endif
+            @if ($can('weekday_variation'))
             draw('#box-chart', {
                 chart: { ...base, type: 'boxPlot', height: 280 }, series: [{ name: 'Chits per day', type: 'boxPlot', data: @json($data['box']) }],
                 colors: ['#4f46e5'], plotOptions: { boxPlot: { colors: { upper: '#a5b4fc', lower: '#6366f1' } } }, grid, yaxis: { min: 0, labels: { formatter: int } }, stroke: { colors: ['#312e81'] },
             });
+            @endif
+            @if ($can('day_of_month'))
             draw('#dom-chart', {
                 chart: { ...base, type: 'bar', height: 280 }, series: [{ name: 'Avg chits', data: @json($data['day_of_month']) }],
                 xaxis: { categories: Array.from({ length: 31 }, (_, i) => i + 1), tickAmount: 16, labels: { style: { fontSize: '10px' } }, title: { text: 'day of the month' } }, colors: ['#0891b2'],
                 plotOptions: { bar: { borderRadius: 3, columnWidth: '70%' } }, dataLabels: { enabled: false }, grid, yaxis: { min: 0, labels: { formatter: int } },
             });
+            @endif
 
             // 6. departments & services ----------------------------------------------------------
+            @if ($can('opd_departments'))
             draw('#dept-donut', {
                 chart: { ...base, type: 'donut', height: 320 }, series: @json($departments->pluck('n')->values()), labels: @json($departments->pluck('name')->values()), colors: palette,
                 legend: { position: 'right', fontSize: '12px' }, dataLabels: { enabled: false }, plotOptions: { pie: { donut: { size: '62%', labels: { show: true, total: { show: true, label: 'Chits', formatter: (w) => int(w.globals.seriesTotals.reduce((a, b) => a + b, 0)) } } } } },
             });
+            @endif
+            @if ($can('department_revenue'))
             draw('#dept-revenue', {
                 chart: { ...base, type: 'bar', height: 320, stacked: true },
                 series: [{ name: 'Government revenue', data: @json($departments->map(fn ($d) => round($d['g']))->values()) }, { name: 'HIF revenue', data: @json($departments->map(fn ($d) => round($d['h']))->values()) }],
@@ -632,6 +776,8 @@
                 colors: ['#16a34a', '#f59e0b'], dataLabels: { enabled: false }, grid, legend: { position: 'bottom', horizontalAlign: 'center', fontWeight: 600 }, tooltip: { shared: true, intersect: false, y: { formatter: rupees } },
                 yaxis: { labels: { maxWidth: 140, style: { fontSize: '11px' } } },
             });
+            @endif
+            @if ($can('categories'))
             const catNames = @json($categories->pluck('name')->values());
             draw('#categories-chart', {
                 chart: { ...base, type: 'bar', height: 260, stacked: true },
@@ -645,47 +791,66 @@
                 xaxis: { categories: catNames, labels: { rotate: 0, trim: false, hideOverlappingLabels: false, style: { fontSize: '11px' } } }, colors: ['#e11d48'], plotOptions: { bar: { borderRadius: 3, columnWidth: '55%', dataLabels: { position: 'top' } } },
                 dataLabels: { enabled: true, formatter: int, offsetY: -18, style: { fontSize: '11px', colors: ['#334155'] } }, grid, yaxis: { min: 0, title: { text: 'Tests' }, labels: { formatter: int } }, legend: { show: false }, tooltip: { y: { formatter: (v) => int(v) + ' tests' } },
             });
+            @endif
+            @if ($can('specialist'))
             draw('#specialist-chart', {
                 chart: { ...base, type: 'donut', height: 300 }, series: [{{ $x['specialist_chits'] }}, {{ max(0, $p['chits'] - $x['specialist_chits']) }}], labels: ['Specialist clinics', 'General OPD'], colors: ['#4f46e5', '#94a3b8'],
                 legend: { position: 'bottom' }, dataLabels: { enabled: true, formatter: (v) => Math.round(v) + '%' }, plotOptions: { pie: { donut: { size: '58%', labels: { show: true, total: { show: true, label: 'Chits', formatter: (w) => int(w.globals.seriesTotals.reduce((a, b) => a + b, 0)) } } } } },
             });
+            @endif
             const simpleBars = (selector, names, values, color) => draw(selector, {
                 chart: { ...base, type: 'bar', height: 200 }, series: [{ name: 'Count', data: values }], xaxis: { categories: names, tickAmount: 4, labels: { formatter: (v) => Math.round(v), style: { fontSize: '10px' } } }, yaxis: { labels: { maxWidth: 110, style: { fontSize: '10px' } } },
                 colors: [color], plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '60%', dataLabels: { position: 'top' } } }, dataLabels: { enabled: true, formatter: int, offsetX: 26, style: { colors: ['#334155'], fontSize: '11px' } }, grid,
                 tooltip: { y: { formatter: int } },
             });
+            @if ($can('operation_theatre'))
             simpleBars('#ot-chart', @json(collect($data['operation_theatre'])->pluck('name')->values()), @json(collect($data['operation_theatre'])->pluck('n')->values()), '#e11d48');
+            @endif
+            @if ($can('radiology'))
             simpleBars('#radiology-chart', @json(collect($data['radiology'])->pluck('name')->values()), @json(collect($data['radiology'])->pluck('n')->values()), '#0891b2');
+            @endif
+            @if ($can('employers'))
             simpleBars('#govt-chart', @json($govtDepartments->pluck('name')->values()), @json($govtDepartments->pluck('n')->values()), '#4f46e5');
+            @endif
 
             // 7. patients & admissions ----------------------------------------------------------
             @if ($p['patients'])
+                @if ($can('gender'))
                 draw('#gender-chart', {
                     chart: { ...base, type: 'donut', height: 250 }, series: @json(array_values($data['gender'])), labels: @json(array_keys($data['gender'])), colors: ['#2563eb', '#db2777'],
                     legend: { position: 'bottom' }, dataLabels: { enabled: true, formatter: (v) => Math.round(v) + '%' }, plotOptions: { pie: { donut: { size: '58%' } } },
                 });
+                @endif
+                @if ($can('age_pyramid'))
                 const pyramid = @json($data['pyramid']);
                 draw('#pyramid-chart', {
                     chart: { ...base, type: 'bar', height: 250, stacked: true }, series: [{ name: 'Male', data: pyramid.male.map((n) => -n) }, { name: 'Female', data: pyramid.female }],
                     xaxis: { categories: pyramid.groups, labels: { formatter: (v) => int(Math.abs(v)) } }, colors: ['#2563eb', '#db2777'], plotOptions: { bar: { horizontal: true, barHeight: '70%', borderRadius: 3 } },
                     dataLabels: { enabled: false }, grid, yaxis: { reversed: false }, legend: { position: 'bottom' }, tooltip: { y: { formatter: (v) => int(Math.abs(v)) + ' patients' } },
                 });
+                @endif
             @endif
+            @if ($can('admissions'))
             draw('#admissions-chart', {
                 chart: { ...base, ...lineShadow, type: 'area', height: 250 }, series: [{ name: 'Admissions', data: series.admissions }], xaxis: { categories: labels, tickAmount: Math.min(labels.length, 6), labels: { rotate: 0, hideOverlappingLabels: true, style: { fontSize: '10px' } } },
                 colors: ['#e11d48'], stroke: { curve: 'smooth', width: 3 }, markers: { size: 3, strokeColors: '#fff', strokeWidth: 2, hover: { size: 6 } }, fill: { type: 'gradient', gradient: { opacityFrom: .4, opacityTo: .02 } }, dataLabels: { enabled: false }, grid, yaxis: { min: 0, forceNiceScale: true, decimalsInFloat: 0, labels: { formatter: int } },
             });
+            @endif
+            @if ($can('wards'))
             draw('#wards-chart', {
                 chart: { ...base, type: 'bar', height: 240 }, series: [{ name: 'Admissions', data: @json(collect($data['wards'])->pluck('n')->values()) }],
                 xaxis: { categories: @json(collect($data['wards'])->pluck('name')->values()) }, colors: palette, plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '60%', distributed: true, dataLabels: { position: 'top' } } },
                 dataLabels: { enabled: true, formatter: int, offsetX: 26, style: { colors: ['#334155'], fontSize: '11px' } }, grid, legend: { show: false },
             });
+            @endif
+            @if ($can('projection'))
             draw('#projection-chart', {
                 chart: { ...base, type: 'bar', height: 110, stacked: true },
                 series: [{ name: 'So far', data: [{{ $proj['mtd_chits'] }}] }, { name: 'Still to come (projected)', data: [{{ max(0, $proj['chits'] - $proj['mtd_chits']) }}] }],
                 xaxis: { categories: ['Chits'], labels: { show: false } }, colors: ['#4f46e5', '#c7d2fe'], plotOptions: { bar: { horizontal: true, barHeight: '55%', borderRadius: 4 } },
                 dataLabels: { enabled: true, formatter: int }, grid: { show: false }, legend: { position: 'bottom' }, yaxis: { labels: { show: false } },
             });
+            @endif
         </script>
     @endpush
 </x-app-layout>
