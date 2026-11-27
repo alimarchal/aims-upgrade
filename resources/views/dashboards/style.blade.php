@@ -128,7 +128,7 @@
     a.db-kpi:active, a > .db-kpi:active { transform: scale(.985); }
     .db-kpi-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .db-kpi-label { font-size: 13px; font-weight: 500; color: var(--db-muted); letter-spacing: -.005em; }
-    .db-kpi-icon { display: inline-flex; flex: none; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 9px; background: linear-gradient(150deg, color-mix(in srgb, var(--tone, #0071e3) 72%, #fff), var(--tone, #0071e3)); color: #fff; box-shadow: 0 4px 10px -3px var(--glow, rgba(0, 113, 227, .4)), inset 0 1px 0 rgba(255, 255, 255, .35); transition: transform .35s var(--db-spring); }
+    .db-kpi-icon { display: inline-flex; flex: none; width: 32px; height: 32px; align-items: center; justify-content: center; border-radius: 9px; background: var(--tone, #0071e3); /* plain colour for browsers without color-mix (Chrome < 111) */ background: linear-gradient(150deg, color-mix(in srgb, var(--tone, #0071e3) 72%, #fff), var(--tone, #0071e3)); color: #fff; box-shadow: 0 4px 10px -3px var(--glow, rgba(0, 113, 227, .4)), inset 0 1px 0 rgba(255, 255, 255, .35); transition: transform .35s var(--db-spring); }
     .db-kpi:hover .db-kpi-icon { transform: scale(1.08) rotate(-4deg); }
     .db-kpi-icon svg { width: 17px; height: 17px; }
     .db-kpi-value { margin-top: 8px; font-size: 30px; line-height: 1.1; font-weight: 600; letter-spacing: -.03em; color: var(--db-text); font-variant-numeric: tabular-nums; }
