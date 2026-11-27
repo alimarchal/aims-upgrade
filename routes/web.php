@@ -85,13 +85,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('patient/{patient}/history', [PatientController::class, 'patient_history'])->name('patient.history');
         Route::post('patient/invoice', [PatientController::class, 'patient_test_invoice_generate'])->name('patient.patient_test_invoice_generate')->middleware('permission:create invoices');
 
-        Route::resource('patient', PatientController::class)->except(['create', 'store', 'edit', 'update']);
+        // create / store come before the resource so "patient/create" is not caught by "patient/{patient}"
         Route::get('patient/create', [PatientController::class, 'create'])
             ->name('patient.create')
             ->middleware('permission:create patients');
         Route::post('patient', [PatientController::class, 'store'])
             ->name('patient.store')
             ->middleware('permission:create patients');
+        Route::resource('patient', PatientController::class)->except(['create', 'store', 'edit', 'update']);
         Route::get('patient/{patient}/edit', [PatientController::class, 'edit'])
             ->name('patient.edit')
             ->middleware('permission:edit patients');

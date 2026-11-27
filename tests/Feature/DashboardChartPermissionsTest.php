@@ -98,6 +98,7 @@ test('a user who can only view patients cannot create patients, chits or invoice
 
     $this->actingAs($viewer)->get(route('patient.index'))->assertOk()->assertDontSee('Issue Chit OPD');
     $this->actingAs($viewer)->get(route('patient.create-opd'))->assertForbidden();
+    $this->actingAs($viewer)->get(route('patient.create'))->assertForbidden();
     $this->actingAs($viewer)->post(route('patient.store-opd'))->assertForbidden();
     $this->actingAs($viewer)->get(route('patient.issue-new-chit', $patient))->assertForbidden();
     $this->actingAs($viewer)->get(route('patient.proceed', $patient))->assertForbidden();
@@ -109,6 +110,7 @@ test('front desk users can still register patients', function () {
 
     $this->actingAs($frontDesk)->get(route('patient.index'))->assertOk()->assertSee('Issue Chit OPD');
     $this->actingAs($frontDesk)->get(route('patient.create-opd'))->assertOk();
+    $this->actingAs($frontDesk)->get(route('patient.create'))->assertOk();
 });
 
 test('chart permissions migration gives administrators every chart and is repeatable', function () {
